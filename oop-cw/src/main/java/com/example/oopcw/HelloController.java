@@ -9,6 +9,7 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to Inupa Application!");
+        welcomeText.setText("Welcome to Chavindu Application!");
     }
+
 }
