@@ -1,16 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedAreaChart?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.oopcw.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
-
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="643.0" prefWidth="940.0">
+         <children>
+            <Pane layoutX="-2.0" layoutY="-3.0" prefHeight="653.0" prefWidth="82.0" style="-fx-background-color: #5271FF;" />
+            <Pane layoutX="733.0" prefHeight="650.0" prefWidth="201.0" style="-fx-background-color: #5271FF;" />
+            <ImageView fitHeight="119.0" fitWidth="136.0" layoutX="341.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images%20(6).jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="119.0" fitWidth="136.0" layoutX="557.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images%20(6).jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="119.0" fitWidth="139.0" layoutX="123.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images%20(6).jpeg" />
+               </image>
+            </ImageView>
+            <Label layoutX="123.0" layoutY="28.0" prefHeight="40.0" prefWidth="212.0" text="Event overview">
+               <font>
+                  <Font name="Bell MT Bold" size="28.0" />
+               </font>
+            </Label>
+            <StackedAreaChart layoutX="132.0" layoutY="256.0" prefHeight="167.0" prefWidth="512.0">
+              <xAxis>
+                <NumberAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </StackedAreaChart>
+            <AreaChart layoutX="410.0" layoutY="467.0" prefHeight="150.0" prefWidth="294.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </AreaChart>
+            <AreaChart layoutX="104.0" layoutY="459.0" prefHeight="140.0" prefWidth="251.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </AreaChart>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
