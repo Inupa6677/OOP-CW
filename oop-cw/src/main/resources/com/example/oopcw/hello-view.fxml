@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -10,8 +11,25 @@
       <Pane prefHeight="643.0" prefWidth="940.0">
          <children>
             <Pane layoutX="-2.0" layoutY="-3.0" prefHeight="653.0" prefWidth="82.0" style="-fx-background-color: #5271FF;" />
-            <Pane layoutX="733.0" prefHeight="650.0" prefWidth="201.0" style="-fx-background-color: #5271FF;" />
-            <Label layoutX="123.0" layoutY="28.0" prefHeight="40.0" prefWidth="212.0" text="Club Creation">
+            <Pane layoutX="733.0" prefHeight="650.0" prefWidth="201.0" style="-fx-background-color: #5271FF;">
+               <children>
+                  <Button layoutX="48.0" layoutY="281.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="123.0" text="Administrator">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="48.0" layoutY="381.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="123.0" text="Student">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="48.0" layoutY="185.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="123.0" text="Club Advisor">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children></Pane>
+            <Label layoutX="123.0" layoutY="28.0" prefHeight="40.0" prefWidth="212.0" text="Club Details">
                <font>
                   <Font name="Bell MT Bold" size="28.0" />
                </font>
