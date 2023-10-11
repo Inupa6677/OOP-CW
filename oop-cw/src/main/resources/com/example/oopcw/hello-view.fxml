@@ -12,11 +12,30 @@
    <children>
       <Pane layoutX="14.0" prefHeight="643.0" prefWidth="940.0">
          <children>
-            <Pane id="sideNavBarPane" fx:id="sideNavBarPane" layoutX="-7.0" layoutY="7.0" prefHeight="636.0" prefWidth="186.0" style="-fx-background-color: #5271FF;" stylesheets="@../../../../java/com/example/oopcw/dashbord.css">
+            <Pane id="sideNavBarPane" fx:id="sideNavBarPane" layoutX="-7.0" layoutY="7.0" prefHeight="636.0" prefWidth="186.0" style="-fx-background-color: #051650;" stylesheets="@../../../../java/com/example/oopcw/dashbord.css">
                <children>
-                  <Button id="clubsButton" fx:id="clubsButton" layoutX="39.0" layoutY="104.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="108.0" styleClass="mainPageNavButtons" stylesheets="@../../../../java/com/example/oopcw/dashbord.css" text="Clubs" />
+                  <Button id="clubsButton" fx:id="clubsButton" layoutX="28.0" layoutY="170.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="mainPageNavButtons" stylesheets="@../../../../java/com/example/oopcw/dashbord.css" text="Clubs">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button id="clubsButton" fx:id="clubsButton1" layoutX="28.0" layoutY="236.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="mainPageNavButtons" stylesheets="@../../../../java/com/example/oopcw/dashbord.css" text="Events">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button id="clubsButton" fx:id="clubsButton11" layoutX="28.0" layoutY="308.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="mainPageNavButtons" stylesheets="@../../../../java/com/example/oopcw/dashbord.css" text="Attendance">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button id="clubsButton" fx:id="clubsButton111" layoutX="28.0" layoutY="374.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="mainPageNavButtons" stylesheets="@../../../../java/com/example/oopcw/dashbord.css" text="Reports">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
                </children></Pane>
-            <Pane layoutX="876.0" prefHeight="650.0" prefWidth="58.0" style="-fx-background-color: #5271FF;" />
+            <Pane layoutX="861.0" prefHeight="650.0" prefWidth="73.0" style="-fx-background-color: #5271FF;" />
             <ImageView fitHeight="119.0" fitWidth="136.0" layoutX="508.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images%20(6).jpeg" />
