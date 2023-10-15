@@ -11,7 +11,7 @@
          <children>
             <Pane layoutX="-2.0" layoutY="-3.0" prefHeight="653.0" prefWidth="82.0" style="-fx-background-color: #5271FF;" />
             <Pane layoutX="733.0" prefHeight="650.0" prefWidth="201.0" style="-fx-background-color: #5271FF;" />
-            <Label layoutX="123.0" layoutY="28.0" prefHeight="40.0" prefWidth="212.0" text="Club Creation">
+            <Label layoutX="123.0" layoutY="28.0" prefHeight="40.0" prefWidth="212.0" text="Clubs">
                <font>
                   <Font name="Bell MT Bold" size="28.0" />
                </font>
