@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
     <children>
         <AnchorPane prefHeight="562.0" prefWidth="824.0">
             <children>
@@ -104,7 +104,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </CheckBox>
-                                    <Button layoutX="31.0" layoutY="464.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="107.0" text="Back">
+                                    <Button fx:id="btn_back" layoutX="31.0" layoutY="464.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="19.0" prefWidth="107.0" text="Back">
                                        <font>
                                           <Font size="13.0" />
                                        </font>

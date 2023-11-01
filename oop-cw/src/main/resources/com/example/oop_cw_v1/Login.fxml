@@ -32,16 +32,19 @@
                               <TextField fx:id="txt_Email" layoutX="34.0" layoutY="87.0" prefHeight="39.0" prefWidth="239.0" promptText="Email">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
-                                 </cursor></TextField>
+                                 </cursor>
+                              </TextField>
                               <TextField fx:id="pass_Password" layoutX="34.0" layoutY="135.0" prefHeight="39.0" prefWidth="239.0" promptText="Password">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
-                                 </cursor></TextField>
-                              <Label fx:id="label_forgotPw" layoutX="178.0" layoutY="176.0" text="Forgot password?" underline="true">
+                                 </cursor>
+                              </TextField>
+                              <Label fx:id="label_forgotPw" layoutX="178.0" layoutY="193.0" text="Forgot password?" underline="true">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
-                                 </cursor></Label>
-                              <Button fx:id="btn_login" layoutX="34.0" layoutY="206.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="239.0" text="Login">
+                                 </cursor>
+                              </Label>
+                              <Button fx:id="btn_login" layoutX="34.0" layoutY="212.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="239.0" text="Login">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -49,8 +52,8 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Label fx:id="label_registerNow" layoutX="45.0" layoutY="400.0" onMouseClicked="#switchToRegisterNow" text="Don't have an account? Register now!" underline="true">
-                                 <font>
+                              <Label fx:id="label_registerNow" layoutX="45.0" layoutY="400.0" onMouseClicked="#switchToRegisterNow" onMousePressed="#switchToRegisterNow" text="Don't have an account? Register now!" underline="true">
+                              <font>
                                     <Font size="13.0" />
                                  </font>
                                  <cursor>
@@ -68,7 +71,7 @@
                                     <Line endX="91.00003051757812" layoutX="132.00000762939453" layoutY="9.5" startX="-20.400001525878906" />
                                  </children>
                               </Group>
-                              <Button fx:id="btn_google" layoutX="34.0" layoutY="327.0" mnemonicParsing="false" onAction="#switchToRegisterNow" prefHeight="39.0" prefWidth="239.0" text="Log in with Google">
+                              <Button fx:id="btn_google" layoutX="34.0" layoutY="327.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="239.0" text="Log in with Google">
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="30.0">
                                        <image>
@@ -80,6 +83,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
+                              <Label fx:id="label_error" layoutX="34.0" layoutY="177.0" prefHeight="17.0" prefWidth="238.0" textFill="red" />
                            </children>
                         </Pane>
                      </children>
