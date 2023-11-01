@@ -15,6 +15,7 @@ public class HelloController {
 
     @FXML
     private Label label_registerNow;
+    // he knew 
 
     @FXML
     private void switchToRegisterNow(ActionEvent actionEvent) throws IOException {
