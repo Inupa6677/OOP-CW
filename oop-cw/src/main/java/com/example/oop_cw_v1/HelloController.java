@@ -50,6 +50,5 @@ public class HelloController {
         LoginAnchorPane.setVisible(true);
     }
 
-    public void switchToLogin() {
-    }
+
 }
