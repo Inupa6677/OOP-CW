@@ -27,5 +27,9 @@
 
 #pane2nearbutton{
     -fx-background-color: #8aecff;
-
 }
+
+#paneNextToContentInCreateEvents{
+    -fx-background-color: white;
+}
+
