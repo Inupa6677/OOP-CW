@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
@@ -25,26 +27,29 @@ public class HelloController {
     private Label label_error;
     @FXML
     private TextField txt_email;
-
-
     @FXML
-    private void switchToRegisterNow(MouseEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    private AnchorPane LoginAnchorPane;
+    @FXML
+    private StackPane registerStackPane;
 
-        Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+
+
+    public void disablePane(){
+        LoginAnchorPane.setVisible(false);
+        registerStackPane.setVisible(false);
+
     }
 
-    @FXML
-    private void switchToLogin(ActionEvent event) throws IOException {
-        Stage stage = (Stage) btn_back.getScene().getWindow(); // Assuming backButton is the ID of your back button
-
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void switchToRegisterNow(MouseEvent mouseEvent) {
+        disablePane();
+        registerStackPane.setVisible(true);
     }
 
+    public void switchTosLogin(ActionEvent actionEvent) {
+        disablePane();
+        LoginAnchorPane.setVisible(true);
+    }
+
+    public void switchToLogin() {
+    }
 }
