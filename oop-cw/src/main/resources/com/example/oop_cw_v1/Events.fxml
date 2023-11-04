@@ -41,7 +41,7 @@
             </Button>
          </children>
       </Pane>
-      <Pane prefHeight="551.0" prefWidth="752.0" visible="false">
+      <Pane prefHeight="551.0" prefWidth="752.0">
          <children>
             <Pane layoutY="1.0" prefHeight="550.0" prefWidth="402.0">
                <children>
@@ -79,7 +79,7 @@
             </Pane>
          </children>
       </Pane>
-      <Pane layoutX="-2.0" layoutY="1.0" prefHeight="550.0" prefWidth="758.0">
+      <Pane layoutX="-2.0" layoutY="1.0" prefHeight="550.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="86.0" layoutY="22.0" prefHeight="38.0" prefWidth="249.0" text="Update Event Details">
                <font>
