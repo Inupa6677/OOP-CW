@@ -30,19 +30,19 @@ public class HelloController {
     @FXML
     private AnchorPane LoginAnchorPane;
     @FXML
-    private StackPane registerStackPane;
+    private StackPane studentRegisterPane;
 
 
 
     public void disablePane(){
         LoginAnchorPane.setVisible(false);
-        registerStackPane.setVisible(false);
+        studentRegisterPane.setVisible(false);
 
     }
 
     public void switchToRegisterNow(MouseEvent mouseEvent) {
         disablePane();
-        registerStackPane.setVisible(true);
+        studentRegisterPane.setVisible(true);
     }
 
     public void switchTosLogin(ActionEvent actionEvent) {
