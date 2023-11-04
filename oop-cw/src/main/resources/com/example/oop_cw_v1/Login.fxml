@@ -19,7 +19,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
    <children>
-      <AnchorPane fx:id="LoginAnchorPane" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="studentLoginAnchorPane" prefHeight="200.0" prefWidth="200.0">
          <children>
             <BorderPane prefHeight="500.0" prefWidth="700.0">
                <left>
@@ -325,5 +325,91 @@
             </AnchorPane>
          </children>
       </StackPane>
+      <AnchorPane fx:id="advisorLoginAnchorPane" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane prefHeight="500.0" prefWidth="700.0">
+               <left>
+                  <AnchorPane prefHeight="500.0" prefWidth="375.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Pane layoutX="1.0" layoutY="-2.0" prefHeight="550.0" prefWidth="310.0">
+                           <children>
+                              <Label layoutX="114.0" layoutY="30.0" prefHeight="49.0" prefWidth="79.0" text="Login" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txt_Email1" layoutX="34.0" layoutY="111.0" prefHeight="39.0" prefWidth="239.0" promptText="Email">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                              <TextField fx:id="pass_Password1" layoutX="31.0" layoutY="186.0" prefHeight="39.0" prefWidth="244.0" promptText="Password">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                              <Label fx:id="label_forgotPw1" layoutX="175.0" layoutY="258.0" text="Forgot password?" underline="true">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Label>
+                              <Button fx:id="btn_login1" layoutX="34.0" layoutY="283.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="239.0" text="Login">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Label fx:id="label_registerNow1" layoutX="45.0" layoutY="462.0" onMouseClicked="#switchToRegisterNow" onMousePressed="#switchToRegisterNow" text="Don't have an account? Register now!" underline="true">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Label>
+                              <Group layoutX="52.0" layoutY="277.0" />
+                              <Button fx:id="btn_google1" layoutX="31.0" layoutY="405.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="239.0" text="Log in with Google">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0">
+                                       <image>
+                                          <Image url="@../../../Images/google-removebg-preview.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Label fx:id="label_error1" layoutX="34.0" layoutY="177.0" prefHeight="17.0" prefWidth="238.0" textFill="red" />
+                              <Line endX="91.00003051757812" layoutX="196.0" layoutY="344.0" startX="-20.400001525878906" />
+                              <Label layoutX="153.0" layoutY="331.0" text="or">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="91.00003051757812" layoutX="52.0" layoutY="344.0" startX="-20.400001525878906" />
+                              <Label layoutX="38.0" layoutY="87.0" prefHeight="17.0" prefWidth="234.0" text="Label" />
+                              <Label layoutX="37.0" layoutY="160.0" prefHeight="17.0" prefWidth="238.0" text="Label" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <right>
+                  <AnchorPane prefHeight="500.0" prefWidth="325.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="550.0" fitWidth="422.0" layoutX="-46.0">
+                           <image>
+                              <Image url="@../../../Images/a2904511b25859f35d7fda94e79188ed.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </right>
+            </BorderPane>
+         </children>
+      </AnchorPane>
    </children>
 </StackPane>
