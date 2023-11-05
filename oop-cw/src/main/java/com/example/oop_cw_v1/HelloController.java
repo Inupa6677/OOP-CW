@@ -33,6 +33,8 @@ public class HelloController {
     private AnchorPane advisorLoginAnchorPane;
     @FXML
     private StackPane advisorRegisterPane;
+    @FXML
+    private  AnchorPane frontPane;
 
 
 
@@ -41,6 +43,7 @@ public class HelloController {
         studentRegisterPane.setVisible(false);
         advisorLoginAnchorPane.setVisible(false);
         advisorRegisterPane.setVisible(false);
+        frontPane.setVisible(false);
 
     }
 
@@ -59,8 +62,19 @@ public class HelloController {
     }
     public void switchToAdvisorLogin(ActionEvent actionEvent) {
         disablePane();
-        advisorRegisterPane.setVisible(true);
+        advisorLoginAnchorPane.setVisible(true);
     }
 
 
+    public void advisorLoginClick(ActionEvent actionEvent) {
+        disablePane();
+        advisorLoginAnchorPane.setVisible(true);
+
+    }
+
+    public void studentLoginClick(ActionEvent actionEvent) {
+        disablePane();
+        studentLoginPane.setVisible(true);
+
+    }
 }

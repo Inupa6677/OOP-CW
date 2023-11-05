@@ -433,12 +433,12 @@
                   <Image url="@../../../Images/da1f3792abf8a7504c6d6782d7e2c347-removebg-preview.png" />
                </image>
             </ImageView>
-            <Button layoutX="112.0" layoutY="461.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" text="Advisor">
+            <Button layoutX="112.0" layoutY="461.0" mnemonicParsing="false" onAction="#advisorLoginClick" prefHeight="40.0" prefWidth="118.0" text="Advisor">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="473.0" layoutY="461.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="126.0" text="Student">
+            <Button layoutX="473.0" layoutY="461.0" mnemonicParsing="false" onAction="#studentLoginClick" prefHeight="43.0" prefWidth="126.0" text="Student">
                <font>
                   <Font size="20.0" />
                </font>
