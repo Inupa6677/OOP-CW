@@ -215,7 +215,7 @@
             </AnchorPane>
          </children>
       </StackPane>
-      <StackPane fx:id="advisorRegisterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0">
+      <StackPane fx:id="advisorRegisterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" visible="false">
          <children>
             <AnchorPane prefHeight="562.0" prefWidth="824.0">
                <children>
@@ -409,6 +409,50 @@
                   </AnchorPane>
                </right>
             </BorderPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="frontPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #09333F;">
+         <children>
+            <Label layoutX="332.0" layoutY="169.0" text="Welcome ">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="46.0" layoutY="142.0" prefHeight="30.0" prefWidth="231.0" text="        Chooes Profile ⬇️" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="231.0" fitWidth="308.0" layoutX="56.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/Free%20Vector%20_%20Ambassador%20concept%20illustration%20-%20Copy.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="231.0" fitWidth="355.0" layoutX="363.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/da1f3792abf8a7504c6d6782d7e2c347-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="112.0" layoutY="461.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" text="Advisor">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="473.0" layoutY="461.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="126.0" text="Student">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="143.0" fitWidth="163.0" layoutX="100.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/Club%20Navigator.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="143.0" fitWidth="416.0" layoutX="243.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/2.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
