@@ -19,7 +19,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
    <children>
-      <AnchorPane fx:id="studentLoginAnchorPane" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="studentLoginPane" prefHeight="200.0" prefWidth="200.0" visible="false">
          <children>
             <BorderPane prefHeight="500.0" prefWidth="700.0">
                <left>
@@ -55,7 +55,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Label fx:id="label_registerNow" layoutX="45.0" layoutY="462.0" onMouseClicked="#switchToRegisterNow" onMousePressed="#switchToRegisterNow" text="Don't have an account? Register now!" underline="true">
+                              <Label fx:id="label_registerNow" layoutX="45.0" layoutY="462.0" onMouseClicked="#switchToStudentRegisterNow" onMousePressed="#switchToStudentRegisterNow" text="Don't have an account? Register now!" underline="true">
                               <font>
                                     <Font size="13.0" />
                                  </font>
@@ -193,7 +193,7 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </CheckBox>
-                                          <Button fx:id="btn_back" layoutX="29.0" layoutY="483.0" mnemonicParsing="false" onAction="#switchTosLogin" prefHeight="19.0" prefWidth="107.0" text="Back">
+                                          <Button fx:id="btn_back" layoutX="29.0" layoutY="483.0" mnemonicParsing="false" onAction="#switchToStudentLogin" prefHeight="19.0" prefWidth="107.0" text="Back">
                                              <font>
                                                 <Font size="13.0" />
                                              </font>
@@ -215,7 +215,7 @@
             </AnchorPane>
          </children>
       </StackPane>
-      <StackPane fx:id="advisorRegisterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" visible="false">
+      <StackPane fx:id="advisorRegisterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0">
          <children>
             <AnchorPane prefHeight="562.0" prefWidth="824.0">
                <children>
@@ -303,7 +303,7 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </CheckBox>
-                                          <Button fx:id="btn_back1" layoutX="29.0" layoutY="483.0" mnemonicParsing="false" onAction="#switchTosLogin" prefHeight="19.0" prefWidth="107.0" text="Back">
+                                          <Button fx:id="btn_back1" layoutX="29.0" layoutY="483.0" mnemonicParsing="false" onAction="#switchToAdvisorLogin" prefHeight="19.0" prefWidth="107.0" text="Back">
                                              <font>
                                                 <Font size="13.0" />
                                              </font>
@@ -325,7 +325,7 @@
             </AnchorPane>
          </children>
       </StackPane>
-      <AnchorPane fx:id="advisorLoginAnchorPane" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="advisorLoginAnchorPane" prefHeight="200.0" prefWidth="200.0" visible="false">
          <children>
             <BorderPane prefHeight="500.0" prefWidth="700.0">
                <left>
@@ -361,7 +361,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Label fx:id="label_registerNow1" layoutX="45.0" layoutY="462.0" onMouseClicked="#switchToRegisterNow" onMousePressed="#switchToRegisterNow" text="Don't have an account? Register now!" underline="true">
+                              <Label fx:id="label_registerNow1" layoutX="45.0" layoutY="462.0" onMouseClicked="#switchToAdvisorRegisterNow" onMousePressed="#switchToAdvisorRegisterNow" text="Don't have an account? Register now!" underline="true">
                                  <font>
                                     <Font size="13.0" />
                                  </font>

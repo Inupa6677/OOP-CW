@@ -28,26 +28,40 @@ public class HelloController {
     @FXML
     private TextField txt_email;
     @FXML
-    private AnchorPane LoginAnchorPane;
+    private AnchorPane studentLoginPane;
     @FXML
     private StackPane studentRegisterPane;
+    @FXML
+    private AnchorPane advisorLoginAnchorPane;
+    @FXML
+    private StackPane advisorRegisterPane;
 
 
 
     public void disablePane(){
-        LoginAnchorPane.setVisible(false);
+        studentLoginPane.setVisible(false);
         studentRegisterPane.setVisible(false);
+        advisorLoginAnchorPane.setVisible(false);
+        advisorRegisterPane.setVisible(false);
 
     }
 
-    public void switchToRegisterNow(MouseEvent mouseEvent) {
+    public void switchToStudentRegisterNow(MouseEvent mouseEvent) {
         disablePane();
         studentRegisterPane.setVisible(true);
     }
-
-    public void switchTosLogin(ActionEvent actionEvent) {
+    public void switchToAdvisorRegisterNow(MouseEvent mouseEvent) {
         disablePane();
-        LoginAnchorPane.setVisible(true);
+        advisorRegisterPane.setVisible(true);
+    }
+
+    public void switchToStudentLogin(ActionEvent actionEvent) {
+        disablePane();
+        studentLoginPane.setVisible(true);
+    }
+    public void switchToAdvisorLogin(ActionEvent actionEvent) {
+        disablePane();
+        advisorRegisterPane.setVisible(true);
     }
 
 
