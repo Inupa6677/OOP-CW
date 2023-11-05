@@ -19,7 +19,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
    <children>
-      <AnchorPane fx:id="studentLoginPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+      <AnchorPane fx:id="studentLoginPane" prefHeight="200.0" prefWidth="200.0">
          <children>
             <BorderPane prefHeight="500.0" prefWidth="700.0">
                <left>
@@ -55,7 +55,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Label fx:id="label_registerNow" layoutX="45.0" layoutY="462.0" onMouseClicked="#switchToStudentRegisterNow" onMousePressed="#switchToStudentRegisterNow" text="Don't have an account? Register now!" underline="true">
+                              <Label fx:id="label_registerNow" layoutX="31.0" layoutY="428.0" onMouseClicked="#switchToStudentRegisterNow" onMousePressed="#switchToStudentRegisterNow" text="Don't have an account? Register now!" underline="true">
                               <font>
                                     <Font size="13.0" />
                                  </font>
@@ -64,7 +64,7 @@
                                  </cursor>
                               </Label>
                               <Group layoutX="52.0" layoutY="277.0" />
-                              <Button fx:id="btn_google" layoutX="31.0" layoutY="405.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="239.0" text="Log in with Google">
+                              <Button fx:id="btn_google" layoutX="34.0" layoutY="361.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="239.0" text="Log in with Google">
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="30.0">
                                        <image>
@@ -86,6 +86,7 @@
                               <Line endX="91.00003051757812" layoutX="52.0" layoutY="344.0" startX="-20.400001525878906" />
                               <Label layoutX="38.0" layoutY="87.0" prefHeight="17.0" prefWidth="234.0" text="Label" />
                               <Label layoutX="37.0" layoutY="160.0" prefHeight="17.0" prefWidth="238.0" text="Label" />
+                              <Button layoutX="25.0" layoutY="503.0" mnemonicParsing="false" onAction="#backToFrontPaneClick" text="Back" />
                            </children>
                         </Pane>
                      </children>
@@ -361,7 +362,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Label fx:id="label_registerNow1" layoutX="45.0" layoutY="462.0" onMouseClicked="#switchToAdvisorRegisterNow" onMousePressed="#switchToAdvisorRegisterNow" text="Don't have an account? Register now!" underline="true">
+                              <Label fx:id="label_registerNow1" layoutX="45.0" layoutY="430.0" onMouseClicked="#switchToAdvisorRegisterNow" onMousePressed="#switchToAdvisorRegisterNow" text="Don't have an account? Register now!" underline="true">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -370,7 +371,7 @@
                                  </cursor>
                               </Label>
                               <Group layoutX="52.0" layoutY="277.0" />
-                              <Button fx:id="btn_google1" layoutX="31.0" layoutY="405.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="239.0" text="Log in with Google">
+                              <Button fx:id="btn_google1" layoutX="34.0" layoutY="360.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="239.0" text="Log in with Google">
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="30.0">
                                        <image>
@@ -392,6 +393,7 @@
                               <Line endX="91.00003051757812" layoutX="52.0" layoutY="344.0" startX="-20.400001525878906" />
                               <Label layoutX="38.0" layoutY="87.0" prefHeight="17.0" prefWidth="234.0" text="Label" />
                               <Label layoutX="37.0" layoutY="160.0" prefHeight="17.0" prefWidth="238.0" text="Label" />
+                              <Button layoutX="19.0" layoutY="511.0" mnemonicParsing="false" onAction="#backToFrontPaneClick" text="Back" />
                            </children>
                         </Pane>
                      </children>
@@ -411,13 +413,8 @@
             </BorderPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #09333F;">
+      <AnchorPane fx:id="frontPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #09333F;" visible="false">
          <children>
-            <Label layoutX="332.0" layoutY="169.0" text="Welcome ">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Label>
             <Label layoutX="46.0" layoutY="142.0" prefHeight="30.0" prefWidth="231.0" text="        Chooes Profile ⬇️" textFill="WHITE">
                <font>
                   <Font size="20.0" />

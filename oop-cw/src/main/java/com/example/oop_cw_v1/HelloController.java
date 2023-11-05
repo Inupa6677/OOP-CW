@@ -77,4 +77,9 @@ public class HelloController {
         studentLoginPane.setVisible(true);
 
     }
+
+    public void backToFrontPaneClick(ActionEvent actionEvent) {
+        disablePane();
+        frontPane.setVisible(true);
+    }
 }
