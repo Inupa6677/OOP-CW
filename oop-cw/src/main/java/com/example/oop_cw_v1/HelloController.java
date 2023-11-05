@@ -24,8 +24,6 @@ public class HelloController {
     @FXML
     private Button btn_back;
     @FXML
-    private Label label_error;
-    @FXML
     private TextField txt_email;
     @FXML
     private AnchorPane studentLoginPane;
