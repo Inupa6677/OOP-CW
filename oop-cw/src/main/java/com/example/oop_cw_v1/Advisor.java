@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Advisor extends User{
     private  String advisorID;
-    public Advisor(String firstName, String lastName, String gender, String DoB,String email, int contactNumber,String advisorID) {
-        super(firstName, lastName, gender, DoB,email, contactNumber);
+    public Advisor(String firstName,String lastName,String gender, String DoB,int contactNumber,String email,String password,String advisorID) {
+        super(firstName, lastName, gender, DoB,contactNumber,email,password);
         this.advisorID = advisorID;
     }
 

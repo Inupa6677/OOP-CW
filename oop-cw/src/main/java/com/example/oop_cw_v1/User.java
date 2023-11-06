@@ -9,16 +9,20 @@ public abstract class User {
     private String lastName;
     private String gender;
     private String DoB;
-    private String email;
     private int contactNumber;
+    private String email;
+    private String password;
+
+
 
     //Constructor for user
-    public User(String firstName,String lastName,String gender, String DoB,String email,int contactNumber){
+    public User(String firstName,String lastName,String gender, String DoB,int contactNumber,String email,String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.DoB = DoB;
         this.email = email;
+        this.password = password;
         this.contactNumber = contactNumber;
     }
     // getters and setters
@@ -60,6 +64,13 @@ public abstract class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public int getContactNumber() {

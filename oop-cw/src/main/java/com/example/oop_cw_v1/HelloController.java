@@ -82,4 +82,9 @@ public class HelloController {
         disablePane();
         frontPane.setVisible(true);
     }
+
+    public void studentRegisterClick(ActionEvent actionEvent) {
+        String firstName = 
+
+    }
 }

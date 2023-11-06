@@ -6,8 +6,8 @@ public class Student extends User{
     private String studentID;
 
     //parameterized constructor
-    public Student(String firstName, String lastName, String gender, String DoB, String email, int contactNumber, String studentID) {
-        super(firstName, lastName, gender, DoB,email, contactNumber);
+    public Student(String firstName,String lastName,String gender, String DoB,int contactNumber,String email,String password, String studentID) {
+        super(firstName, lastName, gender, DoB,contactNumber,email,password);
         this.studentID = studentID;
     }
 
