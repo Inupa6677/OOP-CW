@@ -8,14 +8,13 @@ public class Student extends User{
     private String studentID;
 
     //parameterized constructor
-    public Student(String firstName, String lastName, String gender, Date DoB, int contactNumber, String email, String password) {
-        super(firstName, lastName, gender, String.valueOf(DoB), contactNumber,email,password);
+
+
+    public Student(String firstName, String lastName, String gender, String DoB, String contactNumber, String email, String password,String studentID) {
+        super(firstName, lastName, gender, DoB, Integer.parseInt(contactNumber),email,password);
         this.studentID = studentID;
     }
 
-    public Student(String firstName, String lastName, String gender, String doB, String contactNumber, String email, String password) {
-        super();
-    }
 
     // getters and setters for studentID
 
@@ -33,4 +32,5 @@ public class Student extends User{
         System.out.println("HiHi");
         return false;
     };
+
 }

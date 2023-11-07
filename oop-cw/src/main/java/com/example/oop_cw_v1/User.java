@@ -26,6 +26,9 @@ public abstract class User {
         this.password = password;
         this.contactNumber = contactNumber;
     }
+
+
+
     // getters and setters
     public String getFirstName() {
         return firstName;

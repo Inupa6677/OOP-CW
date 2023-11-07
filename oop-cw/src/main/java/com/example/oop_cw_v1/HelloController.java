@@ -124,13 +124,12 @@ public class HelloController {
             studentValidation = false;
             studentFirstNameField.setStyle("-fx-border-color: red");
         }else{
-            studentValidation = true;
             studentFirstNameField.setStyle("");
         }
         // validation for last name
         if(studentLastNameField.getText().isEmpty()){
             studentValidation = false;
-            studentFirstNameField.setStyle("-fx-border-color: red");
+            studentLastNameField.setStyle("-fx-border-color: red");
         } else if(!studentLastNameField.getText().matches( "^[A-Za-z]*$")) {
             studentValidation = false;
             studentLastNameField.setStyle("-fx-border-color: red");
@@ -142,11 +141,11 @@ public class HelloController {
         if(studentIDField.getText().isEmpty()){
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
-        }else if(studentIDField.getText().length()<=4){
+        }else if(studentIDField.getText().length()>4){
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
 
-        }else if(!studentIDField.getText().matches( "\"^[0-9]+$\"")) {
+        }else if(!studentIDField.getText().matches( "^[A-Za-z0-9]+$")) {
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
         }else{
@@ -177,10 +176,10 @@ public class HelloController {
         if(studentcontactNumberField.getText().isEmpty()){
             studentValidation = false;
             studentcontactNumberField.setStyle("-fx-border-color: red");
-        }else if(!studentcontactNumberField.getText().matches( "\"^[0-9]+$\"")){
+        }else if(!studentcontactNumberField.getText().matches( "^[0-9]{10}$")){
             studentValidation = false;
             studentcontactNumberField.setStyle("-fx-border-color: red");
-        }else if(studentcontactNumberField.getText().length() == 10){
+        }else if(studentcontactNumberField.getText().length() != 10){
             studentValidation = false;
             studentcontactNumberField.setStyle("-fx-border-color: red");
         }else {
@@ -197,11 +196,13 @@ public class HelloController {
             studentEmailField.setStyle("");
         }
         // validation for password
-        if(!studentReEnterPasswordField.getText().matches(studentReEnterPasswordField.getText())){
+        if(!studentReEnterPasswordField.getText().matches(studentpasswordField.getText())){
             studentValidation = false;
             studentReEnterPasswordField.setStyle("-fx-border-color: red");
-        }else if(studentpasswordField.getText().isEmpty()){
+            studentpasswordField.setStyle("-fx-border-color: red");
+        }else if(studentpasswordField.getText().isEmpty() || studentReEnterPasswordField.getText().isEmpty()){
             studentValidation = false;
+            studentReEnterPasswordField.setStyle("-fx-border-color: red");
             studentpasswordField.setStyle("-fx-border-color: red");
         }else{
             studentpasswordField.setStyle("");
@@ -210,9 +211,10 @@ public class HelloController {
 
         // add the student data to list if validation is done
         if(studentValidation) {
-            Student student  = new Student(firstName,lastName,gender,DoB,contactNumber,email,password);
+            Student student  = new Student(firstName,lastName,gender,DoB,contactNumber,email,password,studentID);
             ArrayList<Student> registerStudentList = new ArrayList<>();
             registerStudentList.add(student);
+            
         }
 
 
