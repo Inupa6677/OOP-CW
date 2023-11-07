@@ -54,7 +54,7 @@ public abstract class User {
         this.gender = gender;
     }
 
-    public String getDOB() {
+    public String getDoB() {
         return DoB;
     }
 

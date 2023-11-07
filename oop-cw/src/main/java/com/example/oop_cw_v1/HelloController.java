@@ -2,21 +2,16 @@ package com.example.oop_cw_v1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 
-import java.io.IOException;
+
+
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class HelloController {
 
@@ -214,7 +209,7 @@ public class HelloController {
             Student student  = new Student(firstName,lastName,gender,DoB,contactNumber,email,password,studentID);
             ArrayList<Student> registerStudentList = new ArrayList<>();
             registerStudentList.add(student);
-            
+
         }
 
 

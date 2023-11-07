@@ -1,6 +1,7 @@
 module com.example.oop_cw_v1 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens com.example.oop_cw_v1 to javafx.fxml;
