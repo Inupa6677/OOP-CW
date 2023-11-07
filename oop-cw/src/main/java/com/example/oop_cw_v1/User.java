@@ -9,6 +9,7 @@ public abstract class User {
     private String lastName;
     private String gender;
     private String DoB;
+
     private int contactNumber;
     private String email;
     private String password;
@@ -16,7 +17,7 @@ public abstract class User {
 
 
     //Constructor for user
-    public User(String firstName,String lastName,String gender, String DoB,int contactNumber,String email,String password){
+    public User(String firstName, String lastName, String gender, String DoB, int contactNumber, String email, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -50,12 +51,12 @@ public abstract class User {
         this.gender = gender;
     }
 
-    public String getDoB() {
+    public String getDOB() {
         return DoB;
     }
 
-    public void setDoB(String doB) {
-        DoB = doB;
+    public void setDoB(Date DOB) {
+        this.DoB = String.valueOf(DOB);
     }
 
     public String getEmail() {
@@ -84,4 +85,8 @@ public abstract class User {
 
     // abstract methods
     public abstract boolean display();
+
+
+
+
 }
