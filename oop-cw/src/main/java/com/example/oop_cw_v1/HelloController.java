@@ -142,7 +142,7 @@ public class HelloController {
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
 
-        }else if(!studentIDField.getText().matches( "^[A-Za-z0-9]+$")) {
+        }else if(!studentIDField.getText().matches("^[0-9]{1,4}$")) {
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
         }else{
