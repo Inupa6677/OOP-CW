@@ -10,14 +10,14 @@ public abstract class User {
     private String gender;
     private String DoB;
 
-    private int contactNumber;
+    private String contactNumber;
     private String email;
     private String password;
 
 
 
     //Constructor for user
-    public User(String firstName, String lastName, String gender, String DoB, int contactNumber, String email, String password){
+    public User(String firstName, String lastName, String gender, String DoB, String contactNumber, String email, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -77,11 +77,11 @@ public abstract class User {
         this.password = password;
     }
 
-    public int getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(int contactNumber) {
+    public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
 

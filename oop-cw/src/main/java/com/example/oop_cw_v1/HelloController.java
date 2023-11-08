@@ -2,6 +2,7 @@ package com.example.oop_cw_v1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -102,7 +103,7 @@ public class HelloController {
     public void studentRegisterClick(ActionEvent actionEvent) {
         String firstName = studentFirstNameField.getText();
         String lastName =  studentLastNameField.getText();
-        String studentID = studentIDField.getText();
+        int studentID = Integer.parseInt(studentIDField.getText());
         String gender = studentGenderField.getText();
         String DoB = String.valueOf(studentDoBField.getValue());
         String contactNumber = studentcontactNumberField.getText();
@@ -206,20 +207,11 @@ public class HelloController {
         }
 
         // add the student data to list if validation is done
-        if(studentValidation) {
+        if(studentValidation == true) {
             Student student  = new Student(firstName,lastName,gender,DoB,contactNumber,email,password,studentID);
-            ArrayList<Student> registerStudentList = new ArrayList<>();
-            registerStudentList.add(student);
+            DatabaseConnection.insertData(student.getStudentID(),student.getFirstName(),student.getLastName(),student.getDoB(),student.getEmail(),student.getPassword(),student.getContactNumber(),student.getGender());
 
         }
-
-
-
-
-
-
-
-
 
     }
 

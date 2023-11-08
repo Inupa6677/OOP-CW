@@ -7,7 +7,7 @@ public class DatabaseConnection {
     private static final String DB_USER = "root";
     private static final String DB_PASS = "";
 
-    public static void insertData(int studentID,String firstName, String lastName, String DoB, String email, String password, int contactNumber, String gender) {
+    public static void insertData(int studentID,String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
@@ -20,7 +20,7 @@ public class DatabaseConnection {
             preparedStatement.setString(4, DoB);
             preparedStatement.setString(5, email);
             preparedStatement.setString(6, password);
-            preparedStatement.setInt(7, contactNumber);
+            preparedStatement.setString(7, contactNumber);
             preparedStatement.setString(8, gender);
 
             int rowsAffected = preparedStatement.executeUpdate();
@@ -62,12 +62,8 @@ public class DatabaseConnection {
 
     }
 
-    public static void main(String[] args) {
-
-        insertData(12,"dulaj","male","2005/04/26","0789744288","chavindu@gmail.com",76994015,"e001");
 
 
-    }
 }
 
 
