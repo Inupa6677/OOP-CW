@@ -3,6 +3,7 @@ package com.example.oop_cw_v1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -219,6 +220,22 @@ public class HelloController {
 
 
 
+
+    }
+
+    public void studentFirstNameValidation(KeyEvent keyEvent) {
+        boolean studentValidation = true;
+
+
+        if(studentFirstNameField.getText().isEmpty()){
+            studentValidation = false;
+            studentFirstNameField.setStyle("-fx-border-color: red");
+        } else if(!studentFirstNameField.getText().matches( "^[A-Za-z]*$")) {
+            studentValidation = false;
+            studentFirstNameField.setStyle("-fx-border-color: red");
+        }else{
+            studentFirstNameField.setStyle("");
+        }
 
     }
 }
