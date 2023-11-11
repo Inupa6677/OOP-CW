@@ -7,7 +7,8 @@ public class DatabaseConnection {
     private static final String DB_USER = "root";
     private static final String DB_PASS = "";
 
-    public static void insertData(String studentID,String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
+    // insert data to student table in the database
+    public static void insertStudentData(String studentID,String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
@@ -35,6 +36,36 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
     }
+    // inserting data to advisor table in the database
+    public static void insertAdvisorData(String advisorID,String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            String insertQuery = "INSERT INTO advisor (advisor_id,first_name,last_name,dob,email,password,contact_number,gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+            preparedStatement.setString(1, advisorID);
+            preparedStatement.setString(2, firstName);
+            preparedStatement.setString(3, lastName);
+            preparedStatement.setString(4, DoB);
+            preparedStatement.setString(5, email);
+            preparedStatement.setString(6, password);
+            preparedStatement.setString(7, contactNumber);
+            preparedStatement.setString(8, gender);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Data inserted successfully.");
+            } else {
+                System.out.println("Data insertion failed.");
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public static void displayTabels() {

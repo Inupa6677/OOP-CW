@@ -54,6 +54,27 @@ public class HelloController {
     @FXML
     private CheckBox studentCheckBox;
 
+    @FXML
+    private TextField advisorFirstNameField;
+    @FXML
+    private TextField advisorLastNameField;
+    @FXML
+    private TextField advisorIDField;
+    @FXML
+    private TextField advisorGenderField;
+    @FXML
+    private DatePicker advisorDoBField;
+    @FXML
+    private TextField advisorContactNumberField;
+    @FXML
+    private TextField advisorEmailField;
+    @FXML
+    private PasswordField advisorPasswordField;
+    @FXML
+    private PasswordField advisorReEnterPasswordField;
+    @FXML
+    private CheckBox advisorCheckBox;
+
 
 
 
@@ -144,7 +165,7 @@ public class HelloController {
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
 
-        }else if(!studentIDField.getText().matches("^[A-Za-z]*$")) {
+        }else if(!studentIDField.getText().matches("^[A-Za-z0-9]*$")) {
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
         }else{
@@ -159,8 +180,7 @@ public class HelloController {
         } else if(!genderInput.equals("male") && !genderInput.equals("female")) {
             studentValidation = false;
             studentGenderField.setStyle("-fx-border-color: red");
-            // Display an error message, for example:
-            // You can show a pop-up error message, set a label's text, or handle the error as needed
+
         }else{
             studentGenderField.setStyle("");
         }
@@ -209,14 +229,127 @@ public class HelloController {
         }
 
 
-        // add the student data to list if validation is done
+        // add the student data to database if validation is done
         if(studentValidation == true) {
             Student student  = new Student(firstName,lastName,gender,DoB,contactNumber,email,password,studentID);
-            DatabaseConnection.insertData(student.getStudentID(),student.getFirstName(),student.getLastName(),student.getDoB(),student.getEmail(),student.getPassword(),student.getContactNumber(),student.getGender());
+            DatabaseConnection.insertStudentData(student.getStudentID(),student.getFirstName(),student.getLastName(),student.getDoB(),student.getEmail(),student.getPassword(),student.getContactNumber(),student.getGender());
 
         }
 
     }
 
 
+    public void advisorRegisterClick(ActionEvent actionEvent) {
+        String firstName = advisorFirstNameField.getText();
+        String lastName =  advisorLastNameField.getText();
+        String advisorID = advisorIDField.getText();
+        String gender = advisorGenderField.getText();
+        String DoB = String.valueOf(advisorDoBField.getValue());
+        String contactNumber = advisorContactNumberField.getText();
+        String email = advisorEmailField.getText();
+        String password = advisorPasswordField.getText();
+
+        // Validation for advisor's attributes
+        boolean advisorValidation = true;
+        // validation for first name
+        if(advisorFirstNameField.getText().isEmpty()){
+            advisorValidation = false;
+            advisorFirstNameField.setStyle("-fx-border-color: red");
+        } else if(!advisorFirstNameField.getText().matches( "^[A-Za-z]*$")) {
+            advisorValidation = false;
+            advisorFirstNameField.setStyle("-fx-border-color: red");
+        }else{
+            advisorFirstNameField.setStyle("");
+        }
+        // validation for last name
+        if(advisorLastNameField.getText().isEmpty()){
+            advisorValidation = false;
+            advisorLastNameField.setStyle("-fx-border-color: red");
+        } else if(!advisorLastNameField.getText().matches( "^[A-Za-z]*$")) {
+            advisorValidation = false;
+            advisorLastNameField.setStyle("-fx-border-color: red");
+        }else{
+            advisorValidation = true;
+            advisorLastNameField.setStyle("");
+        }
+        // validation for advisor ID
+        if(advisorIDField.getText().isEmpty()){
+            advisorValidation = false;
+            advisorIDField.setStyle("-fx-border-color: red");
+        }else if(advisorIDField.getText().length()>4){
+            advisorValidation = false;
+            advisorIDField.setStyle("-fx-border-color: red");
+
+        }else if(!advisorIDField.getText().matches("^[A-Za-z0-9]*$")) {
+            advisorValidation = false;
+            advisorIDField.setStyle("-fx-border-color: red");
+        }else{
+            advisorValidation = true;
+            advisorIDField.setStyle("");
+        }
+        // validation for gender
+        String genderInput = advisorGenderField.getText().toLowerCase(); // Convert input to lowercase for validation
+        if(advisorGenderField.getText().isEmpty()){
+            advisorValidation = false;
+            advisorGenderField.setStyle("-fx-border-color: red");
+        } else if(!genderInput.equals("male") && !genderInput.equals("female")) {
+            advisorValidation = false;
+            advisorGenderField.setStyle("-fx-border-color: red");
+
+        }else{
+            advisorGenderField.setStyle("");
+        }
+        // validation for DoB
+        if(advisorDoBField.getValue() == null){
+            advisorValidation = false;
+            advisorDoBField.setStyle("-fx-border-color: red");
+        }else{
+            advisorDoBField.setStyle("");
+        }
+        // validation for contact number
+        if(advisorContactNumberField.getText().isEmpty()){
+            advisorValidation = false;
+            advisorContactNumberField.setStyle("-fx-border-color: red");
+        }else if(!advisorContactNumberField.getText().matches( "^[0-9]{10}$")){
+            advisorValidation = false;
+            advisorContactNumberField.setStyle("-fx-border-color: red");
+        }else if(advisorContactNumberField.getText().length() != 10){
+            advisorValidation = false;
+            advisorContactNumberField.setStyle("-fx-border-color: red");
+        }else {
+            advisorContactNumberField.setStyle("");
+        }
+        // validation for email
+        if(advisorEmailField.getText().isEmpty()){
+            advisorValidation = false;
+            advisorEmailField.setStyle("-fx-border-color: red");
+        }else if(!advisorEmailField.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
+            advisorValidation = false;
+            advisorEmailField.setStyle("-fx-border-color: red");
+        }else{
+            advisorEmailField.setStyle("");
+        }
+        // validation for password
+        if(!advisorReEnterPasswordField.getText().matches(advisorPasswordField.getText())){
+            advisorValidation = false;
+            advisorReEnterPasswordField.setStyle("-fx-border-color: red");
+            advisorPasswordField.setStyle("-fx-border-color: red");
+        }else if(advisorPasswordField.getText().isEmpty() || advisorReEnterPasswordField.getText().isEmpty()){
+            advisorValidation = false;
+            advisorReEnterPasswordField.setStyle("-fx-border-color: red");
+            advisorPasswordField.setStyle("-fx-border-color: red");
+        }else{
+            advisorPasswordField.setStyle("");
+            advisorReEnterPasswordField.setStyle("");
+        }
+
+        // add the student data to database if validation is done
+        if(advisorValidation){
+            Advisor advisor = new Advisor(firstName,lastName,gender,DoB,contactNumber,email,password,advisorID);
+            DatabaseConnection.insertAdvisorData(advisor.getAdvisorID(),advisor.getFirstName(),advisor.getLastName(),advisor.getDoB(),advisor.getEmail(),advisor.getPassword(),advisor.getContactNumber(),advisor.getGender());
+
+        }else{
+            System.out.println("Check the inputs");
+        }
+    }
 }
