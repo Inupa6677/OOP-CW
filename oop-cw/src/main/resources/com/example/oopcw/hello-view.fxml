@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oopcw.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oopcw.HelloController">
    <children>
       <Group fx:id="groupFirst">
          <children>
-            <Pane prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: Black;">
+            <Pane prefHeight="550.0" prefWidth="732.0" style="-fx-background-color: Black;">
                <children>
-                  <ImageView fitHeight="550.0" fitWidth="750.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="550.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@The Advisor.gif" />
                      </image>
@@ -49,7 +49,7 @@
       </Group>
       <Group fx:id="groupSecond" visible="false">
          <children>
-            <Pane prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: #7DF9FF;">
+            <Pane prefHeight="550.0" prefWidth="735.0" style="-fx-background-color: #7DF9FF;">
                <children>
                   <Label layoutX="277.0" layoutY="14.0" prefHeight="51.0" prefWidth="197.0" text="Create Club">
                      <font>
