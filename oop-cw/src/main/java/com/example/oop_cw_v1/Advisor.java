@@ -9,6 +9,17 @@ public class Advisor extends User{
         this.advisorID = advisorID;
     }
 
+    // getters and setters for advisor id
+
+
+    public String getAdvisorID() {
+        return advisorID;
+    }
+
+    public void setAdvisorID(String advisorID) {
+        this.advisorID = advisorID;
+    }
+
     @Override
     public boolean display() {
         System.out.println("HI");

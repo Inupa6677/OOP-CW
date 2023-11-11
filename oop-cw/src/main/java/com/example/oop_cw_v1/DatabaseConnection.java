@@ -7,14 +7,14 @@ public class DatabaseConnection {
     private static final String DB_USER = "root";
     private static final String DB_PASS = "";
 
-    public static void insertData(int studentID,String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
+    public static void insertData(String studentID,String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
-            String insertQuery = "INSERT INTO student (Student_Id,First_name, Last_name, DoB,Email, Password, Contact_number,gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO student (student_id,first_name,last_name,dob,email,password,contact_number,gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
-            preparedStatement.setInt(1, studentID);
+            preparedStatement.setString(1, studentID);
             preparedStatement.setString(2, firstName);
             preparedStatement.setString(3, lastName);
             preparedStatement.setString(4, DoB);

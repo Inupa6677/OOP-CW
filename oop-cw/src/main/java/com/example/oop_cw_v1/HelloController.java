@@ -51,6 +51,8 @@ public class HelloController {
     private PasswordField studentpasswordField;
     @FXML
     private PasswordField studentReEnterPasswordField;
+    @FXML
+    private CheckBox studentCheckBox;
 
 
 
@@ -103,7 +105,7 @@ public class HelloController {
     public void studentRegisterClick(ActionEvent actionEvent) {
         String firstName = studentFirstNameField.getText();
         String lastName =  studentLastNameField.getText();
-        int studentID = Integer.parseInt(studentIDField.getText());
+        String studentID = studentIDField.getText();
         String gender = studentGenderField.getText();
         String DoB = String.valueOf(studentDoBField.getValue());
         String contactNumber = studentcontactNumberField.getText();
@@ -142,7 +144,7 @@ public class HelloController {
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
 
-        }else if(!studentIDField.getText().matches("^[0-9]{1,4}$")) {
+        }else if(!studentIDField.getText().matches("^[A-Za-z]*$")) {
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
         }else{
@@ -206,6 +208,7 @@ public class HelloController {
             studentReEnterPasswordField.setStyle("");
         }
 
+
         // add the student data to list if validation is done
         if(studentValidation == true) {
             Student student  = new Student(firstName,lastName,gender,DoB,contactNumber,email,password,studentID);
@@ -215,19 +218,5 @@ public class HelloController {
 
     }
 
-    public void studentFirstNameValidation(KeyEvent keyEvent) {
-        boolean studentValidation = true;
 
-
-        if(studentFirstNameField.getText().isEmpty()){
-            studentValidation = false;
-            studentFirstNameField.setStyle("-fx-border-color: red");
-        } else if(!studentFirstNameField.getText().matches( "^[A-Za-z]*$")) {
-            studentValidation = false;
-            studentFirstNameField.setStyle("-fx-border-color: red");
-        }else{
-            studentFirstNameField.setStyle("");
-        }
-
-    }
 }

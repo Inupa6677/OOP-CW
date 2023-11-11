@@ -134,7 +134,7 @@
                                                 <Font name="System Bold" size="30.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="studentFirstNameField" layoutX="27.0" layoutY="95.0" onKeyTyped="#studentFirstNameValidation" prefHeight="35.0" prefWidth="148.0" promptText="First Name">
+                                          <TextField fx:id="studentFirstNameField" layoutX="27.0" layoutY="95.0" prefHeight="35.0" prefWidth="148.0" promptText="First Name">
                                              <cursor>
                                                 <Cursor fx:constant="TEXT" />
                                              </cursor>
@@ -447,5 +447,6 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" visible="false" />
    </children>
 </StackPane>
