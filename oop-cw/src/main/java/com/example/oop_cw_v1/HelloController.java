@@ -84,6 +84,9 @@ public class HelloController {
     private PasswordField loginAdvisorPasswordField;
     @FXML
     private AnchorPane naveengePaneEka;
+    @FXML
+    private AnchorPane frontGifPane;
+
 
 
 
@@ -94,6 +97,7 @@ public class HelloController {
         advisorRegisterPane.setVisible(false);
         frontPane.setVisible(false);
         naveengePaneEka.setVisible(false);
+        frontGifPane.setVisible(false);
 
     }
 
@@ -388,5 +392,10 @@ public class HelloController {
         }else{
             System.out.println("Advisor login failed");
         }
+    }
+
+    public void getStartClick(ActionEvent actionEvent) {
+        disablePane();
+        frontPane.setVisible(true);
     }
 }
