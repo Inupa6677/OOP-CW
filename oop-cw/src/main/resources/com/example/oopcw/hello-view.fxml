@@ -92,7 +92,7 @@
                   <TextField layoutX="301.0" layoutY="230.0" prefHeight="25.0" prefWidth="365.0" promptText="00000" />
                   <TextField layoutX="301.0" layoutY="270.0" prefHeight="25.0" prefWidth="365.0" promptText="00000" />
                   <TextField layoutX="301.0" layoutY="308.0" prefHeight="25.0" prefWidth="365.0" promptText="Eg: Rotaract Club" />
-                  <Button layoutX="14.0" layoutY="505.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #87CEEB; -fx-background-radius: 20;" text="Back">
+                  <Button fx:id="btnBack" layoutX="14.0" layoutY="505.0" mnemonicParsing="false" onAction="#backToAdcisorClick" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #87CEEB; -fx-background-radius: 20;" text="Back">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

@@ -26,12 +26,20 @@ public class HelloController {
     @FXML
     private Group groupSecond;
 
-
-    public void onClickCreateClub(ActionEvent actionEvent) {
+    public void disableGroups(){
         groupFirst.setVisible(false);
+        groupSecond.setVisible(false);
+    }
+    public void onClickCreateClub(ActionEvent actionEvent) {
+        disableGroups();
         groupSecond.setVisible(true);
 
     }
 
 
+    public void backToAdcisorClick(ActionEvent actionEvent) {
+        disableGroups();
+        groupFirst.setVisible(true);
+
+    }
 }
