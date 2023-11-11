@@ -66,6 +66,62 @@ public class DatabaseConnection {
         }
     }
 
+    // retrieving data from student to check the user credential.
+    public static boolean checkStudentLogin(String inputEmail, String inputPassword) {
+        String insertQuery = "SELECT email, password FROM student WHERE email = ?";
+
+        try (
+                Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+                PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)
+        ) {
+            preparedStatement.setString(1, inputEmail);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    // User found, check the password
+                    String storedPassword = resultSet.getString("password");
+                    return storedPassword.equals(inputPassword);
+                } else {
+                    // User not found
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+
+        }
+
+    }
+
+    // retrieving data from advisor to check the user credential.
+    public static boolean checkAdvisorLogin(String inputEmail, String inputPassword) {
+        String insertQuery = "SELECT email, password FROM advisor WHERE email = ?";
+
+        try (
+                Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+                PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)
+        ) {
+            preparedStatement.setString(1, inputEmail);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    // User found, check the password
+                    String storedPassword = resultSet.getString("password");
+                    return storedPassword.equals(inputPassword);
+                } else {
+                    // User not found
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+
+        }
+
+    }
+
 
 
     public static void displayTabels() {

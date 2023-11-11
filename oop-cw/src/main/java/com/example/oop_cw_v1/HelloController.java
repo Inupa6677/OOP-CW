@@ -74,7 +74,16 @@ public class HelloController {
     private PasswordField advisorReEnterPasswordField;
     @FXML
     private CheckBox advisorCheckBox;
-
+    @FXML
+    private TextField loginStudentEmailField;
+    @FXML
+    private PasswordField loginStudentPasswordField;
+    @FXML
+    private TextField loginAdvisorEmaillField;
+    @FXML
+    private PasswordField loginAdvisorPasswordField;
+    @FXML
+    private AnchorPane naveengePaneEka;
 
 
 
@@ -84,6 +93,7 @@ public class HelloController {
         advisorLoginAnchorPane.setVisible(false);
         advisorRegisterPane.setVisible(false);
         frontPane.setVisible(false);
+        naveengePaneEka.setVisible(false);
 
     }
 
@@ -350,6 +360,33 @@ public class HelloController {
 
         }else{
             System.out.println("Check the inputs");
+        }
+    }
+    // code for student login to sacms.
+    public void loginStudentClick(ActionEvent actionEvent) {
+        String email = loginStudentEmailField.getText();
+        String password = loginStudentPasswordField.getText();
+        if (DatabaseConnection.checkStudentLogin(email,password)){
+            System.out.println("Student logged in successfully");
+            disablePane();
+            naveengePaneEka.setVisible(true);
+
+        }else{
+            System.out.println("Student login failed");
+        }
+    }
+
+    // code for student login to sacms.
+    public void loginAdvisorClick(ActionEvent actionEvent) {
+        String email = loginAdvisorEmaillField.getText();
+        String password = loginAdvisorPasswordField.getText();
+        if (DatabaseConnection.checkAdvisorLogin(email,password)){
+            System.out.println("Advisor logged in successfully");
+            disablePane();
+            naveengePaneEka.setVisible(true);
+
+        }else{
+            System.out.println("Advisor login failed");
         }
     }
 }
