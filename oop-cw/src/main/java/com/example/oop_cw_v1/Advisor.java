@@ -7,7 +7,7 @@ public class Advisor extends User{
         this.advisorID = advisorID;
     }
 
-    // getters and setters for advisor id
+    // getters and setters for advisor id.
 
 
     public String getAdvisorID() {
