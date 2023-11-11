@@ -405,7 +405,7 @@
             </BorderPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #09333F;">
+      <AnchorPane fx:id="frontPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #09333F;" visible="false">
          <children>
             <ImageView fitHeight="231.0" fitWidth="308.0" layoutX="56.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -439,7 +439,14 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="videoPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" visible="false" />
+      <AnchorPane fx:id="videoPane" prefHeight="446.0" prefWidth="750.0" style="-fx-background-color: purple;">
+         <children>
+            <ImageView fitHeight="539.0" fitWidth="749.0" layoutX="1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/Navigator%20GIF.gif" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
       <AnchorPane fx:id="naveengePaneEka" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: pink;" visible="false">
          <children>
             <Label layoutX="48.0" layoutY="199.0" prefHeight="102.0" prefWidth="654.0" text="නවීන් පකයෝ   මෙතන ඉදන් හදපන් උඹේ ටික">
