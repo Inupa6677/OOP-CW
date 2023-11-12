@@ -48,8 +48,9 @@ public class HelloController {
     private Group groupSecond;
 
         // Example database connection details (replace with your actual details)
-        private static final String DB_URL = "jdbc:mysql://your_database_url:3306/sacms";
-        private static final String DB_USERNAME = "apple";
+        private static final String DB_URL = "jdbc:mysql://localhost:3306/sacms";
+
+        private static final String DB_USERNAME = "root";
         private static final String DB_PASSWORD = "";
 
         private DataBaseConnector dataBaseConnector = new DataBaseConnector(DB_URL, DB_USERNAME, DB_PASSWORD);
