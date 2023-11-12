@@ -54,4 +54,6 @@ public class ClubCreation {
         this.members = members;
         this.clubDescription = clubDescription;
     }
+
+
 }
