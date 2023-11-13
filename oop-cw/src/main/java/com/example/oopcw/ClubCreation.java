@@ -1,17 +1,17 @@
 package com.example.oopcw;
 
 public class ClubCreation {
-    int clubId;
+    String clubId;
     String clubName;
     int members;
-    int advisorId;
+    String advisorId;
     String clubDescription;
 
-    public int getClubId() {
+    public String getClubId() {
         return clubId;
     }
 
-    public void setClubId(int clubId) {
+    public void setClubId(String clubId) {
         this.clubId = clubId;
     }
 
@@ -31,11 +31,11 @@ public class ClubCreation {
         this.members = members;
     }
 
-    public int getAdvisorId() {
+    public String getAdvisorId() {
         return advisorId;
     }
 
-    public void setAdvisorId(int advisorId) {
+    public void setAdvisorId(String advisorId) {
         this.advisorId = advisorId;
     }
 
@@ -47,11 +47,11 @@ public class ClubCreation {
         this.clubDescription = clubDescription;
     }
 
-    public ClubCreation(int clubId,String clubName,int members,int advisorId,String clubDescription){
+    public ClubCreation(String clubId, String clubName, String members, String advisorId, String clubDescription){
         this.clubId = clubId;
         this.clubName = clubName;
         this.advisorId = advisorId;
-        this.members = members;
+        this.members = Integer.parseInt(members);
         this.clubDescription = clubDescription;
     }
 

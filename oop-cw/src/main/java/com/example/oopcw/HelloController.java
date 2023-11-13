@@ -15,8 +15,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class HelloController {
-    public static void main(String[] args) {
-    }
+
 
     @FXML
     private Button btnCreate;
@@ -82,8 +81,8 @@ public class HelloController {
 
             try {
                 // Create ClubCreation instance
-                ClubCreation creation = new ClubCreation(Integer.parseInt(clubId), clubName, Integer.parseInt(members),
-                        Integer.parseInt(advisorId), clubDescription);
+                ClubCreation creation = new ClubCreation(clubId,clubName,members,advisorId,clubDescription);
+
 
                 // Connect to the database
                 dataBaseConnector.connect();

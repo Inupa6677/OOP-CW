@@ -45,10 +45,10 @@ public class DataBaseConnector {
         String insertQuery = "INSERT INTO club(Club_id,Club_name,Members,Advisor_id,club_description) VALUES(?,?,?,?,?)";
 
         try(PreparedStatement statement = connection.prepareStatement(insertQuery)){
-            statement.setInt(1,creation.getClubId());
+            statement.setString(1,creation.getClubId());
             statement.setString(2,creation.getClubName());
             statement.setInt(3,creation.getMembers());
-            statement.setInt(4,creation.getAdvisorId());
+            statement.setString(4,creation.getAdvisorId());
             statement.setString(5,creation.getClubDescription());
             statement.executeUpdate();
         }
