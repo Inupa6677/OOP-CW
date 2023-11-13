@@ -46,18 +46,18 @@ public class HelloController {
     @FXML
     private Group groupSecond;
 
-        // Example database connection details (replace with your actual details)
-        private static final String DB_URL = "jdbc:mysql://localhost:3306/sacms";
+    // Example database connection details (replace with your actual details)
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/sacms";
 
-        private static final String DB_USERNAME = "root";
-        private static final String DB_PASSWORD = "";
+    private static final String DB_USERNAME = "root";
+    private static final String DB_PASSWORD = "";
 
-        private DataBaseConnector dataBaseConnector = new DataBaseConnector(DB_URL, DB_USERNAME, DB_PASSWORD);
 
-    public void disableGroups(){
+    public void disableGroups() {
         groupFirst.setVisible(false);
         groupSecond.setVisible(false);
     }
+
     public void onClickCreateClub(ActionEvent actionEvent) {
         disableGroups();
         groupSecond.setVisible(true);
@@ -70,51 +70,19 @@ public class HelloController {
         groupFirst.setVisible(true);
 
     }
+
     @FXML
     void createClubData(ActionEvent event) {
-        if (event.getSource() ==  btnCreateClubData){
-            String clubId = txtId.getText();
-            String clubName = txtName.getText();
-            String advisorId = txtAdvisorId.getText();
-            String members = txtMembers.getText();
-            String clubDescription = txtDescription.getText();
+        String clubID = txtId.getText();
+        String clubName = txtName.getText();
+        String members = txtMembers.getText();
+        String advisorId = txtAdvisorId.getText();
+        String clubDescription = txtDescription.getText();
 
-            try {
-                // Create ClubCreation instance
-                ClubCreation creation = new ClubCreation(clubId,clubName,members,advisorId,clubDescription);
-
-
-                // Connect to the database
-                dataBaseConnector.connect();
-
-                // Add club to the database
-                dataBaseConnector.addClub(creation);
-
-                // Optionally, you can display a success message or reset the input fields
-                System.out.println("Club data saved successfully!");
-
-                // Reset input fields
-                txtId.clear();
-                txtName.clear();
-                txtMembers.clear();
-                txtAdvisorId.clear();
-                txtDescription.clear();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                // Handle database connection or query errors
-            } finally {
-                // Disconnect from the database
-                try {
-                    dataBaseConnector.disconnect();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    // Handle disconnection errors
-                }
-            }
-        }
+        // do the validation part and after that add the data to database
+        Club club = new Club(clubID,clubName,members,advisorId,clubDescription);
+        DatabaseConnection.insertClubData(club);
     }
 
-
-
-
 }
+

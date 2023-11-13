@@ -1,6 +1,6 @@
 package com.example.oopcw;
 
-public class ClubCreation {
+public class Club {
     String clubId;
     String clubName;
     int members;
@@ -47,7 +47,7 @@ public class ClubCreation {
         this.clubDescription = clubDescription;
     }
 
-    public ClubCreation(String clubId, String clubName, String members, String advisorId, String clubDescription){
+    public Club(String clubId, String clubName, String members, String advisorId, String clubDescription){
         this.clubId = clubId;
         this.clubName = clubName;
         this.advisorId = advisorId;
