@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
    <children>
       <AnchorPane fx:id="studentLoginPane" prefHeight="200.0" prefWidth="200.0" visible="false">
          <children>
@@ -405,37 +395,63 @@
             </BorderPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #09333F;" visible="false">
+      <AnchorPane fx:id="frontPane" prefHeight="200.0" prefWidth="200.0" visible="false">
          <children>
-            <ImageView fitHeight="231.0" fitWidth="308.0" layoutX="56.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="453.0" fitWidth="466.0" layoutX="299.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Images/Free%20Vector%20_%20Ambassador%20concept%20illustration%20-%20Copy.jpeg" />
+                  <Image url="@../../../Images/70faf4fd62cfbfe6e53c44cd0afee403.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="275.0" fitWidth="412.0" layoutX="337.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Images/da1f3792abf8a7504c6d6782d7e2c347-removebg-preview.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="112.0" layoutY="461.0" mnemonicParsing="false" onAction="#advisorLoginClick" prefHeight="40.0" prefWidth="118.0" text="Advisor">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#061e24" height="591.0" layoutX="-20.0" layoutY="-5.0" rotate="4.0" stroke="BLACK" strokeType="INSIDE" width="354.0" />
+            <Button layoutX="65.0" layoutY="332.0" mnemonicParsing="false" onAction="#advisorLoginClick" prefHeight="44.0" prefWidth="231.0" text="Advisor">
                <font>
                   <Font size="20.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button layoutX="473.0" layoutY="461.0" mnemonicParsing="false" onAction="#studentLoginClick" prefHeight="43.0" prefWidth="126.0" text="Student">
+            <Button layoutX="65.0" layoutY="430.0" mnemonicParsing="false" onAction="#studentLoginClick" prefHeight="44.0" prefWidth="231.0" text="Student">
                <font>
                   <Font size="20.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <ImageView fitHeight="143.0" fitWidth="163.0" layoutX="100.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="327.0" fitWidth="341.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Images/Club%20Navigator..png" />
+                  <Image url="@../../../Images/Club_Navigator.-removebg-preview.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="143.0" fitWidth="416.0" layoutX="237.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+            <Label layoutX="30.0" layoutY="256.0" text="Choose Profile:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Circle fill="#29dba0" layoutX="80.0" layoutY="354.0" radius="45.0" stroke="BLACK" strokeType="INSIDE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Circle>
+            <ImageView fitHeight="74.0" fitWidth="101.0" layoutX="30.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Images/2.png" />
+                  <Image url="@../../../Images/advisor_profile.gif" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Circle fill="#29dba0" layoutX="80.0" layoutY="452.0" radius="45.0" stroke="BLACK" strokeType="INSIDE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Circle>
+            <ImageView fitHeight="74.0" fitWidth="101.0" layoutX="30.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/student_profile.gif" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </children>
       </AnchorPane>
@@ -448,24 +464,28 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontGifPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3D2D5B;">
+      <AnchorPane fx:id="frontGifPane" prefHeight="547.0" prefWidth="200.0" style="-fx-background-color: #3D2D5B;">
          <children>
-            <ImageView fitHeight="382.0" fitWidth="391.0" layoutX="184.0" layoutY="-134.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Images/new%20logo.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="423.0" fitWidth="753.0" layoutX="4.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="801.0" fitWidth="989.0" layoutX="102.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="-1.0">
                <image>
                   <Image url="@../../../Images/Navigator%20GIF.gif" />
                </image>
             </ImageView>
-            <ImageView fitHeight="75.0" fitWidth="208.0" layoutX="275.0" layoutY="480.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="165.0" fitWidth="633.0" layoutX="278.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/new_logo-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="75.0" fitWidth="208.0" layoutX="441.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Images/get%20start1.png" />
                </image>
             </ImageView>
-            <Button layoutX="267.0" layoutY="464.0" mnemonicParsing="false" onAction="#getStartClick" opacity="0.0" prefHeight="81.0" prefWidth="214.0" style="-fx-background-color: lihtgreen;" />
+            <Button layoutX="438.0" layoutY="420.0" mnemonicParsing="false" onAction="#getStartClick" opacity="0.0" prefHeight="81.0" prefWidth="214.0" style="-fx-background-color: lihtgreen;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
    </children>
