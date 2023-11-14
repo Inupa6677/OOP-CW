@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oopcw.HelloController">
    <children>
-      <Group fx:id="groupFirst">
+      <Group fx:id="groupFirst" visible="false">
          <children>
             <Pane prefHeight="550.0" prefWidth="732.0" style="-fx-background-color: Black;">
                <children>
@@ -47,9 +47,9 @@
             </Pane>
          </children>
       </Group>
-      <Group fx:id="groupSecond" visible="false">
+      <Group fx:id="groupSecond">
          <children>
-            <Pane prefHeight="550.0" prefWidth="735.0" style="-fx-background-color: #7DF9FF;">
+            <Pane prefHeight="550.0" prefWidth="735.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="277.0" layoutY="14.0" prefHeight="51.0" prefWidth="197.0" text="Create Club">
                      <font>
@@ -85,7 +85,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtAdvisorId" layoutX="301.0" layoutY="230.0" prefHeight="25.0" prefWidth="365.0" promptText="00000" />
-                  <TextField fx:id="txtDescription" layoutX="301.0" layoutY="270.0" prefHeight="25.0" prefWidth="365.0" promptText="00000" />
+                  <TextField fx:id="txtDescription" layoutX="301.0" layoutY="270.0" prefHeight="25.0" prefWidth="365.0" promptText="Eg: Nothing is impossible" />
                   <Button fx:id="btnBack" layoutX="14.0" layoutY="505.0" mnemonicParsing="false" onAction="#backToAdvisorClick" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #87CEEB; -fx-background-radius: 20;" text="Back">
                      <font>
                         <Font name="System Bold" size="15.0" />

@@ -46,12 +46,6 @@ public class HelloController {
     @FXML
     private Group groupSecond;
 
-    // Example database connection details (replace with your actual details)
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/sacms";
-
-    private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "";
-
 
     public void disableGroups() {
         groupFirst.setVisible(false);

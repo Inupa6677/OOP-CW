@@ -28,7 +28,7 @@ public class DatabaseConnection {
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("Data inserted successfully.");
+                System.out.println("Data added for database successfully.");
             } else {
                 System.out.println("Data insertion failed.");
             }
