@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 
 public class DatabaseConnection {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/sacms";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/database";
     private static final String DB_USER = "root";
     private static final String DB_PASS = "";
 
@@ -16,14 +16,14 @@ public class DatabaseConnection {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
-            String insertQuery = "INSERT INTO club (club_id,club_name,advisor_id,members,description) VALUES (?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO club (Club_id,Club_name,Members,Advisor_id,club_description) VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
 
             preparedStatement.setString(1, club.clubId);
             preparedStatement.setString(2, club.clubName);
-            preparedStatement.setString(3, club.advisorId);
-            preparedStatement.setInt(4, club.members);
+            preparedStatement.setInt(3, club.members);
+            preparedStatement.setString(4, club.advisorId);
             preparedStatement.setString(5, club.clubDescription);
 
             int rowsAffected = preparedStatement.executeUpdate();
@@ -35,6 +35,14 @@ public class DatabaseConnection {
 
             connection.close();
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void testDatabaseConnection() {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
+            System.out.println("Database connected successfully.");
+        } catch (SQLException e) {
+            System.out.println("Database connection failed. Error: " + e.getMessage());
             e.printStackTrace();
         }
     }
