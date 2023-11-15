@@ -4,6 +4,8 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oopcw.HelloController">
    <children>
-      <Group fx:id="groupFirst">
+      <Group fx:id="groupFirst" visible="false">
          <children>
             <Pane prefHeight="550.0" prefWidth="732.0" style="-fx-background-color: Black;">
                <children>
@@ -108,6 +110,62 @@
                      </font>
                   </Label>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="301.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+         </children>
+      </Group>
+      <Group>
+         <children>
+            <Pane prefHeight="550.0" prefWidth="731.0">
+               <children>
+                  <Label layoutX="231.0" layoutY="25.0" prefHeight="45.0" prefWidth="270.0" text="Club Management">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <TableView layoutX="28.0" layoutY="135.0" prefHeight="200.0" prefWidth="677.0">
+                    <columns>
+                      <TableColumn prefWidth="154.4000301361084" text="Club ID" />
+                      <TableColumn minWidth="0.0" prefWidth="120.79998779296875" text="Club Name" />
+                        <TableColumn prefWidth="126.39996337890625" text="Advisor ID" />
+                        <TableColumn minWidth="0.79998779296875" prefWidth="136.79995727539062" text="Memebers" />
+                        <TableColumn prefWidth="139.20001220703125" text="Club Description" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="28.0" layoutY="81.0" prefHeight="17.0" prefWidth="153.0" text="Search Via Club ID">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtSearchClubId" layoutX="194.0" layoutY="82.0" prefHeight="25.0" prefWidth="128.0" />
+                  <Button layoutX="624.0" layoutY="511.0" mnemonicParsing="false" onAction="#updateClub" text="Update Club" />
+                  <Button layoutX="627.0" layoutY="353.0" mnemonicParsing="false" onAction="#deleteClub" text="Delete Club" />
+                  <Button fx:id="btnBackToMain" layoutX="28.0" layoutY="511.0" mnemonicParsing="false" text="Back" />
+                  <Button layoutX="332.0" layoutY="82.0" mnemonicParsing="false" onAction="#searchClub" text="Search" />
+                  <Label layoutX="153.0" layoutY="386.0" text="01. Club Name">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="153.0" layoutY="414.0" text="02. Members">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="152.0" layoutY="441.0" text="03. Advisor ID">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="152.0" layoutY="469.0" text="04. CLub Description">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtManageClubName" layoutX="322.0" layoutY="384.0" />
+                  <TextField fx:id="txtManageMembers" layoutX="322.0" layoutY="412.0" />
+                  <TextField fx:id="txtManageAdvisorId" layoutX="322.0" layoutY="439.0" />
+                  <TextField fx:id="txtManageClubDescription" layoutX="322.0" layoutY="467.0" />
                </children>
             </Pane>
          </children>
