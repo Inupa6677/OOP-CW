@@ -75,9 +75,17 @@ public class HelloController {
 
         // do the validation part and after that add the data to database
         Club club = new Club(clubID,clubName,members,advisorId,clubDescription);
-        DatabaseConnection.testDatabaseConnection();
+        
         DatabaseConnection.insertClubData(club);
     }
 
+    public void deleteClub(ActionEvent actionEvent) {
+    }
+
+    public void updateClub(ActionEvent actionEvent) {
+    }
+
+    public void searchClub(ActionEvent actionEvent) {
+    }
 }
 
