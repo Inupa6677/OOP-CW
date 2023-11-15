@@ -22,5 +22,5 @@ public class Meeting extends Event {
         System.out.println("Location: " + location);
     }
 
-    
+
 }

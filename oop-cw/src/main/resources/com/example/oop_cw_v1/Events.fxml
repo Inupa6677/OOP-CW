@@ -50,18 +50,18 @@
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="76.0" layoutY="96.0" prefHeight="38.0" prefWidth="249.0" promptText="Event ID" />
-                  <TextField layoutX="76.0" layoutY="159.0" prefHeight="38.0" prefWidth="249.0" promptText="Event Name" />
-                  <TextField layoutX="76.0" layoutY="216.0" prefHeight="38.0" prefWidth="249.0" promptText="Location" />
-                  <TextField layoutX="76.0" layoutY="275.0" prefHeight="38.0" prefWidth="249.0" promptText="Time" />
-                  <DatePicker layoutX="76.0" layoutY="398.0" prefHeight="38.0" prefWidth="249.0" promptText="Date" />
-                  <TextField layoutX="76.0" layoutY="336.0" prefHeight="38.0" prefWidth="249.0" promptText="Description" />
-                  <Button layoutX="76.0" layoutY="482.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="69.0" text="Back">
+                  <TextField fx:id="eventIdInCreateEvents" layoutX="76.0" layoutY="96.0" prefHeight="38.0" prefWidth="249.0" promptText="Event ID" />
+                  <TextField fx:id="eventNameInCreateEvents" layoutX="76.0" layoutY="159.0" prefHeight="38.0" prefWidth="249.0" promptText="Event Name" />
+                  <TextField fx:id="locationInCreateEvents" layoutX="76.0" layoutY="216.0" prefHeight="38.0" prefWidth="249.0" promptText="Location" />
+                  <TextField fx:id="timeInCreateEvents" layoutX="76.0" layoutY="275.0" prefHeight="38.0" prefWidth="249.0" promptText="Time" />
+                  <DatePicker fx:id="dateInCreateEvents" layoutX="76.0" layoutY="398.0" prefHeight="38.0" prefWidth="249.0" promptText="Date" />
+                  <TextField fx:id="descriptionInCreateEvents" layoutX="76.0" layoutY="336.0" prefHeight="38.0" prefWidth="249.0" promptText="Description" />
+                  <Button layoutX="76.0" layoutY="482.0" mnemonicParsing="false" onAction="#backbtnincreateevents" prefHeight="38.0" prefWidth="69.0" text="Back">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button layoutX="256.0" layoutY="482.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="69.0" text="Save">
+                  <Button layoutX="256.0" layoutY="482.0" mnemonicParsing="false" onAction="#savebtnincreateevents" prefHeight="38.0" prefWidth="69.0" text="Save">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
