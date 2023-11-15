@@ -46,12 +46,6 @@ public class HelloController {
     @FXML
     private Group groupSecond;
 
-    // Example database connection details (replace with your actual details)
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/sacms";
-
-    private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "";
-
 
     public void disableGroups() {
         groupFirst.setVisible(false);
@@ -81,6 +75,7 @@ public class HelloController {
 
         // do the validation part and after that add the data to database
         Club club = new Club(clubID,clubName,members,advisorId,clubDescription);
+        DatabaseConnection.testDatabaseConnection();
         DatabaseConnection.insertClubData(club);
     }
 
