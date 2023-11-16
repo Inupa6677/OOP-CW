@@ -80,7 +80,7 @@ public class HelloController {
         String clubName = txtName.getText();
         String members = txtMembers.getText();
         String advisorId = txtAdvisorId.getText();
-        String clubDescription = txtDescription.getText();
+        String description = txtDescription.getText();
 
         boolean isValid = true;
 
@@ -95,20 +95,9 @@ public class HelloController {
             isValid = false;
         }
 
-        // Validate advisorId
-        if (!isValidNumber(advisorId)) {
-            txtAdvisorId.setStyle("-fx-text-fill: red;");
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Advisor ID");
-            alert.setHeaderText(null);
-            alert.setContentText("Enter only integers for Advisor ID.");
-            alert.showAndWait();
-            isValid = false;
-        }
-
         if (isValid) {
             // Add the data to the database
-            Club club = new Club(clubID, clubName, members, advisorId, clubDescription);
+            Club club = new Club(clubID, clubName, members, advisorId, description);
             DatabaseConnection.testDatabaseConnection();
             DatabaseConnection.insertClubData(club);
         }

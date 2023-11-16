@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 
 public class DatabaseConnection {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/database";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/sacms";
     private static final String DB_USER = "root";
     private static final String DB_PASS = "";
 
@@ -16,7 +16,7 @@ public class DatabaseConnection {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
-            String insertQuery = "INSERT INTO club (Club_id,Club_name,Members,Advisor_id,club_description) VALUES (?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO club (Club_id,Club_name,Members,Advisor_id,description) VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
 
