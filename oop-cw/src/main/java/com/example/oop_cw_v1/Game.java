@@ -23,7 +23,4 @@ public class Game extends Event {
         System.out.println("This is a game with a reward of " + reward);
     }
 
-
-
-
 }

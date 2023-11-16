@@ -7,9 +7,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
@@ -26,7 +28,39 @@ public class HelloController {
     private Label label_error;
     @FXML
     private TextField txt_email;
+    @FXML
+    private DatePicker dateInCreateEvents;
 
+    @FXML
+    private TextField descriptionInCreateEvents;
+
+    @FXML
+    private Pane eventCreationPane;
+
+    @FXML
+    private TextField eventIdInCreateEvents;
+
+    @FXML
+    private TextField eventNameInCreateEvents;
+
+    @FXML
+    private Pane eventPane;
+
+    @FXML
+    private TextField locationInCreateEvents;
+
+    @FXML
+    private TextField timeInCreateEvents;
+
+    @FXML
+    private Pane updateEvenetPane;
+
+
+    public void disablePanes(){
+        eventPane.setVisible(false);
+        updateEvenetPane.setVisible(false);
+        eventCreationPane.setVisible(false);
+    }
 
     @FXML
     private void switchToRegisterNow(MouseEvent event) throws IOException {
@@ -49,7 +83,41 @@ public class HelloController {
     }
 
 
+    public void backbtnincreateevents() {
+        disablePanes();
+        eventPane.setVisible(true);
+    }
 
 
 
+    public void clickCreateBtnClick() throws IOException {
+        disablePanes();
+        eventCreationPane.setVisible(true);
+    }
+
+    public void clickUpdateBtnClick(ActionEvent actionEvent) {
+        disablePanes();
+        updateEvenetPane.setVisible(true);
+    }
+
+    public void clickDeleteBtnClick(ActionEvent actionEvent) {
+        disablePanes();
+        updateEvenetPane.setVisible(true);
+
+    }
+    public void clickBackToEventPane(ActionEvent actionEvent) {
+        disablePanes();
+        eventPane.setVisible(true);
+    }
+
+
+
+    public void savebtnincreateevents() {
+
+    }
+
+
+
+    public void deleteEventBtnClick(ActionEvent actionEvent) {
+    }
 }
