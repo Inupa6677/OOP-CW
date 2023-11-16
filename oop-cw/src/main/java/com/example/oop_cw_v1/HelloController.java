@@ -120,14 +120,75 @@ public class HelloController {
         String description = descriptionInCreateEvents.getText();
         String date = String.valueOf(dateInCreateEvents.getValue());
 
-        
+        // save event data to the database after the validation
+        //if (eventValidation == true)  make the validation and add the details in to the condition
+        Event event1 = new Event(eventId, eventName, location, time, description, date);
+        DataBaseConnection.insertEventData(event1.getEventId(), event1.getEventName(), event1.getEventLocation(), event1.getEventTime(), event1.getEventDescription(), event1.getEventDate());
+
+
+
+        // Clear the text fields
+        eventIdInCreateEvents.setText("");
+        eventNameInCreateEvents.setText("");
+        locationInCreateEvents.setText("");
+        timeInCreateEvents.setText("");
+        descriptionInCreateEvents.setText("");
+        dateInCreateEvents.setValue(null);
+
 
     }
+
+
 
 
 
     public void deleteEventBtnClick(ActionEvent actionEvent) {
     }
+
+
+
+    public void searchButtonInUpdate(ActionEvent actionEvent) {
+        // Get the event ID to search for
+        String searchEventId = eventIdInUpdate.getText(); // Assuming eventIdInUpdate is a TextField for input
+
+        // Perform a search in the database
+        Event foundEvent = DataBaseConnection.searchEventById(searchEventId);
+
+        if (foundEvent != null) {
+            // Event found, set the prompt text or update fields
+            eventIdInUpdate.setPromptText(foundEvent.getEventId());
+            eventNameInUpdate.setText(foundEvent.getEventName());
+            locationInUpdate.setText(foundEvent.getEventLocation());
+            timeInUpdate.setText(foundEvent.getEventTime());
+            descriptionInUpdate.setText(foundEvent.getEventDescription());
+            dateInUpdate.setValue(LocalDate.parse(foundEvent.getEventDate())); // Assuming date is stored as a String
+
+            // Optionally, you can enable/disable or set other properties based on your requirements
+
+        } else {
+            // Event not found, provide feedback to the user (e.g., show an alert)
+            showAlert("Event not found", "The event with ID " + searchEventId + " was not found.");
+
+            // Clear the fields or set them to default values as needed
+            eventIdInUpdate.clear();
+            eventNameInUpdate.clear();
+            locationInUpdate.clear();
+            timeInUpdate.clear();
+            descriptionInUpdate.clear();
+            dateInUpdate.setValue(null);
+        }
+    }
+
+    // Add a method to show an alert (you can customize this based on your UI framework)
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+
 
 
 }

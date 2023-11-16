@@ -4,9 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
+    private String eventId;
     private String eventName;
+    private String eventLocation;
+    private String eventDescription;
+
     private String eventDate;
     private String eventTime;
+
+    //constructor with event details created after making the object
+    public Event(String eventId, String eventName, String location, String time, String description, String date) {
+    }
+
+    public String getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
+    }
+
+    public String getEventLocation() {
+        return eventLocation;
+    }
+
+    public void setEventLocation(String eventLocation) {
+        this.eventLocation = eventLocation;
+    }
+
+    public String getEventDescription() {
+        return eventDescription;
+    }
+
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
+    }
 
     public String getEventName(){
         return eventName;
