@@ -11,6 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oopcw.HelloController">
@@ -32,11 +33,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label layoutX="229.0" prefHeight="35.0" prefWidth="292.0" text="Club Advisor">
-                     <font>
-                        <Font name="System Bold" size="35.0" />
-                     </font>
-                  </Label>
                   <Button fx:id="btnCreate" layoutX="566.0" layoutY="229.0" mnemonicParsing="false" onAction="#onClickCreateClub" prefHeight="45.0" prefWidth="135.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Create Club">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -45,6 +41,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0000001d" height="71.0" layoutY="19.0" stroke="TRANSPARENT" strokeType="INSIDE" width="495.0" />
+                  <Label alignment="CENTER" layoutX="55.0" layoutY="29.0" prefHeight="35.0" prefWidth="292.0" text="Club Advisor" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="35.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

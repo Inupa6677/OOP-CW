@@ -84,17 +84,6 @@ public class HelloController {
 
         boolean isValid = true;
 
-        // Validate clubID
-        if (!isValidNumber(clubID)) {
-            txtId.setStyle("-fx-text-fill: red;");
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Club ID");
-            alert.setHeaderText(null);
-            alert.setContentText("Enter only integer for Club ID.");
-            alert.showAndWait();
-            isValid = false;
-        }
-
         // Validate members
         if (!isValidNumber(members)) {
             txtMembers.setStyle("-fx-text-fill: red;");
