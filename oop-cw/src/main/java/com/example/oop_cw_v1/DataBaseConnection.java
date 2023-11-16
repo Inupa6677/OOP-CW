@@ -5,6 +5,15 @@ public class DataBaseConnection {
     }
 
     public static Event searchEventById(String searchEventId) {
+
     }
 
+    public static void updateEventData(String eventId, String eventName, String location, String time, String description, String date) {
+    }
+
+    public static void deleteEventData(String deleteEventId) {
+    }
+
+    public static void deleteEvent(String deleteEventId) {
+    }
 }

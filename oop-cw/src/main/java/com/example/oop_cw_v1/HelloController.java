@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 // Hi i am john
 
 public class HelloController {
@@ -158,13 +159,6 @@ public class HelloController {
 
 
 
-
-
-    public void deleteEventBtnClick(ActionEvent actionEvent) {
-    }
-
-
-
     public void searchButtonInUpdate(ActionEvent actionEvent) {
         // Get the event ID to search for
         String searchEventId = eventIdInUpdate.getText(); // Assuming eventIdInUpdate is a TextField for input
@@ -207,6 +201,76 @@ public class HelloController {
     }
 
 
+    @FXML
+    void onSaveBtnClickInUpdate(ActionEvent event) {
+        // Get the updated event details from the text fields
+        String eventId = eventIdInUpdate.getPromptText(); // Assuming prompt text is set to the current event ID
+        String eventName = eventNameInUpdate.getText();
+        String location = eventLocationInUpdate.getText();
+        String time = eventTimeInUpdate.getText();
+        String description = eventDescriptionInUpdate.getText();
+        String date = String.valueOf(dateInUpdate.getValue());
+
+        // Validate the updated details if necessary
+        // if (eventValidation == true) {
+        //     // Perform validation and update details accordingly
+        // }
+
+        // Update event data in the database
+        DataBaseConnection.updateEventData(eventId, eventName, location, time, description, date);
+
+        // Provide feedback to the user (e.g., show an alert)
+        showAlert("Event Updated", "Event details have been successfully updated.");
+
+        // Optionally, clear the fields or set them to default values
+        eventIdInUpdate.clear();
+        eventNameInUpdate.clear();
+        eventLocationInUpdate.clear();
+        eventTimeInUpdate.clear();
+        eventDescriptionInUpdate.clear();
+        dateInUpdate.setValue(null);
+
+        // Optionally, reset prompt text for the next search
+        eventIdInUpdate.setPromptText("Enter Event ID");
+
+    }
+
+    public void deleteEventBtnClick(ActionEvent actionEvent) {
+        // Get the event ID to delete
+        String deleteEventId = eventIdInUpdate.getPromptText(); // Assuming prompt text is set to the current event ID
+
+        // Confirm deletion with the user (you can customize this based on your UI framework)
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm Deletion");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Are you sure you want to delete the event with ID " + deleteEventId + "?");
+
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // User confirmed deletion, proceed with deletion
+
+            // Delete event details from the database
+            DataBaseConnection.deleteEventData(deleteEventId);
+
+            // Delete the event itself
+            DataBaseConnection.deleteEvent(deleteEventId);
+
+            // Provide feedback to the user (e.g., show an alert)
+            showAlert("Event Deleted", "Event details have been successfully deleted.");
+
+            // Optionally, clear the fields or set them to default values
+            eventIdInUpdate.clear();
+            eventNameInUpdate.clear();
+            eventLocationInUpdate.clear();
+            eventTimeInUpdate.clear();
+            eventDescriptionInUpdate.clear();
+            dateInUpdate.setValue(null);
+
+            // Optionally, reset prompt text for the next search
+            eventIdInUpdate.setPromptText("Enter Event ID");
+        }
+    }
 
 
+    
 }

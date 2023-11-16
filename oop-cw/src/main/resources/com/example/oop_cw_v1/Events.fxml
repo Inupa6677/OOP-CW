@@ -99,7 +99,7 @@
             <TextField fx:id="eventTimeInUpdate" layoutX="425.0" layoutY="299.0" prefHeight="38.0" prefWidth="211.0" promptText="Time" />
             <DatePicker fx:id="dateInUpdate" layoutX="425.0" layoutY="427.0" prefHeight="38.0" prefWidth="211.0" promptText="Date" />
             <Button layoutX="40.0" layoutY="170.0" mnemonicParsing="false" onAction="#searchEventIdInUpdate" text="Search" />
-            <Button layoutX="630.0" layoutY="501.0" mnemonicParsing="false" text="Save" />
+            <Button layoutX="630.0" layoutY="501.0" mnemonicParsing="false" onAction="#onSaveBtnClickInUpdate" text="Save" />
             <Button layoutX="40.0" layoutY="501.0" mnemonicParsing="false" onAction="#clickBackToEventPane" text="Back" />
             <Button layoutX="425.0" layoutY="501.0" mnemonicParsing="false" onAction="#deleteEventBtnClick" text="Delete Event" />
          </children>
