@@ -6,16 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
 // Hi i am john
 
 public class HelloController {
@@ -54,6 +52,26 @@ public class HelloController {
 
     @FXML
     private Pane updateEvenetPane;
+
+    @FXML
+    private DatePicker dateInUpdate;
+
+    @FXML
+    private TextField eventDescriptionInUpdate;
+
+    @FXML
+    private TextField eventIdInUpdate;
+
+    @FXML
+    private TextField eventLocationInUpdate;
+
+    @FXML
+    private TextField eventNameInUpdate;
+
+    @FXML
+    private TextField eventTimeInUpdate;
+
+
 
 
     public void disablePanes(){
@@ -158,9 +176,9 @@ public class HelloController {
             // Event found, set the prompt text or update fields
             eventIdInUpdate.setPromptText(foundEvent.getEventId());
             eventNameInUpdate.setText(foundEvent.getEventName());
-            locationInUpdate.setText(foundEvent.getEventLocation());
-            timeInUpdate.setText(foundEvent.getEventTime());
-            descriptionInUpdate.setText(foundEvent.getEventDescription());
+            eventLocationInUpdate.setText(foundEvent.getEventLocation());
+            eventTimeInUpdate.setText(foundEvent.getEventTime());
+            eventDescriptionInUpdate.setText(foundEvent.getEventDescription());
             dateInUpdate.setValue(LocalDate.parse(foundEvent.getEventDate())); // Assuming date is stored as a String
 
             // Optionally, you can enable/disable or set other properties based on your requirements
@@ -172,9 +190,9 @@ public class HelloController {
             // Clear the fields or set them to default values as needed
             eventIdInUpdate.clear();
             eventNameInUpdate.clear();
-            locationInUpdate.clear();
-            timeInUpdate.clear();
-            descriptionInUpdate.clear();
+            eventLocationInUpdate.clear();
+            eventTimeInUpdate.clear();
+            eventDescriptionInUpdate.clear();
             dateInUpdate.setValue(null);
         }
     }
