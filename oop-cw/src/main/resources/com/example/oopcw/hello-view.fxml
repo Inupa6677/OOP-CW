@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oopcw.HelloController">
    <children>
-      <Group fx:id="groupFirst" visible="false">
+      <Group fx:id="groupFirst">
          <children>
             <Pane prefHeight="550.0" prefWidth="732.0" style="-fx-background-color: Black;">
                <children>
@@ -24,7 +24,7 @@
                         <Image url="@The Advisor.gif" />
                      </image>
                   </ImageView>
-                  <Button layoutX="568.0" layoutY="304.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="135.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Manage Clubs">
+                  <Button layoutX="568.0" layoutY="304.0" mnemonicParsing="false" onAction="#manageClick" prefHeight="45.0" prefWidth="135.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Manage Clubs">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -108,7 +108,7 @@
             </Pane>
          </children>
       </Group>
-      <Group>
+      <Group fx:id="groupThree" visible="false">
          <children>
             <Pane prefHeight="550.0" prefWidth="731.0">
                <children>
@@ -134,7 +134,7 @@
                   <TextField fx:id="txtSearchClubId" layoutX="194.0" layoutY="82.0" prefHeight="25.0" prefWidth="128.0" />
                   <Button layoutX="624.0" layoutY="511.0" mnemonicParsing="false" onAction="#updateClub" text="Update Club" />
                   <Button layoutX="627.0" layoutY="353.0" mnemonicParsing="false" onAction="#deleteClub" text="Delete Club" />
-                  <Button fx:id="btnBackToMain" layoutX="28.0" layoutY="511.0" mnemonicParsing="false" text="Back" />
+                  <Button layoutX="28.0" layoutY="511.0" mnemonicParsing="false" onAction="#btnBackToMainClick" text="Back" />
                   <Button layoutX="332.0" layoutY="82.0" mnemonicParsing="false" onAction="#searchClub" text="Search" />
                   <Label layoutX="153.0" layoutY="386.0" text="01. Club Name">
                      <font>

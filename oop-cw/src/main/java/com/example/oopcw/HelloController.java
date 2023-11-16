@@ -47,6 +47,9 @@ public class HelloController {
 
     @FXML
     private Group groupSecond;
+
+    @FXML
+    private Group groupThree;
     @FXML
     private ImageView importClubImageView;
 
@@ -54,6 +57,8 @@ public class HelloController {
     public void disableGroups() {
         groupFirst.setVisible(false);
         groupSecond.setVisible(false);
+        groupThree.setVisible(false);
+
     }
 
     public void onClickCreateClub(ActionEvent actionEvent) {
@@ -126,6 +131,25 @@ public class HelloController {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public void updateClub(ActionEvent actionEvent) {
+    }
+
+    public void deleteClub(ActionEvent actionEvent) {
+    }
+
+    public void searchClub(ActionEvent actionEvent) {
+    }
+
+    public void btnBackToMainClick(ActionEvent actionEvent) {
+        disableGroups();
+        groupFirst.setVisible(true);
+    }
+
+    public void manageClick(ActionEvent actionEvent) {
+        disableGroups();
+        groupThree.setVisible(true);
     }
 }
 
