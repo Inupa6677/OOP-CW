@@ -112,7 +112,15 @@ public class HelloController {
 
 
 
-    public void savebtnincreateevents() {
+    public void savebtnincreateevents(ActionEvent actionEvent) {
+        String eventId = eventIdInCreateEvents.getText();
+        String eventName = eventNameInCreateEvents.getText();
+        String location = locationInCreateEvents.getText();
+        String time = timeInCreateEvents.getText();
+        String description = descriptionInCreateEvents.getText();
+        String date = String.valueOf(dateInCreateEvents.getValue());
+
+        
 
     }
 
@@ -120,4 +128,6 @@ public class HelloController {
 
     public void deleteEventBtnClick(ActionEvent actionEvent) {
     }
+
+
 }
