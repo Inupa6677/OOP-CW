@@ -153,11 +153,7 @@ public class HelloController {
         timeInCreateEvents.setText("");
         descriptionInCreateEvents.setText("");
         dateInCreateEvents.setValue(null);
-
-
     }
-
-
 
     public void searchButtonInUpdate(ActionEvent actionEvent) {
         // Get the event ID to search for
