@@ -50,9 +50,6 @@ public class HelloController {
 
     @FXML
     private Group groupThree;
-    @FXML
-    private ImageView importClubImageView;
-
 
     public void disableGroups() {
         groupFirst.setVisible(false);

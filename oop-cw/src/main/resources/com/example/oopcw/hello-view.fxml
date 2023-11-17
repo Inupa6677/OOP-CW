@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oopcw.HelloController">
    <children>
-      <Group fx:id="groupFirst" visible="false">
+      <Group fx:id="groupFirst">
          <children>
             <Pane prefHeight="550.0" prefWidth="732.0" style="-fx-background-color: Black;">
                <children>
@@ -110,7 +110,7 @@
             </Pane>
          </children>
       </Group>
-      <Group fx:id="groupThree">
+      <Group fx:id="groupThree" visible="false">
          <children>
             <Pane prefHeight="550.0" prefWidth="731.0">
                <children>

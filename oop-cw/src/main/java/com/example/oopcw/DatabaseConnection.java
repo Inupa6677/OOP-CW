@@ -1,10 +1,6 @@
 package com.example.oopcw;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
+import java.sql.*;
 
 
 public class DatabaseConnection {
@@ -46,5 +42,31 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
     }
-    //.
+
+    public static Club getClubId(String clubId){
+        Club club = null;
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL,DB_USER,DB_PASS);
+            String selectQuery = "SELECT * FROM club WHERE Club_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+            preparedStatement.setString(1, clubId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                club = new Club(
+                        resultSet.getString("Club_id"),
+                        resultSet.getString("Club_name"),
+                        resultSet.getString("Members"),
+                        resultSet.getString("Advisor_id"),
+                        resultSet.getString("description")
+
+                );
+            }
+            connection.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return club;
+    }
 }
