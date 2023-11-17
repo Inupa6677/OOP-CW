@@ -123,7 +123,11 @@
                   <TableColumn fx:id="eventDateInView" prefWidth="127.20001220703125" text="Date" />
               </columns>
             </TableView>
-            <Button layoutX="40.0" layoutY="455.0" mnemonicParsing="false" onAction="#backbtninView" text="Back" />
+            <Button layoutX="320.0" layoutY="452.0" mnemonicParsing="false" onAction="#backbtninView" prefHeight="25.0" prefWidth="101.0" text="Back">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>
