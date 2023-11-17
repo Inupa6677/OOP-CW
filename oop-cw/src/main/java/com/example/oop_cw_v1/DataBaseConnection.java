@@ -29,9 +29,10 @@ public class DataBaseConnection {
         }
     }
 
-    //public static Event searchEventById(String searchEventId) {
+    public static Event searchEventById(String searchEventId) {
 
-    //}
+        return null;
+    }
 
     public static void updateEventData(String eventId, String eventName, String location, String time, String description, String date) {
     }
