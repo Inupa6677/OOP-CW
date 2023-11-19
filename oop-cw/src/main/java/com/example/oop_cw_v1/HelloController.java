@@ -246,7 +246,6 @@ public class HelloController {
             // User confirmed deletion, proceed with deletion
 
             // Delete event details from the database
-            DataBaseConnection.deleteEventData(deleteEventId);
 
             // Delete the event itself
             DataBaseConnection.deleteEvent(deleteEventId);
@@ -268,5 +267,9 @@ public class HelloController {
     }
 
 
+    public void searchEventIdInUpdate(ActionEvent actionEvent) {
+    }
 
+    public void backbtninView(ActionEvent actionEvent) {
+    }
 }

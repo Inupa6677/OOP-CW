@@ -75,23 +75,7 @@ public class DataBaseConnection {
         }
     }
 
-    public static void deleteEventData(String deleteEventId) {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
-            String sql = "INSERT INTO deleted_events (eventId, eventName, eventLocation, eventTime, eventDescription, eventDate) VALUES (?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, deletedEvent.getEventId());
-                preparedStatement.setString(2, deletedEvent.getEventName());
-                preparedStatement.setString(3, deletedEvent.getEventLocation());
-                preparedStatement.setString(4, deletedEvent.getEventTime());
-                preparedStatement.setString(5, deletedEvent.getEventDescription());
-                preparedStatement.setString(6, deletedEvent.getEventDate());
 
-                preparedStatement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
-        }
-    }
 
     public static void deleteEvent(String deleteEventId) {
     }
