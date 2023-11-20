@@ -57,7 +57,7 @@
             <Button layoutX="70.0" layoutY="481.0" mnemonicParsing="false" onAction="#backBtninselectingevents" text="Back" />
          </children>
       </Pane>
-      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0">
+      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0" visible="false">
          <children>
             <Pane layoutY="1.0" prefHeight="550.0" prefWidth="402.0">
                <children>
@@ -94,6 +94,24 @@
                   </ImageView>
                </children>
             </Pane>
+         </children>
+      </Pane>
+      <Pane prefHeight="551.0" prefWidth="758.0">
+         <children>
+            <Label layoutX="114.0" layoutY="33.0" text="Create meeting">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <TextField fx:id="meetingIdIncreatemeeting" layoutX="57.0" layoutY="88.0" promptText="meeting id" />
+            <TextField fx:id="meetingnameIncreatemeeting" layoutX="57.0" layoutY="133.0" promptText="name" />
+            <TextField fx:id="meetingtypeIncreatemeeting" layoutX="57.0" layoutY="318.0" promptText="meeting type(online / physical)" />
+            <TextField fx:id="meetingtimeIncreatemeeting" layoutX="57.0" layoutY="276.0" prefHeight="10.0" prefWidth="151.0" promptText="time" />
+            <TextField fx:id="meetingdescriptionIncreatemeeting" layoutX="57.0" layoutY="226.0" promptText="description" />
+            <TextField fx:id="meetinglocationIncreatemeeting" layoutX="57.0" layoutY="179.0" promptText="location" />
+            <DatePicker fx:id="meetingdateIncreatemeeting" layoutX="57.0" layoutY="364.0" promptText="date" />
+            <Button layoutX="57.0" layoutY="452.0" mnemonicParsing="false" onAction="#onBackBtnInCreateMeeting" text="back" />
+            <Button layoutX="173.0" layoutY="451.0" mnemonicParsing="false" onAction="#onsaveBtnIncreatemeeting" text="save" />
          </children>
       </Pane>
       <Pane fx:id="updateEvenetPane" layoutX="-2.0" layoutY="1.0" prefHeight="550.0" prefWidth="758.0" visible="false">
