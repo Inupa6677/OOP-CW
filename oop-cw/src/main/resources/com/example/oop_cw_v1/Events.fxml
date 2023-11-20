@@ -134,6 +134,20 @@
       </Pane>
       <Pane prefHeight="551.0" prefWidth="758.0">
          <children>
+            <Label layoutX="70.0" layoutY="28.0" text="Select event type to update">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="70.0" layoutY="192.0" mnemonicParsing="false" onAction="#onEventBtnClickInselecttoupdate" text="Event" />
+            <Button layoutX="262.0" layoutY="195.0" mnemonicParsing="false" onAction="#onMeetingBtnClickInselecttoupdate" text="Meeting" />
+            <Button layoutX="439.0" layoutY="192.0" mnemonicParsing="false" onAction="#onWorkshopBtnClickInselecttoupdate" text="Workshop" />
+            <Button layoutX="632.0" layoutY="193.0" mnemonicParsing="false" onAction="#onGameBtnClickInselecttoupdate" prefHeight="34.0" prefWidth="62.0" text="Game" />
+            <Button layoutX="58.0" layoutY="478.0" mnemonicParsing="false" onAction="#onBackBtnClickInselecttoupdate" text="back" />
+         </children>
+      </Pane>
+      <Pane prefHeight="551.0" prefWidth="758.0" visible="false">
+         <children>
             <Label layoutX="67.0" layoutY="21.0" text="Create Game">
                <font>
                   <Font size="36.0" />
