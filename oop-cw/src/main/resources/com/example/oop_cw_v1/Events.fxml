@@ -114,7 +114,7 @@
             <Button layoutX="173.0" layoutY="451.0" mnemonicParsing="false" onAction="#onsaveBtnIncreatemeeting" text="save" />
          </children>
       </Pane>
-      <Pane prefHeight="550.0" prefWidth="758.0">
+      <Pane prefHeight="550.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="58.0" layoutY="26.0" text="create workshop">
                <font>
@@ -130,6 +130,24 @@
             <DatePicker fx:id="workshopDateInCreateWorkshop" layoutX="65.0" layoutY="407.0" promptText="Date" />
             <Button layoutX="66.0" layoutY="478.0" mnemonicParsing="false" onAction="#onBackBtnClickInCreateWorkshop" text="back" />
             <Button layoutX="172.0" layoutY="478.0" mnemonicParsing="false" onAction="#onSaveBtnClickInCreateWorkshop" text="SAVE" />
+         </children>
+      </Pane>
+      <Pane prefHeight="551.0" prefWidth="758.0">
+         <children>
+            <Label layoutX="67.0" layoutY="21.0" text="Create Game">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <TextField fx:id="gameIdInCreateGame" layoutX="68.0" layoutY="102.0" promptText="Game Id" />
+            <TextField fx:id="gameNameInCreateGame" layoutX="68.0" layoutY="153.0" promptText="Name" />
+            <TextField fx:id="gameLocationInCreateGame" layoutX="68.0" layoutY="204.0" promptText="Location" />
+            <TextField fx:id="gameDescriptionInCreateGame" layoutX="68.0" layoutY="250.0" promptText="Description" />
+            <TextField fx:id="gameTimeInCreateGame" layoutX="68.0" layoutY="298.0" promptText="Time" />
+            <TextField fx:id="gameRewardInCreateGame" layoutX="68.0" layoutY="347.0" promptText="Reward(Cash prize)" />
+            <DatePicker fx:id="gameDateInCreateGame" layoutX="68.0" layoutY="405.0" promptText="Date" />
+            <Button layoutX="67.0" layoutY="475.0" mnemonicParsing="false" onAction="#OnSavebtnincreateGame" text="Save" />
+            <Button layoutX="179.0" layoutY="478.0" mnemonicParsing="false" onAction="#onBackbtnincreategame" text="Back" />
          </children>
       </Pane>
       <Pane fx:id="updateEvenetPane" layoutX="-2.0" layoutY="1.0" prefHeight="550.0" prefWidth="758.0" visible="false">
