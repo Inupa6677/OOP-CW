@@ -96,7 +96,7 @@
             </Pane>
          </children>
       </Pane>
-      <Pane prefHeight="551.0" prefWidth="758.0">
+      <Pane prefHeight="551.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="114.0" layoutY="33.0" text="Create meeting">
                <font>
@@ -105,13 +105,31 @@
             </Label>
             <TextField fx:id="meetingIdIncreatemeeting" layoutX="57.0" layoutY="88.0" promptText="meeting id" />
             <TextField fx:id="meetingnameIncreatemeeting" layoutX="57.0" layoutY="133.0" promptText="name" />
-            <TextField fx:id="meetingtypeIncreatemeeting" layoutX="57.0" layoutY="318.0" promptText="meeting type(online / physical)" />
+            <TextField fx:id="meetingtypeIncreatemeeting" layoutX="57.0" layoutY="318.0" prefHeight="26.0" prefWidth="211.0" promptText="meeting type(online / physical)" />
             <TextField fx:id="meetingtimeIncreatemeeting" layoutX="57.0" layoutY="276.0" prefHeight="10.0" prefWidth="151.0" promptText="time" />
             <TextField fx:id="meetingdescriptionIncreatemeeting" layoutX="57.0" layoutY="226.0" promptText="description" />
             <TextField fx:id="meetinglocationIncreatemeeting" layoutX="57.0" layoutY="179.0" promptText="location" />
             <DatePicker fx:id="meetingdateIncreatemeeting" layoutX="57.0" layoutY="364.0" promptText="date" />
             <Button layoutX="57.0" layoutY="452.0" mnemonicParsing="false" onAction="#onBackBtnInCreateMeeting" text="back" />
             <Button layoutX="173.0" layoutY="451.0" mnemonicParsing="false" onAction="#onsaveBtnIncreatemeeting" text="save" />
+         </children>
+      </Pane>
+      <Pane prefHeight="550.0" prefWidth="758.0">
+         <children>
+            <Label layoutX="58.0" layoutY="26.0" text="create workshop">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <TextField fx:id="workshopIdInCreateWorkshop" layoutX="64.0" layoutY="98.0" promptText="Workshop id" />
+            <TextField fx:id="workshopnameInCreateWorkshop" layoutX="66.0" layoutY="148.0" promptText="Workshop name" />
+            <TextField fx:id="workshoplocationInCreateWorkshop" layoutX="66.0" layoutY="201.0" promptText="Location" />
+            <TextField fx:id="workshopTimeInCreateWorkshop" layoutX="64.0" layoutY="310.0" promptText="Time" />
+            <TextField fx:id="workshopConductorInCreateWorkshop" layoutX="66.0" layoutY="354.0" promptText="Workshop conductor" />
+            <TextField fx:id="workshopdescriptionInCreateWorkshop" layoutX="65.0" layoutY="263.0" promptText="Description" />
+            <DatePicker fx:id="workshopDateInCreateWorkshop" layoutX="65.0" layoutY="407.0" promptText="Date" />
+            <Button layoutX="66.0" layoutY="478.0" mnemonicParsing="false" onAction="#onBackBtnClickInCreateWorkshop" text="back" />
+            <Button layoutX="172.0" layoutY="478.0" mnemonicParsing="false" onAction="#onSaveBtnClickInCreateWorkshop" text="SAVE" />
          </children>
       </Pane>
       <Pane fx:id="updateEvenetPane" layoutX="-2.0" layoutY="1.0" prefHeight="550.0" prefWidth="758.0" visible="false">
