@@ -43,7 +43,21 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0" visible="false">
+      <Pane prefHeight="550.0" prefWidth="758.0" visible="false">
+         <children>
+            <Label layoutX="211.0" layoutY="29.0" text="selecting whay kind of event">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Button layoutX="80.0" layoutY="155.0" mnemonicParsing="false" onAction="#eventBtninselectingevents" prefHeight="25.0" prefWidth="70.0" text="Event" />
+            <Button layoutX="261.0" layoutY="155.0" mnemonicParsing="false" onAction="#gameBtninselectingevents" prefHeight="25.0" prefWidth="70.0" text="Game" />
+            <Button layoutX="454.0" layoutY="155.0" mnemonicParsing="false" onAction="#meetingBtninselectingevents" text="Meeting" />
+            <Button layoutX="625.0" layoutY="155.0" mnemonicParsing="false" onAction="#workshopBtninselectingevents" text="Workshop" />
+            <Button layoutX="70.0" layoutY="481.0" mnemonicParsing="false" onAction="#backBtninselectingevents" text="Back" />
+         </children>
+      </Pane>
+      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0">
          <children>
             <Pane layoutY="1.0" prefHeight="550.0" prefWidth="402.0">
                <children>
@@ -52,12 +66,12 @@
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="eventIdInCreateEvents" layoutX="76.0" layoutY="96.0" prefHeight="38.0" prefWidth="249.0" promptText="Event ID" />
-                  <TextField fx:id="eventNameInCreateEvents" layoutX="76.0" layoutY="159.0" prefHeight="38.0" prefWidth="249.0" promptText="Event Name" />
-                  <TextField fx:id="locationInCreateEvents" layoutX="76.0" layoutY="216.0" prefHeight="38.0" prefWidth="249.0" promptText="Location" />
-                  <TextField fx:id="timeInCreateEvents" layoutX="76.0" layoutY="275.0" prefHeight="38.0" prefWidth="249.0" promptText="Time" />
-                  <DatePicker fx:id="dateInCreateEvents" layoutX="76.0" layoutY="398.0" prefHeight="38.0" prefWidth="249.0" promptText="Date" />
-                  <TextField fx:id="descriptionInCreateEvents" layoutX="76.0" layoutY="336.0" prefHeight="38.0" prefWidth="249.0" promptText="Description" />
+                  <TextField fx:id="eventIdInCreateEvents" layoutX="76.0" layoutY="96.0" prefHeight="31.0" prefWidth="211.0" promptText="Event ID" />
+                  <TextField fx:id="eventNameInCreateEvents" layoutX="76.0" layoutY="144.0" prefHeight="31.0" prefWidth="211.0" promptText="Event Name" />
+                  <TextField fx:id="locationInCreateEvents" layoutX="76.0" layoutY="191.0" prefHeight="31.0" prefWidth="211.0" promptText="Location" />
+                  <TextField fx:id="timeInCreateEvents" layoutX="76.0" layoutY="285.0" prefHeight="31.0" prefWidth="211.0" promptText="Time" />
+                  <DatePicker fx:id="dateInCreateEvents" layoutX="76.0" layoutY="382.0" prefHeight="31.0" prefWidth="211.0" promptText="Date" />
+                  <TextField fx:id="descriptionInCreateEvents" layoutX="76.0" layoutY="238.0" prefHeight="31.0" prefWidth="211.0" promptText="Description" />
                   <Button layoutX="76.0" layoutY="482.0" mnemonicParsing="false" onAction="#backbtnincreateevents" prefHeight="38.0" prefWidth="69.0" text="Back">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -68,6 +82,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
+                  <TextField fx:id="eventtypeInCreateEvents" layoutX="76.0" layoutY="342.0" prefHeight="26.0" prefWidth="211.0" promptText="Event type (online/physical)" />
                </children>
             </Pane>
             <Pane id="paneNextToContentInCreateEvents" layoutX="396.0" prefHeight="551.0" prefWidth="358.0" styleClass="paneNextToContentInCreateEvents" stylesheets="@events.css" visible="false">
@@ -128,20 +143,6 @@
                   <Font size="15.0" />
                </font>
             </Button>
-         </children>
-      </Pane>
-      <Pane prefHeight="550.0" prefWidth="758.0">
-         <children>
-            <Label layoutX="211.0" layoutY="29.0" text="selecting whay kind of event">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <Button layoutX="80.0" layoutY="155.0" mnemonicParsing="false" onAction="#eventBtninselectingevents" prefHeight="25.0" prefWidth="70.0" text="Event" />
-            <Button layoutX="261.0" layoutY="155.0" mnemonicParsing="false" onAction="#gameBtninselectingevents" prefHeight="25.0" prefWidth="70.0" text="Game" />
-            <Button layoutX="454.0" layoutY="155.0" mnemonicParsing="false" onAction="#meetingBtninselectingevents" text="Meeting" />
-            <Button layoutX="625.0" layoutY="155.0" mnemonicParsing="false" onAction="#workshopBtninselectingevents" text="Workshop" />
-            <Button layoutX="70.0" layoutY="481.0" mnemonicParsing="false" onAction="#backBtninselectingevents" text="Back" />
          </children>
       </Pane>
    </children>
