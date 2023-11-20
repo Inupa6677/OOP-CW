@@ -27,6 +27,7 @@ public class HelloController {
     private Button btn_back;
     @FXML
     private Label label_error;
+
     @FXML
     private TextField txt_email;
     @FXML
@@ -274,4 +275,27 @@ public class HelloController {
 
     public void backbtninView(ActionEvent actionEvent) {
     }
+
+
+    @FXML
+    void workshopBtninselectingevents(ActionEvent event) {
+
+    }
+
+    @FXML
+    void eventBtninselectingevents(ActionEvent event) {
+
+    }
+
+    @FXML
+    void gameBtninselectingevents(ActionEvent event) {
+
+    }
+
+    @FXML
+    void meetingBtninselectingevents(ActionEvent event) {
+
+    }
+
+
 }

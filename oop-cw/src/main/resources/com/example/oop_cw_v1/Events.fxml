@@ -81,7 +81,7 @@
             </Pane>
          </children>
       </Pane>
-      <Pane fx:id="updateEvenetPane" layoutX="-2.0" layoutY="1.0" prefHeight="550.0" prefWidth="758.0">
+      <Pane fx:id="updateEvenetPane" layoutX="-2.0" layoutY="1.0" prefHeight="550.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="86.0" layoutY="22.0" prefHeight="38.0" prefWidth="249.0" text="Update Event Details">
                <font>
@@ -128,6 +128,20 @@
                   <Font size="15.0" />
                </font>
             </Button>
+         </children>
+      </Pane>
+      <Pane prefHeight="550.0" prefWidth="758.0">
+         <children>
+            <Label layoutX="211.0" layoutY="29.0" text="selecting whay kind of event">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Button layoutX="80.0" layoutY="155.0" mnemonicParsing="false" onAction="#eventBtninselectingevents" prefHeight="25.0" prefWidth="70.0" text="Event" />
+            <Button layoutX="261.0" layoutY="155.0" mnemonicParsing="false" onAction="#gameBtninselectingevents" prefHeight="25.0" prefWidth="70.0" text="Game" />
+            <Button layoutX="454.0" layoutY="155.0" mnemonicParsing="false" onAction="#meetingBtninselectingevents" text="Meeting" />
+            <Button layoutX="625.0" layoutY="155.0" mnemonicParsing="false" onAction="#workshopBtninselectingevents" text="Workshop" />
+            <Button layoutX="70.0" layoutY="481.0" mnemonicParsing="false" onAction="#backBtninselectingevents" text="Back" />
          </children>
       </Pane>
    </children>
