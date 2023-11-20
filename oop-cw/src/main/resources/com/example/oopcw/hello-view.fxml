@@ -114,66 +114,78 @@
          <children>
             <Pane prefHeight="550.0" prefWidth="731.0">
                <children>
-                  <Label layoutX="231.0" layoutY="25.0" prefHeight="45.0" prefWidth="270.0" text="Club Management">
+                  <Label layoutX="231.0" layoutY="16.0" prefHeight="45.0" prefWidth="270.0" text="Club Management">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="clubTable" layoutX="28.0" layoutY="135.0" prefHeight="200.0" prefWidth="677.0">
+                  <TableView fx:id="clubTable" layoutX="8.0" layoutY="112.0" prefHeight="228.0" prefWidth="714.0">
                     <columns>
-                      <TableColumn fx:id="colClubId" prefWidth="154.4000301361084" text="Club ID" />
-                      <TableColumn fx:id="colClubName" minWidth="0.0" prefWidth="120.79998779296875" text="Club Name" />
-                        <TableColumn fx:id="colAdvisorId" prefWidth="126.39996337890625" text="Advisor ID" />
-                        <TableColumn fx:id="colMembers" minWidth="0.79998779296875" prefWidth="136.79995727539062" text="Memebers" />
-                        <TableColumn fx:id="colClubDescription" prefWidth="139.20001220703125" text="Club Description" />
+                      <TableColumn fx:id="colClubId" prefWidth="79.99999809265137" text="Club ID" />
+                      <TableColumn fx:id="colClubName" minWidth="0.0" prefWidth="188.00000762939453" text="Club Name" />
+                        <TableColumn fx:id="colAdvisorId" prefWidth="76.00006103515625" text="Advisor ID" />
+                        <TableColumn fx:id="colMembers" minWidth="0.79998779296875" prefWidth="69.60003662109375" text="Memebers" />
+                        <TableColumn fx:id="colClubDescription" prefWidth="303.1999206542969" text="Club Description" />
                     </columns>
                   </TableView>
-                  <Label layoutX="28.0" layoutY="81.0" prefHeight="17.0" prefWidth="153.0" text="Search Via Club ID">
+                  <Label layoutX="28.0" layoutY="74.0" prefHeight="17.0" prefWidth="153.0" text="Search Via Club ID">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtSearchClubId" layoutX="194.0" layoutY="82.0" prefHeight="25.0" prefWidth="128.0" />
+                  <TextField fx:id="txtSearchClubId" layoutX="186.0" layoutY="75.0" prefHeight="25.0" prefWidth="128.0" />
                   <Button layoutX="624.0" layoutY="511.0" mnemonicParsing="false" onAction="#updateClub" text="Update Club">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <Button layoutX="627.0" layoutY="353.0" mnemonicParsing="false" onAction="#deleteClub" text="Delete Club">
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button layoutX="521.0" layoutY="511.0" mnemonicParsing="false" onAction="#deleteClub" text="Delete Club">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
                   <Button layoutX="28.0" layoutY="511.0" mnemonicParsing="false" onAction="#btnBackToMainClick" text="Back">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <Button layoutX="332.0" layoutY="82.0" mnemonicParsing="false" onAction="#searchClub" text="Search">
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button layoutX="331.0" layoutY="75.0" mnemonicParsing="false" onAction="#searchClub" text="Search">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <Label layoutX="153.0" layoutY="386.0" text="01. Club Name">
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Label layoutX="28.0" layoutY="355.0" text="01. Club Name">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="153.0" layoutY="414.0" text="02. Members">
+                  <Label layoutX="28.0" layoutY="386.0" text="02. Members">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="152.0" layoutY="441.0" text="03. Advisor ID">
+                  <Label layoutX="28.0" layoutY="417.0" text="03. Advisor ID">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="152.0" layoutY="469.0" text="04. CLub Description">
+                  <Label layoutX="27.0" layoutY="451.0" text="04. CLub Description">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtManageClubName" layoutX="322.0" layoutY="384.0" />
-                  <TextField fx:id="txtManageMembers" layoutX="322.0" layoutY="412.0" />
-                  <TextField fx:id="txtManageAdvisorId" layoutX="322.0" layoutY="439.0" />
-                  <TextField fx:id="txtManageClubDescription" layoutX="322.0" layoutY="467.0" />
+                  <TextField fx:id="txtManageClubName" layoutX="176.0" layoutY="353.0" />
+                  <TextField fx:id="txtManageMembers" layoutX="176.0" layoutY="384.0" />
+                  <TextField fx:id="txtManageAdvisorId" layoutX="176.0" layoutY="415.0" />
+                  <TextField fx:id="txtManageClubDescription" layoutX="176.0" layoutY="449.0" />
                </children>
             </Pane>
          </children>

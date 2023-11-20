@@ -63,11 +63,10 @@ public class HelloController implements Initializable {
     @FXML
     private Group groupThree;
 
-    public void disableGroups() {
+    public void disableGroups(){
         groupFirst.setVisible(false);
         groupSecond.setVisible(false);
-        groupThree.setVisible(false);
-
+        groupFirst.setVisible(false);
     }
 
     public void onClickCreateClub(ActionEvent actionEvent) {
