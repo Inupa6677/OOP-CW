@@ -66,7 +66,7 @@ public class HelloController implements Initializable {
     public void disableGroups(){
         groupFirst.setVisible(false);
         groupSecond.setVisible(false);
-        groupFirst.setVisible(false);
+        groupThree.setVisible(false);
     }
 
     public void onClickCreateClub(ActionEvent actionEvent) {
