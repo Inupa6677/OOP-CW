@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Optional;
 // Hi i am john
 
@@ -135,13 +137,13 @@ public class HelloController {
         String eventId = eventIdInCreateEvents.getText();
         String eventName = eventNameInCreateEvents.getText();
         String location = locationInCreateEvents.getText();
-        String time = timeInCreateEvents.getText();
+        LocalDateTime time = LocalDateTime.parse(timeInCreateEvents.getText());
         String description = descriptionInCreateEvents.getText();
         String date = String.valueOf(dateInCreateEvents.getValue());
-
+// event type
         // save event data to the database after the validation
         //if (eventValidation == true)  make the validation and add the details in to the condition
-        Event event1 = new Event(eventId, eventName, location, time, description, date);
+        Event event1 = new Event(eventId, eventName, location, time, description, date,);
         DataBaseConnection.insertEventData(event1.getEventId(), event1.getEventName(), event1.getEventLocation(), event1.getEventTime(), event1.getEventDescription(), event1.getEventDate());
 
 

@@ -1,11 +1,13 @@
 package com.example.oop_cw_v1;
 
-public class Workshop extends Event {
+import java.time.LocalDateTime;
+import java.util.Date;
 
+public class Workshop extends MainSchedule {
     private String conductor;
 
-    public Workshop(String eventName, String eventDate, String eventTime, String conductor){
-        super(eventName, eventDate, eventTime);
+    public Workshop(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, Date scheduleDate, LocalDateTime scheduleTime, String conductor) {
+        super(scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime);
         this.conductor = conductor;
     }
 
@@ -16,12 +18,4 @@ public class Workshop extends Event {
     public void setConductor(String conductor) {
         this.conductor = conductor;
     }
-
-    @Override
-    public void displayEventDetails(){
-        super.displayEventDetails();
-        System.out.println("conductor: " + conductor);
-    }
-
-
 }

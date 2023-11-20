@@ -1,26 +1,22 @@
 package com.example.oop_cw_v1;
 
-public class Game extends Event {
+import java.time.LocalDateTime;
+import java.util.Date;
 
-    public String getReward(){
-        return reward;
-    }
+public class Game extends MainSchedule {
+    private int reward;
 
-    public void setReward(String reward) {
+
+    public Game(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, Date scheduleDate, LocalDateTime scheduleTime, int reward) {
+        super(scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime);
         this.reward = reward;
     }
 
-    private String reward;
-     public Game(String eventName, String eventDate, String eventTime, String reward){
-         super(eventName, eventDate, eventTime);
-         this.reward = reward;
-     }
-
-     // Overriding the handle event method for the game
-    @Override
-    public void handleEvent(){
-        super.handleEvent();
-        System.out.println("This is a game with a reward of " + reward);
+    public int getReward() {
+        return reward;
     }
 
+    public void setReward(int reward) {
+        this.reward = reward;
+    }
 }

@@ -1,26 +1,22 @@
 package com.example.oop_cw_v1;
 
-public class Meeting extends Event {
-    private String location;
+import java.time.LocalDateTime;
+import java.util.Date;
 
-    public Meeting(String EventName, String EventDate, String EventTime, String location){
-        super(EventName, EventDate, EventTime);
-        this.location = location;
+public class Meeting extends MainSchedule {
+    private String meetingType;
+
+
+    public Meeting(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, Date scheduleDate, LocalDateTime scheduleTime, String meetingType) {
+        super(scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime);
+        this.meetingType = meetingType;
     }
 
-    public String getLocation() {
-        return location;
+    public String getMeetingType() {
+        return meetingType;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setMeetingType(String meetingType) {
+        this.meetingType = meetingType;
     }
-
-    @Override
-    public void displayEventDetails(){
-        super.displayEventDetails();
-        System.out.println("Location: " + location);
-    }
-
-
 }
