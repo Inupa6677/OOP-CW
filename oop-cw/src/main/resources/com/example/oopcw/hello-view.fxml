@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oopcw.HelloController">
    <children>
-      <Group fx:id="groupFirst">
+      <Group fx:id="groupFirst" visible="false">
          <children>
             <Pane prefHeight="550.0" prefWidth="732.0" style="-fx-background-color: Black;">
                <children>
@@ -110,7 +110,7 @@
             </Pane>
          </children>
       </Group>
-      <Group fx:id="groupThree" visible="false">
+      <Group fx:id="groupThree">
          <children>
             <Pane prefHeight="550.0" prefWidth="731.0">
                <children>
@@ -119,13 +119,13 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="28.0" layoutY="135.0" prefHeight="200.0" prefWidth="677.0">
+                  <TableView fx:id="clubTable" layoutX="28.0" layoutY="135.0" prefHeight="200.0" prefWidth="677.0">
                     <columns>
-                      <TableColumn fx:id="tabie" prefWidth="154.4000301361084" text="Club ID" />
-                      <TableColumn minWidth="0.0" prefWidth="120.79998779296875" text="Club Name" />
-                        <TableColumn prefWidth="126.39996337890625" text="Advisor ID" />
-                        <TableColumn minWidth="0.79998779296875" prefWidth="136.79995727539062" text="Memebers" />
-                        <TableColumn prefWidth="139.20001220703125" text="Club Description" />
+                      <TableColumn fx:id="colClubId" prefWidth="154.4000301361084" text="Club ID" />
+                      <TableColumn fx:id="colClubName" minWidth="0.0" prefWidth="120.79998779296875" text="Club Name" />
+                        <TableColumn fx:id="colAdvisorId" prefWidth="126.39996337890625" text="Advisor ID" />
+                        <TableColumn fx:id="colMembers" minWidth="0.79998779296875" prefWidth="136.79995727539062" text="Memebers" />
+                        <TableColumn fx:id="colClubDescription" prefWidth="139.20001220703125" text="Club Description" />
                     </columns>
                   </TableView>
                   <Label layoutX="28.0" layoutY="81.0" prefHeight="17.0" prefWidth="153.0" text="Search Via Club ID">

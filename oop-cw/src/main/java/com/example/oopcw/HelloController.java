@@ -4,19 +4,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public class HelloController {
+public class HelloController implements Initializable {
 
 
     @FXML
@@ -41,6 +40,19 @@ public class HelloController {
 
     @FXML
     private TextField txtName;
+
+    @FXML
+    private TableView<Club> clubTable;
+    @FXML
+    private TableColumn<Club, String> colClubId;
+    @FXML
+    private TableColumn<Club, String> colClubName;
+    @FXML
+    private TableColumn<Club, Integer> colMembers;
+    @FXML
+    private TableColumn<Club, String> colAdvisorId;
+    @FXML
+    private TableColumn<Club, String> colClubDescription;
 
     @FXML
     private Group groupFirst;
@@ -125,7 +137,25 @@ public class HelloController {
     public void manageClick(ActionEvent actionEvent) {
         disableGroups();
         groupThree.setVisible(true);
+        populateClubTable();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+        //Initial the table columns
+        colClubId.setCellValueFactory(new PropertyValueFactory<>("clubId"));
+        colClubName.setCellValueFactory(new PropertyValueFactory<>("clubName"));
+        colMembers.setCellValueFactory(new  PropertyValueFactory<>("members"));
+        colAdvisorId.setCellValueFactory(new PropertyValueFactory<>("advisorId"));
+        colClubDescription.setCellValueFactory(new PropertyValueFactory<>("clubDescription"));
+
+    }
+
+    public void populateClubTable(){
+        List<Club> clubList = DatabaseConnection.getClubData();
+        clubTable.getItems().setAll(clubList);
     }
 }
+
 
 

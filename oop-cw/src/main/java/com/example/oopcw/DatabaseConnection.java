@@ -1,6 +1,8 @@
 package com.example.oopcw;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DatabaseConnection {
@@ -43,30 +45,30 @@ public class DatabaseConnection {
         }
     }
 
-    public static Club getClubId(String clubId){
-        Club club = null;
+    public static List<Club> getClubData() {
+        List<Club> clubList = new ArrayList<>();
         try {
-            Connection connection = DriverManager.getConnection(DB_URL,DB_USER,DB_PASS);
-            String selectQuery = "SELECT * FROM club WHERE Club_id = ?";
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+            String selectQuery = "SELECT * FROM club";
             PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
-            preparedStatement.setString(1, clubId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()){
-                club = new Club(
+            while (resultSet.next()) {
+                Club club = new Club(
                         resultSet.getString("Club_id"),
                         resultSet.getString("Club_name"),
                         resultSet.getString("Members"),
                         resultSet.getString("Advisor_id"),
                         resultSet.getString("description")
-
                 );
+                clubList.add(club);
             }
+
             connection.close();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return club;
+        return clubList;
     }
 }
