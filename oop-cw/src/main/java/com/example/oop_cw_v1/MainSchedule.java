@@ -2,7 +2,6 @@ package com.example.oop_cw_v1;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Timer;
 
 public abstract class MainSchedule {
     private  String  scheduleId;
@@ -11,7 +10,7 @@ public abstract class MainSchedule {
 
     private String scheduleDescription;
     private Date scheduleDate;
-    private LocalDateTime scheduleTime;
+    private String scheduleTime;
 
     public String getScheduleId() {
         return scheduleId;
@@ -53,12 +52,12 @@ public abstract class MainSchedule {
         this.scheduleDate = scheduleDate;
     }
 
-    public LocalDateTime getScheduleTime() {
+    public String getScheduleTime() {
         return scheduleTime;
     }
 
     public void setScheduleTime(LocalDateTime scheduleTime) {
-        this.scheduleTime = scheduleTime;
+        this.scheduleTime = String.valueOf(scheduleTime);
     }
 
 
@@ -69,7 +68,7 @@ public abstract class MainSchedule {
         this.scheduleLocation = scheduleLocation;
         this.scheduleDescription = scheduleDescription;
         this.scheduleDate = scheduleDate;
-        this.scheduleTime = scheduleTime;
+        this.scheduleTime = String.valueOf(scheduleTime);
     }
 
 

@@ -11,13 +11,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.time.*;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Optional;
-// Hi i am john
+
 
 public class HelloController {
 
@@ -200,7 +201,7 @@ public class HelloController {
 
     @FXML
     private DatePicker eventDateincreateevent;
-    
+
     @FXML
     private TextField eventdescriptionincreateevent;
 
@@ -301,17 +302,6 @@ public class HelloController {
 //        disablePanes();
 //        selectEventTypePane.setVisible(true);
     }
-
-
-
-
-
-
-
-
-
-
-
 
     public void searchEventIdInUpdate(ActionEvent actionEvent) {
     }
@@ -430,8 +420,27 @@ public class HelloController {
     }
 
     public void savebtnincreateevents(ActionEvent actionEvent) {
+        // Getting data from the text fields
+        String eventId = eventidincreateevent.getText();
+        String eventName = eventnameincreateevent.getText();
+        String eventLocation = eventlocationincreateevent.getText();
+        String eventTime = eventtimeincreateevent.getText();
+        String eventDescription = eventdescriptionincreateevent.getText();
+        String eventType = eventtypeincreateevent.getText();
+        LocalDate eventDate = eventDateincreateevent.getValue();
+
+        // Convert eventTime to LocalDateTime
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.of(eventDate, LocalTime.parse(eventTime, timeFormatter));
+
+        // Convert LocalDateTime to Date
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        // Create an instance of the Event class
+        Event event = new Event(eventId, eventName, eventLocation, eventDescription, date, localDateTime, eventType);
 
     }
+
 
     public void searchButtonInUpdate(ActionEvent actionEvent) {
     }

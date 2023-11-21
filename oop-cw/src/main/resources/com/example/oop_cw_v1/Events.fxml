@@ -55,36 +55,7 @@
             <Button layoutX="70.0" layoutY="481.0" mnemonicParsing="false" onAction="#backBtninselectingevents" text="Back" />
          </children>
       </Pane>
-      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0" visible="false">
-         <children>
-            <Pane layoutY="1.0" prefHeight="550.0" prefWidth="752.0" visible="false">
-               <children>
-                  <Label layoutX="103.0" layoutY="33.0" text="Create Events">
-                     <font>
-                        <Font name="System Bold" size="26.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="eventIdInCreateEvents" layoutX="76.0" layoutY="96.0" prefHeight="31.0" prefWidth="211.0" promptText="Event ID" />
-                  <TextField fx:id="eventNameInCreateEvents" layoutX="76.0" layoutY="144.0" prefHeight="31.0" prefWidth="211.0" promptText="Event Name" />
-                  <TextField fx:id="locationInCreateEvents" layoutX="76.0" layoutY="191.0" prefHeight="31.0" prefWidth="211.0" promptText="Location" />
-                  <TextField fx:id="timeInCreateEvents" layoutX="76.0" layoutY="285.0" prefHeight="31.0" prefWidth="211.0" promptText="Time" />
-                  <DatePicker fx:id="dateInCreateEvents" layoutX="76.0" layoutY="382.0" prefHeight="31.0" prefWidth="211.0" promptText="Date" />
-                  <TextField fx:id="descriptionInCreateEvents" layoutX="76.0" layoutY="238.0" prefHeight="31.0" prefWidth="211.0" promptText="Description" />
-                  <Button layoutX="76.0" layoutY="482.0" mnemonicParsing="false" onAction="#backbtnincreateevents" prefHeight="38.0" prefWidth="69.0" text="Back">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="256.0" layoutY="482.0" mnemonicParsing="false" onAction="#savebtnincreateevents" prefHeight="38.0" prefWidth="69.0" text="Save">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <TextField fx:id="eventtypeInCreateEvents" layoutX="76.0" layoutY="342.0" prefHeight="26.0" prefWidth="211.0" promptText="Event type (online/physical)" />
-               </children>
-            </Pane>
-         </children>
-      </Pane>
+      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0" visible="false" />
       <Pane fx:id="createMeetingPane" prefHeight="551.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="114.0" layoutY="33.0" text="Create meeting">
