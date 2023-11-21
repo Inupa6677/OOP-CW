@@ -190,7 +190,7 @@
             <TextField layoutX="425.0" layoutY="364.0" prefHeight="26.0" prefWidth="211.0" promptText="Event type" />
          </children>
       </Pane>
-      <Pane prefHeight="551.0" prefWidth="758.0">
+      <Pane prefHeight="551.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="38.0" layoutY="36.0" text="update meeting details">
                <font>
@@ -211,6 +211,28 @@
             <Button layoutX="601.0" layoutY="451.0" mnemonicParsing="false" text="Save" />
             <Button layoutX="54.0" layoutY="466.0" mnemonicParsing="false" text="back" />
          </children></Pane>
+      <Pane prefHeight="550.0" prefWidth="758.0">
+         <children>
+            <Label layoutX="52.0" layoutY="32.0" text="update workshop details">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="80.0" text="search workshop by id" />
+            <TextField layoutX="52.0" layoutY="131.0" promptText="workshop id" />
+            <Button layoutX="246.0" layoutY="128.0" mnemonicParsing="false" text="Search" />
+            <TextField fx:id="workshopidInupdate" layoutX="450.0" layoutY="68.0" promptText="workshop id" />
+            <TextField fx:id="workshopnameInupdate" layoutX="451.0" layoutY="116.0" promptText="workshop name" />
+            <TextField fx:id="workshoplocationInupdate" layoutX="451.0" layoutY="167.0" promptText="location" />
+            <TextField fx:id="workshoptimeInupdate" layoutX="451.0" layoutY="211.0" promptText="time" />
+            <TextField fx:id="workshopdescriptionInupdate" layoutX="451.0" layoutY="250.0" promptText="Description" />
+            <TextField fx:id="workshopconductorInupdate" layoutX="451.0" layoutY="294.0" promptText="Conductor" />
+            <DatePicker fx:id="workshopdateInupdate" layoutX="451.0" layoutY="351.0" promptText="Date" />
+            <Button layoutX="451.0" layoutY="428.0" mnemonicParsing="false" onAction="#deleteWorkshopbtninupdate" text="Delete workshop" />
+            <Button layoutX="613.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveWorkshopbtninupdate" text="save" />
+            <Button layoutX="52.0" layoutY="428.0" mnemonicParsing="false" onAction="#backWorkshopbtninupdate" text="back" />
+         </children>
+      </Pane>
       <Pane fx:id="paneInViewEventDetails" layoutX="-1.0" layoutY="-1.0" prefHeight="551.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="40.0" layoutY="21.0" prefHeight="17.0" prefWidth="273.0" text="View Event Details">
