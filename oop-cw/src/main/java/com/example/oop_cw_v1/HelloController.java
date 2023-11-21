@@ -312,6 +312,7 @@ public class HelloController {
     }
 
     public void onsaveBtnIncreatemeeting(ActionEvent actionEvent) {
+        disablePanes();
 
     }
 
