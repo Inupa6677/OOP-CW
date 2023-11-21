@@ -198,6 +198,53 @@ public class HelloController {
     @FXML
     private Pane selectUpdateEventTypePane;
 
+    @FXML
+    private DatePicker eventDateincreateevent;
+    
+    @FXML
+    private TextField eventdescriptionincreateevent;
+
+    @FXML
+    private TextField eventidincreateevent;
+
+    @FXML
+    private TextField eventlocationincreateevent;
+
+    @FXML
+    private TextField eventnameincreateevent;
+
+    @FXML
+    private TextField eventtimeincreateevent;
+
+    @FXML
+    private TextField eventtypeincreateevent;
+
+
+
+
+
+
+
+
+
+
+
+
+    @FXML
+    void backbtnincreateevents(ActionEvent event) {
+
+    }
+
+
+
+    @FXML
+    void clickCreateBtnClick(ActionEvent event) {
+
+    }
+
+
+
+
 
 
 
