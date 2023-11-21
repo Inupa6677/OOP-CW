@@ -259,7 +259,8 @@
       <TextField fx:id="eventtimeincreateevent" layoutX="64.0" layoutY="263.0" promptText="Time" />
       <TextField fx:id="eventdescriptionincreateevent" layoutX="64.0" layoutY="315.0" promptText="Description" />
       <TextField fx:id="eventtypeincreateevent" layoutX="65.0" layoutY="370.0" promptText="Event type" />
-      <Button layoutX="64.0" layoutY="442.0" mnemonicParsing="false" onAction="#onsavebtnincreateevent" text="Save" />
-      <Button layoutX="161.0" layoutY="442.0" mnemonicParsing="false" onAction="#onBackbtnincreateevent" text="Back" />
+      <Button layoutX="65.0" layoutY="485.0" mnemonicParsing="false" onAction="#onsavebtnincreateevent" text="Save" />
+      <Button layoutX="161.0" layoutY="485.0" mnemonicParsing="false" onAction="#onBackbtnincreateevent" text="Back" />
+      <DatePicker fx:id="eventDateincreateevent" layoutX="58.0" layoutY="420.0" />
    </children>
 </AnchorPane>
