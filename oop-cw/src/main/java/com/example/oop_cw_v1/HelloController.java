@@ -195,6 +195,8 @@ public class HelloController {
     @FXML
     private TextField workshoptimeInupdate;
 
+    @FXML
+    private Pane selectUpdateEventTypePane;
 
 
 
@@ -235,7 +237,7 @@ public class HelloController {
 
     public void clickCreateBtnClick() throws IOException {
         disablePanes();
-        eventCreationPane.setVisible(true);
+        selectEventTypePane.setVisible(true);
     }
 
     public void clickUpdateBtnClick(ActionEvent actionEvent) {
@@ -249,8 +251,8 @@ public class HelloController {
 
     }
     public void clickBackToEventPane(ActionEvent actionEvent) {
-        disablePanes();
-        eventPane.setVisible(true);
+//        disablePanes();
+//        selectEventTypePane.setVisible(true);
     }
 
 
@@ -323,25 +325,35 @@ public class HelloController {
 
     public void onEventBtnClickInselecttoupdate(ActionEvent actionEvent) {
         disablePanes();
-        selectEventTypePane.setVisible(true);
+        updateEvenetPane.setVisible(true);
     }
 
     public void onMeetingBtnClickInselecttoupdate(ActionEvent actionEvent) {
+        disablePanes();
+        updateMeetingDetailsPane.setVisible(true);
     }
 
     public void onWorkshopBtnClickInselecttoupdate(ActionEvent actionEvent) {
+       disablePanes();
+       updateWorkshopDetailsPane.setVisible(true);
     }
 
     public void onGameBtnClickInselecttoupdate(ActionEvent actionEvent) {
+        disablePanes();
+        updateGameDetailsPane.setVisible(true);
     }
 
     public void onBackBtnClickInselecttoupdate(ActionEvent actionEvent) {
+        disablePanes();
+        selectUpdateEventTypePane.setVisible(true);
     }
 
     public void OnSavebtnincreateGame(ActionEvent actionEvent) {
     }
 
     public void onBackbtnincreategame(ActionEvent actionEvent) {
+        disablePanes();
+        selectEventTypePane.setVisible(true);
     }
 
     public void onSearchBtnInmeetingUpdate(ActionEvent actionEvent) {
@@ -354,6 +366,8 @@ public class HelloController {
     }
 
     public void backWorkshopbtninupdate(ActionEvent actionEvent) {
+        disablePanes();
+        selectUpdateEventTypePane.setVisible(true);
     }
 
     public void ondeletebtnclickingame(ActionEvent actionEvent) {
@@ -363,6 +377,8 @@ public class HelloController {
     }
 
     public void onbackbtnclickingame(ActionEvent actionEvent) {
+        disablePanes();
+        selectEventTypePane.setVisible(true);
     }
 
     public void savebtnincreateevents(ActionEvent actionEvent) {

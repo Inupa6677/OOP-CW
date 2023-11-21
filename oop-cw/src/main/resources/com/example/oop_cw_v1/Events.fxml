@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="482.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
    <children>
-      <Pane fx:id="eventPane" layoutY="-2.0" opacity="0.96" prefHeight="550.0" prefWidth="750.0" visible="false">
+      <Pane fx:id="eventPane" layoutY="-2.0" opacity="0.96" prefHeight="550.0" prefWidth="750.0">
          <children>
             <ImageView fitHeight="550.0" fitWidth="348.0" layoutX="404.0" layoutY="2.0" pickOnBounds="true" smooth="false">
                <image>
@@ -130,7 +130,7 @@
             <Button layoutX="172.0" layoutY="478.0" mnemonicParsing="false" onAction="#onSaveBtnClickInCreateWorkshop" text="SAVE" />
          </children>
       </Pane>
-      <Pane fx:id="selectEventTypePane" prefHeight="551.0" prefWidth="758.0" visible="false">
+      <Pane fx:id="selectUpdateEventTypePane" prefHeight="551.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="70.0" layoutY="28.0" text="Select event type to update">
                <font>
