@@ -1,5 +1,7 @@
 package com.example.oopcw;
 
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,7 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
     }
+
     public static void testDatabaseConnection() {
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
             System.out.println("Database connected successfully.");
@@ -84,5 +87,17 @@ public class DatabaseConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Club searchClub(String clubId) {
+        List<Club> clubList = getClubData();
+
+        for (Club club : clubList) {
+            if (club.getClubId().equals(clubId)) {
+                return club;
+            }
+        }
+
+        return null;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.oopcw;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,6 +58,21 @@ public class HelloController implements Initializable {
     private TableColumn<Club, String> colClubDescription;
 
     @FXML
+    private TextField txtSearchClubId;
+
+    @FXML
+    private TextField txtManageAdvisorId;
+
+    @FXML
+    private TextField txtManageClubDescription;
+
+    @FXML
+    private TextField txtManageClubName;
+
+    @FXML
+    private TextField txtManageMembers;
+
+    @FXML
     private Group groupFirst;
 
     @FXML
@@ -63,6 +80,8 @@ public class HelloController implements Initializable {
 
     @FXML
     private Group groupThree;
+
+    private ObservableList<Club> clubObservableList = FXCollections.observableArrayList();
 
     public void disableGroups(){
         groupFirst.setVisible(false);
@@ -109,7 +128,14 @@ public class HelloController implements Initializable {
             Club club = new Club(clubID, clubName, members, advisorId, description);
             DatabaseConnection.testDatabaseConnection();
             DatabaseConnection.insertClubData(club);
+
+            txtId.clear();
+            txtName.clear();
+            txtMembers.clear();
+            txtAdvisorId.clear();
+            txtDescription.clear();
         }
+
     }
     private boolean isValidNumber(String input) {
         try {
@@ -118,12 +144,6 @@ public class HelloController implements Initializable {
         } catch (NumberFormatException e) {
             return false;
         }
-    }
-
-    public void updateClub(ActionEvent actionEvent) {
-    }
-
-    public void searchClub(ActionEvent actionEvent) {
     }
 
     public void btnBackToMainClick(ActionEvent actionEvent) {
@@ -178,8 +198,26 @@ public class HelloController implements Initializable {
         }
     }
 
+    public void searchClub(ActionEvent actionEvent) {
+        String searchId = txtSearchClubId.getText();
+        Club club = DatabaseConnection.searchClub(searchId);
 
+        if (club != null){
+            txtManageClubName.setText(club.getClubName());
+            txtManageMembers.setText(String.valueOf(club.getMembers()));
+            txtManageAdvisorId.setText(club.getAdvisorId());
+            txtManageClubDescription.setText(club.getClubDescription());
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Club Not Found");
+            alert.setHeaderText(null);
+            alert.setContentText("Club With " + searchId + " Not Found");
+            alert.showAndWait();
+        }
+    }
 
+    public void updateClub(ActionEvent actionEvent) {
+    }
 }
 
 
