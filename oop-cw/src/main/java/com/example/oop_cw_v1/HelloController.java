@@ -22,16 +22,19 @@ import java.util.Optional;
 public class HelloController {
 
     @FXML
-    private Label label_registerNow;
-    @FXML
-    private Button btn_back;
-    @FXML
-    private Label label_error;
+    private Pane createGamePane;
 
     @FXML
-    private TextField txt_email;
+    private Pane createMeetingPane;
+
+    @FXML
+    private Pane createWorkshopPane;
+
     @FXML
     private DatePicker dateInCreateEvents;
+
+    @FXML
+    private DatePicker dateInUpdate;
 
     @FXML
     private TextField descriptionInCreateEvents;
@@ -40,28 +43,10 @@ public class HelloController {
     private Pane eventCreationPane;
 
     @FXML
-    private TextField eventIdInCreateEvents;
-
-    @FXML
-    private TextField eventNameInCreateEvents;
-
-    @FXML
-    private Pane eventPane;
-
-    @FXML
-    private TextField locationInCreateEvents;
-
-    @FXML
-    private TextField timeInCreateEvents;
-
-    @FXML
-    private Pane updateEvenetPane;
-
-    @FXML
-    private DatePicker dateInUpdate;
-
-    @FXML
     private TextField eventDescriptionInUpdate;
+
+    @FXML
+    private TextField eventIdInCreateEvents;
 
     @FXML
     private TextField eventIdInUpdate;
@@ -70,10 +55,146 @@ public class HelloController {
     private TextField eventLocationInUpdate;
 
     @FXML
+    private TextField eventNameInCreateEvents;
+
+    @FXML
     private TextField eventNameInUpdate;
 
     @FXML
+    private Pane eventPane;
+
+    @FXML
     private TextField eventTimeInUpdate;
+
+    @FXML
+    private TextField eventtypeInCreateEvents;
+
+    @FXML
+    private DatePicker gameDateInCreateGame;
+
+    @FXML
+    private TextField gameDescriptionInCreateGame;
+
+    @FXML
+    private TextField gameIdInCreateGame;
+
+    @FXML
+    private TextField gameLocationInCreateGame;
+
+    @FXML
+    private TextField gameNameInCreateGame;
+
+    @FXML
+    private TextField gameRewardInCreateGame;
+
+    @FXML
+    private TextField gameTimeInCreateGame;
+
+    @FXML
+    private DatePicker gamedateinupdate;
+
+    @FXML
+    private TextField gamedescriptioninupdate;
+
+    @FXML
+    private TextField gameidinupdate;
+
+    @FXML
+    private TextField gamelocationinupdate;
+
+    @FXML
+    private TextField gamenameinupdate;
+
+    @FXML
+    private TextField gamerewardinupdate;
+
+    @FXML
+    private TextField gametimeinupdate;
+
+    @FXML
+    private TextField locationInCreateEvents;
+
+    @FXML
+    private TextField meetingIdIncreatemeeting;
+
+    @FXML
+    private DatePicker meetingdateIncreatemeeting;
+
+    @FXML
+    private TextField meetingdescriptionIncreatemeeting;
+
+    @FXML
+    private TextField meetinglocationIncreatemeeting;
+
+    @FXML
+    private TextField meetingnameIncreatemeeting;
+
+    @FXML
+    private TextField meetingtimeIncreatemeeting;
+
+    @FXML
+    private TextField meetingtypeIncreatemeeting;
+
+    @FXML
+    private Pane selectEventTypePane;
+
+    @FXML
+    private TextField timeInCreateEvents;
+
+    @FXML
+    private Pane updateEvenetPane;
+
+    @FXML
+    private Pane updateGameDetailsPane;
+
+    @FXML
+    private Pane updateMeetingDetailsPane;
+
+    @FXML
+    private Pane updateWorkshopDetailsPane;
+
+    @FXML
+    private TextField workshopConductorInCreateWorkshop;
+
+    @FXML
+    private DatePicker workshopDateInCreateWorkshop;
+
+    @FXML
+    private TextField workshopIdInCreateWorkshop;
+
+    @FXML
+    private TextField workshopTimeInCreateWorkshop;
+
+    @FXML
+    private TextField workshopconductorInupdate;
+
+    @FXML
+    private DatePicker workshopdateInupdate;
+
+    @FXML
+    private TextField workshopdescriptionInCreateWorkshop;
+
+    @FXML
+    private TextField workshopdescriptionInupdate;
+
+    @FXML
+    private TextField workshopidInupdate;
+
+    @FXML
+    private TextField workshoplocationInCreateWorkshop;
+
+    @FXML
+    private TextField workshoplocationInupdate;
+
+    @FXML
+    private TextField workshopnameInCreateWorkshop;
+
+    @FXML
+    private TextField workshopnameInupdate;
+
+    @FXML
+    private TextField workshoptimeInupdate;
+
 
 
 
@@ -82,6 +203,15 @@ public class HelloController {
         eventPane.setVisible(false);
         updateEvenetPane.setVisible(false);
         eventCreationPane.setVisible(false);
+        selectEventTypePane.setVisible(false);
+        createMeetingPane.setVisible(false);
+        createWorkshopPane.setVisible(false);
+        selectEventTypePane.setVisible(false);
+        createGamePane.setVisible(false);
+        updateEvenetPane.setVisible(false);
+        updateMeetingDetailsPane.setVisible(false);
+        updateWorkshopDetailsPane.setVisible(false);
+        updateGameDetailsPane.setVisible(false);
     }
 
     @FXML
@@ -94,15 +224,6 @@ public class HelloController {
         stage.show();
     }
 
-    @FXML
-    private void switchToLogin(ActionEvent event) throws IOException {
-        Stage stage = (Stage) btn_back.getScene().getWindow(); // Assuming backButton is the ID of your back button
-
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
 
     public void backbtnincreateevents() {
@@ -134,168 +255,125 @@ public class HelloController {
 
 
 
-    public void savebtnincreateevents(ActionEvent actionEvent) {
-        //String eventId = eventIdInCreateEvents.getText();
-        //String eventName = eventNameInCreateEvents.getText();
-        //String location = locationInCreateEvents.getText();
-        //LocalDateTime time = LocalDateTime.parse(timeInCreateEvents.getText());
-        //String description = descriptionInCreateEvents.getText();
-        //String date = String.valueOf(dateInCreateEvents.getValue());
-// event type
-        // save event data to the database after the validation
-        //if (eventValidation == true)  make the validation and add the details in to the condition
-        //Event event1 = new Event(eventId, eventName, location, time, description, date,);
-        //DataBaseConnection.insertEventData(event1.getEventId(), event1.getEventName(), event1.getEventLocation(), event1.getEventTime(), event1.getEventDescription(), event1.getEventDate());
 
 
 
-        // Clear the text fields
-        //eventIdInCreateEvents.setText("");
-        //eventNameInCreateEvents.setText("");
-        //locationInCreateEvents.setText("");
-        //timeInCreateEvents.setText("");
-        //descriptionInCreateEvents.setText("");
-        //dateInCreateEvents.setValue(null);
-    }
-
-    public void searchButtonInUpdate(ActionEvent actionEvent) {
-        // Get the event ID to search for
-       // String searchEventId = eventIdInUpdate.getText(); // Assuming eventIdInUpdate is a TextField for input
-
-        // Perform a search in the database
-       // Event foundEvent = DataBaseConnection.searchEventById(searchEventId);
-
-        //if (foundEvent != null) {
-            // Event found, set the prompt text or update fields
-            //eventIdInUpdate.setPromptText(foundEvent.getEventId());
-            //eventNameInUpdate.setText(foundEvent.getEventName());
-            //eventLocationInUpdate.setText(foundEvent.getEventLocation());
-            //eventTimeInUpdate.setText(foundEvent.getEventTime());
-            //eventDescriptionInUpdate.setText(foundEvent.getEventDescription());
-            //dateInUpdate.setValue(LocalDate.parse(foundEvent.getEventDate())); // Assuming date is stored as a String
-
-            // Optionally, you can enable/disable or set other properties based on your requirements
-
-        //} else {
-            // Event not found, provide feedback to the user (e.g., show an alert)
-            //showAlert("Event not found", "The event with ID " + searchEventId + " was not found.");
-
-            // Clear the fields or set them to default values as needed
-            //eventIdInUpdate.clear();
-            //eventNameInUpdate.clear();
-            //eventLocationInUpdate.clear();
-            //eventTimeInUpdate.clear();
-            //eventDescriptionInUpdate.clear();
-            //dateInUpdate.setValue(null);
-        //}
-    }
-
-    // Add a method to show an alert (you can customize this based on your UI framework)
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
 
 
-    @FXML
-    void onSaveBtnClickInUpdate(ActionEvent event) {
-        // Get the updated event details from the text fields
-        String eventId = eventIdInUpdate.getPromptText(); // Assuming prompt text is set to the current event ID
-        String eventName = eventNameInUpdate.getText();
-        String location = eventLocationInUpdate.getText();
-        String time = eventTimeInUpdate.getText();
-        String description = eventDescriptionInUpdate.getText();
-        String date = String.valueOf(dateInUpdate.getValue());
 
-        // Validate the updated details if necessary
-        // if (eventValidation == true) {
-        //     // Perform validation and update details accordingly
-        // }
 
-        // Update event data in the database
-        DataBaseConnection.updateEventData(eventId, eventName, location, time, description, date);
-
-        // Provide feedback to the user (e.g., show an alert)
-        showAlert("Event Updated", "Event details have been successfully updated.");
-
-        // Optionally, clear the fields or set them to default values
-        eventIdInUpdate.clear();
-        eventNameInUpdate.clear();
-        eventLocationInUpdate.clear();
-        eventTimeInUpdate.clear();
-        eventDescriptionInUpdate.clear();
-        dateInUpdate.setValue(null);
-
-        // Optionally, reset prompt text for the next search
-        eventIdInUpdate.setPromptText("Enter Event ID");
-
-    }
-
-    public void deleteEventBtnClick(ActionEvent actionEvent) {
-        // Get the event ID to delete
-        String deleteEventId = eventIdInUpdate.getPromptText(); // Assuming prompt text is set to the current event ID
-
-        // Confirm deletion with the user (you can customize this based on your UI framework)
-        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmAlert.setTitle("Confirm Deletion");
-        confirmAlert.setHeaderText(null);
-        confirmAlert.setContentText("Are you sure you want to delete the event with ID " + deleteEventId + "?");
-
-        Optional<ButtonType> result = confirmAlert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            // User confirmed deletion, proceed with deletion
-
-            // Delete event details from the database
-
-            // Delete the event itself
-            DataBaseConnection.deleteEvent(deleteEventId);
-
-            // Provide feedback to the user (e.g., show an alert)
-            showAlert("Event Deleted", "Event details have been successfully deleted.");
-
-            // Optionally, clear the fields or set them to default values
-            eventIdInUpdate.clear();
-            eventNameInUpdate.clear();
-            eventLocationInUpdate.clear();
-            eventTimeInUpdate.clear();
-            eventDescriptionInUpdate.clear();
-            dateInUpdate.setValue(null);
-
-            // Optionally, reset prompt text for the next search
-            eventIdInUpdate.setPromptText("Enter Event ID");
-        }
-    }
 
 
     public void searchEventIdInUpdate(ActionEvent actionEvent) {
     }
 
-    public void backbtninView(ActionEvent actionEvent) {
-    }
+
 
 
     @FXML
     void workshopBtninselectingevents(ActionEvent event) {
+        disablePanes();
+        createWorkshopPane.setVisible(true);
 
     }
 
     @FXML
     void eventBtninselectingevents(ActionEvent event) {
+        disablePanes();
+        eventCreationPane.setVisible(true);
 
     }
 
     @FXML
     void gameBtninselectingevents(ActionEvent event) {
+        disablePanes();createGamePane.setVisible(true);
+
 
     }
 
     @FXML
     void meetingBtninselectingevents(ActionEvent event) {
+        disablePanes();
+        createMeetingPane.setVisible(true);
 
     }
 
 
+    public void backBtninselectingevents(ActionEvent actionEvent) {
+        disablePanes();
+        eventPane.setVisible(true);
+    }
+
+    public void onBackBtnInCreateMeeting(ActionEvent actionEvent) {
+        disablePanes();
+        selectEventTypePane.setVisible(true);
+    }
+
+    public void onsaveBtnIncreatemeeting(ActionEvent actionEvent) {
+
+    }
+
+    public void onBackBtnClickInCreateWorkshop(ActionEvent actionEvent) {
+        disablePanes();
+        selectEventTypePane.setVisible(true);
+    }
+
+    public void onSaveBtnClickInCreateWorkshop(ActionEvent actionEvent) {
+    }
+
+    public void onEventBtnClickInselecttoupdate(ActionEvent actionEvent) {
+        disablePanes();
+        selectEventTypePane.setVisible(true);
+    }
+
+    public void onMeetingBtnClickInselecttoupdate(ActionEvent actionEvent) {
+    }
+
+    public void onWorkshopBtnClickInselecttoupdate(ActionEvent actionEvent) {
+    }
+
+    public void onGameBtnClickInselecttoupdate(ActionEvent actionEvent) {
+    }
+
+    public void onBackBtnClickInselecttoupdate(ActionEvent actionEvent) {
+    }
+
+    public void OnSavebtnincreateGame(ActionEvent actionEvent) {
+    }
+
+    public void onBackbtnincreategame(ActionEvent actionEvent) {
+    }
+
+    public void onSearchBtnInmeetingUpdate(ActionEvent actionEvent) {
+    }
+
+    public void deleteWorkshopbtninupdate(ActionEvent actionEvent) {
+    }
+
+    public void saveWorkshopbtninupdate(ActionEvent actionEvent) {
+    }
+
+    public void backWorkshopbtninupdate(ActionEvent actionEvent) {
+    }
+
+    public void ondeletebtnclickingame(ActionEvent actionEvent) {
+    }
+
+    public void onSavebtnclickingame(ActionEvent actionEvent) {
+    }
+
+    public void onbackbtnclickingame(ActionEvent actionEvent) {
+    }
+
+    public void savebtnincreateevents(ActionEvent actionEvent) {
+    }
+
+    public void searchButtonInUpdate(ActionEvent actionEvent) {
+    }
+
+    public void onSaveBtnClickInUpdate(ActionEvent actionEvent) {
+    }
+
+    public void deleteEventBtnClick(ActionEvent actionEvent) {
+    }
 }
