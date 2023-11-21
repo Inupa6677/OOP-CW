@@ -71,4 +71,18 @@ public class DatabaseConnection {
         }
         return clubList;
     }
+
+    public static void deleteClub(Club club) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sacms", "root", "")) {
+            String sql = "DELETE FROM club WHERE club_id = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, club.getClubId());
+
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -122,9 +123,6 @@ public class HelloController implements Initializable {
     public void updateClub(ActionEvent actionEvent) {
     }
 
-    public void deleteClub(ActionEvent actionEvent) {
-    }
-
     public void searchClub(ActionEvent actionEvent) {
     }
 
@@ -154,6 +152,34 @@ public class HelloController implements Initializable {
         List<Club> clubList = DatabaseConnection.getClubData();
         clubTable.getItems().setAll(clubList);
     }
+
+    public void handleTable(MouseEvent event) {
+        if (event.getClickCount() == 1){
+            Club selectedClub = clubTable.getSelectionModel().getSelectedItem();
+        }
+    }
+    public void deleteClub(ActionEvent actionEvent) {
+        Club selectedClub = clubTable.getSelectionModel().getSelectedItem();
+        if (selectedClub != null){
+            DatabaseConnection.deleteClub(selectedClub);
+            populateClubTable();
+
+            Alert alertCon = new Alert(Alert.AlertType.INFORMATION);
+            alertCon.setTitle("Club Deleted Successfully");
+            alertCon.setHeaderText(null);
+            alertCon.setContentText("Club has been deleted successfully.");
+            alertCon.showAndWait();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No club selected");
+            alert.setHeaderText(null);
+            alert.setContentText("Select a club to delete");
+            alert.showAndWait();
+        }
+    }
+
+
+
 }
 
 
