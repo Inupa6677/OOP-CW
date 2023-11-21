@@ -193,7 +193,7 @@
                   <TextField fx:id="txtManageClubDescription" layoutX="176.0" layoutY="449.0" />
                   <ImageView fitHeight="161.0" fitWidth="251.0" layoutX="461.0" layoutY="347.0" opacity="0.36" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Intercom%20Live%20Chat.gif" />
+                        <Image url="@Intercom Live Chat.gif" />
                      </image>
                   </ImageView>
                </children>
