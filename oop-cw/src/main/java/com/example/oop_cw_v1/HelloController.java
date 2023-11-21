@@ -348,10 +348,7 @@ public class HelloController {
         selectEventTypePane.setVisible(true);
     }
 
-    public void onsaveBtnIncreatemeeting(ActionEvent actionEvent) {
-        disablePanes();
 
-    }
 
     public void onBackBtnClickInCreateWorkshop(ActionEvent actionEvent) {
         disablePanes();
@@ -419,7 +416,7 @@ public class HelloController {
         selectEventTypePane.setVisible(true);
     }
 
-    public void savebtnincreateevents(ActionEvent actionEvent) {
+    public void onsavebtnincreateevent(ActionEvent actionEvent) {
         // Getting data from the text fields
         String eventId = eventidincreateevent.getText();
         String eventName = eventnameincreateevent.getText();
@@ -440,6 +437,35 @@ public class HelloController {
         Event event = new Event(eventId, eventName, eventLocation, eventDescription, date, localDateTime, eventType);
 
     }
+
+    public void onsaveBtnIncreatemeeting(ActionEvent actionEvent) {
+        // Getting data from the text fields
+
+        String meetingId = meetingIdIncreatemeeting.getText();
+        String meetingName = meetingnameIncreatemeeting.getText();
+        String meetingLocation = meetinglocationIncreatemeeting.getText();
+        String meetingTime = meetingtimeIncreatemeeting.getText();
+        String meetingDescription = meetingdescriptionIncreatemeeting.getText();
+        String meetingType = meetingtypeIncreatemeeting.getText();
+        LocalDate meetingDate = meetingdateIncreatemeeting.getValue();
+
+        // Convert eventTime to LocalDateTime
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.of(meetingDate, LocalTime.parse(meetingTime, timeFormatter));
+
+        // Convert LocalDateTime to Date
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        // Create an instance of the Event class
+        Meeting meeting = new Meeting(meetingId, meetingName, meetingLocation, meetingDescription, date, localDateTime, meetingType);
+
+        
+
+
+
+    }
+
+
 
 
     public void searchButtonInUpdate(ActionEvent actionEvent) {
