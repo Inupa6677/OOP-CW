@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="482.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
    <children>
-      <Pane fx:id="eventPane" layoutY="-2.0" opacity="0.96" prefHeight="550.0" prefWidth="750.0">
+      <Pane fx:id="eventPane" layoutY="-2.0" opacity="0.96" prefHeight="550.0" prefWidth="750.0" visible="false">
          <children>
             <ImageView fitHeight="550.0" fitWidth="348.0" layoutX="404.0" layoutY="2.0" pickOnBounds="true" smooth="false">
                <image>
@@ -57,7 +57,7 @@
       </Pane>
       <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0" visible="false">
          <children>
-            <Pane layoutY="1.0" prefHeight="550.0" prefWidth="402.0">
+            <Pane layoutY="1.0" prefHeight="550.0" prefWidth="752.0" visible="false">
                <children>
                   <Label layoutX="103.0" layoutY="33.0" text="Create Events">
                      <font>
@@ -81,15 +81,6 @@
                      </font>
                   </Button>
                   <TextField fx:id="eventtypeInCreateEvents" layoutX="76.0" layoutY="342.0" prefHeight="26.0" prefWidth="211.0" promptText="Event type (online/physical)" />
-               </children>
-            </Pane>
-            <Pane id="paneNextToContentInCreateEvents" layoutX="396.0" prefHeight="551.0" prefWidth="358.0" styleClass="paneNextToContentInCreateEvents" stylesheets="@events.css" visible="false">
-               <children>
-                  <ImageView fitHeight="355.0" fitWidth="334.0" layoutX="12.0" layoutY="73.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@../../../Images/Schedule%20Customizable%20Isometric%20Illustrations%20_%20Amico%20Style.jpeg" />
-                     </image>
-                  </ImageView>
                </children>
             </Pane>
          </children>
@@ -257,5 +248,18 @@
             <Button layoutX="44.0" layoutY="461.0" mnemonicParsing="false" onAction="#onbackbtnclickingame" text="back" />
          </children>
       </Pane>
+      <Label layoutX="64.0" layoutY="42.0" prefHeight="36.0" prefWidth="218.0" text="Create event">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="eventidincreateevent" layoutX="64.0" layoutY="110.0" promptText="Event id" />
+      <TextField fx:id="eventnameincreateevent" layoutX="65.0" layoutY="161.0" promptText="Event name" />
+      <TextField fx:id="eventlocationincreateevent" layoutX="65.0" layoutY="213.0" promptText="Location" />
+      <TextField fx:id="eventtimeincreateevent" layoutX="64.0" layoutY="263.0" promptText="Time" />
+      <TextField fx:id="eventdescriptionincreateevent" layoutX="64.0" layoutY="315.0" promptText="Description" />
+      <TextField fx:id="eventtypeincreateevent" layoutX="65.0" layoutY="370.0" promptText="Event type" />
+      <Button layoutX="64.0" layoutY="442.0" mnemonicParsing="false" onAction="#onsavebtnincreateevent" text="Save" />
+      <Button layoutX="161.0" layoutY="442.0" mnemonicParsing="false" onAction="#onBackbtnincreateevent" text="Back" />
    </children>
 </AnchorPane>
