@@ -1,22 +1,16 @@
 package com.example.oopcw;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 public class HelloController implements Initializable {
 
@@ -80,8 +74,6 @@ public class HelloController implements Initializable {
 
     @FXML
     private Group groupThree;
-
-    private ObservableList<Club> clubObservableList = FXCollections.observableArrayList();
 
     public void disableGroups(){
         groupFirst.setVisible(false);

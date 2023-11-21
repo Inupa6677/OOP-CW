@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oopcw.HelloController">
    <children>
-      <Group fx:id="groupFirst" visible="false">
+      <Group fx:id="groupFirst">
          <children>
             <Pane prefHeight="550.0" prefWidth="732.0" style="-fx-background-color: Black;">
                <children>
@@ -80,7 +80,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtId" layoutX="301.0" layoutY="109.0" prefHeight="25.0" prefWidth="365.0" promptText="00000" />
+                  <TextField fx:id="txtId" layoutX="301.0" layoutY="109.0" prefHeight="25.0" prefWidth="365.0" promptText="Aa023" />
                   <TextField fx:id="txtName" layoutX="301.0" layoutY="149.0" prefHeight="25.0" prefWidth="365.0" promptText="Eg: Rotaract" />
                   <TextField fx:id="txtMembers" layoutX="301.0" layoutY="190.0" prefHeight="25.0" prefWidth="365.0" promptText="12345" />
                   <Label layoutX="75.0" layoutY="267.0" prefHeight="30.0" prefWidth="188.0" text="05. Club Description">
@@ -106,13 +106,18 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <ImageView fitHeight="246.0" fitWidth="392.0" layoutX="179.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@cloud-fea.gif" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children>
       </Group>
-      <Group fx:id="groupThree">
+      <Group fx:id="groupThree" visible="false">
          <children>
-            <Pane prefHeight="550.0" prefWidth="731.0">
+            <Pane prefHeight="550.0" prefWidth="731.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="231.0" layoutY="16.0" prefHeight="45.0" prefWidth="270.0" text="Club Management">
                      <font>
@@ -134,14 +139,14 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtSearchClubId" layoutX="186.0" layoutY="75.0" prefHeight="25.0" prefWidth="128.0" />
-                  <Button layoutX="624.0" layoutY="511.0" mnemonicParsing="false" onAction="#updateClub" text="Update Club">
+                  <Button layoutX="625.0" layoutY="511.0" mnemonicParsing="false" onAction="#updateClub" text="Update Club">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Button layoutX="521.0" layoutY="511.0" mnemonicParsing="false" onAction="#deleteClub" text="Delete Club">
+                  <Button layoutX="513.0" layoutY="511.0" mnemonicParsing="false" onAction="#deleteClub" text="Delete Club">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -186,6 +191,11 @@
                   <TextField fx:id="txtManageMembers" layoutX="176.0" layoutY="384.0" />
                   <TextField fx:id="txtManageAdvisorId" layoutX="176.0" layoutY="415.0" />
                   <TextField fx:id="txtManageClubDescription" layoutX="176.0" layoutY="449.0" />
+                  <ImageView fitHeight="161.0" fitWidth="251.0" layoutX="461.0" layoutY="347.0" opacity="0.36" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Intercom%20Live%20Chat.gif" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children>
