@@ -7,7 +7,7 @@ public class Game extends MainSchedule {
     private int reward;
 
 
-    public Game(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, Date scheduleDate, LocalDateTime scheduleTime, int reward) {
+    public Game(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, Date scheduleDate, LocalDateTime scheduleTime, String reward) {
         super(scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime);
         this.reward = reward;
     }

@@ -355,8 +355,7 @@ public class HelloController {
         selectEventTypePane.setVisible(true);
     }
 
-    public void onSaveBtnClickInCreateWorkshop(ActionEvent actionEvent) {
-    }
+
 
     public void onEventBtnClickInselecttoupdate(ActionEvent actionEvent) {
         disablePanes();
@@ -381,9 +380,6 @@ public class HelloController {
     public void onBackBtnClickInselecttoupdate(ActionEvent actionEvent) {
         disablePanes();
         selectUpdateEventTypePane.setVisible(true);
-    }
-
-    public void OnSavebtnincreateGame(ActionEvent actionEvent) {
     }
 
     public void onBackbtnincreategame(ActionEvent actionEvent) {
@@ -436,6 +432,21 @@ public class HelloController {
         // Create an instance of the Event class
         Event event = new Event(eventId, eventName, eventLocation, eventDescription, date, localDateTime, eventType);
 
+        DataBaseConnection.saveEventToDatabase(event);
+
+        clearTextFieldsInEvent();
+
+    }
+
+    private void clearTextFieldsInEvent() {
+        // Clear the text fields in meeting
+        eventidincreateevent.clear();
+        eventnameincreateevent.clear();
+        eventlocationincreateevent.clear();
+        eventtimeincreateevent.clear();
+        eventdescriptionincreateevent.clear();
+        eventtypeincreateevent.clear();
+        eventDateincreateevent.getEditor().clear();
     }
 
     public void onsaveBtnIncreatemeeting(ActionEvent actionEvent) {
@@ -458,12 +469,105 @@ public class HelloController {
 
         // Create an instance of the Event class
         Meeting meeting = new Meeting(meetingId, meetingName, meetingLocation, meetingDescription, date, localDateTime, meetingType);
+        DataBaseConnection.saveMeetingToDatabase(meeting);
 
-        
-
-
+        clearTextFieldsInMeeting();
 
     }
+
+    private void clearTextFieldsInMeeting() {
+        // Clear the text fields in meeting
+        meetingIdIncreatemeeting.clear();
+        meetingnameIncreatemeeting.clear();
+        meetinglocationIncreatemeeting.clear();
+        meetingtimeIncreatemeeting.clear();
+        meetingdescriptionIncreatemeeting.clear();
+        meetingtypeIncreatemeeting.clear();
+        meetingdateIncreatemeeting.getEditor().clear();
+    }
+
+    public void onSaveBtnClickInCreateWorkshop(ActionEvent actionEvent) {
+        // Getting data from the text fields
+
+        String workshopId = workshopIdInCreateWorkshop.getText();
+        String workshopName = workshopnameInCreateWorkshop.getText();
+        String workshopLocation = workshoplocationInCreateWorkshop.getText();
+        String workshopTime = workshopTimeInCreateWorkshop.getText();
+        String workshopDescription = workshopdescriptionInCreateWorkshop.getText();
+        String workshopConductor = workshopConductorInCreateWorkshop.getText();
+        LocalDate workshopDate = workshopDateInCreateWorkshop.getValue();
+
+        // Convert eventTime to LocalDateTime
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.of(workshopDate, LocalTime.parse(workshopTime, timeFormatter));
+
+        // Convert LocalDateTime to Date
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        // Create an instance of the Event class
+        Workshop workshop = new Workshop(workshopId, workshopName, workshopLocation, workshopDescription, date, localDateTime, workshopConductor);
+
+        DataBaseConnection.saveWorkshopToDatabase(workshop);
+
+        clearTextFieldsInWorkshop();
+
+    }
+
+    private void clearTextFieldsInWorkshop() {
+        // Clear the text fields in meeting
+        workshopIdInCreateWorkshop.clear();
+        workshopnameInCreateWorkshop.clear();
+        workshoplocationInCreateWorkshop.clear();
+        workshopTimeInCreateWorkshop.clear();
+        workshopdescriptionInCreateWorkshop.clear();
+        workshopConductorInCreateWorkshop.clear();
+        workshopDateInCreateWorkshop.getEditor().clear();
+    }
+
+
+    public void OnSavebtnincreateGame(ActionEvent actionEvent) {
+        // Getting data from the text fields
+
+        String gameId = gameIdInCreateGame.getText();
+        String gameName = gameNameInCreateGame.getText();
+        String gameLocation = gameLocationInCreateGame.getText();
+        String gameTime = gameTimeInCreateGame.getText();
+        String gameDescription = gameDescriptionInCreateGame.getText();
+        String gameReward = gameRewardInCreateGame.getText();
+        LocalDate gameDate = gameDateInCreateGame.getValue();
+
+        // Convert eventTime to LocalDateTime
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.of(gameDate, LocalTime.parse(gameTime, timeFormatter));
+
+        // Convert LocalDateTime to Date
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        // Create an instance of the Event class
+        Game game = new Game(gameId, gameName, gameLocation, gameDescription, date, localDateTime, gameReward);
+
+        DataBaseConnection.saveGameToDatabase(game);
+
+        clearTextFieldsInGame();
+
+    }
+
+    private void clearTextFieldsInGame() {
+        // Clear the text fields in meeting
+        gameIdInCreateGame.clear();
+        gameNameInCreateGame.clear();
+        gameLocationInCreateGame.clear();
+        gameTimeInCreateGame.clear();
+        gameDescriptionInCreateGame.clear();
+        gameRewardInCreateGame.clear();
+        gameDateInCreateGame.getEditor().clear();
+    }
+
+
+
+
+
+
 
 
 

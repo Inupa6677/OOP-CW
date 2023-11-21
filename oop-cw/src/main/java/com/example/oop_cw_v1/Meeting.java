@@ -9,7 +9,7 @@ public class Meeting extends MainSchedule {
 
     public Meeting(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, Date scheduleDate, LocalDateTime scheduleTime, String meetingType) {
         super(scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, LocalDateTime.parse(scheduleTime));
-        this.meetingType = meetingType;
+        this.meetingType = getMeetingType();
     }
 
     public String getMeetingType() {
