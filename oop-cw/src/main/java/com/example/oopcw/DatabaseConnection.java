@@ -17,11 +17,11 @@ public class DatabaseConnection {
 
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
 
-            preparedStatement.setString(1, club.clubId);
-            preparedStatement.setString(2, club.clubName);
-            preparedStatement.setInt(3, club.members);
-            preparedStatement.setString(4, club.advisorId);
-            preparedStatement.setString(5, club.clubDescription);
+            preparedStatement.setString(1, club.getClubId());
+            preparedStatement.setString(2, club.getClubName());
+            preparedStatement.setInt(3, club.getMembers());
+            preparedStatement.setString(4, club.getAdvisorId());
+            preparedStatement.setString(5, club.getClubDescription());
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {

@@ -1,11 +1,11 @@
 package com.example.oopcw;
 
 public class Club {
-    String clubId;
-    String clubName;
-    int members;
-    String advisorId;
-    String clubDescription;
+    private String clubId;
+    private String clubName;
+    private int members;
+    private String advisorId;
+    private String clubDescription;
 
     public String getClubId() {
         return clubId;
