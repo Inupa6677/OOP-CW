@@ -55,7 +55,7 @@
             <Button layoutX="70.0" layoutY="481.0" mnemonicParsing="false" onAction="#backBtninselectingevents" text="Back" />
          </children>
       </Pane>
-      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0">
+      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0" visible="false">
          <children>
             <Button layoutX="45.0" layoutY="489.0" mnemonicParsing="false" onAction="#onBackbtnincreateevent" text="Back" />
             <Button layoutX="248.0" layoutY="489.0" mnemonicParsing="false" onAction="#onsavebtnincreateevent" text="Save" />
@@ -123,7 +123,7 @@
             <Button layoutX="58.0" layoutY="478.0" mnemonicParsing="false" onAction="#onBackBtnClickInselecttoupdate" text="back" />
          </children>
       </Pane>
-      <Pane fx:id="createGamePane" prefHeight="551.0" prefWidth="758.0" visible="false">
+      <Pane fx:id="createGamePane" prefHeight="551.0" prefWidth="758.0">
          <children>
             <Label layoutX="67.0" layoutY="21.0" text="Create Game">
                <font>

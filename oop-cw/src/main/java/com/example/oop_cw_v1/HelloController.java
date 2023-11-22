@@ -562,14 +562,7 @@ public class HelloController {
         gameRewardInCreateGame.clear();
         gameDateInCreateGame.getEditor().clear();
     }
-
-
-
-
-
-
-
-
+    
 
 
     public void searchButtonInUpdate(ActionEvent actionEvent) {
