@@ -740,20 +740,9 @@ public class HelloController {
     }
 
 
+    public void OnSavebtnincreateGame(ActionEvent actionEvent) {
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public void onBackbtnincreateevent(ActionEvent actionEvent) {
+    }
 }
