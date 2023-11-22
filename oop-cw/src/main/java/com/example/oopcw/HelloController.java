@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -209,6 +210,45 @@ public class HelloController implements Initializable {
     }
 
     public void updateClub(ActionEvent actionEvent) {
+        String clubId = txtSearchClubId.getText();
+        String clubName = txtManageClubName.getText();
+        String membersText = txtManageMembers.getText().trim();
+        int members = 0;  // Default value, change it to a suitable default if needed
+
+        if (!membersText.isEmpty()) {
+            try {
+                members = Integer.parseInt(membersText);
+            } catch (NumberFormatException e) {
+                // Handle the exception (e.g., show an error message)
+                e.printStackTrace();
+            }
+        }
+        String advisorId = txtManageAdvisorId.getText();
+        String clubDescription = txtManageClubDescription.getText();
+
+        Club club = DatabaseConnection.getClubDetails(clubId);
+        if (club != null) {
+            club.setClubName(clubName);
+            club.setMembers(members);
+            club.setAdvisorId(advisorId);
+            club.setClubDescription(clubDescription);
+            DatabaseConnection.updateClubDetails(club);
+            refreshClubTable();
+        }
+    }
+
+    private void refreshClubTable() {
+        // Get the updated club data from the database
+        List<Club> updatedClubList = DatabaseConnection.getClubData();
+
+        // Clear the existing items in the TableView
+        clubTable.getItems().clear();
+
+        // Add the updated data to the TableView
+        clubTable.getItems().addAll(updatedClubList);
+
+        // Refresh the TableView
+        clubTable.refresh();
     }
 }
 

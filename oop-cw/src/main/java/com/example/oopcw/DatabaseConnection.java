@@ -1,7 +1,4 @@
 package com.example.oopcw;
-
-import javafx.collections.ObservableList;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +72,17 @@ public class DatabaseConnection {
         return clubList;
     }
 
+    public static Club getClubDetails(String clubId) {
+        List<Club> clubList = getClubData();
+        for (Club club : clubList) {
+            if (club.getClubId().equals(clubId)) {
+                return club;
+            }
+        }
+        return null; // Club not found
+    }
+
+
     public static void deleteClub(Club club) {
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sacms", "root", "")) {
             String sql = "DELETE FROM club WHERE club_id = ?";
@@ -99,5 +107,33 @@ public class DatabaseConnection {
         }
 
         return null;
+    }
+
+
+    public static void updateClubDetails(Club club) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            String updateQuery = "UPDATE club SET club_name = ?, members = ?, advisor_id = ?, description = ? WHERE Club_id = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+                preparedStatement.setString(1, club.getClubName());
+                preparedStatement.setInt(2, club.getMembers());
+                preparedStatement.setString(3, club.getAdvisorId());
+                preparedStatement.setString(4, club.getClubDescription());
+                preparedStatement.setString(5, club.getClubId());
+
+                int rowsAffected = preparedStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("Club details updated successfully.");
+                } else {
+                    System.out.println("Club details update failed.");
+                }
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
