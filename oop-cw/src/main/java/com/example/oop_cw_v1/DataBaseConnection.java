@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class DataBaseConnection {
 
@@ -94,5 +95,60 @@ public class DataBaseConnection {
         } catch (SQLException e) {
             e.printStackTrace(); // Handle the exception properly in your application
         }
+
+    }
+
+    public static Event getEventById(String eventId) {
+        Event event = null;
+
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
+            String sql = "SELECT * FROM your_event_table WHERE scheduleId = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, eventId);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        // Retrieve data from the result set and create an Event object
+                        String scheduleName = resultSet.getString("scheduleName");
+                        String scheduleLocation = resultSet.getString("scheduleLocation");
+                        String scheduleDescription = resultSet.getString("scheduleDescription");
+                        Date scheduleDate = resultSet.getDate("scheduleDate");
+                        LocalDateTime scheduleTime = resultSet.getTimestamp("scheduleTime").toLocalDateTime();
+                        String eventType = resultSet.getString("eventType");
+
+                        event = new Event(eventId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime, eventType);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception properly in your application
+        }
+
+        return event;
+    }
+
+    public static void updateEventInDatabase(Event updatedEvent) {
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
+            String sql = "UPDATE your_event_table SET scheduleName = ?, scheduleLocation = ?, scheduleDescription = ?, scheduleDate = ?, scheduleTime = ?, eventType = ? WHERE scheduleId = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, updatedEvent.getScheduleName());
+                preparedStatement.setString(2, updatedEvent.getScheduleLocation());
+                preparedStatement.setString(3, updatedEvent.getScheduleDescription());
+                preparedStatement.setDate(4, new java.sql.Date(updatedEvent.getScheduleDate().getTime()));
+                preparedStatement.setTimestamp(5, Timestamp.valueOf(updatedEvent.getScheduleTime()));
+                preparedStatement.setString(6, updatedEvent.getEventType());
+                preparedStatement.setString(7, updatedEvent.getScheduleId());
+
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception properly in your application
+        }
+    }
+
+
+    public static void deleteEventById(String eventIdToDelete) {
     }
 }

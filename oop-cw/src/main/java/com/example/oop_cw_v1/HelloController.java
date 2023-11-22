@@ -68,6 +68,9 @@ public class HelloController {
     private TextField eventTimeInUpdate;
 
     @FXML
+    private TextField searchFieldInUpdate;
+
+    @FXML
     private TextField eventtypeInCreateEvents;
 
     @FXML
@@ -303,11 +306,6 @@ public class HelloController {
 //        selectEventTypePane.setVisible(true);
     }
 
-    public void searchEventIdInUpdate(ActionEvent actionEvent) {
-    }
-
-
-
 
     @FXML
     void workshopBtninselectingevents(ActionEvent event) {
@@ -385,9 +383,6 @@ public class HelloController {
     public void onBackbtnincreategame(ActionEvent actionEvent) {
         disablePanes();
         selectEventTypePane.setVisible(true);
-    }
-
-    public void onSearchBtnInmeetingUpdate(ActionEvent actionEvent) {
     }
 
     public void deleteWorkshopbtninupdate(ActionEvent actionEvent) {
@@ -562,15 +557,100 @@ public class HelloController {
         gameRewardInCreateGame.clear();
         gameDateInCreateGame.getEditor().clear();
     }
-    
 
 
-    public void searchButtonInUpdate(ActionEvent actionEvent) {
+
+    public void searchEventIdInUpdate(ActionEvent actionEvent) {
+        // Assuming eventIdTextField is a TextField where users input the event ID
+        String eventId = searchFieldInUpdate.getText();
+
+        Event event = DataBaseConnection.getEventById(eventId);
+
+        if (event != null) {
+            // Set prompt text for each text field with the retrieved event data
+            eventidincreateevent.setText(event.getScheduleId());
+            eventnameincreateevent.setText(event.getScheduleName());
+            eventlocationincreateevent.setText(event.getScheduleLocation());
+            eventtimeincreateevent.setText(event.getScheduleTime().format(String.valueOf(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+            eventdescriptionincreateevent.setText(event.getScheduleDescription());
+            eventtypeincreateevent.setText(event.getEventType());
+
+            // For the date field, you can convert the date to a string and set it as prompt text
+            eventDateincreateevent.setPromptText(event.getScheduleDate().toString());
+        } else {
+            // Handle the case when the event with the given ID is not found
+            // You can display a message or clear the fields
+            clearTextFieldsInEvent();
+        }
     }
 
-    public void onSaveBtnClickInUpdate(ActionEvent actionEvent) {
+    public void onSaveBtnClickInUpdateevents(ActionEvent actionEvent) {
+        // Assuming you have the updated details in the prompt text fields
+        String eventId = eventidincreateevent.getText();
+        String eventName = eventnameincreateevent.getText();
+        String eventLocation = eventlocationincreateevent.getText();
+        String eventDescription = eventdescriptionincreateevent.getText();
+        LocalDateTime eventTime = LocalDateTime.parse(eventtimeincreateevent.getText(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+        String eventType = eventtypeincreateevent.getText();
+        LocalDate eventDate = LocalDate.parse(eventDateincreateevent.getPromptText());
+
+        // Convert eventTime to LocalDateTime
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.of(eventDate, LocalTime.parse(eventTime, timeFormatter));
+
+        // Convert LocalDateTime to Date
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        Event updatedEvent = new Event(eventId, eventName, eventLocation, eventDescription, date, localDateTime, eventType);
+
+        // Update the event in the database
+        DataBaseConnection.updateEventInDatabase(updatedEvent);
+
     }
 
+    // make editions in this method
     public void deleteEventBtnClick(ActionEvent actionEvent) {
+        // Assuming eventIdTextField is a TextField where users input the event ID to delete
+        String eventIdToDelete = searchFieldInUpdate.getText();
+
+        // Delete the event from the database
+        DataBaseConnection.deleteEventById(eventIdToDelete);
+
+        // Optionally, you can clear the text fields or update the UI as needed
+        clearTextFieldsInEvent();
     }
+
+
+    public void onSearchBtnInmeetingUpdate(ActionEvent actionEvent) {
+        // Assuming eventIdTextField is a TextField where users input the event ID
+        String eventId = searchFieldInUpdate.getText();
+
+        Event event = DataBaseConnection.getEventById(eventId);
+
+        if (event != null) {
+            // Set prompt text for each text field with the retrieved event data
+            eventidincreateevent.setText(event.getScheduleId());
+            eventnameincreateevent.setText(event.getScheduleName());
+            eventlocationincreateevent.setText(event.getScheduleLocation());
+            eventtimeincreateevent.setText(event.getScheduleTime().format(String.valueOf(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+            eventdescriptionincreateevent.setText(event.getScheduleDescription());
+            eventtypeincreateevent.setText(event.getEventType());
+
+            // For the date field, you can convert the date to a string and set it as prompt text
+            eventDateincreateevent.setPromptText(event.getScheduleDate().toString());
+        } else {
+            // Handle the case when the event with the given ID is not found
+            // You can display a message or clear the fields
+            clearTextFieldsInEvent();
+        }
+    }
+
+
+
+
+
+
+
+
+
 }
