@@ -223,6 +223,49 @@ public class HelloController {
     @FXML
     private TextField eventtypeincreateevent;
 
+    @FXML
+    private TextField searchidFieldInMeeting;
+
+
+    @FXML
+    private TextField meetingIdInUpdate;
+
+
+
+    @FXML
+    private DatePicker meetingdateInUpdate;
+
+
+
+    @FXML
+    private TextField meetingdescriptionInUpdate;
+
+
+
+    @FXML
+    private TextField meetinglocationInUpdate;
+
+
+
+    @FXML
+    private TextField meetingnameInUpdate;
+
+
+    @FXML
+    private TextField meetingtimeInUpdate;
+
+
+    @FXML
+    private TextField meetingtypeInUpdate;
+
+    @FXML
+    private TextField workshopIdInSearchField;
+
+
+
+
+
+
 
 
 
@@ -385,11 +428,6 @@ public class HelloController {
         selectEventTypePane.setVisible(true);
     }
 
-    public void deleteWorkshopbtninupdate(ActionEvent actionEvent) {
-    }
-
-    public void saveWorkshopbtninupdate(ActionEvent actionEvent) {
-    }
 
     public void backWorkshopbtninupdate(ActionEvent actionEvent) {
         disablePanes();
@@ -620,30 +658,136 @@ public class HelloController {
         clearTextFieldsInEvent();
     }
 
-
     public void onSearchBtnInmeetingUpdate(ActionEvent actionEvent) {
         // Assuming eventIdTextField is a TextField where users input the event ID
-        String eventId = searchFieldInUpdate.getText();
+        String meetingId = searchFieldInUpdate.getText();
 
-        Event event = DataBaseConnection.getEventById(eventId);
+        Meeting meeting = DataBaseConnection.getMeetingById(meetingId);
 
-        if (event != null) {
+        if (meeting != null) {
             // Set prompt text for each text field with the retrieved event data
-            eventidincreateevent.setText(event.getScheduleId());
-            eventnameincreateevent.setText(event.getScheduleName());
-            eventlocationincreateevent.setText(event.getScheduleLocation());
-            eventtimeincreateevent.setText(event.getScheduleTime().format(String.valueOf(DateTimeFormatter.ofPattern("HH:mm:ss"))));
-            eventdescriptionincreateevent.setText(event.getScheduleDescription());
-            eventtypeincreateevent.setText(event.getEventType());
+            meetingIdInUpdate.setText(meeting.getScheduleId());
+            meetingnameInUpdate.setText(meeting.getScheduleName());
+            meetinglocationInUpdate.setText(meeting.getScheduleLocation());
+            meetingtimeInUpdate.setText(meeting.getScheduleTime().format(String.valueOf(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+            meetingdescriptionInUpdate.setText(meeting.getScheduleDescription());
+            meetingtypeInUpdate.setText(meeting.getEventType());
 
             // For the date field, you can convert the date to a string and set it as prompt text
-            eventDateincreateevent.setPromptText(event.getScheduleDate().toString());
+            meetingdateInUpdate.setPromptText(meeting.getScheduleDate().toString());
         } else {
             // Handle the case when the event with the given ID is not found
             // You can display a message or clear the fields
             clearTextFieldsInEvent();
         }
+
+
     }
+
+    public void onsavebtninupdatemeeting(ActionEvent actionEvent) {
+        // Assuming you have the updated details in the prompt text fields
+        String meetingId = meetingIdInUpdate.getText();
+        String meetingName = meetingnameInUpdate.getText();
+        String meetingLocation = meetinglocationInUpdate.getText();
+        String meetingDescription = meetingdescriptionInUpdate.getText();
+        LocalDateTime meetingTime = LocalDateTime.parse(meetingtimeInUpdate.getText(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+        String meetingType = meetingtypeInUpdate.getText();
+        LocalDate meetingDate = LocalDate.parse(meetingdateInUpdate.getPromptText());
+
+        // Convert eventTime to LocalDateTime
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.of(meetingDate, LocalTime.parse(meetingTime, timeFormatter));
+
+        // Convert LocalDateTime to Date
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        Meeting updatedMeeting = new Meeting(meetingId, meetingName, meetingLocation, meetingDescription, date, localDateTime, meetingType);
+
+        // Update the event in the database
+        DataBaseConnection.updateMeetingInDatabase(updatedMeeting);
+
+    }
+
+    public void deleteMeetingdetailsClick(ActionEvent actionEvent) {
+        // Assuming eventIdTextField is a TextField where users input the event ID to delete
+        String meetingIdToDelete = searchidFieldInMeeting.getText();
+
+        // Delete the event from the database
+        DataBaseConnection.deleteMeetingById(meetingIdToDelete);
+
+        // Optionally, you can clear the text fields or update the UI as needed
+        clearTextFieldsInEvent();
+    }
+
+
+    public void searchBtnInUpdateWorkshop(ActionEvent actionEvent) {
+        // Assuming eventIdTextField is a TextField where users input the event ID
+        String workshopId = workshopIdInSearchField.getText();
+
+        Workshop workshop = DataBaseConnection.getWorkshopById(workshopId);
+
+        if (workshop != null) {
+            // Set prompt text for each text field with the retrieved event data
+            workshopidInupdate.setText(workshop.getScheduleId());
+            workshopnameInupdate.setText(workshop.getScheduleName());
+            workshoplocationInupdate.setText(workshop.getScheduleLocation());
+            workshoptimeInupdate.setText(workshop.getScheduleTime().format(String.valueOf(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+            workshopdescriptionInupdate.setText(workshop.getScheduleDescription());
+            workshopconductorInupdate.setText(workshop.getConductor());
+
+            // For the date field, you can convert the date to a string and set it as prompt text
+            workshopdateInupdate.setPromptText(workshop.getScheduleDate().toString());
+        } else {
+            // Handle the case when the event with the given ID is not found
+            // You can display a message or clear the fields
+            clearTextFieldsInEvent();
+        }
+
+    }
+
+    public void saveWorkshopbtninupdate(ActionEvent actionEvent) {
+        // Assuming you have the updated details in the prompt text fields
+        String workshopId = workshopidInupdate.getText();
+        String workshopName = workshopnameInupdate.getText();
+        String workshopLocation = workshoplocationInupdate.getText();
+        String workshopDescription = workshopdescriptionInupdate.getText();
+        LocalDateTime workshopTime = LocalDateTime.parse(workshoptimeInupdate.getText(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+        String workshopConductor = workshopconductorInupdate.getText();
+        LocalDate workshopDate = LocalDate.parse(workshopdateInupdate.getPromptText());
+
+        // Convert eventTime to LocalDateTime
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.of(workshopDate, LocalTime.parse(workshopTime, timeFormatter));
+
+        // Convert LocalDateTime to Date
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        Workshop updatedWorkshop = new Workshop(workshopId, workshopName, workshopLocation, workshopDescription, date, localDateTime, workshopConductor);
+
+        // Update the event in the database
+        DataBaseConnection.updateWorkshopInDatabase(updatedWorkshop);
+
+    }
+
+    public void deleteWorkshopbtninupdate(ActionEvent actionEvent) {
+        // Assuming eventIdTextField is a TextField where users input the event ID to delete
+        String workshopIdToDelete = workshopIdInSearchField.getText();
+
+        // Delete the event from the database
+        DataBaseConnection.deleteWorkshopById(workshopIdToDelete);
+
+        // Optionally, you can clear the text fields or update the UI as needed
+        clearTextFieldsInEvent();
+    }
+
+
+
+
+
+
+
+
+
 
 
 

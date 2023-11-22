@@ -151,4 +151,23 @@ public class DataBaseConnection {
 
     public static void deleteEventById(String eventIdToDelete) {
     }
+
+
+    public static Meeting getMeetingById(String meetingId) {
+    }
+
+    public static void updateMeetingInDatabase(Meeting updatedMeeting) {
+    }
+
+    public static void deleteMeetingById(String meetingIdToDelete) {
+    }
+
+    public static Workshop getWorkshopById(String workshopId) {
+    }
+
+    public static void updateWorkshopInDatabase(Workshop updatedWorkshop) {
+    }
+
+    public static void deleteWorkshopById(String workshopIdToDelete) {
+    }
 }
