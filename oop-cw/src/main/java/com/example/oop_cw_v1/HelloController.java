@@ -71,54 +71,6 @@ public class HelloController {
     private TextField searchFieldInUpdate;
 
     @FXML
-    private TextField eventtypeInCreateEvents;
-
-    @FXML
-    private DatePicker gameDateInCreateGame;
-
-    @FXML
-    private TextField gameDescriptionInCreateGame;
-
-    @FXML
-    private TextField gameIdInCreateGame;
-
-    @FXML
-    private TextField gameLocationInCreateGame;
-
-    @FXML
-    private TextField gameNameInCreateGame;
-
-    @FXML
-    private TextField gameRewardInCreateGame;
-
-    @FXML
-    private TextField gameTimeInCreateGame;
-
-    @FXML
-    private DatePicker gamedateinupdate;
-
-    @FXML
-    private TextField gamedescriptioninupdate;
-
-    @FXML
-    private TextField gameidinupdate;
-
-    @FXML
-    private TextField gamelocationinupdate;
-
-    @FXML
-    private TextField gamenameinupdate;
-
-    @FXML
-    private TextField gamerewardinupdate;
-
-    @FXML
-    private TextField gametimeinupdate;
-
-    @FXML
-    private TextField locationInCreateEvents;
-
-    @FXML
     private TextField meetingIdIncreatemeeting;
 
     @FXML
@@ -288,13 +240,7 @@ public class HelloController {
     void clickCreateBtnClick(ActionEvent event) {
 
     }
-
-
-
-
-
-
-
+    
     public void disablePanes(){
         eventPane.setVisible(false);
         updateEvenetPane.setVisible(false);

@@ -55,7 +55,7 @@
             <Button layoutX="70.0" layoutY="481.0" mnemonicParsing="false" onAction="#backBtninselectingevents" text="Back" />
          </children>
       </Pane>
-      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0" visible="false">
+      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0">
          <children>
             <Button layoutX="45.0" layoutY="489.0" mnemonicParsing="false" onAction="#onBackbtnincreateevent" text="Back" />
             <Button layoutX="248.0" layoutY="489.0" mnemonicParsing="false" onAction="#onsavebtnincreateevent" text="Save" />
@@ -188,7 +188,7 @@
             <Button layoutX="601.0" layoutY="451.0" mnemonicParsing="false" onAction="#onsavebtninupdatemeeting" text="Save" />
             <Button layoutX="54.0" layoutY="466.0" mnemonicParsing="false" text="back" />
          </children></Pane>
-      <Pane fx:id="updateWorkshopDetailsPane" prefHeight="550.0" prefWidth="758.0">
+      <Pane fx:id="updateWorkshopDetailsPane" prefHeight="550.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="52.0" layoutY="32.0" text="update workshop details">
                <font>
