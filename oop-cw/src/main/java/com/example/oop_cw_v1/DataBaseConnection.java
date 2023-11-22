@@ -77,26 +77,6 @@ public class DataBaseConnection {
     }
 
 
-    public static void saveGameToDatabase(Game game) {
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO your_game_table (scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime, gameReward) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, game.getScheduleId());
-                preparedStatement.setString(2, game.getScheduleName());
-                preparedStatement.setString(3, game.getScheduleLocation());
-                preparedStatement.setString(4, game.getScheduleDescription());
-                preparedStatement.setDate(5, new java.sql.Date(game.getScheduleDate().getTime()));
-                preparedStatement.setTimestamp(6, java.sql.Timestamp.valueOf(game.getScheduleTime()));
-                preparedStatement.setString(7, game.getGameReward());
-
-                preparedStatement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle the exception properly in your application
-        }
-
-    }
 
     public static Event getEventById(String eventId) {
         Event event = null;

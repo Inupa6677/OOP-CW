@@ -557,47 +557,6 @@ public class HelloController {
         workshopDateInCreateWorkshop.getEditor().clear();
     }
 
-
-    public void OnSavebtnincreateGame(ActionEvent actionEvent) {
-        // Getting data from the text fields
-
-        String gameId = gameIdInCreateGame.getText();
-        String gameName = gameNameInCreateGame.getText();
-        String gameLocation = gameLocationInCreateGame.getText();
-        String gameTime = gameTimeInCreateGame.getText();
-        String gameDescription = gameDescriptionInCreateGame.getText();
-        String gameReward = gameRewardInCreateGame.getText();
-        LocalDate gameDate = gameDateInCreateGame.getValue();
-
-        // Convert eventTime to LocalDateTime
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDateTime localDateTime = LocalDateTime.of(gameDate, LocalTime.parse(gameTime, timeFormatter));
-
-        // Convert LocalDateTime to Date
-        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-
-        // Create an instance of the Event class
-        Game game = new Game(gameId, gameName, gameLocation, gameDescription, date, localDateTime, gameReward);
-
-        DataBaseConnection.saveGameToDatabase(game);
-
-        clearTextFieldsInGame();
-
-    }
-
-    private void clearTextFieldsInGame() {
-        // Clear the text fields in meeting
-        gameIdInCreateGame.clear();
-        gameNameInCreateGame.clear();
-        gameLocationInCreateGame.clear();
-        gameTimeInCreateGame.clear();
-        gameDescriptionInCreateGame.clear();
-        gameRewardInCreateGame.clear();
-        gameDateInCreateGame.getEditor().clear();
-    }
-
-
-
     public void searchEventIdInUpdate(ActionEvent actionEvent) {
         // Assuming eventIdTextField is a TextField where users input the event ID
         String eventId = searchFieldInUpdate.getText();
@@ -628,7 +587,7 @@ public class HelloController {
         String eventName = eventnameincreateevent.getText();
         String eventLocation = eventlocationincreateevent.getText();
         String eventDescription = eventdescriptionincreateevent.getText();
-        LocalDateTime eventTime = LocalDateTime.parse(eventtimeincreateevent.getText(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+        String eventTime = String.valueOf(LocalDateTime.parse(eventtimeincreateevent.getText(), DateTimeFormatter.ofPattern("HH:mm:ss")));
         String eventType = eventtypeincreateevent.getText();
         LocalDate eventDate = LocalDate.parse(eventDateincreateevent.getPromptText());
 
@@ -671,7 +630,7 @@ public class HelloController {
             meetinglocationInUpdate.setText(meeting.getScheduleLocation());
             meetingtimeInUpdate.setText(meeting.getScheduleTime().format(String.valueOf(DateTimeFormatter.ofPattern("HH:mm:ss"))));
             meetingdescriptionInUpdate.setText(meeting.getScheduleDescription());
-            meetingtypeInUpdate.setText(meeting.getEventType());
+            meetingtypeInUpdate.setText(meeting.getMeetingType());
 
             // For the date field, you can convert the date to a string and set it as prompt text
             meetingdateInUpdate.setPromptText(meeting.getScheduleDate().toString());
@@ -690,7 +649,7 @@ public class HelloController {
         String meetingName = meetingnameInUpdate.getText();
         String meetingLocation = meetinglocationInUpdate.getText();
         String meetingDescription = meetingdescriptionInUpdate.getText();
-        LocalDateTime meetingTime = LocalDateTime.parse(meetingtimeInUpdate.getText(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+        String meetingTime = String.valueOf(LocalDateTime.parse(meetingtimeInUpdate.getText(), DateTimeFormatter.ofPattern("HH:mm:ss")));
         String meetingType = meetingtypeInUpdate.getText();
         LocalDate meetingDate = LocalDate.parse(meetingdateInUpdate.getPromptText());
 
@@ -751,7 +710,7 @@ public class HelloController {
         String workshopName = workshopnameInupdate.getText();
         String workshopLocation = workshoplocationInupdate.getText();
         String workshopDescription = workshopdescriptionInupdate.getText();
-        LocalDateTime workshopTime = LocalDateTime.parse(workshoptimeInupdate.getText(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+        String workshopTime = String.valueOf(LocalDateTime.parse(workshoptimeInupdate.getText(), DateTimeFormatter.ofPattern("HH:mm:ss")));
         String workshopConductor = workshopconductorInupdate.getText();
         LocalDate workshopDate = LocalDate.parse(workshopdateInupdate.getPromptText());
 

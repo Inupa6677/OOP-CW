@@ -8,7 +8,7 @@ import java.util.Date;
 public class Event extends MainSchedule {
     private String eventType;
 
-    public Event(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, Date scheduleDate, LocalDateTime localDateTime, String scheduleTime) {
+    public Event(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, Date scheduleDate, LocalDateTime loalDateTime, String scheduleTime) {
         super(scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, LocalDateTime.parse(scheduleTime));
         this.eventType = getEventType();
     }
