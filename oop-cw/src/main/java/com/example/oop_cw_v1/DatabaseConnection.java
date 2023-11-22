@@ -1,6 +1,8 @@
 package com.example.oop_cw_v1;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseConnection {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/sacms";
@@ -35,6 +37,26 @@ public class DatabaseConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    //Getting data to combobox in the attendance
+    public List<String> fetchDataForComboBox(String query){
+        List<String> data = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                data.add(resultSet.getString(1));
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
     // inserting data to advisor table in the database
     public static void insertAdvisorData(String advisorID,String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
@@ -148,8 +170,6 @@ public class DatabaseConnection {
         }
 
     }
-
-
 
 }
 

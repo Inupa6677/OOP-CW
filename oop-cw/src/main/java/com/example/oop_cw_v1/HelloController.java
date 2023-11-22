@@ -1,9 +1,13 @@
 package com.example.oop_cw_v1;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -13,6 +17,7 @@ import javafx.scene.layout.StackPane;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class HelloController {
@@ -32,7 +37,7 @@ public class HelloController {
     @FXML
     private StackPane advisorRegisterPane;
     @FXML
-    private  AnchorPane frontPane;
+    private AnchorPane frontPane;
     @FXML
     private TextField studentFirstNameField;
     @FXML
@@ -88,9 +93,25 @@ public class HelloController {
     private AnchorPane frontGifPane;
 
 
+    @FXML
+    private Button btn_save;
+    @FXML
+    private TableColumn<AttendanceData, Boolean> col_attendance;
+    @FXML
+    private TableColumn<AttendanceData, String> col_studentID;
+    @FXML
+    private TableColumn<AttendanceData, String> col_studentName;
+    @FXML
+    private TableView<AttendanceData> table_attendance;
+    @FXML
+    private ComboBox<String> combobox_selectClub;
+    @FXML
+    private ComboBox<String> combobox_selectEvent;
+
+    private ObservableList<AttendanceData> attendanceDataList;
 
 
-    public void disablePane(){
+    public void disablePane() {
         studentLoginPane.setVisible(false);
         studentRegisterPane.setVisible(false);
         advisorLoginAnchorPane.setVisible(false);
@@ -105,6 +126,7 @@ public class HelloController {
         disablePane();
         studentRegisterPane.setVisible(true);
     }
+
     public void switchToAdvisorRegisterNow(MouseEvent mouseEvent) {
         disablePane();
         advisorRegisterPane.setVisible(true);
@@ -114,6 +136,7 @@ public class HelloController {
         disablePane();
         studentLoginPane.setVisible(true);
     }
+
     public void switchToAdvisorLogin(ActionEvent actionEvent) {
         disablePane();
         advisorLoginAnchorPane.setVisible(true);
@@ -139,7 +162,7 @@ public class HelloController {
 
     public void studentRegisterClick(ActionEvent actionEvent) {
         String firstName = studentFirstNameField.getText();
-        String lastName =  studentLastNameField.getText();
+        String lastName = studentLastNameField.getText();
         String studentID = studentIDField.getText();
         String gender = studentGenderField.getText();
         String DoB = String.valueOf(studentDoBField.getValue());
@@ -151,102 +174,102 @@ public class HelloController {
         // Validation for students attributes
         boolean studentValidation = true;
         // validation for first name
-        if(studentFirstNameField.getText().isEmpty()){
+        if (studentFirstNameField.getText().isEmpty()) {
             studentValidation = false;
             studentFirstNameField.setStyle("-fx-border-color: red");
-        } else if(!studentFirstNameField.getText().matches( "^[A-Za-z]*$")) {
+        } else if (!studentFirstNameField.getText().matches("^[A-Za-z]*$")) {
             studentValidation = false;
             studentFirstNameField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             studentFirstNameField.setStyle("");
         }
         // validation for last name
-        if(studentLastNameField.getText().isEmpty()){
+        if (studentLastNameField.getText().isEmpty()) {
             studentValidation = false;
             studentLastNameField.setStyle("-fx-border-color: red");
-        } else if(!studentLastNameField.getText().matches( "^[A-Za-z]*$")) {
+        } else if (!studentLastNameField.getText().matches("^[A-Za-z]*$")) {
             studentValidation = false;
             studentLastNameField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             studentValidation = true;
             studentLastNameField.setStyle("");
         }
         // validation for student ID
-        if(studentIDField.getText().isEmpty()){
+        if (studentIDField.getText().isEmpty()) {
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
-        }else if(studentIDField.getText().length()>4){
+        } else if (studentIDField.getText().length() > 4) {
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
 
-        }else if(!studentIDField.getText().matches("^[A-Za-z0-9]*$")) {
+        } else if (!studentIDField.getText().matches("^[A-Za-z0-9]*$")) {
             studentValidation = false;
             studentIDField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             studentValidation = true;
             studentIDField.setStyle("");
         }
         // validation for gender
         String genderInput = studentGenderField.getText().toLowerCase(); // Convert input to lowercase for validation
-        if(studentGenderField.getText().isEmpty()){
+        if (studentGenderField.getText().isEmpty()) {
             studentValidation = false;
             studentGenderField.setStyle("-fx-border-color: red");
-        } else if(!genderInput.equals("male") && !genderInput.equals("female")) {
+        } else if (!genderInput.equals("male") && !genderInput.equals("female")) {
             studentValidation = false;
             studentGenderField.setStyle("-fx-border-color: red");
 
-        }else{
+        } else {
             studentGenderField.setStyle("");
         }
         // validation for DoB
-        if(studentDoBField.getValue() == null){
+        if (studentDoBField.getValue() == null) {
             studentValidation = false;
             studentDoBField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             studentDoBField.setStyle("");
         }
         // validation for contact number
-        if(studentcontactNumberField.getText().isEmpty()){
+        if (studentcontactNumberField.getText().isEmpty()) {
             studentValidation = false;
             studentcontactNumberField.setStyle("-fx-border-color: red");
-        }else if(!studentcontactNumberField.getText().matches( "^[0-9]{10}$")){
+        } else if (!studentcontactNumberField.getText().matches("^[0-9]{10}$")) {
             studentValidation = false;
             studentcontactNumberField.setStyle("-fx-border-color: red");
-        }else if(studentcontactNumberField.getText().length() != 10){
+        } else if (studentcontactNumberField.getText().length() != 10) {
             studentValidation = false;
             studentcontactNumberField.setStyle("-fx-border-color: red");
-        }else {
+        } else {
             studentcontactNumberField.setStyle("");
         }
         // validation for email
-        if(studentEmailField.getText().isEmpty()){
+        if (studentEmailField.getText().isEmpty()) {
             studentValidation = false;
             studentEmailField.setStyle("-fx-border-color: red");
-        }else if(!studentEmailField.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
+        } else if (!studentEmailField.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             studentValidation = false;
             studentEmailField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             studentEmailField.setStyle("");
         }
         // validation for password
-        if(!studentReEnterPasswordField.getText().matches(studentpasswordField.getText())){
+        if (!studentReEnterPasswordField.getText().matches(studentpasswordField.getText())) {
             studentValidation = false;
             studentReEnterPasswordField.setStyle("-fx-border-color: red");
             studentpasswordField.setStyle("-fx-border-color: red");
-        }else if(studentpasswordField.getText().isEmpty() || studentReEnterPasswordField.getText().isEmpty()){
+        } else if (studentpasswordField.getText().isEmpty() || studentReEnterPasswordField.getText().isEmpty()) {
             studentValidation = false;
             studentReEnterPasswordField.setStyle("-fx-border-color: red");
             studentpasswordField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             studentpasswordField.setStyle("");
             studentReEnterPasswordField.setStyle("");
         }
 
 
         // add the student data to database if validation is done
-        if(studentValidation == true) {
-            Student student  = new Student(firstName,lastName,gender,DoB,contactNumber,email,password,studentID);
-            DatabaseConnection.insertStudentData(student.getStudentID(),student.getFirstName(),student.getLastName(),student.getDoB(),student.getEmail(),student.getPassword(),student.getContactNumber(),student.getGender());
+        if (studentValidation == true) {
+            Student student = new Student(firstName, lastName, gender, DoB, contactNumber, email, password, studentID);
+            DatabaseConnection.insertStudentData(student.getStudentID(), student.getFirstName(), student.getLastName(), student.getDoB(), student.getEmail(), student.getPassword(), student.getContactNumber(), student.getGender());
 
         }
 
@@ -255,7 +278,7 @@ public class HelloController {
 
     public void advisorRegisterClick(ActionEvent actionEvent) {
         String firstName = advisorFirstNameField.getText();
-        String lastName =  advisorLastNameField.getText();
+        String lastName = advisorLastNameField.getText();
         String advisorID = advisorIDField.getText();
         String gender = advisorGenderField.getText();
         String DoB = String.valueOf(advisorDoBField.getValue());
@@ -266,116 +289,117 @@ public class HelloController {
         // Validation for advisor's attributes
         boolean advisorValidation = true;
         // validation for first name
-        if(advisorFirstNameField.getText().isEmpty()){
+        if (advisorFirstNameField.getText().isEmpty()) {
             advisorValidation = false;
             advisorFirstNameField.setStyle("-fx-border-color: red");
-        } else if(!advisorFirstNameField.getText().matches( "^[A-Za-z]*$")) {
+        } else if (!advisorFirstNameField.getText().matches("^[A-Za-z]*$")) {
             advisorValidation = false;
             advisorFirstNameField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             advisorFirstNameField.setStyle("");
         }
         // validation for last name
-        if(advisorLastNameField.getText().isEmpty()){
+        if (advisorLastNameField.getText().isEmpty()) {
             advisorValidation = false;
             advisorLastNameField.setStyle("-fx-border-color: red");
-        } else if(!advisorLastNameField.getText().matches( "^[A-Za-z]*$")) {
+        } else if (!advisorLastNameField.getText().matches("^[A-Za-z]*$")) {
             advisorValidation = false;
             advisorLastNameField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             advisorValidation = true;
             advisorLastNameField.setStyle("");
         }
         // validation for advisor ID
-        if(advisorIDField.getText().isEmpty()){
+        if (advisorIDField.getText().isEmpty()) {
             advisorValidation = false;
             advisorIDField.setStyle("-fx-border-color: red");
-        }else if(advisorIDField.getText().length()>4){
+        } else if (advisorIDField.getText().length() > 4) {
             advisorValidation = false;
             advisorIDField.setStyle("-fx-border-color: red");
 
-        }else if(!advisorIDField.getText().matches("^[A-Za-z0-9]*$")) {
+        } else if (!advisorIDField.getText().matches("^[A-Za-z0-9]*$")) {
             advisorValidation = false;
             advisorIDField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             advisorValidation = true;
             advisorIDField.setStyle("");
         }
         // validation for gender
         String genderInput = advisorGenderField.getText().toLowerCase(); // Convert input to lowercase for validation
-        if(advisorGenderField.getText().isEmpty()){
+        if (advisorGenderField.getText().isEmpty()) {
             advisorValidation = false;
             advisorGenderField.setStyle("-fx-border-color: red");
-        } else if(!genderInput.equals("male") && !genderInput.equals("female")) {
+        } else if (!genderInput.equals("male") && !genderInput.equals("female")) {
             advisorValidation = false;
             advisorGenderField.setStyle("-fx-border-color: red");
 
-        }else{
+        } else {
             advisorGenderField.setStyle("");
         }
         // validation for DoB
-        if(advisorDoBField.getValue() == null){
+        if (advisorDoBField.getValue() == null) {
             advisorValidation = false;
             advisorDoBField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             advisorDoBField.setStyle("");
         }
         // validation for contact number
-        if(advisorContactNumberField.getText().isEmpty()){
+        if (advisorContactNumberField.getText().isEmpty()) {
             advisorValidation = false;
             advisorContactNumberField.setStyle("-fx-border-color: red");
-        }else if(!advisorContactNumberField.getText().matches( "^[0-9]{10}$")){
+        } else if (!advisorContactNumberField.getText().matches("^[0-9]{10}$")) {
             advisorValidation = false;
             advisorContactNumberField.setStyle("-fx-border-color: red");
-        }else if(advisorContactNumberField.getText().length() != 10){
+        } else if (advisorContactNumberField.getText().length() != 10) {
             advisorValidation = false;
             advisorContactNumberField.setStyle("-fx-border-color: red");
-        }else {
+        } else {
             advisorContactNumberField.setStyle("");
         }
         // validation for email
-        if(advisorEmailField.getText().isEmpty()){
+        if (advisorEmailField.getText().isEmpty()) {
             advisorValidation = false;
             advisorEmailField.setStyle("-fx-border-color: red");
-        }else if(!advisorEmailField.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
+        } else if (!advisorEmailField.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             advisorValidation = false;
             advisorEmailField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             advisorEmailField.setStyle("");
         }
         // validation for password
-        if(!advisorReEnterPasswordField.getText().matches(advisorPasswordField.getText())){
+        if (!advisorReEnterPasswordField.getText().matches(advisorPasswordField.getText())) {
             advisorValidation = false;
             advisorReEnterPasswordField.setStyle("-fx-border-color: red");
             advisorPasswordField.setStyle("-fx-border-color: red");
-        }else if(advisorPasswordField.getText().isEmpty() || advisorReEnterPasswordField.getText().isEmpty()){
+        } else if (advisorPasswordField.getText().isEmpty() || advisorReEnterPasswordField.getText().isEmpty()) {
             advisorValidation = false;
             advisorReEnterPasswordField.setStyle("-fx-border-color: red");
             advisorPasswordField.setStyle("-fx-border-color: red");
-        }else{
+        } else {
             advisorPasswordField.setStyle("");
             advisorReEnterPasswordField.setStyle("");
         }
 
         // add the student data to database if validation is done
-        if(advisorValidation){
-            Advisor advisor = new Advisor(firstName,lastName,gender,DoB,contactNumber,email,password,advisorID);
-            DatabaseConnection.insertAdvisorData(advisor.getAdvisorID(),advisor.getFirstName(),advisor.getLastName(),advisor.getDoB(),advisor.getEmail(),advisor.getPassword(),advisor.getContactNumber(),advisor.getGender());
+        if (advisorValidation) {
+            Advisor advisor = new Advisor(firstName, lastName, gender, DoB, contactNumber, email, password, advisorID);
+            DatabaseConnection.insertAdvisorData(advisor.getAdvisorID(), advisor.getFirstName(), advisor.getLastName(), advisor.getDoB(), advisor.getEmail(), advisor.getPassword(), advisor.getContactNumber(), advisor.getGender());
 
-        }else{
+        } else {
             System.out.println("Check the inputs");
         }
     }
+
     // code for student login to sacms.
     public void loginStudentClick(ActionEvent actionEvent) {
         String email = loginStudentEmailField.getText();
         String password = loginStudentPasswordField.getText();
-        if (DatabaseConnection.checkStudentLogin(email,password)){
+        if (DatabaseConnection.checkStudentLogin(email, password)) {
             System.out.println("Student logged in successfully");
             disablePane();
             naveengePaneEka.setVisible(true);
 
-        }else{
+        } else {
             System.out.println("Student login failed");
         }
     }
@@ -384,12 +408,12 @@ public class HelloController {
     public void loginAdvisorClick(ActionEvent actionEvent) {
         String email = loginAdvisorEmaillField.getText();
         String password = loginAdvisorPasswordField.getText();
-        if (DatabaseConnection.checkAdvisorLogin(email,password)){
+        if (DatabaseConnection.checkAdvisorLogin(email, password)) {
             System.out.println("Advisor logged in successfully");
             disablePane();
             naveengePaneEka.setVisible(true);
 
-        }else{
+        } else {
             System.out.println("Advisor login failed");
         }
     }
@@ -397,5 +421,65 @@ public class HelloController {
     public void getStartClick(ActionEvent actionEvent) {
         disablePane();
         frontPane.setVisible(true);
+    }
+
+    private DatabaseConnection databaseConnection;
+    public void initialize() {
+        // Initialize columns
+        col_studentID.setCellValueFactory(new PropertyValueFactory<>("studentID"));
+        col_studentName.setCellValueFactory(new PropertyValueFactory<>("studentName"));
+
+        // Column with a custom cell factory for Yes/No
+        col_attendance.setCellValueFactory(new PropertyValueFactory<>("attendance"));
+        col_attendance.setCellFactory(CheckBoxTableCell.forTableColumn(col_attendance));
+
+        // Make the col_attendance column editable
+        col_attendance.setEditable(true);
+
+        // Set TableView selection mode to SINGLE
+        table_attendance.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        // Handle onEditCommit event for the col_attendance column
+        col_attendance.setOnEditCommit(event -> {
+            AttendanceData rowData = event.getRowValue();
+            rowData.setAttendance(event.getNewValue());
+        });
+
+        // Make the TableView editable
+        table_attendance.setEditable(true);
+
+        databaseConnection = new DatabaseConnection();
+
+        // Add sample data (replace this with your actual data)
+        attendanceDataList = FXCollections.observableArrayList(
+                new AttendanceData("123", "John Doe", false),
+                new AttendanceData("456", "Jane Doe", false)
+        );
+
+        // Add the data to the TableView
+        table_attendance.setItems(attendanceDataList);
+
+        // Populate ComboBoxes with data from the database
+        populateComboBoxes();
+
+    }
+
+    @FXML
+    private void handleSaveButton() {
+        // Iterate through the data list and print the values
+        for (AttendanceData data : attendanceDataList) {
+            System.out.println("Student ID: " + data.getStudentID() +
+                    ", Student Name: " + data.getStudentName() +
+                    ", Attendance: " + data.getAttendance());
+        }
+    }
+
+    private void populateComboBoxes(){
+        List<String> clubData = databaseConnection.fetchDataForComboBox("SELECT club_name FROM club");
+        List<String> eventData = databaseConnection.fetchDataForComboBox("SELECT event_name FROM club_event");
+
+        // Add data to ComboBoxes
+        combobox_selectClub.setItems(FXCollections.observableArrayList(clubData));
+        combobox_selectEvent.setItems(FXCollections.observableArrayList(eventData));
     }
 }
