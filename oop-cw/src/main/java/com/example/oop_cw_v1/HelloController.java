@@ -253,18 +253,9 @@ public class HelloController {
         stage.show();
     }
 
-
-
-    public void backbtnincreateevents() {
-        disablePanes();
-        eventPane.setVisible(true);
-    }
-
-
-
     public void clickCreateBtnClick() throws IOException {
         disablePanes();
-        selectEventTypePane.setVisible(true);
+        selectEventTypeInCreatePane.setVisible(true);
     }
 
     public void clickUpdateBtnClick() throws IOException {
@@ -278,13 +269,83 @@ public class HelloController {
 
     public void backBtninselectingevents() throws IOException {
         disablePanes();
-        eventPane.setVisible(true);
+        scheduleEventPane.setVisible(true);
     }
 
     public void clickBackToEventPane() throws IOException {
         disablePanes();
         selectUpdateEventTypePane.setVisible(true);
     }
+
+    public void eventBtninselectingevents() throws IOException {
+        disablePanes();
+        eventCreationPane.setVisible(true);
+    }
+
+    public void meetingBtninselectingevents() throws IOException {
+        disablePanes();
+        createMeetingPane.setVisible(true);
+    }
+
+    public void workshopBtninselectingevents() throws IOException {
+        disablePanes();
+        createWorkshopPane.setVisible(true);
+    }
+
+    public void onBackBtnInCreateMeeting() throws IOException {
+        disablePanes();
+        selectEventTypeInCreatePane.setVisible(true);
+    }
+
+    public void onBackBtnClickInCreateWorkshop() throws IOException {
+        disablePanes();
+        selectEventTypeInCreatePane.setVisible(true);
+    }
+
+    public void onBackbtnincreateevent() throws IOException {
+        disablePanes();
+        selectEventTypeInCreatePane.setVisible(true);
+    }
+
+    public void onEventBtnClickInselecttoupdate() throws IOException {
+        disablePanes();
+        updateEvenetPane.setVisible(true);
+    }
+
+    public void onMeetingBtnClickInselecttoupdate() throws IOException {
+        disablePanes();
+        updateMeetingPane.setVisible(true);
+    }
+
+    public void onWorkshopBtnClickInselecttoupdate() throws IOException {
+        disablePanes();
+        updateWorkshopPane.setVisible(true);
+    }
+
+    public void backBtnInUpdateEventPane() throws IOException {
+        disablePanes();
+        selectUpdateEventTypePane.setVisible(true);
+    }
+
+    public void backBtnInUpdateMeeting() throws IOException {
+        disablePanes();
+        selectUpdateEventTypePane.setVisible(true);
+    }
+
+    public void backWorkshopbtninupdate() throws IOException {
+        disablePanes();
+        selectUpdateEventTypePane.setVisible(true);
+    }
+
+    public void onBackBtnClickInselecttoupdate() throws IOException {
+        disablePanes();
+        scheduleEventPane.setVisible(true);
+    }
+
+
+
+
+
 
 
 

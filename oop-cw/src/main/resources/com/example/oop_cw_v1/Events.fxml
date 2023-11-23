@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="466.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
    <children>
-      <Pane fx:id="scheduleEventPane" layoutY="-2.0" opacity="0.96" prefHeight="550.0" prefWidth="750.0" visible="false">
+      <Pane fx:id="scheduleEventPane" layoutY="-2.0" opacity="0.96" prefHeight="550.0" prefWidth="750.0">
          <children>
             <ImageView fitHeight="550.0" fitWidth="348.0" layoutX="404.0" layoutY="2.0" pickOnBounds="true" smooth="false">
                <image>
@@ -143,7 +143,7 @@
             <DatePicker fx:id="dateInUpdate" layoutX="425.0" layoutY="408.0" prefHeight="38.0" prefWidth="211.0" promptText="Date" />
             <Button layoutX="40.0" layoutY="170.0" mnemonicParsing="false" onAction="#searchEventIdInUpdate" text="Search" />
             <Button layoutX="630.0" layoutY="501.0" mnemonicParsing="false" onAction="#onSaveBtnClickInUpdateevents" text="Save" />
-            <Button layoutX="40.0" layoutY="501.0" mnemonicParsing="false" onAction="#clickBackToEventPane" text="Back" />
+            <Button layoutX="40.0" layoutY="501.0" mnemonicParsing="false" onAction="#backBtnInUpdateEventPane" text="Back" />
             <Button layoutX="425.0" layoutY="501.0" mnemonicParsing="false" onAction="#deleteEventBtnClick" text="Delete Event" />
             <TextField fx:id="eventTypeInUpdate" layoutX="425.0" layoutY="364.0" prefHeight="26.0" prefWidth="211.0" promptText="Event type" />
          </children>
@@ -167,7 +167,7 @@
             <DatePicker fx:id="meetingdateInUpdate" layoutX="463.0" layoutY="371.0" promptText="date" />
             <Button layoutX="463.0" layoutY="451.0" mnemonicParsing="false" onAction="#deleteMeetingdetailsClick" text="Delete event" />
             <Button layoutX="601.0" layoutY="451.0" mnemonicParsing="false" onAction="#onsavebtninupdatemeeting" text="Save" />
-            <Button layoutX="54.0" layoutY="466.0" mnemonicParsing="false" text="back" />
+            <Button layoutX="54.0" layoutY="466.0" mnemonicParsing="false" onAction="#backBtnInUpdateMeeting" text="back" />
          </children></Pane>
       <Pane fx:id="updateWorkshopPane" prefHeight="550.0" prefWidth="758.0" visible="false">
          <children>
