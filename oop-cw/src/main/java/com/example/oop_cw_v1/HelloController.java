@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 
@@ -18,74 +19,172 @@ import java.util.ArrayList;
 public class HelloController {
 
     @FXML
-    private Label label_registerNow;
+    private CheckBox advisorCheckBox;
+
     @FXML
-    private Button btn_back;
+    private Pane advisorClubPane;
+
     @FXML
-    private TextField txt_email;
+    private TextField advisorContactNumberField;
+
     @FXML
-    private AnchorPane studentLoginPane;
+    private Pane advisorDashBoardPane;
+
     @FXML
-    private StackPane studentRegisterPane;
+    private DatePicker advisorDoBField;
+
+    @FXML
+    private TextField advisorEmailField;
+
+    @FXML
+    private TextField advisorFirstNameField;
+
+    @FXML
+    private TextField advisorGenderField;
+
+    @FXML
+    private TextField advisorIDField;
+
+    @FXML
+    private TextField advisorLastNameField;
+
     @FXML
     private AnchorPane advisorLoginAnchorPane;
+
+    @FXML
+    private AnchorPane advisorMainPane;
+
+    @FXML
+    private PasswordField advisorPasswordField;
+
+    @FXML
+    private PasswordField advisorReEnterPasswordField;
+
     @FXML
     private StackPane advisorRegisterPane;
+
     @FXML
-    private  AnchorPane frontPane;
+    private Button btn_back;
+
     @FXML
-    private TextField studentFirstNameField;
+    private Button btn_back1;
+
     @FXML
-    private TextField studentLastNameField;
+    private Button btn_google;
+
     @FXML
-    private TextField studentIDField;
+    private Button btn_google1;
+
     @FXML
-    private TextField studentGenderField;
+    private Button btn_login;
+
     @FXML
-    private DatePicker studentDoBField;
+    private Button btn_login1;
+
     @FXML
-    private TextField studentcontactNumberField;
+    private AnchorPane frontGifPane;
+
     @FXML
-    private TextField studentEmailField;
+    private AnchorPane frontPane;
+
     @FXML
-    private PasswordField studentpasswordField;
+    private Label label_error;
+
     @FXML
-    private PasswordField studentReEnterPasswordField;
+    private Label label_error1;
+
+    @FXML
+    private Label label_forgotPw;
+
+    @FXML
+    private Label label_forgotPw1;
+
+    @FXML
+    private Label label_registerNow;
+
+    @FXML
+    private Label label_registerNow1;
+
+    @FXML
+    private TextField loginAdvisorEmaillField;
+
+    @FXML
+    private PasswordField loginAdvisorPasswordField;
+
+    @FXML
+    private TextField loginStudentEmailField;
+
+    @FXML
+    private PasswordField loginStudentPasswordField;
+
     @FXML
     private CheckBox studentCheckBox;
 
     @FXML
-    private TextField advisorFirstNameField;
+    private Label studentClubMemberLable;
+
     @FXML
-    private TextField advisorLastNameField;
+    private Label studentClubMemberLable1;
+
     @FXML
-    private TextField advisorIDField;
+    private Label studentClubNameLable;
+
     @FXML
-    private TextField advisorGenderField;
+    private Label studentClubNameLable1;
+
     @FXML
-    private DatePicker advisorDoBField;
+    private Pane studentClubPane;
+
     @FXML
-    private TextField advisorContactNumberField;
+    private Pane studentDashBoardPane;
+
     @FXML
-    private TextField advisorEmailField;
+    private Label studentDescriptionLabel;
+
     @FXML
-    private PasswordField advisorPasswordField;
+    private Label studentDescriptionLabel1;
+
     @FXML
-    private PasswordField advisorReEnterPasswordField;
+    private DatePicker studentDoBField;
+
     @FXML
-    private CheckBox advisorCheckBox;
+    private TextField studentEmailField;
+
     @FXML
-    private TextField loginStudentEmailField;
+    private TextField studentFirstNameField;
+
     @FXML
-    private PasswordField loginStudentPasswordField;
+    private TextField studentGenderField;
+
     @FXML
-    private TextField loginAdvisorEmaillField;
+    private TextField studentIDField;
+
     @FXML
-    private PasswordField loginAdvisorPasswordField;
+    private TextField studentLastNameField;
+
     @FXML
-    private AnchorPane naveengePaneEka;
+    private AnchorPane studentLoginPane;
+
     @FXML
-    private AnchorPane frontGifPane;
+    private AnchorPane studentMainPane;
+
+    @FXML
+    private PasswordField studentReEnterPasswordField;
+
+    @FXML
+    private StackPane studentRegisterPane;
+
+    @FXML
+    private Pane studentTaskBarPane;
+
+    @FXML
+    private Pane studentTaskBarPane1;
+
+    @FXML
+    private TextField studentcontactNumberField;
+
+    @FXML
+    private PasswordField studentpasswordField;
 
 
 
@@ -96,8 +195,13 @@ public class HelloController {
         advisorLoginAnchorPane.setVisible(false);
         advisorRegisterPane.setVisible(false);
         frontPane.setVisible(false);
-        naveengePaneEka.setVisible(false);
         frontGifPane.setVisible(false);
+        studentMainPane.setVisible(false);
+        advisorMainPane.setVisible(false);
+        studentDashBoardPane.setVisible(false);
+        studentClubPane.setVisible(false);
+        advisorClubPane.setVisible(false);
+        advisorDashBoardPane.setVisible(false);
 
     }
 
@@ -373,7 +477,8 @@ public class HelloController {
         if (DatabaseConnection.checkStudentLogin(email,password)){
             System.out.println("Student logged in successfully");
             disablePane();
-            naveengePaneEka.setVisible(true);
+            studentMainPane.setVisible(true);
+            studentDashBoardPane.setVisible(true);
 
         }else{
             System.out.println("Student login failed");
@@ -387,7 +492,9 @@ public class HelloController {
         if (DatabaseConnection.checkAdvisorLogin(email,password)){
             System.out.println("Advisor logged in successfully");
             disablePane();
-            naveengePaneEka.setVisible(true);
+            advisorMainPane.setVisible(true);
+            advisorDashBoardPane.setVisible(true);
+
 
         }else{
             System.out.println("Advisor login failed");
@@ -397,5 +504,39 @@ public class HelloController {
     public void getStartClick(ActionEvent actionEvent) {
         disablePane();
         frontPane.setVisible(true);
+    }
+
+    public void studentDashboradClick(ActionEvent actionEvent) {
+        disablePane();
+        studentMainPane.setVisible(true);
+        studentDashBoardPane.setVisible(true);
+    }
+
+    public void studentClubViewClick(ActionEvent actionEvent) {
+        disablePane();
+        studentMainPane.setVisible(true);
+        studentClubPane.setVisible(true);
+    }
+
+    public void studentEventViewClick(ActionEvent actionEvent) {
+        // Inupa has created this one
+    }
+
+    public void advisorDashboardClick(ActionEvent actionEvent) {
+        disablePane();
+        advisorMainPane.setVisible(true);
+        advisorDashBoardPane.setVisible(true);
+    }
+
+    public void advisiorClubViewClick(ActionEvent actionEvent) {
+        disablePane();
+        advisorMainPane.setVisible(true);
+        advisorClubPane.setVisible(true);
+    }
+
+    public void advisorEventViewClick(ActionEvent actionEvent) {
+    }
+
+    public void advisorAttendenceTrackingViewClick(ActionEvent actionEvent) {
     }
 }
