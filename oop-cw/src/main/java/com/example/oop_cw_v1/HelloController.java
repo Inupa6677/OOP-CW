@@ -426,7 +426,7 @@ public class HelloController {
     }
 
     private DatabaseConnection databaseConnection;
-    public void initializeAttendance() {
+    public void initialize() {
         // Initialize columns
         col_studentID.setCellValueFactory(new PropertyValueFactory<>("studentID"));
         col_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));

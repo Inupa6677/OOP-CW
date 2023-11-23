@@ -553,8 +553,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ComboBox fx:id="combobox_selectClub" layoutX="51.0" layoutY="108.0" onAction="#initializeAttendance" prefHeight="36.0" prefWidth="312.0" promptText="Select Club" />
-            <ComboBox fx:id="combobox_selectEvent" layoutX="393.0" layoutY="108.0" onAction="#initializeAttendance" prefHeight="36.0" prefWidth="312.0" promptText="Select Event" />
+            <ComboBox fx:id="combobox_selectClub" layoutX="51.0" layoutY="108.0" onAction="#initialize" prefHeight="36.0" prefWidth="312.0" promptText="Select Club" />
+            <ComboBox fx:id="combobox_selectEvent" layoutX="393.0" layoutY="108.0" onAction="#initialize" prefHeight="36.0" prefWidth="312.0" promptText="Select Event" />
          </children>
       </AnchorPane>
    </children>
