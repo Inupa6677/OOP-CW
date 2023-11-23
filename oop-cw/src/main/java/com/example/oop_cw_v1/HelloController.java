@@ -101,6 +101,9 @@ public class HelloController {
     private Pane updateEvenetPane;
 
     @FXML
+    private Pane selectEventTypeInCreatePane;
+
+    @FXML
     private Pane updateGameDetailsPane;
 
     @FXML
@@ -187,6 +190,9 @@ public class HelloController {
     @FXML
     private DatePicker meetingdateInUpdate;
 
+    @FXML
+    private Pane scheduleEventPane;
+
 
 
     @FXML
@@ -201,6 +207,12 @@ public class HelloController {
 
     @FXML
     private TextField meetingnameInUpdate;
+
+    @FXML
+    private Pane updateMeetingPane;
+
+    @FXML
+    private Pane updateWorkshopPane;
 
 
     @FXML
@@ -241,6 +253,9 @@ public class HelloController {
         updateMeetingDetailsPane.setVisible(false);
         updateWorkshopDetailsPane.setVisible(false);
         updateGameDetailsPane.setVisible(false);
+        selectEventTypeInCreatePane.setVisible(false);
+        scheduleEventPane.setVisible(false);
+        updateMeetingPane.setVisible(false);
     }
 
     @FXML
@@ -445,10 +460,7 @@ public class HelloController {
         selectUpdateEventTypePane.setVisible(true);
     }
 
-    public void onbackbtnclickingame(ActionEvent actionEvent) {
-        disablePanes();
-        selectEventTypePane.setVisible(true);
-    }
+
 
     public void onsavebtnincreateevent(ActionEvent actionEvent) {
         // Getting data from the text fields
