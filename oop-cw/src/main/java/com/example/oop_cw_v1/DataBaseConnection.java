@@ -1,12 +1,6 @@
 package com.example.oop_cw_v1;
 
-import java.sql.*;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class DataBaseConnection {
 
@@ -43,6 +37,45 @@ public class DataBaseConnection {
     public static void deleteWorkshopById(String workshopIdToDelete) {
     }
 
-    public static void insertEventData() {
+    public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleTime, String scheduleDescription, String eventType, String time) {
+    }
+
+    public static Event searchEventById(String searchEventId) {
+    }
+
+    public static void deleteEventData(String deleteEventId) {
+    }
+
+    public static void deleteEvent(String deleteEventId) {
+    }
+
+    public static void insertMeetingData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleTime, String scheduleDescription, String meetingType, String scheduleTime1) {
+    }
+
+    public static Meeting searchMeetingById(String searchMeetingId) {
+    }
+
+    public static void deleteMeetingData(String deleteMeetingId) {
+    }
+
+    public static void deleteMeeting(String deleteMeetingId) {
+    }
+
+    public static Workshop searchWorkshopById(String searchWorkshopId) {
+    }
+
+    public static void deleteWorkshopData(String deleteWorkshopId) {
+    }
+
+    public static void deleteWorkshop(String deleteWorkshopId) {
+    }
+
+    public static void updateEventData(String eventId, String eventName, String location, String time, String description, String eventType, String eventDate) {
+    }
+
+    public static void updateMeetingData(String meetingId, String meetingName, String location, String time, String description, String meetingType, LocalDate date) {
+    }
+
+    public static void updateWorkshopData(String workshopId, String workshopName, String workshopLocation, String workshopTime, String workshopDescription, String workshopConductor, String date) {
     }
 }

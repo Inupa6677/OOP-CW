@@ -211,6 +211,9 @@ public class HelloController {
     private TextField meetingtypeInUpdate;
 
     @FXML
+    private TextField eventTypeInUpdate;
+
+    @FXML
     private TextField workshopIdInSearchField;
 
     @FXML
@@ -363,12 +366,6 @@ public class HelloController {
         selectUpdateEventTypePane.setVisible(true);
     }
 
-    public void ondeletebtnclickingame(ActionEvent actionEvent) {
-    }
-
-    public void onSavebtnclickingame(ActionEvent actionEvent) {
-    }
-
     public void onbackbtnclickingame(ActionEvent actionEvent) {
         disablePanes();
         selectEventTypePane.setVisible(true);
@@ -387,7 +384,80 @@ public class HelloController {
         // save event data to db after validation
         // if(eventvalidation == true) make the validation and add the details in to the condition
         Event event1 = new Event(eventId, eventName, eventLocation, eventTime, eventDescription, eventType, eventDate);
-        DataBaseConnection.insertEventData(event1.get)
+        DataBaseConnection.insertEventData(event1.getScheduleId(), event1.getScheduleName(), event1.getScheduleLocation(), event1.getScheduleTime(), event1.getScheduleDescription(), event1.getEventType(),event1.getScheduleTime());
+        clearTextFieldsInEvent();
+    }
+
+    public void searchEventIdInUpdate(ActionEvent actionEvent) {
+        String searchEventId = eventIdInUpdate.getText();
+
+        Event foundEvent = DataBaseConnection.searchEventById(searchEventId);
+
+        if (foundEvent != null){
+            // if event found then set text to update
+            eventIdInUpdate.setText(foundEvent.getScheduleId());
+            eventNameInUpdate.setText(foundEvent.getScheduleName());
+            eventLocationInUpdate.setText(foundEvent.getScheduleLocation());
+            eventTimeInUpdate.setText(foundEvent.getScheduleTime());
+            eventDescriptionInUpdate.setText(foundEvent.getScheduleDescription());
+            eventTypeInUpdate.setText(foundEvent.getEventType());
+            dateInUpdate.setValue(foundEvent.getScheduleDate());
+        } else {
+            // Event not found, provide feedback to the user (e.g., show an alert)
+            showAlert("Event not found", "The event with ID " + searchEventId + " was not found.");
+
+            // Clear the fields or set them to default values as needed
+            eventIdInUpdate.clear();
+            eventNameInUpdate.clear();
+            eventLocationInUpdate.clear();
+            eventTimeInUpdate.clear();
+            eventDescriptionInUpdate.clear();
+            eventTypeInUpdate.clear();
+            dateInUpdate.setValue(null);
+        }
+
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    public void deleteEventBtnClick(ActionEvent actionEvent){
+        // Get the event ID to delete
+        String deleteEventId = eventIdInUpdate.getPromptText(); // Assuming prompt text is set to the current event ID
+
+        // Confirm deletion with the user (you can customize this based on your UI framework)
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm Deletion");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Are you sure you want to delete the event with ID " + deleteEventId + "?");
+
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // User confirmed deletion, proceed with deletion
+
+            // Delete event details from the database
+            DataBaseConnection.deleteEventData(deleteEventId);
+
+            // Delete the event itself
+            DataBaseConnection.deleteEvent(deleteEventId);
+
+            // Provide feedback to the user (e.g., show an alert)
+            showAlert("Event Deleted", "Event details have been successfully deleted.");
+
+            // Optionally, clear the fields or set them to default values
+            eventIdInUpdate.clear();
+            eventNameInUpdate.clear();
+            eventLocationInUpdate.clear();
+            eventTimeInUpdate.clear();
+            eventDescriptionInUpdate.clear();
+            eventTypeInUpdate.clear();
+            dateInUpdate.setValue(null);
+        }
 
     }
 
@@ -403,29 +473,85 @@ public class HelloController {
     }
 
     public void onsaveBtnIncreatemeeting(ActionEvent actionEvent) {
-        // Getting data from the text fields
-
         String meetingId = meetingIdIncreatemeeting.getText();
         String meetingName = meetingnameIncreatemeeting.getText();
         String meetingLocation = meetinglocationIncreatemeeting.getText();
         String meetingTime = meetingtimeIncreatemeeting.getText();
         String meetingDescription = meetingdescriptionIncreatemeeting.getText();
         String meetingType = meetingtypeIncreatemeeting.getText();
-        LocalDate meetingDate = meetingdateIncreatemeeting.getValue();
+        String meetingDate = String.valueOf(meetingdateIncreatemeeting.getValue());
 
-        // Convert eventTime to LocalDateTime
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDateTime localDateTime = LocalDateTime.of(meetingDate, LocalTime.parse(meetingTime, timeFormatter));
-
-        // Convert LocalDateTime to Date
-        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-
-        // Create an instance of the Event class
-        Meeting meeting = new Meeting(meetingId, meetingName, meetingLocation, meetingDescription, date, localDateTime, meetingType);
-        DataBaseConnection.saveMeetingToDatabase(meeting);
-
+        // save event data to db after validation
+        // if(eventvalidation == true) make the validation and add the details in to the condition
+        Meeting meeting1 = new Meeting(meetingId, meetingName, meetingLocation, meetingTime, meetingDescription, meetingType, meetingDate);
+        DataBaseConnection.insertMeetingData(meeting1.getScheduleId(), meeting1.getScheduleName(), meeting1.getScheduleLocation(), meeting1.getScheduleTime(), meeting1.getScheduleDescription(), meeting1.getMeetingType(),meeting1.getScheduleTime());
         clearTextFieldsInMeeting();
 
+    }
+
+
+    public void onSearchBtnInmeetingUpdate(ActionEvent actionEvent) {
+        String searchMeetingId = searchidFieldInMeeting.getText();
+
+        Meeting foundMeeting = DataBaseConnection.searchMeetingById(searchMeetingId);
+
+        if (foundMeeting != null){
+            // if event found then set text to update
+            meetingIdInUpdate.setText(foundMeeting.getScheduleId());
+            meetingnameInUpdate.setText(foundMeeting.getScheduleName());
+            meetinglocationInUpdate.setText(foundMeeting.getScheduleLocation());
+            meetingtimeInUpdate.setText(foundMeeting.getScheduleTime());
+            meetingdescriptionInUpdate.setText(foundMeeting.getScheduleDescription());
+            meetingtypeInUpdate.setText(foundMeeting.getMeetingType());
+            meetingdateInUpdate.setValue(foundMeeting.getScheduleDate());
+        } else {
+            // Event not found, provide feedback to the user (e.g., show an alert)
+            showAlert("Event not found", "The event with ID " + searchMeetingId + " was not found.");
+
+            // Clear the fields or set them to default values as needed
+            meetingIdInUpdate.clear();
+            meetingnameInUpdate.clear();
+            meetinglocationInUpdate.clear();
+            meetingtimeInUpdate.clear();
+            meetingdescriptionInUpdate.clear();
+            meetingtypeInUpdate.clear();
+            meetingdateInUpdate.setValue(null);
+        }
+
+    }
+
+    public void deleteMeetingdetailsClick(ActionEvent actionEvent){
+        // Get the event ID to delete
+        String deleteMeetingId = searchidFieldInMeeting.getPromptText();
+
+        // Confirm deletion with the user (you can customize this based on your UI framework)
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm Deletion");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Are you sure you want to delete the event with ID " + deleteMeetingId + "?");
+
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // User confirmed deletion, proceed with deletion
+
+            // Delete event details from the database
+            DataBaseConnection.deleteMeetingData(deleteMeetingId);
+
+            // Delete the event itself
+            DataBaseConnection.deleteMeeting(deleteMeetingId);
+
+            // Provide feedback to the user (e.g., show an alert)
+            showAlert("Event Deleted", "Event details have been successfully deleted.");
+
+            // Optionally, clear the fields or set them to default values
+            meetingIdInUpdate.clear();
+            meetingnameInUpdate.clear();
+            meetinglocationInUpdate.clear();
+            meetingtimeInUpdate.clear();
+            meetingdescriptionInUpdate.clear();
+            meetingtypeInUpdate.clear();
+            meetingdateInUpdate.setValue(null);
+        }
     }
 
     private void clearTextFieldsInMeeting() {
@@ -439,32 +565,88 @@ public class HelloController {
         meetingdateIncreatemeeting.getEditor().clear();
     }
 
-    public void onSaveBtnClickInCreateWorkshop(ActionEvent actionEvent) {
-        // Getting data from the text fields
 
+    public void onSaveBtnClickInCreateWorkshop(ActionEvent actionEvent) {
         String workshopId = workshopIdInCreateWorkshop.getText();
         String workshopName = workshopnameInCreateWorkshop.getText();
         String workshopLocation = workshoplocationInCreateWorkshop.getText();
         String workshopTime = workshopTimeInCreateWorkshop.getText();
         String workshopDescription = workshopdescriptionInCreateWorkshop.getText();
         String workshopConductor = workshopConductorInCreateWorkshop.getText();
-        LocalDate workshopDate = workshopDateInCreateWorkshop.getValue();
+        String workshopDate = String.valueOf(workshopDateInCreateWorkshop.getValue());
 
-        // Convert eventTime to LocalDateTime
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDateTime localDateTime = LocalDateTime.of(workshopDate, LocalTime.parse(workshopTime, timeFormatter));
-
-        // Convert LocalDateTime to Date
-        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-
-        // Create an instance of the Event class
-        Workshop workshop = new Workshop(workshopId, workshopName, workshopLocation, workshopDescription, date, localDateTime, workshopConductor);
-
-        DataBaseConnection.saveWorkshopToDatabase(workshop);
-
+        // save event data to db after validation
+        // if(eventvalidation == true) make the validation and add the details in to the condition
+        Workshop workshop1 = new Workshop(workshopId, workshopName, workshopLocation, workshopTime, workshopDescription, workshopConductor, workshopDate);
+        DataBaseConnection.insertMeetingData(workshop1.getScheduleId(), workshop1.getScheduleName(), workshop1.getScheduleLocation(), workshop1.getScheduleTime(), workshop1.getScheduleDescription(), workshop1.getConductor(),workshop1.getScheduleTime());
         clearTextFieldsInWorkshop();
+    }
+
+    public void searchBtnInUpdateWorkshop(ActionEvent actionEvent) {
+        String searchWorkshopId = workshopIdInSearchField.getText();
+
+        Workshop foundWorkshop = DataBaseConnection.searchWorkshopById(searchWorkshopId);
+
+        if (foundWorkshop != null){
+            // if event found then set text to update
+            workshopidInupdate.setText(foundWorkshop.getScheduleId());
+            workshopnameInupdate.setText(foundWorkshop.getScheduleName());
+            workshoplocationInupdate.setText(foundWorkshop.getScheduleLocation());
+            workshoptimeInupdate.setText(foundWorkshop.getScheduleTime());
+            workshopdescriptionInupdate.setText(foundWorkshop.getScheduleDescription());
+            workshopconductorInupdate.setText(foundWorkshop.getConductor());
+            workshopdateInupdate.setValue(foundWorkshop.getScheduleDate());
+
+        } else {
+            // Event not found, provide feedback to the user (e.g., show an alert)
+            showAlert("Event not found", "The event with ID " + searchWorkshopId + " was not found.");
+
+            // Clear the fields or set them to default values as needed
+            workshopidInupdate.clear();
+            workshopnameInupdate.clear();
+            workshoplocationInupdate.clear();
+            workshoptimeInupdate.clear();
+            workshopdescriptionInupdate.clear();
+            workshopconductorInupdate.clear();
+            workshopdateInupdate.setValue(null);
+        }
 
     }
+
+    public void deleteWorkshopbtninupdate(ActionEvent actionEvent){
+        // Get the event ID to delete
+        String deleteWorkshopId = workshopIdInSearchField.getText();
+
+        // Confirm deletion with the user (you can customize this based on your UI framework)
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm Deletion");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Are you sure you want to delete the event with ID " + deleteWorkshopId + "?");
+
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // User confirmed deletion, proceed with deletion
+
+            // Delete event details from the database
+            DataBaseConnection.deleteWorkshopData(deleteWorkshopId);
+
+            // Delete the event itself
+            DataBaseConnection.deleteWorkshop(deleteWorkshopId);
+
+            // Provide feedback to the user (e.g., show an alert)
+            showAlert("Event Deleted", "Event details have been successfully deleted.");
+
+            // Optionally, clear the fields or set them to default values
+            workshopidInupdate.clear();
+            workshopnameInupdate.clear();
+            workshoplocationInupdate.clear();
+            workshoptimeInupdate.clear();
+            workshopdescriptionInupdate.clear();
+            workshopconductorInupdate.clear();
+            workshopdateInupdate.setValue(null);
+        }
+    }
+
 
     private void clearTextFieldsInWorkshop() {
         // Clear the text fields in meeting
@@ -477,191 +659,107 @@ public class HelloController {
         workshopDateInCreateWorkshop.getEditor().clear();
     }
 
-    public void searchEventIdInUpdate(ActionEvent actionEvent) {
-        // Assuming eventIdTextField is a TextField where users input the event ID
-        String eventId = searchFieldInUpdate.getText();
-
-        Event event = DataBaseConnection.getEventById(eventId);
-
-        if (event != null) {
-            // Set prompt text for each text field with the retrieved event data
-            eventidincreateevent.setText(event.getScheduleId());
-            eventnameincreateevent.setText(event.getScheduleName());
-            eventlocationincreateevent.setText(event.getScheduleLocation());
-            eventtimeincreateevent.setText(event.getScheduleTime().format(String.valueOf(DateTimeFormatter.ofPattern("HH:mm:ss"))));
-            eventdescriptionincreateevent.setText(event.getScheduleDescription());
-            eventtypeincreateevent.setText(event.getEventType());
-
-            // For the date field, you can convert the date to a string and set it as prompt text
-            eventDateincreateevent.setPromptText(event.getScheduleDate().toString());
-        } else {
-            // Handle the case when the event with the given ID is not found
-            // You can display a message or clear the fields
-            clearTextFieldsInEvent();
-        }
-    }
-
     public void onSaveBtnClickInUpdateevents(ActionEvent actionEvent) {
-        // Assuming you have the updated details in the prompt text fields
-        String eventId = eventidincreateevent.getText();
-        String eventName = eventnameincreateevent.getText();
-        String eventLocation = eventlocationincreateevent.getText();
-        String eventDescription = eventdescriptionincreateevent.getText();
-        String eventTime = String.valueOf(LocalDateTime.parse(eventtimeincreateevent.getText(), DateTimeFormatter.ofPattern("HH:mm:ss")));
-        String eventType = eventtypeincreateevent.getText();
-        LocalDate eventDate = LocalDate.parse(eventDateincreateevent.getPromptText());
+        // Get the updated event details from the text fields
+        String eventId = eventIdInUpdate.getText();
+        String eventName = eventNameInUpdate.getText();
+        String location = eventLocationInUpdate.getText();
+        String time = eventTimeInUpdate.getText();
+        String description = eventDescriptionInUpdate.getText();
+        String eventType = eventTypeInUpdate.getText();
+        String eventDate = String.valueOf(dateInUpdate.getValue());
 
-        // Convert eventTime to LocalDateTime
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDateTime localDateTime = LocalDateTime.of(eventDate, LocalTime.parse(eventTime, timeFormatter));
+        // Validate the updated details if necessary
+        // if (eventValidation == true) {
+        //     // Perform validation and update details accordingly
+        // }
 
-        // Convert LocalDateTime to Date
-        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        // Update event data in the database
+        DataBaseConnection.updateEventData(eventId, eventName, location, time, description, eventType, eventDate);
 
-        Event updatedEvent = new Event(eventId, eventName, eventLocation, eventDescription, date, localDateTime, eventType);
+        // Provide feedback to the user (e.g., show an alert)
+        showAlert("Event Updated", "Event details have been successfully updated.");
 
-        // Update the event in the database
-        DataBaseConnection.updateEventInDatabase(updatedEvent);
-
-    }
-
-    // make editions in this method
-    public void deleteEventBtnClick(ActionEvent actionEvent) {
-        // Assuming eventIdTextField is a TextField where users input the event ID to delete
-        String eventIdToDelete = searchFieldInUpdate.getText();
-
-        // Delete the event from the database
-        DataBaseConnection.deleteEventById(eventIdToDelete);
-
-        // Optionally, you can clear the text fields or update the UI as needed
-        clearTextFieldsInEvent();
-    }
-
-    public void onSearchBtnInmeetingUpdate(ActionEvent actionEvent) {
-        // Assuming eventIdTextField is a TextField where users input the event ID
-        String meetingId = searchFieldInUpdate.getText();
-
-        Meeting meeting = DataBaseConnection.getMeetingById(meetingId);
-
-        if (meeting != null) {
-            // Set prompt text for each text field with the retrieved event data
-            meetingIdInUpdate.setText(meeting.getScheduleId());
-            meetingnameInUpdate.setText(meeting.getScheduleName());
-            meetinglocationInUpdate.setText(meeting.getScheduleLocation());
-            meetingtimeInUpdate.setText(meeting.getScheduleTime().format(String.valueOf(DateTimeFormatter.ofPattern("HH:mm:ss"))));
-            meetingdescriptionInUpdate.setText(meeting.getScheduleDescription());
-            meetingtypeInUpdate.setText(meeting.getMeetingType());
-
-            // For the date field, you can convert the date to a string and set it as prompt text
-            meetingdateInUpdate.setPromptText(meeting.getScheduleDate().toString());
-        } else {
-            // Handle the case when the event with the given ID is not found
-            // You can display a message or clear the fields
-            clearTextFieldsInEvent();
-        }
-
+        // Optionally, clear the fields or set them to default values
+        eventIdInUpdate.clear();
+        eventNameInUpdate.clear();
+        eventLocationInUpdate.clear();
+        eventTimeInUpdate.clear();
+        eventDescriptionInUpdate.clear();
+        eventTypeInUpdate.clear();
+        dateInUpdate.setValue(null);
 
     }
 
     public void onsavebtninupdatemeeting(ActionEvent actionEvent) {
-        // Assuming you have the updated details in the prompt text fields
+        // Get the updated meeting details from the text fields
         String meetingId = meetingIdInUpdate.getText();
         String meetingName = meetingnameInUpdate.getText();
         String meetingLocation = meetinglocationInUpdate.getText();
+        String meetingTime = meetingtimeInUpdate.getText();
         String meetingDescription = meetingdescriptionInUpdate.getText();
-        String meetingTime = String.valueOf(LocalDateTime.parse(meetingtimeInUpdate.getText(), DateTimeFormatter.ofPattern("HH:mm:ss")));
         String meetingType = meetingtypeInUpdate.getText();
-        LocalDate meetingDate = LocalDate.parse(meetingdateInUpdate.getPromptText());
+        String meetingDate = String.valueOf(meetingdateInUpdate.getValue());
 
-        // Convert eventTime to LocalDateTime
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDateTime localDateTime = LocalDateTime.of(meetingDate, LocalTime.parse(meetingTime, timeFormatter));
+        // Validate the updated details if necessary
+        // if (meetingValidation == true) {
+        //     // Perform validation and update details accordingly
+        // }
 
-        // Convert LocalDateTime to Date
-        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        // Update meeting data in the database
+        DataBaseConnection.updateMeetingData(meetingId, meetingName, meetingLocation, meetingTime, meetingDescription, meetingType, LocalDate.parse(meetingDate));
 
-        Meeting updatedMeeting = new Meeting(meetingId, meetingName, meetingLocation, meetingDescription, date, localDateTime, meetingType);
+        // Provide feedback to the user (e.g., show an alert)
+        showAlert("Meeting Updated", "Meeting details have been successfully updated.");
 
-        // Update the event in the database
-        DataBaseConnection.updateMeetingInDatabase(updatedMeeting);
-
-    }
-
-    public void deleteMeetingdetailsClick(ActionEvent actionEvent) {
-        // Assuming eventIdTextField is a TextField where users input the event ID to delete
-        String meetingIdToDelete = searchidFieldInMeeting.getText();
-
-        // Delete the event from the database
-        DataBaseConnection.deleteMeetingById(meetingIdToDelete);
-
-        // Optionally, you can clear the text fields or update the UI as needed
-        clearTextFieldsInEvent();
-    }
-
-
-    public void searchBtnInUpdateWorkshop(ActionEvent actionEvent) {
-        // Assuming eventIdTextField is a TextField where users input the event ID
-        String workshopId = workshopIdInSearchField.getText();
-
-        Workshop workshop = DataBaseConnection.getWorkshopById(workshopId);
-
-        if (workshop != null) {
-            // Set prompt text for each text field with the retrieved event data
-            workshopidInupdate.setText(workshop.getScheduleId());
-            workshopnameInupdate.setText(workshop.getScheduleName());
-            workshoplocationInupdate.setText(workshop.getScheduleLocation());
-            workshoptimeInupdate.setText(workshop.getScheduleTime().format(String.valueOf(DateTimeFormatter.ofPattern("HH:mm:ss"))));
-            workshopdescriptionInupdate.setText(workshop.getScheduleDescription());
-            workshopconductorInupdate.setText(workshop.getConductor());
-
-            // For the date field, you can convert the date to a string and set it as prompt text
-            workshopdateInupdate.setPromptText(workshop.getScheduleDate().toString());
-        } else {
-            // Handle the case when the event with the given ID is not found
-            // You can display a message or clear the fields
-            clearTextFieldsInEvent();
-        }
+        // Optionally, clear the fields or set them to default values
+        meetingIdInUpdate.clear();
+        meetingnameInUpdate.clear();
+        meetinglocationInUpdate.clear();
+        meetingtimeInUpdate.clear();
+        meetingdescriptionInUpdate.clear();
+        meetingtypeInUpdate.clear();
+        meetingdateInUpdate.setValue(null);
 
     }
+
 
     public void saveWorkshopbtninupdate(ActionEvent actionEvent) {
-        // Assuming you have the updated details in the prompt text fields
+        // Get the updated workshop details from the text fields
         String workshopId = workshopidInupdate.getText();
         String workshopName = workshopnameInupdate.getText();
         String workshopLocation = workshoplocationInupdate.getText();
+        String workshopTime = workshoptimeInupdate.getText();
         String workshopDescription = workshopdescriptionInupdate.getText();
-        String workshopTime = String.valueOf(LocalDateTime.parse(workshoptimeInupdate.getText(), DateTimeFormatter.ofPattern("HH:mm:ss")));
         String workshopConductor = workshopconductorInupdate.getText();
-        LocalDate workshopDate = LocalDate.parse(workshopdateInupdate.getPromptText());
+        String date = String.valueOf(workshopdateInupdate.getValue());
 
-        // Convert eventTime to LocalDateTime
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDateTime localDateTime = LocalDateTime.of(workshopDate, LocalTime.parse(workshopTime, timeFormatter));
+        // Validate the updated details if necessary
+        // if (workshopValidation == true) {
+        //     // Perform validation and update details accordingly
+        // }
 
-        // Convert LocalDateTime to Date
-        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        // Update workshop data in the database
+        DataBaseConnection.updateWorkshopData(workshopId, workshopName, workshopLocation, workshopTime, workshopDescription, workshopConductor, date);
 
-        Workshop updatedWorkshop = new Workshop(workshopId, workshopName, workshopLocation, workshopDescription, date, localDateTime, workshopConductor);
+        // Provide feedback to the user (e.g., show an alert)
+        showAlert("Workshop Updated", "Workshop details have been successfully updated.");
 
-        // Update the event in the database
-        DataBaseConnection.updateWorkshopInDatabase(updatedWorkshop);
+        // Optionally, clear the fields or set them to default values
+        workshopidInupdate.clear();
+        workshopnameInupdate.clear();
+        workshoplocationInupdate.clear();
+        workshoptimeInupdate.clear();
+        workshopdescriptionInupdate.clear();
+        workshopconductorInupdate.clear();
+        workshopdateInupdate.setValue(null);
 
+       
     }
 
-    public void deleteWorkshopbtninupdate(ActionEvent actionEvent) {
-        // Assuming eventIdTextField is a TextField where users input the event ID to delete
-        String workshopIdToDelete = workshopIdInSearchField.getText();
-
-        // Delete the event from the database
-        DataBaseConnection.deleteWorkshopById(workshopIdToDelete);
-
-        // Optionally, you can clear the text fields or update the UI as needed
-        clearTextFieldsInEvent();
-    }
 
 
-    public void OnSavebtnincreateGame(ActionEvent actionEvent) {
-    }
+
 
     public void onBackbtnincreateevent(ActionEvent actionEvent) {
     }
