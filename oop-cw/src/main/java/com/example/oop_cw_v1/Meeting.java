@@ -7,8 +7,8 @@ public class Meeting extends MainSchedule {
     private String meetingType;
 
 
-    public Meeting(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, Date scheduleDate, LocalDateTime localDateTime, String scheduleTime) {
-        super(scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, LocalDateTime.parse(scheduleTime));
+    public Meeting(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime) {
+        super(scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime);
         this.meetingType = getMeetingType();
     }
 

@@ -213,22 +213,6 @@ public class HelloController {
     @FXML
     private TextField workshopIdInSearchField;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @FXML
     void backbtnincreateevents(ActionEvent event) {
 
@@ -240,7 +224,7 @@ public class HelloController {
     void clickCreateBtnClick(ActionEvent event) {
 
     }
-    
+
     public void disablePanes(){
         eventPane.setVisible(false);
         updateEvenetPane.setVisible(false);
@@ -288,7 +272,6 @@ public class HelloController {
     public void clickDeleteBtnClick(ActionEvent actionEvent) {
         disablePanes();
         updateEvenetPane.setVisible(true);
-
     }
     public void clickBackToEventPane(ActionEvent actionEvent) {
 //        disablePanes();
@@ -399,21 +382,12 @@ public class HelloController {
         String eventTime = eventtimeincreateevent.getText();
         String eventDescription = eventdescriptionincreateevent.getText();
         String eventType = eventtypeincreateevent.getText();
-        LocalDate eventDate = eventDateincreateevent.getValue();
+        String eventDate = String.valueOf(eventDateincreateevent.getValue());
 
-        // Convert eventTime to LocalDateTime
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDateTime localDateTime = LocalDateTime.of(eventDate, LocalTime.parse(eventTime, timeFormatter));
-
-        // Convert LocalDateTime to Date
-        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-
-        // Create an instance of the Event class
-        Event event = new Event(eventId, eventName, eventLocation, eventDescription, date, localDateTime, eventType);
-
-        DataBaseConnection.saveEventToDatabase(event);
-
-        clearTextFieldsInEvent();
+        // save event data to db after validation
+        // if(eventvalidation == true) make the validation and add the details in to the condition
+        Event event1 = new Event(eventId, eventName, eventLocation, eventTime, eventDescription, eventType, eventDate);
+        DataBaseConnection.insertEventData(event1.get)
 
     }
 
