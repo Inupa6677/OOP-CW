@@ -41,6 +41,7 @@ public class DataBaseConnection {
     }
 
     public static Event searchEventById(String searchEventId) {
+        return null;
     }
 
     public static void deleteEventData(String deleteEventId) {
@@ -53,6 +54,7 @@ public class DataBaseConnection {
     }
 
     public static Meeting searchMeetingById(String searchMeetingId) {
+        return null;
     }
 
     public static void deleteMeetingData(String deleteMeetingId) {
@@ -62,6 +64,7 @@ public class DataBaseConnection {
     }
 
     public static Workshop searchWorkshopById(String searchWorkshopId) {
+        return null;
     }
 
     public static void deleteWorkshopData(String deleteWorkshopId) {
@@ -77,5 +80,6 @@ public class DataBaseConnection {
     }
 
     public static void updateWorkshopData(String workshopId, String workshopName, String workshopLocation, String workshopTime, String workshopDescription, String workshopConductor, String date) {
+
     }
 }

@@ -401,7 +401,7 @@ public class HelloController {
             eventTimeInUpdate.setText(foundEvent.getScheduleTime());
             eventDescriptionInUpdate.setText(foundEvent.getScheduleDescription());
             eventTypeInUpdate.setText(foundEvent.getEventType());
-            dateInUpdate.setValue(foundEvent.getScheduleDate());
+            dateInUpdate.setValue( LocalDate.parse(foundEvent.getScheduleDate()));
         } else {
             // Event not found, provide feedback to the user (e.g., show an alert)
             showAlert("Event not found", "The event with ID " + searchEventId + " was not found.");
@@ -503,7 +503,7 @@ public class HelloController {
             meetingtimeInUpdate.setText(foundMeeting.getScheduleTime());
             meetingdescriptionInUpdate.setText(foundMeeting.getScheduleDescription());
             meetingtypeInUpdate.setText(foundMeeting.getMeetingType());
-            meetingdateInUpdate.setValue(foundMeeting.getScheduleDate());
+            meetingdateInUpdate.setValue(LocalDate.parse(foundMeeting.getScheduleDate()));
         } else {
             // Event not found, provide feedback to the user (e.g., show an alert)
             showAlert("Event not found", "The event with ID " + searchMeetingId + " was not found.");
@@ -595,7 +595,7 @@ public class HelloController {
             workshoptimeInupdate.setText(foundWorkshop.getScheduleTime());
             workshopdescriptionInupdate.setText(foundWorkshop.getScheduleDescription());
             workshopconductorInupdate.setText(foundWorkshop.getConductor());
-            workshopdateInupdate.setValue(foundWorkshop.getScheduleDate());
+            workshopdateInupdate.setValue(LocalDate.parse(foundWorkshop.getScheduleDate()));
 
         } else {
             // Event not found, provide feedback to the user (e.g., show an alert)
@@ -754,7 +754,7 @@ public class HelloController {
         workshopconductorInupdate.clear();
         workshopdateInupdate.setValue(null);
 
-       
+
     }
 
 
@@ -762,5 +762,14 @@ public class HelloController {
 
 
     public void onBackbtnincreateevent(ActionEvent actionEvent) {
+    }
+
+    public void OnSavebtnincreateGame(ActionEvent actionEvent) {
+    }
+
+    public void ondeletebtnclickingame(ActionEvent actionEvent) {
+    }
+
+    public void onSavebtnclickingame(ActionEvent actionEvent) {
     }
 }
