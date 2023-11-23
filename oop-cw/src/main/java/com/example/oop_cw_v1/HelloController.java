@@ -267,10 +267,28 @@ public class HelloController {
         selectEventTypePane.setVisible(true);
     }
 
-    public void clickUpdateBtnClick(ActionEvent actionEvent) {
+    public void clickUpdateBtnClick() throws IOException {
         disablePanes();
-        updateEvenetPane.setVisible(true);
+        selectUpdateEventTypePane.setVisible(true);
     }
+    public void clickDeleteBtnClick() throws IOException {
+        disablePanes();
+        selectUpdateEventTypePane.setVisible(true);
+    }
+
+    public void backBtninselectingevents() throws IOException {
+        disablePanes();
+        eventPane.setVisible(true);
+    }
+
+    public void clickBackToEventPane() throws IOException {
+        disablePanes();
+        selectUpdateEventTypePane.setVisible(true);
+    }
+
+
+
+
 
     public void clickDeleteBtnClick(ActionEvent actionEvent) {
         disablePanes();
