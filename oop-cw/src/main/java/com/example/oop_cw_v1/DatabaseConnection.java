@@ -39,25 +39,6 @@ public class DatabaseConnection {
         }
     }
 
-    //Getting data to combobox in the attendance
-    public List<String> fetchDataForComboBox(String query){
-        List<String> data = new ArrayList<>();
-        try {
-            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                data.add(resultSet.getString(1));
-            }
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return data;
-    }
     // inserting data to advisor table in the database
     public static void insertAdvisorData(String advisorID,String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
         try {
@@ -169,6 +150,84 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
 
+    }
+
+    //Getting data to combobox in the attendance
+    public List<String> fetchDataForComboBox(String query){
+        List<String> data = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                data.add(resultSet.getString(1));
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    //get relevant events for the selected club
+    public List<String> fetchEventsForComboBox(String selectedClub) {
+        List<String> eventData = new ArrayList<>();
+
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            //query to fetch events based on the selected club
+            String query = "SELECT ce.event_name FROM club_event ce JOIN club c ON c.club_id = ce.club_id WHERE c.club_name = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, selectedClub);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                eventData.add(resultSet.getString("event_name"));
+            }
+            connection.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return eventData;
+    }
+
+    //getting student info to tableview of attendance track
+    public List<AttendanceData> fetchStudentDetails(String selectedClub) {
+        List<AttendanceData> studentDetails = new ArrayList<>();
+
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            // Prepare a query to fetch student details based on the selected club
+            String query = "SELECT s.student_id, s.first_name, s.last_name FROM student s JOIN join_club jc ON s.student_id = jc.student_id JOIN club cl ON cl.club_id = jc.club_id WHERE cl.club_name = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, selectedClub);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String studentID = resultSet.getString("student_id");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+                boolean attendance = resultSet.getBoolean("attendance");
+
+                AttendanceData attendanceData = new AttendanceData(studentID, firstName, lastName, attendance);
+                studentDetails.add(attendanceData);
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return studentDetails;
     }
 
 }

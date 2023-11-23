@@ -100,7 +100,9 @@ public class HelloController {
     @FXML
     private TableColumn<AttendanceData, String> col_studentID;
     @FXML
-    private TableColumn<AttendanceData, String> col_studentName;
+    private TableColumn<AttendanceData, String> col_firstName;
+    @FXML
+    private TableColumn<AttendanceData, String> col_lastName;
     @FXML
     private TableView<AttendanceData> table_attendance;
     @FXML
@@ -424,10 +426,11 @@ public class HelloController {
     }
 
     private DatabaseConnection databaseConnection;
-    public void initialize() {
+    public void initializeAttendance() {
         // Initialize columns
         col_studentID.setCellValueFactory(new PropertyValueFactory<>("studentID"));
-        col_studentName.setCellValueFactory(new PropertyValueFactory<>("studentName"));
+        col_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        col_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
         // Column with a custom cell factory for Yes/No
         col_attendance.setCellValueFactory(new PropertyValueFactory<>("attendance"));
@@ -450,18 +453,15 @@ public class HelloController {
 
         databaseConnection = new DatabaseConnection();
 
-        // Add sample data (replace this with your actual data)
-        attendanceDataList = FXCollections.observableArrayList(
-                new AttendanceData("123", "John Doe", false),
-                new AttendanceData("456", "Jane Doe", false)
-        );
-
-        // Add the data to the TableView
-        table_attendance.setItems(attendanceDataList);
+        // Initialize ComboBox event listener
+        combobox_selectClub.setOnAction(event -> handleClubSelection());
 
         // Populate ComboBoxes with data from the database
         populateComboBoxes();
 
+        // Add sample data (replace this with your actual data)
+        attendanceDataList = FXCollections.observableArrayList();
+        table_attendance.setItems(attendanceDataList);
     }
 
     @FXML
@@ -469,17 +469,49 @@ public class HelloController {
         // Iterate through the data list and print the values
         for (AttendanceData data : attendanceDataList) {
             System.out.println("Student ID: " + data.getStudentID() +
-                    ", Student Name: " + data.getStudentName() +
+                    ", Student Name: " + data.getStudentFirstName() +
+                    ", Student Name: " + data.getStudentLastName() +
                     ", Attendance: " + data.getAttendance());
         }
     }
 
-    private void populateComboBoxes(){
+    private void populateComboBoxes() {
         List<String> clubData = databaseConnection.fetchDataForComboBox("SELECT club_name FROM club");
-        List<String> eventData = databaseConnection.fetchDataForComboBox("SELECT event_name FROM club_event");
 
-        // Add data to ComboBoxes
+        // Add data to ComboBox
         combobox_selectClub.setItems(FXCollections.observableArrayList(clubData));
+    }
+
+    @FXML
+    private void handleClubSelection() {
+        // Get the selected club from the ComboBox
+        String selectedClub = combobox_selectClub.getValue();
+
+        if (selectedClub != null) {
+            // Fetch and display student details for the selected club
+            fetchAndDisplayStudentDetails(selectedClub);
+
+            // Fetch and populate events for the selected club
+            populateEventsComboBox(selectedClub);
+        }
+    }
+
+    private void populateEventsComboBox(String selectedClub) {
+        List<String> eventData = databaseConnection.fetchEventsForComboBox(selectedClub);
+
+        // Add data to ComboBox
         combobox_selectEvent.setItems(FXCollections.observableArrayList(eventData));
+    }
+
+
+    private void fetchAndDisplayStudentDetails(String selectedClub) {
+        // Fetch student details from the database based on the selected club
+        List<AttendanceData> studentDetails = databaseConnection.fetchStudentDetails(selectedClub);
+
+        // Clear existing data in the TableView
+        attendanceDataList.clear();
+
+        // Add the fetched student details to the TableView
+        attendanceDataList.addAll(studentDetails);
     }
 }

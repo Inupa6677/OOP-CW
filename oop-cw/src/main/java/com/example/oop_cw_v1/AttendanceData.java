@@ -5,12 +5,14 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class AttendanceData {
     private final SimpleStringProperty studentID;
-    private final SimpleStringProperty studentName;
+    private final SimpleStringProperty firstName;
+    private final SimpleStringProperty lastName;
     private final SimpleBooleanProperty attendance;
 
-    public AttendanceData(String studentID, String studentName, boolean attendance) {
+    public AttendanceData(String studentID, String firstName, String lastName, boolean attendance) {
         this.studentID = new SimpleStringProperty(studentID);
-        this.studentName = new SimpleStringProperty(studentName);
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
         this.attendance = new SimpleBooleanProperty(attendance);
     }
 
@@ -26,16 +28,28 @@ public class AttendanceData {
         this.studentID.set(studentID);
     }
 
-    public String getStudentName() {
-        return studentName.get();
+    public String getStudentFirstName() {
+        return firstName.get();
     }
 
-    public SimpleStringProperty studentNameProperty() {
-        return studentName;
+    public SimpleStringProperty studentFirstNameProperty() {
+        return firstName;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName.set(studentName);
+    public void setStudentFirstName(String studentName) {
+        this.firstName.set(String.valueOf(firstName));
+    }
+
+    public String getStudentLastName() {
+        return lastName.get();
+    }
+
+    public SimpleStringProperty studentLastNameProperty() {
+        return lastName;
+    }
+
+    public void setStudentLastName(String studentName) {
+        this.lastName.set(String.valueOf(lastName));
     }
 
     public boolean getAttendance() {
