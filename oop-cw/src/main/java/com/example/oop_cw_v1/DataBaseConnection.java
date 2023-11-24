@@ -13,7 +13,7 @@ public class DataBaseConnection {
     private static final String JDBC_URL = "jdbc:mysql:sacms";
     private static final String USERNAME = "your_username";
     private static final String PASSWORD = "your_password";
-    private static Connection connection;
+    
 
     public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleTime, String scheduleDescription, String eventType, String scheduleDate) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
