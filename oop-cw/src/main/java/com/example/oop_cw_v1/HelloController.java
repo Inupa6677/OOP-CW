@@ -241,7 +241,7 @@ public class HelloController {
     }
 
     public void disablePanes(){
-        eventPane.setVisible(false);
+        selectEventTypeInCreatePane.setVisible(false);
         updateEvenetPane.setVisible(false);
         eventCreationPane.setVisible(false);
         selectEventTypePane.setVisible(false);
@@ -253,7 +253,6 @@ public class HelloController {
         updateMeetingDetailsPane.setVisible(false);
         updateWorkshopDetailsPane.setVisible(false);
         updateGameDetailsPane.setVisible(false);
-        selectEventTypeInCreatePane.setVisible(false);
         scheduleEventPane.setVisible(false);
         updateMeetingPane.setVisible(false);
     }
