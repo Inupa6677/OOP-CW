@@ -142,6 +142,10 @@ public class HelloController implements Initializable {
         disableGroups();
         groupFour.setVisible(true);
     }
+    public void backToMainMenu(ActionEvent actionEvent) {
+        disableGroups();
+        groupFirst.setVisible(true);
+    }
 
     public void manageClick(ActionEvent actionEvent) {
         disableGroups();
@@ -348,6 +352,7 @@ public class HelloController implements Initializable {
 
     public void createClubData(ActionEvent actionEvent) {
     }
+
 
 
 }

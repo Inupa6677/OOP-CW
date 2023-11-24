@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oopcw.HelloController">
    <children>
-      <Group fx:id="groupFirst">
+      <Group fx:id="groupFirst" visible="false">
          <children>
             <Pane prefHeight="550.0" prefWidth="735.0" style="-fx-background-color: Black;">
                <children>
@@ -115,7 +115,7 @@
             </Pane>
          </children>
       </Group>
-      <Group fx:id="groupThree" visible="false">
+      <Group fx:id="groupThree">
          <children>
             <Pane prefHeight="550.0" prefWidth="735.0" style="-fx-background-color: white;">
                <children>
@@ -155,7 +155,7 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Button layoutX="27.0" layoutY="16.0" mnemonicParsing="false" text="Back">
+                  <Button layoutX="27.0" layoutY="16.0" mnemonicParsing="false" onAction="#backToMainMenu" text="Back">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
