@@ -429,8 +429,8 @@ public class HelloController {
     public void initialize() {
         // Initialize columns
         col_studentID.setCellValueFactory(new PropertyValueFactory<>("studentID"));
-        col_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        col_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        col_firstName.setCellValueFactory(new PropertyValueFactory<>("studentFirstName"));
+        col_lastName.setCellValueFactory(new PropertyValueFactory<>("studentLastName"));
 
         // Column with a custom cell factory for Yes/No
         col_attendance.setCellValueFactory(new PropertyValueFactory<>("attendance"));

@@ -36,8 +36,8 @@ public class AttendanceData {
         return firstName;
     }
 
-    public void setStudentFirstName(String studentName) {
-        this.firstName.set(String.valueOf(firstName));
+    public void setStudentFirstName(String firstName) {
+        this.firstName.set(firstName);
     }
 
     public String getStudentLastName() {
@@ -48,8 +48,8 @@ public class AttendanceData {
         return lastName;
     }
 
-    public void setStudentLastName(String studentName) {
-        this.lastName.set(String.valueOf(lastName));
+    public void setStudentLastName(String lastName) {
+        this.lastName.set(lastName);
     }
 
     public boolean getAttendance() {
