@@ -13,9 +13,14 @@ public abstract class MainSchedule {
     private String scheduleDate;
     private String scheduleTime;
 
+
+    public static Event getEventDetailsById(String eventID){
+        return DataBaseConnection.searchEventById(eventID);
+    }
     public String getScheduleId() {
         return scheduleId;
     }
+
 
     public void setScheduleId(String scheduleId) {
         this.scheduleId = scheduleId;

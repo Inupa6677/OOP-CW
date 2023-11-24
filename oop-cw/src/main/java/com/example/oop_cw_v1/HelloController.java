@@ -235,10 +235,7 @@ public class HelloController {
 
 
 
-    @FXML
-    void clickCreateBtnClick(ActionEvent event) {
 
-    }
 
     public void disablePanes(){
         selectEventTypeInCreatePane.setVisible(false);
@@ -263,6 +260,47 @@ public class HelloController {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    void clickCreateBtnClick(ActionEvent event) {
+        disablePanes();
+        selectEventTypeInCreatePane.setVisible(true);
+    }
+
+    void backBtninselectingevents(ActionEvent event) {
+        disablePanes();
+        scheduleEventPane.setVisible(true);
+    }
+
+    void onBackbtnincreateevent(ActionEvent event) {
+        disablePanes();
+        selectEventTypeInCreatePane.setVisible(true);
+    }
+
+    void onBackBtnInCreateMeeting(ActionEvent event) {
+        disablePanes();
+        selectEventTypeInCreatePane.setVisible(true);
+    }
+
+    void onBackBtnClickInCreateWorkshop(ActionEvent event) {
+        disablePanes();
+        selectEventTypeInCreatePane.setVisible(true);
+    }
+
+    void onBackBtnClickInselecttoupdate(ActionEvent event) {
+        disablePanes();
+        scheduleEventPane.setVisible(true);
+    }
+
+    void clickDeleteBtnClick(ActionEvent event) {
+        disablePanes();
+        selectUpdateEventTypePane.setVisible(true);
+    }
+
+
+
+
+
 
     public void clickCreateBtnClick() throws IOException {
         disablePanes();
@@ -352,13 +390,6 @@ public class HelloController {
         disablePanes();
         selectUpdateEventTypePane.setVisible(true);
     }
-
-
-
-    public void clickDeleteBtnClick(ActionEvent actionEvent) {
-        disablePanes();
-        updateEvenetPane.setVisible(true);
-    }
     public void clickBackToEventPane(ActionEvent actionEvent) {
 //        disablePanes();
 //        selectEventTypePane.setVisible(true);
@@ -390,25 +421,6 @@ public class HelloController {
     void meetingBtninselectingevents(ActionEvent event) {
         disablePanes();
         createMeetingPane.setVisible(true);
-
-    }
-
-
-    public void backBtninselectingevents(ActionEvent actionEvent) {
-        disablePanes();
-        eventPane.setVisible(true);
-    }
-
-    public void onBackBtnInCreateMeeting(ActionEvent actionEvent) {
-        disablePanes();
-        selectEventTypePane.setVisible(true);
-    }
-
-
-
-    public void onBackBtnClickInCreateWorkshop(ActionEvent actionEvent) {
-        disablePanes();
-        selectEventTypePane.setVisible(true);
     }
 
 
@@ -426,12 +438,6 @@ public class HelloController {
     public void onWorkshopBtnClickInselecttoupdate(ActionEvent actionEvent) {
        disablePanes();
         updateWorkshopPane.setVisible(true);
-    }
-
-
-    public void onBackBtnClickInselecttoupdate(ActionEvent actionEvent) {
-        disablePanes();
-        selectUpdateEventTypePane.setVisible(true);
     }
 
     public void onBackbtnincreategame(ActionEvent actionEvent) {
@@ -467,7 +473,7 @@ public class HelloController {
     public void searchEventIdInUpdate(ActionEvent actionEvent) {
         String searchEventId = eventIdInUpdate.getText();
 
-        Event foundEvent = DataBaseConnection.searchEventById(searchEventId);
+        Event foundEvent = MainSchedule.getEventDetailsById(searchEventId);
 
         if (foundEvent != null){
             // if event found then set text to update
@@ -830,16 +836,7 @@ public class HelloController {
         workshopconductorInupdate.clear();
         workshopdateInupdate.setValue(null);
 
-
     }
-
-
-
-
-
-    public void onBackbtnincreateevent(ActionEvent actionEvent) {
-    }
-
     public void OnSavebtnincreateGame(ActionEvent actionEvent) {
     }
 
