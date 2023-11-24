@@ -390,10 +390,6 @@ public class HelloController {
         disablePanes();
         selectUpdateEventTypePane.setVisible(true);
     }
-    public void clickBackToEventPane(ActionEvent actionEvent) {
-//        disablePanes();
-//        selectEventTypePane.setVisible(true);
-    }
 
 
     @FXML
@@ -575,7 +571,7 @@ public class HelloController {
     public void onSearchBtnInmeetingUpdate(ActionEvent actionEvent) {
         String searchMeetingId = searchidFieldInMeeting.getText();
 
-        Meeting foundMeeting = DataBaseConnection.searchMeetingById(searchMeetingId);
+        Meeting foundMeeting = MainSchedule.getMeetingDetailsById(searchMeetingId);
 
         if (foundMeeting != null){
             // if event found then set text to update
@@ -667,7 +663,8 @@ public class HelloController {
     public void searchBtnInUpdateWorkshop(ActionEvent actionEvent) {
         String searchWorkshopId = workshopIdInSearchField.getText();
 
-        Workshop foundWorkshop = DataBaseConnection.searchWorkshopById(searchWorkshopId);
+        Workshop foundWorkshop = MainSchedule.getWorkshopDetailsById(searchWorkshopId);
+
 
         if (foundWorkshop != null){
             // if event found then set text to update

@@ -17,6 +17,17 @@ public abstract class MainSchedule {
     public static Event getEventDetailsById(String eventID){
         return DataBaseConnection.searchEventById(eventID);
     }
+
+    public static Meeting getMeetingDetailsById(String meetingID){
+        return DataBaseConnection.searchMeetingById(meetingID);
+    }
+
+    public static Workshop getWorkshopDetailsById(String workshopID){
+        return DataBaseConnection.searchWorkshopById(workshopID);
+    }
+
+
+
     public String getScheduleId() {
         return scheduleId;
     }

@@ -1,14 +1,39 @@
 package com.example.oop_cw_v1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DataBaseConnection {
 
     private static final String JDBC_URL = "jdbc:mysql:sacms";
     private static final String USERNAME = "your_username";
     private static final String PASSWORD = "your_password";
+    private static Connection connection;
 
+    public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleTime, String scheduleDescription, String eventType, String scheduleDate) {
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
+            String sql = "INSERT INTO events (scheduleId, scheduleName, scheduleLocation, scheduleTime, scheduleDescription, eventType, scheduleDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, scheduleId);
+                preparedStatement.setString(2, scheduleName);
+                preparedStatement.setString(3, scheduleLocation);
+                preparedStatement.setString(4, scheduleTime);
+                preparedStatement.setString(5, scheduleDescription);
+                preparedStatement.setString(6, eventType);
+                preparedStatement.setString(7, scheduleDate);
+
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+        }
+    }
 
 
     public static void deleteEventById(String eventIdToDelete) {
@@ -37,8 +62,7 @@ public class DataBaseConnection {
     public static void deleteWorkshopById(String workshopIdToDelete) {
     }
 
-    public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleTime, String scheduleDescription, String eventType, String time) {
-    }
+
 
     public static Event searchEventById(String searchEventId) {
         return null;
@@ -82,4 +106,6 @@ public class DataBaseConnection {
     public static void updateWorkshopData(String workshopId, String workshopName, String workshopLocation, String workshopTime, String workshopDescription, String workshopConductor, String date) {
 
     }
+
+
 }
