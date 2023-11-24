@@ -11,8 +11,8 @@ import java.util.HashMap;
 public class DataBaseConnection {
 
     private static final String JDBC_URL = "jdbc:mysql:sacms";
-    private static final String USERNAME = "your_username";
-    private static final String PASSWORD = "your_password";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
     
 
     public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleTime, String scheduleDescription, String eventType, String scheduleDate) {
