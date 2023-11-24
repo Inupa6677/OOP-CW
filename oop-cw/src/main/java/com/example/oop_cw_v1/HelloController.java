@@ -242,19 +242,16 @@ public class HelloController {
 
     public void disablePanes(){
         selectEventTypeInCreatePane.setVisible(false);
-        updateEvenetPane.setVisible(false);
+        scheduleEventPane.setVisible(false);
         eventCreationPane.setVisible(false);
-        selectEventTypePane.setVisible(false);
         createMeetingPane.setVisible(false);
         createWorkshopPane.setVisible(false);
-        selectEventTypePane.setVisible(false);
-        createGamePane.setVisible(false);
+        selectUpdateEventTypePane.setVisible(false);
         updateEvenetPane.setVisible(false);
-        updateMeetingDetailsPane.setVisible(false);
-        updateWorkshopDetailsPane.setVisible(false);
-        updateGameDetailsPane.setVisible(false);
-        scheduleEventPane.setVisible(false);
         updateMeetingPane.setVisible(false);
+        updateWorkshopPane.setVisible(false);
+
+
     }
 
     @FXML
@@ -281,7 +278,12 @@ public class HelloController {
         selectUpdateEventTypePane.setVisible(true);
     }
 
+
     public void backBtninselectingevents() throws IOException {
+        disablePanes();
+        scheduleEventPane.setVisible(true);
+    }
+    public void onBackBtnClickInselecttoupdate() throws IOException {
         disablePanes();
         scheduleEventPane.setVisible(true);
     }
@@ -351,18 +353,6 @@ public class HelloController {
         selectUpdateEventTypePane.setVisible(true);
     }
 
-    public void onBackBtnClickInselecttoupdate() throws IOException {
-        disablePanes();
-        scheduleEventPane.setVisible(true);
-    }
-
-
-
-
-
-
-
-
 
 
     public void clickDeleteBtnClick(ActionEvent actionEvent) {
@@ -430,18 +420,14 @@ public class HelloController {
 
     public void onMeetingBtnClickInselecttoupdate(ActionEvent actionEvent) {
         disablePanes();
-        updateMeetingDetailsPane.setVisible(true);
+        updateMeetingPane.setVisible(true);
     }
 
     public void onWorkshopBtnClickInselecttoupdate(ActionEvent actionEvent) {
        disablePanes();
-       updateWorkshopDetailsPane.setVisible(true);
+        updateWorkshopPane.setVisible(true);
     }
 
-    public void onGameBtnClickInselecttoupdate(ActionEvent actionEvent) {
-        disablePanes();
-        updateGameDetailsPane.setVisible(true);
-    }
 
     public void onBackBtnClickInselecttoupdate(ActionEvent actionEvent) {
         disablePanes();
@@ -861,5 +847,8 @@ public class HelloController {
     }
 
     public void onSavebtnclickingame(ActionEvent actionEvent) {
+    }
+
+    public void onGameBtnClickInselecttoupdate(ActionEvent actionEvent) {
     }
 }
