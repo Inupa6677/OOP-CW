@@ -13,7 +13,7 @@ public class DatabaseConnection {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
-            String insertQuery = "INSERT INTO club (Club_id,Club_name,Members,Advisor_id,description) VALUES (?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO club (Club_id,Club_name,Members,Advisor_id,description,sport,academic_type) VALUES (?, ?, ?, ?, ?,?,?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
 
@@ -22,6 +22,19 @@ public class DatabaseConnection {
             preparedStatement.setInt(3, club.getMembers());
             preparedStatement.setString(4, club.getAdvisorId());
             preparedStatement.setString(5, club.getClubDescription());
+
+            // Check if the club is an instance of SportClub or AcademicClub
+            if (club instanceof SportClub) {
+                preparedStatement.setString(6, ((SportClub) club).getSport());
+                preparedStatement.setNull(7, Types.VARCHAR);  // Set academic_type to NULL for SportClub
+            } else if (club instanceof AcademicClub) {
+                preparedStatement.setNull(6, Types.VARCHAR);   // Set sport to NULL for AcademicClub
+                preparedStatement.setString(7, ((AcademicClub) club).getAcademicType());
+            } else {
+                // This block is for the base class (Club) without additional attributes
+                preparedStatement.setNull(6, Types.VARCHAR);
+                preparedStatement.setNull(7, Types.VARCHAR);
+            }
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {

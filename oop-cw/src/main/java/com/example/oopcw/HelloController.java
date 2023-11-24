@@ -24,19 +24,28 @@ public class HelloController implements Initializable {
     private Button btnCreateClubData;
 
     @FXML
-    private TextField txtAdvisorId;
+    private Button btnCreateSportClubData;
+    @FXML
+    private Button btnCreateAcademicClub;
+
 
     @FXML
-    private TextField txtDescription;
+    private TextField txtSportAdvisorId;
 
     @FXML
-    private TextField txtId;
+    private TextField txtSportClubDescription;
 
     @FXML
-    private TextField txtMembers;
+    private TextField txtSportClubId;
 
     @FXML
-    private TextField txtName;
+    private TextField txtSportClubName;
+
+    @FXML
+    private TextField txtSportMembers;
+
+    @FXML
+    private TextField txtSportSport;
 
     @FXML
     private TableView<Club> clubTable;
@@ -67,23 +76,50 @@ public class HelloController implements Initializable {
     private TextField txtManageMembers;
 
     @FXML
-    private Group groupFirst;
+    private TextField txtAcademicAcademicType;
 
     @FXML
-    private Group groupSecond;
+    private TextField txtAcademicAdvisorId;
+
+    @FXML
+    private TextField txtAcademicClubDescription;
+
+    @FXML
+    private TextField txtAcademicClubId;
+
+    @FXML
+    private TextField txtAcademicClubMembers;
+
+    @FXML
+    private TextField txtAcademicClubName;
+
+    @FXML
+    private Group groupFirst;
 
     @FXML
     private Group groupThree;
 
+    @FXML
+    private Group groupFour;
+    @FXML
+    private Group groupFive;
+
+    @FXML
+    private Group groupSix;
+
     public void disableGroups(){
         groupFirst.setVisible(false);
-        groupSecond.setVisible(false);
         groupThree.setVisible(false);
+        groupFour.setVisible(false);
+        groupFour.setVisible(false);
+        groupFive.setVisible(false);
+        groupSix.setVisible(false);
+
     }
 
     public void onClickCreateClub(ActionEvent actionEvent) {
         disableGroups();
-        groupSecond.setVisible(true);
+        groupFour.setVisible(true);
 
     }
 
@@ -94,19 +130,49 @@ public class HelloController implements Initializable {
 
     }
 
+    public void btnBackToMainClick(ActionEvent actionEvent) {
+        disableGroups();
+        groupFirst.setVisible(true);
+    }
+    public void btnBackToChooseA(ActionEvent actionEvent) {
+        disableGroups();
+        groupFour.setVisible(true);
+    }
+    public void btnBackToChooseS(ActionEvent actionEvent){
+        disableGroups();
+        groupFour.setVisible(true);
+    }
+
+    public void manageClick(ActionEvent actionEvent) {
+        disableGroups();
+        groupThree.setVisible(true);
+        populateClubTable();
+    }
+
+    public void createSportClub(ActionEvent actionEvent) {
+        disableGroups();
+        groupFive.setVisible(true);
+    }
+
+    public void createAcademicClub(ActionEvent actionEvent) {
+        disableGroups();
+        groupSix.setVisible(true);
+    }
+
     @FXML
-    void createClubData(ActionEvent event) {
-        String clubID = txtId.getText();
-        String clubName = txtName.getText();
-        String members = txtMembers.getText();
-        String advisorId = txtAdvisorId.getText();
-        String description = txtDescription.getText();
+    void createSportClubData(ActionEvent actionEvent) {
+        String clubID = txtSportClubId.getText();
+        String clubName = txtSportClubName.getText();
+        String members = txtSportMembers.getText();
+        String advisorId = txtSportAdvisorId.getText();
+        String description = txtSportClubDescription.getText();
+        String sport = txtSportSport.getText();
 
         boolean isValid = true;
 
         // Validate members
         if (!isValidNumber(members)) {
-            txtMembers.setStyle("-fx-text-fill: red;");
+            txtSportMembers.setStyle("-fx-text-fill: red;");
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Members");
             alert.setHeaderText(null);
@@ -117,18 +183,21 @@ public class HelloController implements Initializable {
 
         if (isValid) {
             // Add the data to the database
-            Club club = new Club(clubID, clubName, members, advisorId, description);
+            SportClub sportClub = new SportClub(clubID, clubName, members, advisorId, description,sport);
             DatabaseConnection.testDatabaseConnection();
-            DatabaseConnection.insertClubData(club);
+            DatabaseConnection.insertClubData(sportClub);
+            txtSportClubId.clear();
+            txtSportClubName.clear();
+            txtSportClubName.clear();
+            txtSportMembers.clear();
+            txtSportAdvisorId.clear();
+            txtSportClubDescription.clear();
+            txtSportSport.clear();
 
-            txtId.clear();
-            txtName.clear();
-            txtMembers.clear();
-            txtAdvisorId.clear();
-            txtDescription.clear();
         }
 
     }
+
     private boolean isValidNumber(String input) {
         try {
             int parsedValue = Integer.parseInt(input);
@@ -137,17 +206,43 @@ public class HelloController implements Initializable {
             return false;
         }
     }
+    public void createAcademicClubData(ActionEvent actionEvent) {
+        String clubID = txtAcademicClubId.getText();
+        String clubName = txtAcademicClubName.getText();
+        String members = txtAcademicClubMembers.getText();
+        String advisorId = txtAcademicAdvisorId.getText();
+        String description = txtAcademicClubDescription.getText();
+        String academicType = txtAcademicAcademicType.getText();
 
-    public void btnBackToMainClick(ActionEvent actionEvent) {
-        disableGroups();
-        groupFirst.setVisible(true);
+        boolean isValid = true;
+
+        // Validate members
+        if (!isValidNumber(members)) {
+            txtAcademicClubMembers.setStyle("-fx-text-fill: red;");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Members");
+            alert.setHeaderText(null);
+            alert.setContentText("Enter only integers for Members.");
+            alert.showAndWait();
+            isValid = false;
+        }
+
+        if (isValid) {
+            // Add the data to the database
+            AcademicClub academicClub = new AcademicClub(clubID, clubName, members, advisorId, description,academicType);
+            DatabaseConnection.testDatabaseConnection();
+            DatabaseConnection.insertClubData(academicClub);
+
+            txtAcademicClubId.clear();
+            txtAcademicClubName.clear();
+            txtAcademicClubMembers.clear();
+            txtAcademicAdvisorId.clear();
+            txtAcademicClubDescription.clear();
+            txtAcademicAcademicType.clear();
+
+        }
     }
 
-    public void manageClick(ActionEvent actionEvent) {
-        disableGroups();
-        groupThree.setVisible(true);
-        populateClubTable();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -237,7 +332,7 @@ public class HelloController implements Initializable {
     }
 
     private void refreshClubTable() {
-        // Get the updated club data from the database
+        // Get updated club data from database
         List<Club> updatedClubList = DatabaseConnection.getClubData();
 
         // Clear the existing items in the TableView
@@ -249,6 +344,12 @@ public class HelloController implements Initializable {
         // Refresh the TableView
         clubTable.refresh();
     }
+
+
+    public void createClubData(ActionEvent actionEvent) {
+    }
+
+
 }
 
 
