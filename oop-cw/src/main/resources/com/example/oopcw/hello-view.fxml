@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oopcw.HelloController">
    <children>
-      <Group fx:id="groupFirst" visible="false">
+      <Group fx:id="groupFirst">
          <children>
             <Pane prefHeight="550.0" prefWidth="735.0" style="-fx-background-color: Black;">
                <children>
@@ -51,71 +51,7 @@
             </Pane>
          </children>
       </Group>
-      <Group fx:id="groupSecond" visible="false">
-         <children>
-            <Pane prefHeight="550.0" prefWidth="735.0" style="-fx-background-color: white;">
-               <children>
-                  <Label layoutX="277.0" layoutY="14.0" prefHeight="51.0" prefWidth="197.0" text="Create Club">
-                     <font>
-                        <Font name="System Bold" size="35.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="75.0" layoutY="106.0" prefHeight="30.0" prefWidth="107.0" text="01. Club ID">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="75.0" layoutY="187.0" prefHeight="30.0" prefWidth="120.0" text="03. Members">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="75.0" layoutY="146.0" prefHeight="30.0" prefWidth="135.0" text="02. Club Name">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="75.0" layoutY="227.0" prefHeight="30.0" prefWidth="188.0" text="04. Advisor ID">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtId" layoutX="301.0" layoutY="109.0" prefHeight="25.0" prefWidth="365.0" promptText="Aa023" />
-                  <TextField fx:id="txtName" layoutX="301.0" layoutY="149.0" prefHeight="25.0" prefWidth="365.0" promptText="Eg: Rotaract" />
-                  <TextField fx:id="txtMembers" layoutX="301.0" layoutY="190.0" prefHeight="25.0" prefWidth="365.0" promptText="12345" />
-                  <Label layoutX="75.0" layoutY="267.0" prefHeight="30.0" prefWidth="188.0" text="05. Club Description">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtAdvisorId" layoutX="301.0" layoutY="230.0" prefHeight="25.0" prefWidth="365.0" promptText="00000" />
-                  <TextField fx:id="txtDescription" layoutX="301.0" layoutY="270.0" prefHeight="25.0" prefWidth="365.0" promptText="Eg: Nothing is impossible" />
-                  <Button fx:id="btnBack" layoutX="14.0" layoutY="505.0" mnemonicParsing="false" onAction="#backToAdvisorClick" prefHeight="30.0" prefWidth="70.0" text="Back">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnCreateClubData" layoutX="651.0" layoutY="505.0" mnemonicParsing="false" onAction="#createClubData" prefHeight="30.0" prefWidth="70.0" text="Create">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <ImageView fitHeight="246.0" fitWidth="392.0" layoutX="179.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@cloud-fea.gif" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-         </children>
-      </Group>
-      <Group fx:id="groupThree">
+      <Group fx:id="groupThree" visible="false">
          <children>
             <Pane prefHeight="550.0" prefWidth="735.0" style="-fx-background-color: white;">
                <children>
@@ -141,14 +77,14 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtSearchClubId" layoutX="186.0" layoutY="75.0" prefHeight="25.0" prefWidth="128.0" />
-                  <Button layoutX="639.0" layoutY="356.0" mnemonicParsing="false" onAction="#updateClub" text="Update Club">
+                  <Button layoutX="628.0" layoutY="511.0" mnemonicParsing="false" onAction="#updateClub" text="Update Club">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Button layoutX="545.0" layoutY="356.0" mnemonicParsing="false" onAction="#deleteClub" text="Delete Club">
+                  <Button layoutX="492.0" layoutY="511.0" mnemonicParsing="false" onAction="#deleteClub" text="Delete Club">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -203,21 +139,16 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="176.0" layoutY="481.0" />
-                  <TextField layoutX="176.0" layoutY="511.0" />
-                  <Button layoutX="543.0" layoutY="509.0" mnemonicParsing="false" text="Sport">
+                  <TextField fx:id="txtManageSport" layoutX="176.0" layoutY="481.0" />
+                  <TextField fx:id="txtManageAcademic" layoutX="176.0" layoutY="511.0" />
+                  <Button layoutX="633.0" layoutY="355.0" mnemonicParsing="false" onAction="#importClubData" text="Import Data">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                      <font>
                         <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Button layoutX="639.0" layoutY="509.0" mnemonicParsing="false" text="Academic">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
-                  <Label layoutX="451.0" layoutY="470.0" prefHeight="27.0" prefWidth="270.0" text="Choose Club For Update Or View">
-                     <font>
-                        <Font size="18.0" />
                      </font>
-                  </Label>
+                  </Button>
                </children>
             </Pane>
          </children>
@@ -230,7 +161,7 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff01f" height="550.0" layoutX="376.0" stroke="TRANSPARENT" strokeType="INSIDE" width="364.0" />
                   <ImageView fitHeight="297.0" fitWidth="735.0" layoutX="3.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Laurent%20Batel%20on%20Behance.gif" />
+                        <Image url="@Laurent Batel on Behance.gif" />
                      </image>
                   </ImageView>
                   <Button layoutX="143.0" layoutY="456.0" mnemonicParsing="false" onAction="#createSportClub" prefHeight="51.0" prefWidth="86.0" text="Sport Club">

@@ -81,6 +81,11 @@ public class HelloController implements Initializable {
     private TextField txtManageMembers;
 
     @FXML
+    private TextField txtManageAcademic;
+    @FXML
+    private TextField txtManageSport;
+
+    @FXML
     private TextField txtAcademicAcademicType;
 
     @FXML
@@ -121,20 +126,16 @@ public class HelloController implements Initializable {
         groupSix.setVisible(false);
 
     }
-
     public void onClickCreateClub(ActionEvent actionEvent) {
         disableGroups();
         groupFour.setVisible(true);
 
     }
-
-
     public void backToAdvisorClick(ActionEvent actionEvent) {
         disableGroups();
         groupFirst.setVisible(true);
 
     }
-
     public void btnBackToMainClick(ActionEvent actionEvent) {
         disableGroups();
         groupFirst.setVisible(true);
@@ -155,7 +156,6 @@ public class HelloController implements Initializable {
     public void manageClick(ActionEvent actionEvent) {
         disableGroups();
         groupThree.setVisible(true);
-        populateClubTable();
     }
 
     public void createSportClub(ActionEvent actionEvent) {
@@ -167,6 +167,9 @@ public class HelloController implements Initializable {
         disableGroups();
         groupSix.setVisible(true);
     }
+    public void importClubData(ActionEvent actionEvent) {
+        populateClubTable();
+    }
 
     private boolean isValidNumber(String input) {
         try {
@@ -176,10 +179,18 @@ public class HelloController implements Initializable {
             return false;
         }
     }
-
+    //Create Sport Club And save to the database
     @FXML
     void createSportClubData(ActionEvent actionEvent) {
         String clubID = txtSportClubId.getText();
+        if (DatabaseConnection.ClubIdExists(clubID)){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Duplicate club Id");
+            alert.setHeaderText(null);
+            alert.setContentText("This club ID is already taken, Try another");
+            alert.showAndWait();
+            return;
+        }
         String clubName = txtSportClubName.getText();
         String members = txtSportMembers.getText();
         String advisorId = txtSportAdvisorId.getText();
@@ -216,9 +227,18 @@ public class HelloController implements Initializable {
         }
 
     }
-
+    //Create academic Club And save to the database
     public void createAcademicClubData(ActionEvent actionEvent) {
         String clubID = txtAcademicClubId.getText();
+        //Club ID duplicate validation
+        if (DatabaseConnection.ClubIdExists(clubID)){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Duplicate club Id");
+            alert.setHeaderText(null);
+            alert.setContentText("This club ID is already taken, Try another");
+            alert.showAndWait();
+            return;
+        }
         String clubName = txtAcademicClubName.getText();
         String members = txtAcademicClubMembers.getText();
         String advisorId = txtAcademicAdvisorId.getText();
@@ -239,7 +259,7 @@ public class HelloController implements Initializable {
         }
 
         if (isValid) {
-            // Add the data to the database
+            // Add the data to database
             AcademicClub academicClub = new AcademicClub(clubID, clubName, members, advisorId, description,academicType);
             DatabaseConnection.testDatabaseConnection();
             DatabaseConnection.insertClubData(academicClub);
@@ -280,15 +300,14 @@ public class HelloController implements Initializable {
                 return new SimpleStringProperty("");
             }
         });
+        populateClubTable();
 
 
     }
-
     public void populateClubTable(){
         List<Club> clubList = DatabaseConnection.getClubData();
         clubTable.getItems().setAll(clubList);
     }
-
     public void handleTable(MouseEvent event) {
         if (event.getClickCount() == 1){
             Club selectedClub = clubTable.getSelectionModel().getSelectedItem();
@@ -313,17 +332,30 @@ public class HelloController implements Initializable {
             alert.showAndWait();
         }
     }
-
     public void searchClub(ActionEvent actionEvent) {
         String searchId = txtSearchClubId.getText();
         Club club = DatabaseConnection.searchClub(searchId);
 
-        if (club != null){
+        if (club != null) {
             txtManageClubName.setText(club.getClubName());
             txtManageMembers.setText(String.valueOf(club.getMembers()));
             txtManageAdvisorId.setText(club.getAdvisorId());
             txtManageClubDescription.setText(club.getClubDescription());
-        }else {
+
+            if (club instanceof SportClub) {
+                // Handle SportClub specific fields
+                txtManageSport.setText(((SportClub) club).getSport());
+                txtManageAcademic.clear();
+            } else if (club instanceof AcademicClub) {
+                // Handle AcademicClub specific fields
+                txtManageAcademic.setText(((AcademicClub) club).getAcademicType());
+                txtManageSport.clear();
+            } else {
+                // Clear both specific fields if it's a general Club
+                txtManageSport.clear();
+                txtManageAcademic.clear();
+            }
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Club Not Found");
             alert.setHeaderText(null);
@@ -342,7 +374,7 @@ public class HelloController implements Initializable {
             try {
                 members = Integer.parseInt(membersText);
             } catch (NumberFormatException e) {
-                // Handle the exception (e.g., show an error message)
+                // Handle the exception
                 e.printStackTrace();
             }
         }
@@ -355,11 +387,19 @@ public class HelloController implements Initializable {
             club.setMembers(members);
             club.setAdvisorId(advisorId);
             club.setClubDescription(clubDescription);
+
+            if (club instanceof SportClub) {
+                // Update SportClub specific fields
+                ((SportClub) club).setSport(txtManageSport.getText());
+            } else if (club instanceof AcademicClub) {
+                // Update AcademicClub specific fields
+                ((AcademicClub) club).setAcademicType(txtManageAcademic.getText());
+            }
+
             DatabaseConnection.updateClubDetails(club);
             refreshClubTable();
         }
     }
-
     private void refreshClubTable() {
         // Get updated club data from database
         List<Club> updatedClubList = DatabaseConnection.getClubData();
@@ -373,13 +413,6 @@ public class HelloController implements Initializable {
         // Refresh the TableView
         clubTable.refresh();
     }
-
-
-    public void createClubData(ActionEvent actionEvent) {
-    }
-
-
-
 }
 
 

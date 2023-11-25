@@ -174,4 +174,18 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
     }
+
+    public static boolean ClubIdExists(String clubId) {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
+            String selectQuery = "SELECT * FROM club WHERE Club_id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+                preparedStatement.setString(1, clubId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                return resultSet.next();  // Returns true if there is at least one result
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;  // Return false in case of any exceptions or errors
+        }
+    }
 }
