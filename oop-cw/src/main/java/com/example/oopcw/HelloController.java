@@ -1,5 +1,6 @@
 package com.example.oopcw;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -59,6 +60,10 @@ public class HelloController implements Initializable {
     private TableColumn<Club, String> colAdvisorId;
     @FXML
     private TableColumn<Club, String> colClubDescription;
+    @FXML
+    private TableColumn<SportClub, String> colSportClubSport;
+    @FXML
+    private TableColumn<AcademicClub, String> colAcademicClubAcademic;
 
     @FXML
     private TextField txtSearchClubId;
@@ -163,6 +168,15 @@ public class HelloController implements Initializable {
         groupSix.setVisible(true);
     }
 
+    private boolean isValidNumber(String input) {
+        try {
+            int parsedValue = Integer.parseInt(input);
+            return parsedValue >= 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     @FXML
     void createSportClubData(ActionEvent actionEvent) {
         String clubID = txtSportClubId.getText();
@@ -197,19 +211,12 @@ public class HelloController implements Initializable {
             txtSportAdvisorId.clear();
             txtSportClubDescription.clear();
             txtSportSport.clear();
+            populateClubTable();
 
         }
 
     }
 
-    private boolean isValidNumber(String input) {
-        try {
-            int parsedValue = Integer.parseInt(input);
-            return parsedValue >= 0;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
     public void createAcademicClubData(ActionEvent actionEvent) {
         String clubID = txtAcademicClubId.getText();
         String clubName = txtAcademicClubName.getText();
@@ -243,6 +250,7 @@ public class HelloController implements Initializable {
             txtAcademicAdvisorId.clear();
             txtAcademicClubDescription.clear();
             txtAcademicAcademicType.clear();
+            populateClubTable();
 
         }
     }
@@ -256,6 +264,23 @@ public class HelloController implements Initializable {
         colMembers.setCellValueFactory(new  PropertyValueFactory<>("members"));
         colAdvisorId.setCellValueFactory(new PropertyValueFactory<>("advisorId"));
         colClubDescription.setCellValueFactory(new PropertyValueFactory<>("clubDescription"));
+        colSportClubSport.setCellValueFactory(cellData -> {
+            Club club = cellData.getValue();
+            if (club instanceof SportClub) {
+                return new SimpleStringProperty(((SportClub) club).getSport());
+            } else {
+                return new SimpleStringProperty("");
+            }
+        });
+        colAcademicClubAcademic.setCellValueFactory(cellData -> {
+            Club club = cellData.getValue();
+            if (club instanceof AcademicClub) {
+                return new SimpleStringProperty(((AcademicClub) club).getAcademicType());
+            } else {
+                return new SimpleStringProperty("");
+            }
+        });
+
 
     }
 

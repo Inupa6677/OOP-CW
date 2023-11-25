@@ -3,6 +3,8 @@ package com.example.oopcw;
 public class SportClub extends Club {
     private String sport;
 
+
+
     public SportClub(String clubId,String clubName,String members,String advisorId,String clubDescription,String sport){
         super(clubId,clubName,members,advisorId,clubDescription);
         this.sport = sport;

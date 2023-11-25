@@ -131,8 +131,8 @@
                         <TableColumn fx:id="colAdvisorId" prefWidth="72.0" text="Advisor ID" />
                         <TableColumn fx:id="colMembers" minWidth="0.79998779296875" prefWidth="68.0" text="Memebers" />
                         <TableColumn fx:id="colClubDescription" prefWidth="152.0" text="Club Description" />
-                        <TableColumn minWidth="0.0" prefWidth="112.80001831054688" text="Sport" />
-                        <TableColumn prefWidth="135.20001220703125" text="Academic Type" />
+                        <TableColumn fx:id="colSportClubSport" minWidth="0.0" prefWidth="112.80001831054688" text="Sport" />
+                        <TableColumn fx:id="colAcademicClubAcademic" prefWidth="135.20001220703125" text="Academic Type" />
                     </columns>
                   </TableView>
                   <Label layoutX="28.0" layoutY="74.0" prefHeight="17.0" prefWidth="153.0" text="Search Via Club ID">

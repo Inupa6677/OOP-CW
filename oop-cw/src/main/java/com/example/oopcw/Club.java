@@ -47,6 +47,8 @@ public class Club {
         this.clubDescription = clubDescription;
     }
 
+
+
     public Club(String clubId, String clubName, String members, String advisorId, String clubDescription){
         this.clubId = clubId;
         this.clubName = clubName;

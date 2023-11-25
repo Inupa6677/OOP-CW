@@ -68,13 +68,38 @@ public class DatabaseConnection {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Club club = new Club(
-                        resultSet.getString("Club_id"),
-                        resultSet.getString("Club_name"),
-                        resultSet.getString("Members"),
-                        resultSet.getString("Advisor_id"),
-                        resultSet.getString("description")
-                );
+                String sport = resultSet.getString("sport");
+                String academicType = resultSet.getString("academic_type");
+
+                Club club;
+                if (sport != null) {
+                    club = new SportClub(
+                            resultSet.getString("Club_id"),
+                            resultSet.getString("Club_name"),
+                            resultSet.getString("Members"),
+                            resultSet.getString("Advisor_id"),
+                            resultSet.getString("description"),
+                            sport
+                    );
+                } else if (academicType != null) {
+                    club = new AcademicClub(
+                            resultSet.getString("Club_id"),
+                            resultSet.getString("Club_name"),
+                            resultSet.getString("Members"),
+                            resultSet.getString("Advisor_id"),
+                            resultSet.getString("description"),
+                            academicType
+                    );
+                } else {
+                    club = new Club(
+                            resultSet.getString("Club_id"),
+                            resultSet.getString("Club_name"),
+                            resultSet.getString("Members"),
+                            resultSet.getString("Advisor_id"),
+                            resultSet.getString("description")
+                    );
+                }
+
                 clubList.add(club);
             }
 
