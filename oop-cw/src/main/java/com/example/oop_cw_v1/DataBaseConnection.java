@@ -38,18 +38,18 @@ public class DataBaseConnection {
     }
 
 
-    public static void insertMeetingData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleTime, String scheduleDescription, String meetingType, String scheduleDate) {
+    public static void insertMeetingData(String scheduleId, String scheduleName, String scheduleLocation,  String scheduleDescription, String scheduleDate, String scheduleTime, String meetingType ) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO meetings (scheduleId, scheduleName, scheduleLocation, scheduleTime, scheduleDescription, meetingType, scheduleDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO meeting (scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime,  meetingType ) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, scheduleId);
                 preparedStatement.setString(2, scheduleName);
                 preparedStatement.setString(3, scheduleLocation);
-                preparedStatement.setString(4, scheduleTime);
-                preparedStatement.setString(5, scheduleDescription);
-                preparedStatement.setString(6, meetingType);
-                preparedStatement.setString(7, scheduleDate);
+                preparedStatement.setString(4, scheduleDescription);
+                preparedStatement.setString(5, scheduleDate);
+                preparedStatement.setString(6, scheduleTime);
+                preparedStatement.setString(7, meetingType);
 
                 preparedStatement.executeUpdate();
             }
@@ -59,18 +59,18 @@ public class DataBaseConnection {
     }
 
 
-    public static void insertWorkshopData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleTime, String scheduleDescription, String conductor, String scheduleDate) {
+    public static void insertWorkshopData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime, String conductor) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO workshops (scheduleId, scheduleName, scheduleLocation, scheduleTime, scheduleDescription, conductor, scheduleDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO workshop (scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime,  conductor ) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, scheduleId);
                 preparedStatement.setString(2, scheduleName);
                 preparedStatement.setString(3, scheduleLocation);
-                preparedStatement.setString(4, scheduleTime);
-                preparedStatement.setString(5, scheduleDescription);
-                preparedStatement.setString(6, conductor);
-                preparedStatement.setString(7, scheduleDate);
+                preparedStatement.setString(4, scheduleDescription);
+                preparedStatement.setString(5, scheduleDate);
+                preparedStatement.setString(6, scheduleTime);
+                preparedStatement.setString(7, conductor);
 
                 preparedStatement.executeUpdate();
             }

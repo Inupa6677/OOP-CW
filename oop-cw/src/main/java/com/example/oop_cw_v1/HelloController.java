@@ -461,8 +461,8 @@ public class HelloController {
 
         // save event data to db after validation
         // if(eventvalidation == true) make the validation and add the details in to the condition
-        Event event1 = new Event(eventId, eventName, eventLocation, eventTime, eventDescription, eventType, eventDate);
-        DataBaseConnection.insertEventData(event1.getScheduleId(), event1.getScheduleName(), event1.getScheduleDescription(), event1.getScheduleLocation(), event1.getScheduleTime(), event1.getEventType(),event1.getScheduleDate());
+        Event event1 = new Event(eventId, eventName, eventLocation, eventDescription, eventDate, eventTime , eventType);
+        DataBaseConnection.insertEventData(event1.getScheduleId(), event1.getScheduleName(),event1.getScheduleLocation(), event1.getScheduleDescription(),event1.getScheduleDate(),  event1.getScheduleTime(), event1.getEventType());
         clearTextFieldsInEvent();
     }
 
@@ -561,8 +561,8 @@ public class HelloController {
 
         // save event data to db after validation
         // if(eventvalidation == true) make the validation and add the details in to the condition
-        Meeting meeting1 = new Meeting(meetingId, meetingName, meetingLocation, meetingTime, meetingDescription, meetingType, meetingDate);
-        DataBaseConnection.insertMeetingData(meeting1.getScheduleId(), meeting1.getScheduleName(), meeting1.getScheduleLocation(), meeting1.getScheduleTime(), meeting1.getScheduleDescription(), meeting1.getMeetingType(),meeting1.getScheduleTime());
+        Meeting meeting1 = new Meeting(meetingId, meetingName, meetingLocation, meetingDescription, meetingDate, meetingTime, meetingType);
+        DataBaseConnection.insertMeetingData(meeting1.getScheduleId(), meeting1.getScheduleName(), meeting1.getScheduleLocation(), meeting1.getScheduleDescription(), meeting1.getScheduleDate(), meeting1.getScheduleTime(),  meeting1.getMeetingType());
         clearTextFieldsInMeeting();
 
     }
@@ -655,8 +655,8 @@ public class HelloController {
 
         // save event data to db after validation
         // if(eventvalidation == true) make the validation and add the details in to the condition
-        Workshop workshop1 = new Workshop(workshopId, workshopName, workshopLocation, workshopTime, workshopDescription, workshopConductor, workshopDate);
-        DataBaseConnection.insertWorkshopData(workshop1.getScheduleId(), workshop1.getScheduleName(), workshop1.getScheduleLocation(), workshop1.getScheduleTime(), workshop1.getScheduleDescription(), workshop1.getConductor(),workshop1.getScheduleTime());
+        Workshop workshop1 = new Workshop(workshopId, workshopName, workshopLocation, workshopDescription, workshopDate, workshopTime,  workshopConductor);
+        DataBaseConnection.insertWorkshopData(workshop1.getScheduleId(), workshop1.getScheduleName(), workshop1.getScheduleLocation(), workshop1.getScheduleDescription(), workshop1.getScheduleDate(), workshop1.getScheduleTime(), workshop1.getConductor());
         clearTextFieldsInWorkshop();
     }
 
