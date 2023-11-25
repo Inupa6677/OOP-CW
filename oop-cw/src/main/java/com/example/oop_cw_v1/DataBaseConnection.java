@@ -17,19 +17,21 @@ public class DataBaseConnection {
 
     public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleTime, String scheduleDescription, String eventType, String scheduleDate) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO event (scheduleId, scheduleName, scheduleLocation, scheduleTime, scheduleDescription, eventType, scheduleDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO event (scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate , scheduleTime, eventType) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, scheduleId);
                 preparedStatement.setString(2, scheduleName);
                 preparedStatement.setString(3, scheduleLocation);
-                preparedStatement.setString(4, scheduleTime);
-                preparedStatement.setString(5, scheduleDescription);
-                preparedStatement.setString(6, eventType);
-                preparedStatement.setString(7, scheduleDate);
+                preparedStatement.setString(4, scheduleDescription);
+                preparedStatement.setString(5, scheduleDate);
+                preparedStatement.setString(6, scheduleTime);
+                preparedStatement.setString(7, eventType);
 
                 preparedStatement.executeUpdate();
             }
+
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
         }
