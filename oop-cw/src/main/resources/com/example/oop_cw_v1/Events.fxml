@@ -108,7 +108,7 @@
             <Button layoutX="172.0" layoutY="478.0" mnemonicParsing="false" onAction="#onSaveBtnClickInCreateWorkshop" text="SAVE" />
          </children>
       </Pane>
-      <Pane fx:id="selectUpdateEventTypePane" prefHeight="551.0" prefWidth="758.0">
+      <Pane fx:id="selectUpdateEventTypePane" prefHeight="551.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="70.0" layoutY="28.0" text="Select event type to update">
                <font>
@@ -148,7 +148,7 @@
             <TextField fx:id="eventTypeInUpdate" layoutX="425.0" layoutY="364.0" prefHeight="26.0" prefWidth="211.0" promptText="Event type" />
          </children>
       </Pane>
-      <Pane fx:id="updateMeetingPane" prefHeight="551.0" prefWidth="758.0" visible="false">
+      <Pane fx:id="updateMeetingPane" prefHeight="551.0" prefWidth="758.0">
          <children>
             <Label layoutX="38.0" layoutY="36.0" text="update meeting details">
                <font>
