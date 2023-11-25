@@ -690,8 +690,8 @@ public class HelloController {
             workshopconductorInupdate.clear();
             workshopdateInupdate.setValue(null);
         }
-
     }
+
 
     public void deleteWorkshopbtninupdate(ActionEvent actionEvent){
         // Get the event ID to delete
@@ -744,10 +744,13 @@ public class HelloController {
         String eventId = eventIdInUpdate.getText();
         String eventName = eventNameInUpdate.getText();
         String location = eventLocationInUpdate.getText();
-        String time = eventTimeInUpdate.getText();
         String description = eventDescriptionInUpdate.getText();
-        String eventType = eventTypeInUpdate.getText();
         String eventDate = String.valueOf(dateInUpdate.getValue());
+        String time = eventTimeInUpdate.getText();
+        String eventType = eventTypeInUpdate.getText();
+
+
+
 
         // Validate the updated details if necessary
         // if (eventValidation == true) {
@@ -755,7 +758,7 @@ public class HelloController {
         // }
 
         // Update event data in the database
-        DataBaseConnection.updateEventData(eventId, eventName, location, time, description, eventType, eventDate);
+        DataBaseConnection.updateEventData(eventId, eventName, location, description, eventDate, time, eventType);
 
         // Provide feedback to the user (e.g., show an alert)
         showAlert("Event Updated", "Event details have been successfully updated.");
@@ -776,10 +779,11 @@ public class HelloController {
         String meetingId = meetingIdInUpdate.getText();
         String meetingName = meetingnameInUpdate.getText();
         String meetingLocation = meetinglocationInUpdate.getText();
-        String meetingTime = meetingtimeInUpdate.getText();
         String meetingDescription = meetingdescriptionInUpdate.getText();
-        String meetingType = meetingtypeInUpdate.getText();
         String meetingDate = String.valueOf(meetingdateInUpdate.getValue());
+        String meetingTime = meetingtimeInUpdate.getText();
+        String meetingType = meetingtypeInUpdate.getText();
+
 
         // Validate the updated details if necessary
         // if (meetingValidation == true) {
@@ -787,7 +791,7 @@ public class HelloController {
         // }
 
         // Update meeting data in the database
-        DataBaseConnection.updateMeetingData(meetingId, meetingName, meetingLocation, meetingTime, meetingDescription, meetingType, LocalDate.parse(meetingDate));
+        DataBaseConnection.updateMeetingData(meetingId, meetingName, meetingLocation, meetingDescription, meetingDate, meetingTime, meetingType);
 
         // Provide feedback to the user (e.g., show an alert)
         showAlert("Meeting Updated", "Meeting details have been successfully updated.");
@@ -809,10 +813,11 @@ public class HelloController {
         String workshopId = workshopidInupdate.getText();
         String workshopName = workshopnameInupdate.getText();
         String workshopLocation = workshoplocationInupdate.getText();
-        String workshopTime = workshoptimeInupdate.getText();
         String workshopDescription = workshopdescriptionInupdate.getText();
-        String workshopConductor = workshopconductorInupdate.getText();
         String date = String.valueOf(workshopdateInupdate.getValue());
+        String workshopTime = workshoptimeInupdate.getText();
+        String workshopConductor = workshopconductorInupdate.getText();
+
 
         // Validate the updated details if necessary
         // if (workshopValidation == true) {
@@ -820,7 +825,7 @@ public class HelloController {
         // }
 
         // Update workshop data in the database
-        DataBaseConnection.updateWorkshopData(workshopId, workshopName, workshopLocation, workshopTime, workshopDescription, workshopConductor, date);
+        DataBaseConnection.updateWorkshopData(workshopId, workshopName, workshopLocation,  workshopDescription, date, workshopTime, workshopConductor);
 
         // Provide feedback to the user (e.g., show an alert)
         showAlert("Workshop Updated", "Workshop details have been successfully updated.");
@@ -833,8 +838,12 @@ public class HelloController {
         workshopdescriptionInupdate.clear();
         workshopconductorInupdate.clear();
         workshopdateInupdate.setValue(null);
-
     }
+
+
+
+
+
     public void OnSavebtnincreateGame(ActionEvent actionEvent) {
     }
 
