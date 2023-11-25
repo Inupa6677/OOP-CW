@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class HelloController {
 
+
     @FXML
     private CheckBox advisorCheckBox;
 
@@ -121,10 +122,10 @@ public class HelloController {
     private CheckBox studentCheckBox;
 
     @FXML
-    private TableColumn<?, ?> studentClubDescriptionCol;
+    private TableColumn<Club, String> studentClubDescriptionCol;
 
     @FXML
-    private TableColumn<?, ?> studentClubIdCol;
+    private TableColumn<Club, String> studentClubIdCol;
 
     @FXML
     private Label studentClubMemberLable;
@@ -133,10 +134,10 @@ public class HelloController {
     private Label studentClubMemberLable1;
 
     @FXML
-    private TableColumn<?, ?> studentClubMemeberCol;
+    private TableColumn<Club, Integer> studentClubMemeberCol;
 
     @FXML
-    private TableColumn<?, ?> studentClubNameCol;
+    private TableColumn<Club, String> studentClubNameCol;
 
     @FXML
     private Label studentClubNameLable;
