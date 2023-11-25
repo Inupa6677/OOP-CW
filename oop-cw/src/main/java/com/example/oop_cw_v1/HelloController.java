@@ -121,10 +121,22 @@ public class HelloController {
     private CheckBox studentCheckBox;
 
     @FXML
+    private TableColumn<?, ?> studentClubDescriptionCol;
+
+    @FXML
+    private TableColumn<?, ?> studentClubIdCol;
+
+    @FXML
     private Label studentClubMemberLable;
 
     @FXML
     private Label studentClubMemberLable1;
+
+    @FXML
+    private TableColumn<?, ?> studentClubMemeberCol;
+
+    @FXML
+    private TableColumn<?, ?> studentClubNameCol;
 
     @FXML
     private Label studentClubNameLable;
@@ -134,6 +146,9 @@ public class HelloController {
 
     @FXML
     private Pane studentClubPane;
+
+    @FXML
+    private TextField studentClubSearchField;
 
     @FXML
     private Pane studentDashBoardPane;
@@ -516,6 +531,7 @@ public class HelloController {
         disablePane();
         studentMainPane.setVisible(true);
         studentClubPane.setVisible(true);
+        
     }
 
     public void studentEventViewClick(ActionEvent actionEvent) {
