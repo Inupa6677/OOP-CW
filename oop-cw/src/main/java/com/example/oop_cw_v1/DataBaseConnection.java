@@ -4,6 +4,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class DataBaseConnection {
 
@@ -122,6 +123,90 @@ public class DataBaseConnection {
     }
 
 
+    public static Meeting searchMeetingById(String scheduleId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Meeting foundMeeting = null;
+
+        try {
+            connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+            String sql = "SELECT * FROM meeting WHERE scheduleId = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, scheduleId);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                // Create a Meeting object with retrieved data
+                foundMeeting = new Meeting(
+                        resultSet.getString("scheduleId"),
+                        resultSet.getString("scheduleName"),
+                        resultSet.getString("scheduleLocation"),
+                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("scheduleDate"),
+                        resultSet.getString("scheduleTime"),
+                        resultSet.getString("meetingType")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+        } finally {
+            // Close resources
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+            }
+        }
+
+        return foundMeeting;
+    }
+
+    public static Workshop searchWorkshopById(String scheduleId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Workshop foundWorkshop = null;
+
+        try {
+            connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+            String sql = "SELECT * FROM workshop WHERE scheduleId = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, scheduleId);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                // Create a Workshop object with retrieved data
+                foundWorkshop = new Workshop(
+                        resultSet.getString("scheduleId"),
+                        resultSet.getString("scheduleName"),
+                        resultSet.getString("scheduleLocation"),
+                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("scheduleDate"),
+                        resultSet.getString("scheduleTime"),
+                        resultSet.getString("conductor")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+        } finally {
+            // Close resources
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+            }
+        }
+
+        return foundWorkshop;
+    }
+
+
+
 
 
 
@@ -164,9 +249,7 @@ public class DataBaseConnection {
 
 
 
-    public static Meeting searchMeetingById(String searchMeetingId) {
-        return null;
-    }
+
 
     public static void deleteMeetingData(String deleteMeetingId) {
     }
@@ -174,9 +257,6 @@ public class DataBaseConnection {
     public static void deleteMeeting(String deleteMeetingId) {
     }
 
-    public static Workshop searchWorkshopById(String searchWorkshopId) {
-        return null;
-    }
 
     public static void deleteWorkshopData(String deleteWorkshopId) {
     }

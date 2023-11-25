@@ -22,8 +22,8 @@ public abstract class MainSchedule {
         return DataBaseConnection.searchMeetingById(meetingID);
     }
 
-    public static Workshop getWorkshopDetailsById(String workshopID){
-        return DataBaseConnection.searchWorkshopById(workshopID);
+    public static Workshop getWorkshopDetailsById(String scheduleId){
+        return DataBaseConnection.searchWorkshopById(scheduleId);
     }
 
 

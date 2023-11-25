@@ -467,7 +467,7 @@ public class HelloController {
     }
 
     public void searchEventIdInUpdate(ActionEvent actionEvent) {
-        String searchEventId = eventIdInUpdate.getText();
+        String searchEventId = searchFieldInUpdate.getText();
 
         Event foundEvent = MainSchedule.getEventDetailsById(searchEventId);
 
