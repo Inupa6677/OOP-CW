@@ -462,7 +462,7 @@ public class HelloController {
         // save event data to db after validation
         // if(eventvalidation == true) make the validation and add the details in to the condition
         Event event1 = new Event(eventId, eventName, eventLocation, eventTime, eventDescription, eventType, eventDate);
-        DataBaseConnection.insertEventData(event1.getScheduleId(), event1.getScheduleName(), event1.getScheduleLocation(), event1.getScheduleTime(), event1.getScheduleDescription(), event1.getEventType(),event1.getScheduleDate());
+        DataBaseConnection.insertEventData(event1.getScheduleId(), event1.getScheduleName(), event1.getScheduleDescription(), event1.getScheduleLocation(), event1.getScheduleTime(), event1.getEventType(),event1.getScheduleDate());
         clearTextFieldsInEvent();
     }
 

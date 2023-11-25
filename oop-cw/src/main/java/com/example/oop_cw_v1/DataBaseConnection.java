@@ -15,7 +15,7 @@ public class DataBaseConnection {
     private static final String PASSWORD = "";
     
 
-    public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleTime, String scheduleDescription, String eventType, String scheduleDate) {
+    public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation,String scheduleDescription, String scheduleDate, String scheduleTime,  String eventType) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO event (scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate , scheduleTime, eventType) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
