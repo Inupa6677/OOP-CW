@@ -216,7 +216,7 @@ public class DataBaseConnection {
             connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
 
             // Check if the updated event ID is different and already exists in the database
-            if (!scheduleId.equals(getOriginalScheduleId(scheduleId, connection)) && !isEventIdUnique(scheduleId, connection)) {
+            if (!scheduleId.equals(getOriginalScheduleIdEvent(scheduleId, connection)) && !isEventIdUnique(scheduleId, connection)) {
                 // Display an alert or handle the case where the new event ID is not unique
                 showAlert("Duplicate Event ID", "Event ID must be unique. Please choose a different Event ID.");
                 return;
@@ -248,10 +248,22 @@ public class DataBaseConnection {
         }
     }
 
+    // Get the original scheduleId for event
+    private static String getOriginalScheduleIdEvent(String newScheduleId, Connection connection) throws SQLException {
+        String originalScheduleId = null;
+        String sql = "SELECT scheduleId FROM event WHERE scheduleId = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, newScheduleId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    originalScheduleId = resultSet.getString("scheduleId");
+                }
+            }
+        }
+        return originalScheduleId;
+    }
 
-
-
-    // only here i used event id to make a unique value and that is external
+    // Check if the given event ID is unique in the event table
     private static boolean isEventIdUnique(String eventId, Connection connection) throws SQLException {
         String sql = "SELECT COUNT(*) FROM event WHERE scheduleId = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -262,6 +274,7 @@ public class DataBaseConnection {
             }
         }
     }
+
 
 
 
@@ -406,64 +419,113 @@ public class DataBaseConnection {
         }
     }
 
+    public static void deleteEventData(String scheduleId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
 
+        try {
+            connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
 
+            // Delete event details associated with the given event ID
+            String sql = "DELETE FROM event WHERE scheduleId=?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, scheduleId);
+            int affectedRows = preparedStatement.executeUpdate();
 
+            if (affectedRows > 0) {
+                System.out.println("Event details deleted successfully.");
+            } else {
+                System.out.println("No event details found with ID: " + scheduleId);
+            }
 
+            // Optionally, you can also delete other related tables if needed
 
-
-    public static void deleteEventById(String eventIdToDelete) {
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+        } finally {
+            // Close resources
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+            }
+        }
     }
 
 
-    public static Meeting getMeetingById(String meetingId) {
+    public static void deleteMeetingData(String scheduleId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
 
+        try {
+            connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
 
-        return null;
-    }
+            // Delete event details associated with the given event ID
+            String sql = "DELETE FROM meeting WHERE scheduleId=?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, scheduleId);
+            int affectedRows = preparedStatement.executeUpdate();
 
-    public static void updateMeetingInDatabase(Meeting updatedMeeting) {
-    }
+            if (affectedRows > 0) {
+                System.out.println("Event details deleted successfully.");
+            } else {
+                System.out.println("No event details found with ID: " + scheduleId);
+            }
 
-    public static void deleteMeetingById(String meetingIdToDelete) {
-    }
+            // Optionally, you can also delete other related tables if needed
 
-    public static Workshop getWorkshopById(String workshopId) {
-        return null;
-    }
-
-    public static void updateWorkshopInDatabase(Workshop updatedWorkshop) {
-    }
-
-    public static void deleteWorkshopById(String workshopIdToDelete) {
-    }
-
-
-
-
-
-    public static void deleteEventData(String deleteEventId) {
-    }
-
-    public static void deleteEvent(String deleteEventId) {
-    }
-
-
-
-
-
-    public static void deleteMeetingData(String deleteMeetingId) {
-    }
-
-    public static void deleteMeeting(String deleteMeetingId) {
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+        } finally {
+            // Close resources
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+            }
+        }
     }
 
 
-    public static void deleteWorkshopData(String deleteWorkshopId) {
+
+
+    public static void deleteWorkshopData(String scheduleId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+
+            // Delete event details associated with the given event ID
+            String sql = "DELETE FROM workshop WHERE scheduleId=?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, scheduleId);
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Event details deleted successfully.");
+            } else {
+                System.out.println("No event details found with ID: " + scheduleId);
+            }
+
+            // Optionally, you can also delete other related tables if needed
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+        } finally {
+            // Close resources
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+            }
+        }
     }
 
-    public static void deleteWorkshop(String deleteWorkshopId) {
-    }
+
 
 
 

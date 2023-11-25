@@ -298,10 +298,6 @@ public class HelloController {
     }
 
 
-
-
-
-
     public void clickCreateBtnClick() throws IOException {
         disablePanes();
         selectEventTypeInCreatePane.setVisible(true);
@@ -391,7 +387,6 @@ public class HelloController {
         selectUpdateEventTypePane.setVisible(true);
     }
 
-
     @FXML
     void workshopBtninselectingevents(ActionEvent event) {
         disablePanes();
@@ -440,7 +435,6 @@ public class HelloController {
         disablePanes();
         selectEventTypePane.setVisible(true);
     }
-
 
     public void backWorkshopbtninupdate(ActionEvent actionEvent) {
         disablePanes();
@@ -507,7 +501,8 @@ public class HelloController {
 
     public void deleteEventBtnClick(ActionEvent actionEvent){
         // Get the event ID to delete
-        String deleteEventId = eventIdInUpdate.getPromptText(); // Assuming prompt text is set to the current event ID
+        String deleteEventId = searchFieldInUpdate.getText();
+        System.out.println(deleteEventId);
 
         // Confirm deletion with the user (you can customize this based on your UI framework)
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -522,8 +517,7 @@ public class HelloController {
             // Delete event details from the database
             DataBaseConnection.deleteEventData(deleteEventId);
 
-            // Delete the event itself
-            DataBaseConnection.deleteEvent(deleteEventId);
+
 
             // Provide feedback to the user (e.g., show an alert)
             showAlert("Event Deleted", "Event details have been successfully deleted.");
@@ -594,6 +588,7 @@ public class HelloController {
             meetingtimeInUpdate.clear();
             meetingdescriptionInUpdate.clear();
             meetingtypeInUpdate.clear();
+            searchidFieldInMeeting.clear();
             meetingdateInUpdate.setValue(null);
         }
 
@@ -601,7 +596,7 @@ public class HelloController {
 
     public void deleteMeetingdetailsClick(ActionEvent actionEvent){
         // Get the event ID to delete
-        String deleteMeetingId = searchidFieldInMeeting.getPromptText();
+        String deleteMeetingId = searchidFieldInMeeting.getText();
 
         // Confirm deletion with the user (you can customize this based on your UI framework)
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -616,8 +611,7 @@ public class HelloController {
             // Delete event details from the database
             DataBaseConnection.deleteMeetingData(deleteMeetingId);
 
-            // Delete the event itself
-            DataBaseConnection.deleteMeeting(deleteMeetingId);
+
 
             // Provide feedback to the user (e.g., show an alert)
             showAlert("Event Deleted", "Event details have been successfully deleted.");
@@ -629,6 +623,7 @@ public class HelloController {
             meetingtimeInUpdate.clear();
             meetingdescriptionInUpdate.clear();
             meetingtypeInUpdate.clear();
+            searchidFieldInMeeting.clear();
             meetingdateInUpdate.setValue(null);
         }
     }
@@ -709,9 +704,6 @@ public class HelloController {
 
             // Delete event details from the database
             DataBaseConnection.deleteWorkshopData(deleteWorkshopId);
-
-            // Delete the event itself
-            DataBaseConnection.deleteWorkshop(deleteWorkshopId);
 
             // Provide feedback to the user (e.g., show an alert)
             showAlert("Event Deleted", "Event details have been successfully deleted.");
@@ -803,6 +795,7 @@ public class HelloController {
         meetingtimeInUpdate.clear();
         meetingdescriptionInUpdate.clear();
         meetingtypeInUpdate.clear();
+        searchidFieldInMeeting.clear();
         meetingdateInUpdate.setValue(null);
 
     }
@@ -838,6 +831,7 @@ public class HelloController {
         workshopdescriptionInupdate.clear();
         workshopconductorInupdate.clear();
         workshopdateInupdate.setValue(null);
+
     }
 
 
