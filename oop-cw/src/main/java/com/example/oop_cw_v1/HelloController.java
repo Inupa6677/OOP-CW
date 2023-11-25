@@ -476,10 +476,11 @@ public class HelloController {
             eventIdInUpdate.setText(foundEvent.getScheduleId());
             eventNameInUpdate.setText(foundEvent.getScheduleName());
             eventLocationInUpdate.setText(foundEvent.getScheduleLocation());
-            eventTimeInUpdate.setText(foundEvent.getScheduleTime());
             eventDescriptionInUpdate.setText(foundEvent.getScheduleDescription());
-            eventTypeInUpdate.setText(foundEvent.getEventType());
             dateInUpdate.setValue( LocalDate.parse(foundEvent.getScheduleDate()));
+            eventTimeInUpdate.setText(foundEvent.getScheduleTime());
+            eventTypeInUpdate.setText(foundEvent.getEventType());
+
         } else {
             // Event not found, provide feedback to the user (e.g., show an alert)
             showAlert("Event not found", "The event with ID " + searchEventId + " was not found.");

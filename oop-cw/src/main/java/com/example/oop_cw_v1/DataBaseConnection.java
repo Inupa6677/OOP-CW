@@ -1,9 +1,6 @@
 package com.example.oop_cw_v1;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,6 +77,52 @@ public class DataBaseConnection {
     }
 
 
+    public static Event searchEventById(String scheduleId) {
+        // You need to implement this method to query the database and return the Event
+        // You can use JDBC to execute a SELECT query and retrieve the details
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Event foundEvent = null;
+
+        try {
+            connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+            String sql = "SELECT * FROM event WHERE scheduleId = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, scheduleId);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                // Create an Event object with retrieved data
+                foundEvent = new Event(
+                        resultSet.getString("scheduleId"),
+                        resultSet.getString("scheduleName"),
+                        resultSet.getString("scheduleLocation"),
+                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("scheduleDate"),
+                        resultSet.getString("scheduleTime"),
+                        resultSet.getString("eventType")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+        } finally {
+            // Close resources
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace(); // Handle the exception appropriately (log it, throw a custom exception, etc.)
+            }
+        }
+
+        return foundEvent;
+    }
+
+
+
 
 
 
@@ -111,9 +154,7 @@ public class DataBaseConnection {
 
 
 
-    public static Event searchEventById(String searchEventId) {
-        return null;
-    }
+
 
     public static void deleteEventData(String deleteEventId) {
     }

@@ -14,8 +14,8 @@ public abstract class MainSchedule {
     private String scheduleTime;
 
 
-    public static Event getEventDetailsById(String eventID){
-        return DataBaseConnection.searchEventById(eventID);
+    public static Event getEventDetailsById(String scheduleId){
+        return DataBaseConnection.searchEventById(scheduleId);
     }
 
     public static Meeting getMeetingDetailsById(String meetingID){
