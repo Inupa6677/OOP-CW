@@ -455,6 +455,7 @@ public class HelloController {
 
         // Initialize ComboBox event listener
         combobox_selectClub.setOnAction(event -> handleClubSelection());
+        combobox_selectEvent.setOnAction(event -> handleEventSelection());
 
         // Populate ComboBoxes with data from the database
         populateComboBoxes();
@@ -466,12 +467,16 @@ public class HelloController {
 
     @FXML
     private void handleSaveButton() {
-        // Iterate through the data list and print the values
+        // Iterate through the data list and save attendance to the database
+        databaseConnection.saveAttendance(attendanceDataList);
+
+        // Optionally, you can print the values or perform other actions after saving
         for (AttendanceData data : attendanceDataList) {
             System.out.println("Student ID: " + data.getStudentID() +
                     ", Student Name: " + data.getStudentFirstName() +
                     ", Student Name: " + data.getStudentLastName() +
-                    ", Attendance: " + data.getAttendance());
+                    ", Attendance: " + data.getAttendance() +
+                    ", eventID: " + data.getEventID());
         }
     }
 
@@ -493,6 +498,24 @@ public class HelloController {
 
             // Fetch and populate events for the selected club
             populateEventsComboBox(selectedClub);
+
+            //Clear the selection for the event comboBox
+            combobox_selectEvent.getSelectionModel().clearSelection();
+        }
+    }
+
+    @FXML
+    private void handleEventSelection(){
+        //Get the selected club and event from the ComboBox
+        String selectedClub = combobox_selectClub.getValue();
+        String selectedEvent = combobox_selectEvent.getValue();
+
+        if (selectedClub != null && selectedEvent != null){
+            // Fetch the event ID from the database based on the selected club and event
+            String eventID = databaseConnection.fetchEventID(selectedClub, selectedEvent);
+
+            // Fetch and display student details
+            fetchAndDisplayStudentDetails(selectedClub, selectedEvent, eventID);
         }
     }
 
@@ -502,7 +525,6 @@ public class HelloController {
         // Add data to ComboBox
         combobox_selectEvent.setItems(FXCollections.observableArrayList(eventData));
     }
-
 
     private void fetchAndDisplayStudentDetails(String selectedClub) {
         // Fetch student details from the database based on the selected club
@@ -514,4 +536,16 @@ public class HelloController {
         // Add the fetched student details to the TableView
         attendanceDataList.addAll(studentDetails);
     }
+
+    private void fetchAndDisplayStudentDetails(String selectedClub, String selectedEvent, String eventID) {
+        // Fetch student details from the database based on the selected club and event
+        List<AttendanceData> studentDetails = databaseConnection.fetchStudentDetails(selectedClub, selectedEvent, eventID);
+
+        // Clear existing data in the TableView
+        attendanceDataList.clear();
+
+        // Add the fetched student details to the TableView
+        attendanceDataList.addAll(studentDetails);
+    }
+
 }

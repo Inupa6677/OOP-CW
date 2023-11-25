@@ -1,6 +1,7 @@
 package com.example.oop_cw_v1;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -229,6 +230,91 @@ public class DatabaseConnection {
 
         return studentDetails;
     }
+
+    // New method to fetch student details based on the selected club and event
+    public List<AttendanceData> fetchStudentDetails(String selectedClub, String selectedEvent, String eventID) {
+        List<AttendanceData> studentDetails = new ArrayList<>();
+
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            // Prepare a query to fetch student details based on the selected club and event
+            String query = "SELECT s.student_id, s.first_name, s.last_name, FALSE as attendance FROM student s JOIN join_club jc ON s.student_id = jc.student_id JOIN club cl ON cl.club_id = jc.club_id JOIN club_event ce ON ce.club_id = cl.club_id WHERE cl.club_name = ? AND ce.event_name = ? AND ce.event_id = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, selectedClub);
+            preparedStatement.setString(2, selectedEvent);
+            preparedStatement.setString(3, eventID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String studentID = resultSet.getString("student_id");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+                boolean attendance = resultSet.getBoolean("attendance");
+
+                AttendanceData attendanceData = new AttendanceData(studentID, firstName, lastName, attendance, eventID);
+                studentDetails.add(attendanceData);
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return studentDetails;
+    }
+
+    //fetching the eventID based on club and event name
+    public String fetchEventID(String selectedClub, String selectedEvent){
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            // Prepare a query to fetch the event ID based on the selected club and event name
+            String query = "SELECT event_id FROM club_event ce JOIN club c ON c.club_id = ce.club_id WHERE c.club_name = ? AND ce.event_name = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, selectedClub);
+            preparedStatement.setString(2, selectedEvent);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String eventID = resultSet.getString("event_id");
+                connection.close();
+                return eventID;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void saveAttendance(List<AttendanceData> attendanceDataList) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            String query = "INSERT INTO attendance (student_id, event_id, attendance_date, is_present) VALUES (?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            for (AttendanceData data : attendanceDataList) {
+                preparedStatement.setString(1, data.getStudentID());
+                preparedStatement.setString(2, data.getEventID());
+                preparedStatement.setDate(3, java.sql.Date.valueOf(LocalDate.now())); // Assuming today's date
+                preparedStatement.setBoolean(4, data.getAttendance());
+
+                preparedStatement.addBatch();
+            }
+
+            preparedStatement.executeBatch();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
 

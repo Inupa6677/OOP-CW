@@ -541,7 +541,7 @@
                   <TableColumn fx:id="col_studentID" prefWidth="127.92213439941406" text="Student ID" />
                   <TableColumn fx:id="col_firstName" minWidth="0.0" prefWidth="216.57139587402344" text="First Name" />
                   <TableColumn fx:id="col_lastName" prefWidth="214.28567504882812" text="Last Name" />
-                  <TableColumn fx:id="col_attendance" minWidth="0.0" prefWidth="94.857177734375" text="Attendance" />
+                  <TableColumn fx:id="col_attendance" minWidth="0.0" prefWidth="94.857177734375" text="Is_present" />
                </columns>
             </TableView>
             <Group layoutX="49.0" layoutY="106.0" />
