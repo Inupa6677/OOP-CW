@@ -69,14 +69,14 @@ public class DatabaseConnection {
     }
 
     // retrieving data from student to check the user credential.
-    public static boolean checkStudentLogin(String inputEmail, String inputPassword) {
-        String insertQuery = "SELECT email, password FROM student WHERE email = ?";
+    public static boolean checkStudentLogin(String inputID, String inputPassword) {
+        String insertQuery = "SELECT student_id, password FROM student WHERE student_id = ?";
 
         try (
                 Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)
         ) {
-            preparedStatement.setString(1, inputEmail);
+            preparedStatement.setString(1, inputID);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
@@ -96,15 +96,16 @@ public class DatabaseConnection {
 
     }
 
+
     // retrieving data from advisor to check the user credential.
-    public static boolean checkAdvisorLogin(String inputEmail, String inputPassword) {
-        String insertQuery = "SELECT email, password FROM advisor WHERE email = ?";
+    public static boolean checkAdvisorLogin(String inputID, String inputPassword) {
+        String insertQuery = "SELECT advisor_id, password FROM advisor WHERE advisor_id = ?";
 
         try (
                 Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)
         ) {
-            preparedStatement.setString(1, inputEmail);
+            preparedStatement.setString(1, inputID);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
@@ -177,10 +178,27 @@ public class DatabaseConnection {
     }
 
 
+    public static void addStudentToClub(String studentId, String selectedClubID) {
+        String insertQuery = "INSERT INTO join_club (student_id, club_id) VALUES (?, ?)";
 
+        try (
+                Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+                PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)
+        ) {
+            preparedStatement.setString(1, studentId);
+            preparedStatement.setString(2, selectedClubID);
 
+            int rowsAffected = preparedStatement.executeUpdate();
 
-
+            if (rowsAffected > 0) {
+                System.out.println("Student added to the club successfully.");
+            } else {
+                System.out.println("Failed to add the student to the club.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

@@ -200,6 +200,9 @@ public class HelloController {
     @FXML
     private PasswordField studentpasswordField;
 
+    private String selectedStudentID;
+    private String selectedClubID;
+
 
 
     public void disablePane(){
@@ -486,9 +489,9 @@ public class HelloController {
     }
     // code for student login to sacms.
     public void loginStudentClick(ActionEvent actionEvent) {
-        String email = loginStudentEmailField.getText();
+        String id = loginStudentEmailField.getText();
         String password = loginStudentPasswordField.getText();
-        if (DatabaseConnection.checkStudentLogin(email,password)){
+        if (DatabaseConnection.checkStudentLogin(id,password)){
             System.out.println("Student logged in successfully");
             disablePane();
             studentMainPane.setVisible(true);
@@ -501,9 +504,9 @@ public class HelloController {
 
     // code for student login to sacms.
     public void loginAdvisorClick(ActionEvent actionEvent) {
-        String email = loginAdvisorEmaillField.getText();
+        String id = loginAdvisorEmaillField.getText();
         String password = loginAdvisorPasswordField.getText();
-        if (DatabaseConnection.checkAdvisorLogin(email,password)){
+        if (DatabaseConnection.checkAdvisorLogin(id,password)){
             System.out.println("Advisor logged in successfully");
             disablePane();
             advisorMainPane.setVisible(true);
@@ -570,5 +573,28 @@ public class HelloController {
     }
 
     public void advisorAttendenceTrackingViewClick(ActionEvent actionEvent) {
+    }
+
+    public void studentClubJoinClick(ActionEvent actionEvent) {
+
+        String studentId = loginStudentEmailField.getText();
+        Club selectedClub = studentClubTableView.getSelectionModel().getSelectedItem();
+
+
+        if (selectedClub != null && studentId != null) {
+            // Store the IDs in variables
+
+            selectedClubID = selectedClub.getClubId();
+
+            // Call the method to add the student to the club
+            DatabaseConnection.addStudentToClub(studentId, selectedClubID);
+            System.out.println("Student joined the club!");
+
+        } else {
+            System.out.println("Please select a student and a club.");
+        }
+
+
+
     }
 }

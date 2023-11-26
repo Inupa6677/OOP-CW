@@ -23,7 +23,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
    <children>
-      <AnchorPane fx:id="studentLoginPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+      <AnchorPane fx:id="studentLoginPane" prefHeight="200.0" prefWidth="200.0">
          <children>
             <BorderPane prefHeight="500.0" prefWidth="700.0">
                <left>
@@ -36,7 +36,7 @@
                                     <Font name="System Bold" size="30.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="loginStudentEmailField" layoutX="34.0" layoutY="118.0" prefHeight="39.0" prefWidth="239.0" promptText="Email">
+                              <TextField fx:id="loginStudentEmailField" layoutX="34.0" layoutY="118.0" prefHeight="39.0" prefWidth="239.0" promptText="Student ID">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -339,7 +339,7 @@
                                     <Font name="System Bold" size="30.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="loginAdvisorEmaillField" layoutX="34.0" layoutY="119.0" prefHeight="39.0" prefWidth="239.0" promptText="Email">
+                              <TextField fx:id="loginAdvisorEmaillField" layoutX="34.0" layoutY="119.0" prefHeight="39.0" prefWidth="239.0" promptText="Advisor ID">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -409,7 +409,7 @@
             </BorderPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="frontGifPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3D2D5B;">
+      <AnchorPane fx:id="frontGifPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3D2D5B;" visible="false">
          <children>
             <ImageView fitHeight="382.0" fitWidth="391.0" layoutX="184.0" layoutY="-134.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -442,7 +442,7 @@
                   <Button layoutX="33.0" layoutY="491.0" mnemonicParsing="false" onAction="#backToFrontPaneClick" text="Back" />
                </children>
             </Pane>
-            <Pane fx:id="studentDashBoardPane" layoutX="126.0" prefHeight="550.0" prefWidth="624.0">
+            <Pane fx:id="studentDashBoardPane" layoutX="126.0" prefHeight="550.0" prefWidth="624.0" visible="false">
                <children>
                   <Label layoutX="137.0" layoutY="14.0" prefHeight="57.0" prefWidth="292.0" text="     Account Details">
                      <font>
@@ -536,7 +536,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="studentClubPane" layoutX="126.0" prefHeight="550.0" prefWidth="624.0" visible="false">
+            <Pane fx:id="studentClubPane" layoutX="126.0" prefHeight="550.0" prefWidth="624.0">
                <children>
                   <Label layoutX="225.0" layoutY="9.0" prefHeight="66.0" prefWidth="214.0" text="Clubs">
                      <font>
@@ -555,7 +555,7 @@
                         <TableColumn fx:id="studentAcedemicCol" prefWidth="81.5999755859375" text="AcademicType" />
                     </columns>
                   </TableView>
-                  <Button layoutX="220.0" layoutY="458.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="108.0" text="Join">
+                  <Button layoutX="220.0" layoutY="458.0" mnemonicParsing="false" onAction="#studentClubJoinClick" prefHeight="50.0" prefWidth="108.0" text="Join">
                      <font>
                         <Font size="24.0" />
                      </font>
