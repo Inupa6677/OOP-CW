@@ -390,9 +390,11 @@ public class HelloController implements Initializable {
             if (club instanceof SportClub) {
                 // Update SportClub specific fields
                 ((SportClub) club).setSport(txtManageSport.getText());
+                System.out.println(txtManageSport.getText());
             } else if (club instanceof AcademicClub) {
                 // Update AcademicClub specific fields
                 ((AcademicClub) club).setAcademicType(txtManageAcademic.getText());
+                System.out.println(txtManageAcademic.getText());
             }
 
             DatabaseConnection.updateClubDetails(club);

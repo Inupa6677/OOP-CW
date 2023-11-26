@@ -152,14 +152,27 @@ public class DatabaseConnection {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
-            String updateQuery = "UPDATE club SET club_name = ?, members = ?, advisor_id = ?, description = ? WHERE Club_id = ?";
+            String updateQuery = "UPDATE club SET club_name = ?, members = ?, advisor_id = ?, description = ?, sport = ?, academic_type = ? WHERE Club_id = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
                 preparedStatement.setString(1, club.getClubName());
                 preparedStatement.setInt(2, club.getMembers());
                 preparedStatement.setString(3, club.getAdvisorId());
                 preparedStatement.setString(4, club.getClubDescription());
-                preparedStatement.setString(5, club.getClubId());
+
+                if (club instanceof SportClub) {
+                    preparedStatement.setString(5, ((SportClub) club).getSport());
+                    preparedStatement.setNull(6, Types.VARCHAR);  // Set academic_type to NULL for SportClub
+                } else if (club instanceof AcademicClub) {
+                    preparedStatement.setNull(5, Types.VARCHAR);   // Set sport to NULL for AcademicClub
+                    preparedStatement.setString(6, ((AcademicClub) club).getAcademicType());
+                } else {
+                    // This block is for the base class (Club) without additional attributes
+                    preparedStatement.setNull(5, Types.VARCHAR);
+                    preparedStatement.setNull(6, Types.VARCHAR);
+                }
+
+                preparedStatement.setString(7, club.getClubId());
 
                 int rowsAffected = preparedStatement.executeUpdate();
                 if (rowsAffected > 0) {
@@ -174,6 +187,7 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
     }
+
 
     public static boolean ClubIdExists(String clubId) {
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
