@@ -687,7 +687,6 @@ public class HelloController {
         }
     }
 
-
     public void deleteWorkshopbtninupdate(ActionEvent actionEvent){
         // Get the event ID to delete
         String deleteWorkshopId = workshopIdInSearchField.getText();
@@ -718,6 +717,7 @@ public class HelloController {
             workshopdateInupdate.setValue(null);
         }
     }
+
 
 
     private void clearTextFieldsInWorkshop() {
