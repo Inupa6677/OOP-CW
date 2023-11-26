@@ -151,6 +151,7 @@ public class HelloController implements Initializable {
     public void backToMainMenu(ActionEvent actionEvent) {
         disableGroups();
         groupFirst.setVisible(true);
+        clubTable.getItems().clear();
     }
 
     public void manageClick(ActionEvent actionEvent) {
