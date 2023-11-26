@@ -85,7 +85,7 @@
             </TableView>
          </children>
       </Pane>
-      <Pane fx:id="createMeetingPane" prefHeight="551.0" prefWidth="758.0">
+      <Pane fx:id="createMeetingPane" prefHeight="551.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="114.0" layoutY="33.0" text="Create meeting">
                <font>
@@ -130,6 +130,17 @@
             <DatePicker fx:id="workshopDateInCreateWorkshop" layoutX="65.0" layoutY="407.0" promptText="Date" />
             <Button layoutX="66.0" layoutY="478.0" mnemonicParsing="false" onAction="#onBackBtnClickInCreateWorkshop" text="back" />
             <Button layoutX="172.0" layoutY="478.0" mnemonicParsing="false" onAction="#onSaveBtnClickInCreateWorkshop" text="SAVE" />
+            <TableView fx:id="createWorkshopTable" layoutX="227.0" layoutY="127.0" prefHeight="200.0" prefWidth="531.0">
+              <columns>
+                <TableColumn fx:id="idColumnInCreateWorkshop" prefWidth="75.99993896484375" text="workshop Id" />
+                <TableColumn fx:id="nameColumnInCreateWorkshop" prefWidth="54.4000244140625" text="Name" />
+                  <TableColumn fx:id="locationColumnInCreateWorkshop" prefWidth="88.0" text="Location" />
+                  <TableColumn fx:id="descriptionColumnInCreateWorkshop" prefWidth="71.19998168945312" text="Description" />
+                  <TableColumn fx:id="dateColumnInCreateWorkshop" prefWidth="67.20001220703125" text="Date" />
+                  <TableColumn fx:id="timeColumnInCreateWorkshop" prefWidth="92.79998779296875" text="Time" />
+                  <TableColumn fx:id="conductorColumnInCreateWorkshop" prefWidth="83.199951171875" text="Conductor" />
+              </columns>
+            </TableView>
          </children>
       </Pane>
       <Pane fx:id="selectUpdateEventTypePane" prefHeight="551.0" prefWidth="758.0" visible="false">
@@ -146,7 +157,7 @@
             <Button layoutX="58.0" layoutY="478.0" mnemonicParsing="false" onAction="#onBackBtnClickInselecttoupdate" text="back" />
          </children>
       </Pane>
-      <Pane fx:id="updateEvenetPane" layoutX="-2.0" layoutY="1.0" prefHeight="550.0" prefWidth="758.0" visible="false">
+      <Pane fx:id="updateEvenetPane" layoutX="-2.0" layoutY="1.0" prefHeight="550.0" prefWidth="758.0">
          <children>
             <Label layoutX="86.0" layoutY="22.0" prefHeight="38.0" prefWidth="249.0" text="Update Event Details">
                <font>
@@ -159,17 +170,28 @@
                </font>
             </Label>
             <TextField fx:id="searchFieldInUpdate" layoutX="40.0" layoutY="112.0" prefHeight="38.0" prefWidth="194.0" promptText="Event ID" />
-            <TextField fx:id="eventIdInUpdate" layoutX="425.0" layoutY="74.0" prefHeight="38.0" prefWidth="211.0" promptText="Event ID" />
-            <TextField fx:id="eventNameInUpdate" layoutX="425.0" layoutY="131.0" prefHeight="38.0" prefWidth="211.0" promptText="Event Name" />
-            <TextField fx:id="eventLocationInUpdate" layoutX="425.0" layoutY="185.0" prefHeight="38.0" prefWidth="211.0" promptText="Location" />
-            <TextField fx:id="eventDescriptionInUpdate" layoutX="425.0" layoutY="302.0" prefHeight="38.0" prefWidth="211.0" promptText="Description" />
-            <TextField fx:id="eventTimeInUpdate" layoutX="425.0" layoutY="245.0" prefHeight="38.0" prefWidth="211.0" promptText="Time" />
-            <DatePicker fx:id="dateInUpdate" layoutX="425.0" layoutY="408.0" prefHeight="38.0" prefWidth="211.0" promptText="Date" />
+            <TextField fx:id="eventIdInUpdate" layoutX="534.0" layoutY="74.0" prefHeight="38.0" prefWidth="211.0" promptText="Event ID" />
+            <TextField fx:id="eventNameInUpdate" layoutX="534.0" layoutY="131.0" prefHeight="38.0" prefWidth="211.0" promptText="Event Name" />
+            <TextField fx:id="eventLocationInUpdate" layoutX="534.0" layoutY="181.0" prefHeight="38.0" prefWidth="211.0" promptText="Location" />
+            <TextField fx:id="eventDescriptionInUpdate" layoutX="534.0" layoutY="296.0" prefHeight="38.0" prefWidth="211.0" promptText="Description" />
+            <TextField fx:id="eventTimeInUpdate" layoutX="534.0" layoutY="237.0" prefHeight="38.0" prefWidth="211.0" promptText="Time" />
+            <DatePicker fx:id="dateInUpdate" layoutX="534.0" layoutY="404.0" prefHeight="38.0" prefWidth="211.0" promptText="Date" />
             <Button layoutX="40.0" layoutY="170.0" mnemonicParsing="false" onAction="#searchEventIdInUpdate" text="Search" />
-            <Button layoutX="630.0" layoutY="501.0" mnemonicParsing="false" onAction="#onSaveBtnClickInUpdateevents" text="Save" />
+            <Button layoutX="670.0" layoutY="501.0" mnemonicParsing="false" onAction="#onSaveBtnClickInUpdateevents" text="Save" />
             <Button layoutX="40.0" layoutY="501.0" mnemonicParsing="false" onAction="#backBtnInUpdateEventPane" text="Back" />
-            <Button layoutX="425.0" layoutY="501.0" mnemonicParsing="false" onAction="#deleteEventBtnClick" text="Delete Event" />
-            <TextField fx:id="eventTypeInUpdate" layoutX="425.0" layoutY="364.0" prefHeight="26.0" prefWidth="211.0" promptText="Event type" />
+            <Button layoutX="490.0" layoutY="501.0" mnemonicParsing="false" onAction="#deleteEventBtnClick" text="Delete Event" />
+            <TextField fx:id="eventTypeInUpdate" layoutX="534.0" layoutY="363.0" prefHeight="26.0" prefWidth="211.0" promptText="Event type" />
+            <TableView fx:id="updateEventTable" layoutX="10.0" layoutY="223.0" prefHeight="200.0" prefWidth="515.0">
+              <columns>
+                <TableColumn fx:id="eventIdUpdateEvents" prefWidth="75.0" text="Event Id" />
+                <TableColumn fx:id="eventNameUpdateEvents" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="eventLocationUpdateEvents" prefWidth="75.0" text="Location" />
+                  <TableColumn fx:id="eventDescriptionUpdateEvents" prefWidth="75.0" text="Description" />
+                  <TableColumn fx:id="eventDateUpdateEvents" prefWidth="75.0" text="Date" />
+                  <TableColumn fx:id="eventTimeUpdateEvents" prefWidth="61.5999755859375" text="Time" />
+                  <TableColumn fx:id="eventTypeUpdateEvents" prefWidth="76.80001831054688" text="Event Type" />
+              </columns>
+            </TableView>
          </children>
       </Pane>
       <Pane fx:id="updateMeetingPane" prefHeight="551.0" prefWidth="758.0" visible="false">
