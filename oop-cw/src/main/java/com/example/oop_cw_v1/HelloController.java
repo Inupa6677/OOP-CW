@@ -1,19 +1,17 @@
 package com.example.oop_cw_v1;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 
-
-
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class HelloController {
@@ -119,6 +117,9 @@ public class HelloController {
     private PasswordField loginStudentPasswordField;
 
     @FXML
+    private TableColumn<AcademicClub, String> studentAcedemicCol;
+
+    @FXML
     private CheckBox studentCheckBox;
 
     @FXML
@@ -126,9 +127,6 @@ public class HelloController {
 
     @FXML
     private TableColumn<Club, String> studentClubIdCol;
-
-    @FXML
-    private Label studentClubMemberLable;
 
     @FXML
     private Label studentClubMemberLable1;
@@ -140,9 +138,6 @@ public class HelloController {
     private TableColumn<Club, String> studentClubNameCol;
 
     @FXML
-    private Label studentClubNameLable;
-
-    @FXML
     private Label studentClubNameLable1;
 
     @FXML
@@ -152,10 +147,10 @@ public class HelloController {
     private TextField studentClubSearchField;
 
     @FXML
-    private Pane studentDashBoardPane;
+    private TableView<Club> studentClubTableView;
 
     @FXML
-    private Label studentDescriptionLabel;
+    private Pane studentDashBoardPane;
 
     @FXML
     private Label studentDescriptionLabel1;
@@ -191,6 +186,9 @@ public class HelloController {
     private StackPane studentRegisterPane;
 
     @FXML
+    private TableColumn<SportClub, String> studentSportCol;
+
+    @FXML
     private Pane studentTaskBarPane;
 
     @FXML
@@ -201,7 +199,6 @@ public class HelloController {
 
     @FXML
     private PasswordField studentpasswordField;
-
 
 
 
@@ -218,6 +215,7 @@ public class HelloController {
         studentClubPane.setVisible(false);
         advisorClubPane.setVisible(false);
         advisorDashBoardPane.setVisible(false);
+
 
     }
 
@@ -528,11 +526,28 @@ public class HelloController {
         studentDashBoardPane.setVisible(true);
     }
 
+    // initializing the student club view table
+    @FXML
+    void initialize() {
+        // Set up columns
+        studentClubIdCol.setCellValueFactory(new PropertyValueFactory<>("clubId"));
+        studentClubNameCol.setCellValueFactory(new PropertyValueFactory<>("clubName"));
+        studentClubDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("clubDescription"));
+        studentClubMemeberCol.setCellValueFactory(new PropertyValueFactory<>("members"));
+        studentSportCol.setCellValueFactory(new PropertyValueFactory<>("sport"));
+        studentAcedemicCol.setCellValueFactory(new PropertyValueFactory<>("academicType"));
+
+        // Retrieve and set data in the table
+        List<Club> clubList = DatabaseConnection.getClubData();
+        studentClubTableView.setItems(FXCollections.observableList(clubList).sorted());
+    }
+
+
     public void studentClubViewClick(ActionEvent actionEvent) {
         disablePane();
         studentMainPane.setVisible(true);
         studentClubPane.setVisible(true);
-        
+
     }
 
     public void studentEventViewClick(ActionEvent actionEvent) {

@@ -1,6 +1,8 @@
 package com.example.oop_cw_v1;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseConnection {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/sacms";
@@ -121,33 +123,61 @@ public class DatabaseConnection {
         }
 
     }
-
-
-
-    public static void displayTabels() {
+    // view club data to student
+    public static List<Club> getClubData() {
+        List<Club> clubList = new ArrayList<>();
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-            Statement statement = connection.createStatement();
+            String selectQuery = "SELECT * FROM club";
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
 
-            // SQL query to list all databases
-            String sql = "SHOW DATABASES";
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            ResultSet resultSet = statement.executeQuery(sql);
-
-            System.out.println("List of MySQL databases:");
             while (resultSet.next()) {
-                String dbName = resultSet.getString("Database");
-                System.out.println(dbName);
+                String sport = resultSet.getString("sport");
+                String academicType = resultSet.getString("academic_type");
+
+                Club club;
+                if (sport != null) {
+                    club = new SportClub(
+                            resultSet.getString("club_id"),
+                            resultSet.getString("club_name"),
+                            resultSet.getString("members"),
+                            resultSet.getString("advisor_id"),
+                            resultSet.getString("description"),
+                            sport
+                    );
+                } else if (academicType != null) {
+                    club = new AcademicClub(
+                            resultSet.getString("club_id"),
+                            resultSet.getString("club_name"),
+                            resultSet.getString("members"),
+                            resultSet.getString("advisor_id"),
+                            resultSet.getString("description"),
+                            academicType
+                    );
+                } else {
+                    club = new Club(
+                            resultSet.getString("club_id"),
+                            resultSet.getString("club_name"),
+                            resultSet.getString("members"),
+                            resultSet.getString("advisor_id"),
+                            resultSet.getString("description")
+                    );
+                }
+
+                clubList.add(club);
             }
 
-            resultSet.close();
-            statement.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return clubList;
     }
+
+
+
 
 
 
