@@ -1,26 +1,33 @@
 package com.example.oop_cw_v1;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.time.*;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 
-public class HelloController {
+public class HelloController implements Initializable {
 
     @FXML
     private Pane createGamePane;
@@ -228,13 +235,79 @@ public class HelloController {
     @FXML
     private TextField workshopIdInSearchField;
 
+    // this is for event
+    @FXML
+    private TableView<Event> createEventTable;
+    @FXML
+    private TableColumn<Event, String> dateColumnInCreateEvent;
+    @FXML
+    private TableColumn<Event, String> descriptionColumnInCreateEvent;
+    @FXML
+    private TableColumn<Event, String> eventTypeColumnInCreateEvent;
+    @FXML
+    private TableColumn<Event, String> idColumnInCreateEvent;
+
+    @FXML
+    private TableColumn<Event, String> locationColumnInCreateEvent;
+    @FXML
+    private TableColumn<Event, String> nameColumnInCreateEvent;
+    @FXML
+    private TableColumn<Event, String> timeColumnInCreateEvent;
+
+    // this is for meeting
+
+    @FXML
+    private TableView<Meeting> createMeetingTable;
+    @FXML
+    private TableColumn<Meeting, String> dateColumnInCreateMeeting;
+    @FXML
+    private TableColumn<Meeting, String> descriptionColumnInCreateMeeting;
+    @FXML
+    private TableColumn<Meeting, String> meetingTypeColumnInCreateMeeting;
+    @FXML
+    private TableColumn<Meeting, String> idColumnInCreateMeeting;
+
+    @FXML
+    private TableColumn<Meeting, String> locationColumnInCreateMeeting;
+    @FXML
+    private TableColumn<Meeting, String> nameColumnInCreateMeeting;
+    @FXML
+    private TableColumn<Meeting, String> timeColumnInCreateMeeting;
+
+
     @FXML
     void backbtnincreateevents(ActionEvent event) {
 
     }
+    // 2
+    @Override
+    public void initialize(URL location, ResourceBundle resource){
+        idColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
+        nameColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleName"));
+        locationColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleLocation"));
+        descriptionColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleDescription"));
+        dateColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
+        timeColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
+        eventTypeColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("eventType"));
 
+        // Meeting Table
+        idColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
+        nameColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleName"));
+        locationColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleLocation"));
+        descriptionColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleDescription"));
+        dateColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
+        timeColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
+        meetingTypeColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("meetingType"));
+    }
 
+    // 3
+    public void populateEventTable() {
+        List<Event> eventData = DataBaseConnection.getEventData();
+        System.out.println("Retrieved data: " + eventData);
+        createEventTable.getItems().setAll(eventData);
+    }
 
+    // for meeting
 
 
     public void disablePanes(){
@@ -260,6 +333,8 @@ public class HelloController {
         stage.setScene(scene);
         stage.show();
     }
+
+
 
 
     void clickCreateBtnClick(ActionEvent event) {
@@ -335,6 +410,7 @@ public class HelloController {
     public void meetingBtninselectingevents() throws IOException {
         disablePanes();
         createMeetingPane.setVisible(true);
+
     }
 
     public void workshopBtninselectingevents() throws IOException {
@@ -393,11 +469,12 @@ public class HelloController {
         createWorkshopPane.setVisible(true);
 
     }
-
     @FXML
     void eventBtninselectingevents(ActionEvent event) {
         disablePanes();
         eventCreationPane.setVisible(true);
+        populateEventTable();
+
 
     }
 
@@ -408,10 +485,13 @@ public class HelloController {
 
     }
 
+
+    // p+
     @FXML
     void meetingBtninselectingevents(ActionEvent event) {
         disablePanes();
         createMeetingPane.setVisible(true);
+
     }
 
 
@@ -547,6 +627,7 @@ public class HelloController {
             eventDateincreateevent.setStyle("");
         }
     }
+
 
 
     public void searchEventIdInUpdate(ActionEvent actionEvent) {
@@ -729,22 +810,16 @@ public class HelloController {
     }
 
     public void meetingDateValidationInCreateEvents() {
-        LocalDate selectedMeetingDate = meetingdateIncreatemeeting.getValue();
+        LocalDate selectedDate = meetingdateIncreatemeeting.getValue();
 
-        // Validate event date
-        if (!validateMeetingDate(selectedMeetingDate)) {
+        // Validate meeting date
+        if (selectedDate == null) {
             meetingdateIncreatemeeting.setStyle("-fx-border-color: red");
             createMeetingAllValidation = false;
         } else {
             meetingdateIncreatemeeting.setStyle("");
         }
     }
-    public boolean validateMeetingDate(LocalDate selectedMeetingDate) {
-        // Check if the selected date is not null and is in the future
-        return selectedMeetingDate != null && selectedMeetingDate.isAfter(LocalDate.now());
-    }
-
-
 
 
     public void onSearchBtnInmeetingUpdate(ActionEvent actionEvent) {
@@ -914,20 +989,18 @@ public class HelloController {
 
 
     public void workshopDateValidationInCreateWorkshop() {
-        LocalDate selectedMeetingDate = workshopDateInCreateWorkshop.getValue();
+        LocalDate selectedDate = workshopDateInCreateWorkshop.getValue();
 
-        // Validate event date
-        if (!validateWorkshopDate(selectedMeetingDate)) {
+        // Validate workshop date
+        if (selectedDate == null) {
             workshopDateInCreateWorkshop.setStyle("-fx-border-color: red");
             createWorkshopAllValidation = false;
         } else {
             workshopDateInCreateWorkshop.setStyle("");
         }
     }
-    public boolean validateWorkshopDate(LocalDate selectedWorkshopDate) {
-        // Check if the selected date is not null and is in the future
-        return selectedWorkshopDate != null && selectedWorkshopDate.isAfter(LocalDate.now());
-    }
+
+
 
     public void searchBtnInUpdateWorkshop(ActionEvent actionEvent) {
         String searchWorkshopId = workshopIdInSearchField.getText();
@@ -1107,8 +1180,6 @@ public class HelloController {
         return time.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
     }
 
-
-
     public void eventTypeValidationInUpdateEvents() {
         String eventType = eventTypeInUpdate.getText();
 
@@ -1128,19 +1199,14 @@ public class HelloController {
     public void eventDateValidationInUpdateEvents() {
         LocalDate selectedDate = dateInUpdate.getValue();
 
-        // Validate event date
-        if (!validateEventDateUpdate(selectedDate)) {
+        // Validate workshop date
+        if (selectedDate == null) {
             dateInUpdate.setStyle("-fx-border-color: red");
             updateEventsAllValidation = false;
         } else {
             dateInUpdate.setStyle("");
         }
     }
-    public boolean validateEventDateUpdate(LocalDate selectedDate) {
-        // Check if the selected date is not null and is in the future
-        return selectedDate != null && selectedDate.isAfter(LocalDate.now());
-    }
-
 
 
 
@@ -1256,6 +1322,7 @@ public class HelloController {
             meetingtypeInUpdate.setStyle("");
         }
     }
+
     public boolean validateMeetingTypeUpdate(String eventType) {
         // Check if the event type is not null and is either "online" or "physical"
         return eventType != null && (eventType.equalsIgnoreCase("online") || eventType.equalsIgnoreCase("physical"));
@@ -1264,17 +1331,13 @@ public class HelloController {
     public void eventDateValidationInUpdateMeeting() {
         LocalDate selectedDate = meetingdateInUpdate.getValue();
 
-        // Validate event date
-        if (!validateMeetingDateUpdate(selectedDate)) {
+        // Validate workshop date
+        if (selectedDate == null) {
             meetingdateInUpdate.setStyle("-fx-border-color: red");
             updateMeetingAllValidation = false;
         } else {
             meetingdateInUpdate.setStyle("");
         }
-    }
-    public boolean validateMeetingDateUpdate(LocalDate selectedDate) {
-        // Check if the selected date is not null and is in the future
-        return selectedDate != null && selectedDate.isAfter(LocalDate.now());
     }
 
 
@@ -1390,22 +1453,20 @@ public class HelloController {
         }
     }
 
-
     public void eventDateValidationInUpdateWorkshop() {
-        LocalDate selectedDate = meetingdateInUpdate.getValue();
+        LocalDate selectedDate = workshopdateInupdate.getValue();
 
-        // Validate event date
-        if (!validateWorkshopDateUpdate(selectedDate)) {
-            meetingdateInUpdate.setStyle("-fx-border-color: red");
+        // Validate workshop date
+        if (selectedDate == null) {
+            workshopdateInupdate.setStyle("-fx-border-color: red");
             updateWorkshopAllValidation = false;
         } else {
-            meetingdateInUpdate.setStyle("");
+            workshopdateInupdate.setStyle("");
         }
     }
-    public boolean validateWorkshopDateUpdate(LocalDate selectedDate) {
-        // Check if the selected date is not null and is in the future
-        return selectedDate != null && selectedDate.isAfter(LocalDate.now());
-    }
 
-    
+
+    public void onGameBtnClickInselecttoupdate(ActionEvent actionEvent) {
+
+    }
 }

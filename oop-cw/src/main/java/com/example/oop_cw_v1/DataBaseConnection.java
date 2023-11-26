@@ -13,9 +13,9 @@ public class DataBaseConnection {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/sacms";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";
-    
 
-    public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation,String scheduleDescription, String scheduleDate, String scheduleTime,  String eventType) {
+
+    public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime, String eventType) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO event (scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate , scheduleTime, eventType) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -38,7 +38,7 @@ public class DataBaseConnection {
     }
 
 
-    public static void insertMeetingData(String scheduleId, String scheduleName, String scheduleLocation,  String scheduleDescription, String scheduleDate, String scheduleTime, String meetingType ) {
+    public static void insertMeetingData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime, String meetingType) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO meeting (scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime,  meetingType ) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -276,9 +276,6 @@ public class DataBaseConnection {
     }
 
 
-
-
-
     private static void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -351,7 +348,6 @@ public class DataBaseConnection {
         }
         return originalScheduleId;
     }
-
 
 
     public static void updateWorkshopData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime, String conductor) {
@@ -489,8 +485,6 @@ public class DataBaseConnection {
     }
 
 
-
-
     public static void deleteWorkshopData(String scheduleId) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -525,12 +519,39 @@ public class DataBaseConnection {
         }
     }
 
+    //  1
+    public static List<Event> getEventData() {  // new one for getting event data for the table
+        List<Event> eventData = new ArrayList<>();
+
+        try {
+            Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+            String sql = "SELECT * FROM event";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Event event = new Event(
+                        resultSet.getString("scheduleId"),
+                        resultSet.getString("scheduleName"),
+                        resultSet.getString("scheduleLocation"),
+                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("scheduleDate"),
+                        resultSet.getString("scheduleTime"),
+                        resultSet.getString("eventType")
+                );
+                eventData.add(event);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately (log it, show an error message, etc.)
+        }
+
+        return eventData;
+    }
 
 
-
-
-
-
-
-
-}
+   }
