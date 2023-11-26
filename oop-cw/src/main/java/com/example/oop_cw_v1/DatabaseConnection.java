@@ -292,7 +292,7 @@ public class DatabaseConnection {
         return null;
     }
 
-    public void saveAttendance(List<AttendanceData> attendanceDataList) {
+    public boolean saveAttendance(List<AttendanceData> attendanceDataList) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
@@ -308,13 +308,32 @@ public class DatabaseConnection {
                 preparedStatement.addBatch();
             }
 
-            preparedStatement.executeBatch();
+            // if attendance is duplicated
+            int[] results;
+            try {
+                results = preparedStatement.executeBatch();
+            } catch (BatchUpdateException batchUpdateException) {
+                // Handle duplicate entry error
+                System.out.println("Attendance already exists for some students in the selected event.");
+                batchUpdateException.printStackTrace();
+                return false;
+            }
+
             connection.close();
+
+            // Check if any rows were affected
+            for (int result : results) {
+                if (result <= 0) {
+                    return false;
+                }
+            }
+
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
-
 
 }
 

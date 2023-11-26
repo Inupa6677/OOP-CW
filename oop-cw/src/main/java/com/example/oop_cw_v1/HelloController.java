@@ -14,8 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
 
-
-
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,6 +109,8 @@ public class HelloController {
     private ComboBox<String> combobox_selectClub;
     @FXML
     private ComboBox<String> combobox_selectEvent;
+    @FXML
+    private Button btn_refresh;
 
     private ObservableList<AttendanceData> attendanceDataList;
 
@@ -468,7 +470,15 @@ public class HelloController {
     @FXML
     private void handleSaveButton() {
         // Iterate through the data list and save attendance to the database
-        databaseConnection.saveAttendance(attendanceDataList);
+        boolean isSavedSuccessfully = databaseConnection.saveAttendance(attendanceDataList);
+
+        if (isSavedSuccessfully) {
+            // Show success prompt
+            showPrompt("Attendance saved successfully.", Alert.AlertType.INFORMATION);
+        } else {
+            // Show error prompt (indicating duplicate or unsuccessful insertion)
+            showPrompt("Error saving attendance. Please check for duplicates.", Alert.AlertType.ERROR);
+        }
 
         // Optionally, you can print the values or perform other actions after saving
         for (AttendanceData data : attendanceDataList) {
@@ -479,6 +489,7 @@ public class HelloController {
                     ", eventID: " + data.getEventID());
         }
     }
+
 
     private void populateComboBoxes() {
         List<String> clubData = databaseConnection.fetchDataForComboBox("SELECT club_name FROM club");
@@ -548,4 +559,63 @@ public class HelloController {
         attendanceDataList.addAll(studentDetails);
     }
 
+    private void showPrompt(String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle("Attendance System");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void handleRefreshButton() {
+        // Call methods to refresh ComboBoxes and TableView
+        refreshClubComboBox();
+        refreshTableView();
+    }
+
+    private void refreshTableView() {
+        // Clear existing data in the TableView
+        attendanceDataList.clear();
+
+        // Fetch new data from the database and add it to the TableView
+        // Call the appropriate methods to fetch and display data based on the current selected club and event
+        String selectedClub = combobox_selectClub.getValue();
+        String selectedEvent = combobox_selectEvent.getValue();
+
+        try {
+            if (selectedClub != null && selectedEvent != null) {
+                String eventID = databaseConnection.fetchEventID(selectedClub, selectedEvent);
+                fetchAndDisplayStudentDetails(selectedClub, selectedEvent, eventID);
+            } else if (selectedClub != null) {
+                fetchAndDisplayStudentDetails(selectedClub);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle the exception as needed
+        }
+
+        // Refresh the Event ComboBox after updating the TableView
+        refreshEventComboBox();
+
+        // Optionally, you can print the values or perform other actions after refreshing
+    }
+
+    private void refreshEventComboBox() {
+        // Get the current value
+        String currentValue = combobox_selectEvent.getValue();
+
+        // Set the value to null to trigger the onAction event
+        combobox_selectEvent.getItems().clear();
+
+    }
+
+    private void refreshClubComboBox() {
+        // Fetch new data for the Club ComboBox
+        List<String> clubData = databaseConnection.fetchDataForComboBox("SELECT club_name FROM club");
+
+        // Clear existing data and add the new data to the ComboBox
+        combobox_selectClub.getItems().clear();
+        combobox_selectClub.getItems().addAll(clubData);
+    }
+    
 }
