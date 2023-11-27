@@ -19,6 +19,15 @@ public class AttendanceData {
     private String last_name;
     private boolean is_present;
 
+    //Default constructor
+    public AttendanceData() {
+        this.studentID = new SimpleStringProperty("");
+        this.firstName = new SimpleStringProperty("");
+        this.lastName = new SimpleStringProperty("");
+        this.attendance = new SimpleBooleanProperty(false);
+        this.eventID = new SimpleStringProperty("");
+    }
+
     // Constructor with eventID
     public AttendanceData(String studentID, String firstName, String lastName, boolean attendance, String eventID) {
         this.studentID = new SimpleStringProperty(studentID);

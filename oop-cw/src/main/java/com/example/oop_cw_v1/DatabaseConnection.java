@@ -11,7 +11,7 @@ public class DatabaseConnection {
     private static final String DB_PASS = "";
 
     // insert data to student table in the database
-    public static void insertStudentData(String studentID,String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
+    public static void insertStudentData(String studentID, String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
@@ -41,7 +41,7 @@ public class DatabaseConnection {
     }
 
     // inserting data to advisor table in the database
-    public static void insertAdvisorData(String advisorID,String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
+    public static void insertAdvisorData(String advisorID, String firstName, String lastName, String DoB, String email, String password, String contactNumber, String gender) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
@@ -127,7 +127,6 @@ public class DatabaseConnection {
     }
 
 
-
     public static void displayTabels() {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
@@ -154,7 +153,7 @@ public class DatabaseConnection {
     }
 
     //Getting data to combobox in the attendance
-    public List<String> fetchDataForComboBox(String query){
+    public List<String> fetchDataForComboBox(String query) {
         List<String> data = new ArrayList<>();
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
@@ -188,11 +187,11 @@ public class DatabaseConnection {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 eventData.add(resultSet.getString("event_name"));
             }
             connection.close();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return eventData;
@@ -267,7 +266,7 @@ public class DatabaseConnection {
     }
 
     //fetching the eventID based on club and event name
-    public String fetchEventID(String selectedClub, String selectedEvent){
+    public String fetchEventID(String selectedClub, String selectedEvent) {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
@@ -334,6 +333,32 @@ public class DatabaseConnection {
         }
     }
 
+    public static List<AttendanceData> getAllAttendanceData() {
+        List<AttendanceData> allAttendanceData = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+             Statement statement = connection.createStatement()) {
+
+            // Execute a SQL query to retrieve all attendance data
+            String query = "SELECT attendance.attendance_date, attendance.event_id, club_event.event_name, attendance.student_id,student.first_name,student.last_name,attendance.is_present FROM `attendance`JOIN`club_event` ON attendance.event_id = club_event.event_id JOIN `student` ON attendance.student_id = student.student_id ORDER BY `attendance`.`attendance_date` ASC;";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // Iterate through the result set and populate the list
+            while (resultSet.next()) {
+                AttendanceData attendanceData = new AttendanceData();
+                attendanceData.setAttendance_date(resultSet.getDate("attendance_date"));
+                // Set other properties based on your table columns
+
+                allAttendanceData.add(attendanceData);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exceptions appropriately in your application
+        }
+
+        return allAttendanceData;
+    }
 }
 
 

@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class ReportGeneration {
 
-    public void generateAttendanceReport(List<AttendanceData> attendanceDataList) {
+    public void generateAttendanceReport(List<AttendanceData> allAttendanceData) {
         try {
             // Load JRXML template
             String reportTemplatePath = "src/main/resources/com/example/oop_cw_v1/Attendance.jrxml";
@@ -24,8 +24,8 @@ public class ReportGeneration {
             // parameters
             parameters.put("ReportTitle", "Attendance Report");
 
-            // Convert the attendance data list to a JRDataSource
-            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(attendanceDataList);
+            // Convert the entire attendance data list to a JRDataSource
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(allAttendanceData);
 
             // Create JasperPrint (filled report)
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
@@ -36,7 +36,7 @@ public class ReportGeneration {
             System.out.println("Report displayed successfully.");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error displaying report.");
+            System.out.println("Error displaying the report.");
         }
     }
 }

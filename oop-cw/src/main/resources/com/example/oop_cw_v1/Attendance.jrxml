@@ -137,7 +137,7 @@ ORDER BY
     <columnHeader>
         <band height="20">
             <staticText>
-                <reportElement style="Column header" positionType="Float" x="0" y="0" width="120" height="20" forecolor="#000000" uuid="70af7be9-a050-42d9-8177-1da19c3ba8f4">
+                <reportElement style="Column header" positionType="Float" x="0" y="0" width="100" height="20" forecolor="#000000" uuid="70af7be9-a050-42d9-8177-1da19c3ba8f4">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc2438a4-960f-49ea-a071-7f4419c127a3"/>
                 </reportElement>
                 <box>
@@ -152,7 +152,7 @@ ORDER BY
                 <text><![CDATA[Attendance Date]]></text>
             </staticText>
             <staticText>
-                <reportElement style="Column header" positionType="Float" x="120" y="0" width="50" height="20" forecolor="#000000" uuid="3224e362-723c-4244-9ce2-7709b1cb0eba">
+                <reportElement style="Column header" positionType="Float" x="100" y="0" width="70" height="20" forecolor="#000000" uuid="3224e362-723c-4244-9ce2-7709b1cb0eba">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2b9afef0-8a71-4c0c-99dc-c38f68962d1c"/>
                 </reportElement>
                 <box>
@@ -246,7 +246,7 @@ ORDER BY
     <detail>
         <band height="20">
             <textField textAdjust="StretchHeight" isBlankWhenNull="true">
-                <reportElement style="Detail" positionType="Float" x="0" y="0" width="120" height="20" uuid="df4c7a99-0e62-4bb9-b19d-c591bbb080c5">
+                <reportElement style="Detail" positionType="Float" x="0" y="0" width="100" height="20" uuid="df4c7a99-0e62-4bb9-b19d-c591bbb080c5">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc2438a4-960f-49ea-a071-7f4419c127a3"/>
                 </reportElement>
                 <box>
@@ -261,7 +261,7 @@ ORDER BY
                 <textFieldExpression><![CDATA[$F{attendance_date}.toString()]]></textFieldExpression>
             </textField>
             <textField textAdjust="StretchHeight" isBlankWhenNull="true">
-                <reportElement style="Detail" positionType="Float" x="120" y="0" width="50" height="20" uuid="ac8d9042-c859-4307-81e6-523b59190b90">
+                <reportElement style="Detail" positionType="Float" x="100" y="0" width="70" height="20" uuid="ac8d9042-c859-4307-81e6-523b59190b90">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2b9afef0-8a71-4c0c-99dc-c38f68962d1c"/>
                 </reportElement>
                 <box>

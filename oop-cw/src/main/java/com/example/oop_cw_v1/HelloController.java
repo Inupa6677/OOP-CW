@@ -628,8 +628,9 @@ public class HelloController {
     @FXML
     private void handleGenerateReportButton() {
         // Generate and display the report
-        ReportGeneration reportGenerator = new ReportGeneration();
-        reportGenerator.generateAttendanceReport(attendanceDataList);
+        List<AttendanceData> allAttendanceData = DatabaseConnection.getAllAttendanceData();
+        ReportGeneration reportGeneration = new ReportGeneration();
+        reportGeneration.generateAttendanceReport(allAttendanceData);
     }
 
 }
