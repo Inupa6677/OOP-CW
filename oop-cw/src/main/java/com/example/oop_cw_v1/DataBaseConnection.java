@@ -15,15 +15,15 @@ public class DataBaseConnection {
     private static final String PASSWORD = "";
 
 
-    public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime, String eventType) {
+    public static void insertEventData(String scheduleId, String scheduleName, String scheduleLocation, String clubId, String scheduleDate, String scheduleTime, String eventType) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO event (scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate , scheduleTime, eventType) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO event (scheduleId, scheduleName, scheduleLocation, clubId, scheduleDate , scheduleTime, eventType) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, scheduleId);
                 preparedStatement.setString(2, scheduleName);
                 preparedStatement.setString(3, scheduleLocation);
-                preparedStatement.setString(4, scheduleDescription);
+                preparedStatement.setString(4, clubId);
                 preparedStatement.setString(5, scheduleDate);
                 preparedStatement.setString(6, scheduleTime);
                 preparedStatement.setString(7, eventType);
@@ -38,15 +38,15 @@ public class DataBaseConnection {
     }
 
 
-    public static void insertMeetingData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime, String meetingType) {
+    public static void insertMeetingData(String scheduleId, String scheduleName, String scheduleLocation, String clubId, String scheduleDate, String scheduleTime, String meetingType) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO meeting (scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime,  meetingType ) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO meeting (scheduleId, scheduleName, scheduleLocation, clubId, scheduleDate, scheduleTime,  meetingType ) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, scheduleId);
                 preparedStatement.setString(2, scheduleName);
                 preparedStatement.setString(3, scheduleLocation);
-                preparedStatement.setString(4, scheduleDescription);
+                preparedStatement.setString(4, clubId);
                 preparedStatement.setString(5, scheduleDate);
                 preparedStatement.setString(6, scheduleTime);
                 preparedStatement.setString(7, meetingType);
@@ -59,15 +59,15 @@ public class DataBaseConnection {
     }
 
 
-    public static void insertWorkshopData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime, String conductor) {
+    public static void insertWorkshopData(String scheduleId, String scheduleName, String scheduleLocation, String clubId, String scheduleDate, String scheduleTime, String conductor) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO workshop (scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime,  conductor ) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO workshop (scheduleId, scheduleName, scheduleLocation, clubId, scheduleDate, scheduleTime,  conductor ) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, scheduleId);
                 preparedStatement.setString(2, scheduleName);
                 preparedStatement.setString(3, scheduleLocation);
-                preparedStatement.setString(4, scheduleDescription);
+                preparedStatement.setString(4, clubId);
                 preparedStatement.setString(5, scheduleDate);
                 preparedStatement.setString(6, scheduleTime);
                 preparedStatement.setString(7, conductor);
@@ -102,7 +102,7 @@ public class DataBaseConnection {
                         resultSet.getString("scheduleId"),
                         resultSet.getString("scheduleName"),
                         resultSet.getString("scheduleLocation"),
-                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("clubId"),
                         resultSet.getString("scheduleDate"),
                         resultSet.getString("scheduleTime"),
                         resultSet.getString("eventType")
@@ -144,7 +144,7 @@ public class DataBaseConnection {
                         resultSet.getString("scheduleId"),
                         resultSet.getString("scheduleName"),
                         resultSet.getString("scheduleLocation"),
-                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("clubId"),
                         resultSet.getString("scheduleDate"),
                         resultSet.getString("scheduleTime"),
                         resultSet.getString("meetingType")
@@ -185,7 +185,7 @@ public class DataBaseConnection {
                         resultSet.getString("scheduleId"),
                         resultSet.getString("scheduleName"),
                         resultSet.getString("scheduleLocation"),
-                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("clubId"),
                         resultSet.getString("scheduleDate"),
                         resultSet.getString("scheduleTime"),
                         resultSet.getString("conductor")
@@ -208,7 +208,7 @@ public class DataBaseConnection {
     }
 
 
-    public static void updateEventData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime, String eventType) {
+    public static void updateEventData(String scheduleId, String scheduleName, String scheduleLocation, String clubId, String scheduleDate, String scheduleTime, String eventType) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -222,13 +222,13 @@ public class DataBaseConnection {
                 return;
             }
 
-            String sql = "UPDATE event SET scheduleId=?, scheduleName=?, scheduleLocation=?, scheduleDescription=?, scheduleDate=?, scheduleTime=?, eventType=? WHERE scheduleId=?";
+            String sql = "UPDATE event SET scheduleId=?, scheduleName=?, scheduleLocation=?, clubId=?, scheduleDate=?, scheduleTime=?, eventType=? WHERE scheduleId=?";
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, scheduleId);
             preparedStatement.setString(2, scheduleName);
             preparedStatement.setString(3, scheduleLocation);
-            preparedStatement.setString(4, scheduleDescription);
+            preparedStatement.setString(4, clubId);
             preparedStatement.setString(5, scheduleDate);
             preparedStatement.setString(6, scheduleTime);
             preparedStatement.setString(7, eventType);
@@ -284,7 +284,7 @@ public class DataBaseConnection {
         alert.showAndWait();
     }
 
-    public static void updateMeetingData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime, String meetingType) {
+    public static void updateMeetingData(String scheduleId, String scheduleName, String scheduleLocation, String clubId, String scheduleDate, String scheduleTime, String meetingType) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -298,13 +298,13 @@ public class DataBaseConnection {
                 return;
             }
 
-            String sql = "UPDATE meeting SET scheduleId=?, scheduleName=?, scheduleLocation=?, scheduleDescription=?, scheduleDate=?, scheduleTime=?, meetingType=? WHERE scheduleId=?";
+            String sql = "UPDATE meeting SET scheduleId=?, scheduleName=?, scheduleLocation=?, clubId=?, scheduleDate=?, scheduleTime=?, meetingType=? WHERE scheduleId=?";
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, scheduleId);
             preparedStatement.setString(2, scheduleName);
             preparedStatement.setString(3, scheduleLocation);
-            preparedStatement.setString(4, scheduleDescription);
+            preparedStatement.setString(4, clubId);
             preparedStatement.setString(5, scheduleDate);
             preparedStatement.setString(6, scheduleTime);
             preparedStatement.setString(7, meetingType);
@@ -350,7 +350,7 @@ public class DataBaseConnection {
     }
 
 
-    public static void updateWorkshopData(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime, String conductor) {
+    public static void updateWorkshopData(String scheduleId, String scheduleName, String scheduleLocation, String clubId, String scheduleDate, String scheduleTime, String conductor) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -364,13 +364,13 @@ public class DataBaseConnection {
                 return;
             }
 
-            String sql = "UPDATE workshop SET scheduleId=?, scheduleName=?, scheduleLocation=?, scheduleDescription=?, scheduleDate=?, scheduleTime=?, conductor=? WHERE scheduleId=?";
+            String sql = "UPDATE workshop SET scheduleId=?, scheduleName=?, scheduleLocation=?, clubId=?, scheduleDate=?, scheduleTime=?, conductor=? WHERE scheduleId=?";
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, scheduleId);
             preparedStatement.setString(2, scheduleName);
             preparedStatement.setString(3, scheduleLocation);
-            preparedStatement.setString(4, scheduleDescription);
+            preparedStatement.setString(4, clubId);
             preparedStatement.setString(5, scheduleDate);
             preparedStatement.setString(6, scheduleTime);
             preparedStatement.setString(7, conductor);
@@ -534,7 +534,7 @@ public class DataBaseConnection {
                         resultSet.getString("scheduleId"),
                         resultSet.getString("scheduleName"),
                         resultSet.getString("scheduleLocation"),
-                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("clubId"),
                         resultSet.getString("scheduleDate"),
                         resultSet.getString("scheduleTime"),
                         resultSet.getString("eventType")
@@ -566,7 +566,7 @@ public class DataBaseConnection {
                         resultSet.getString("scheduleId"),
                         resultSet.getString("scheduleName"),
                         resultSet.getString("scheduleLocation"),
-                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("clubId"),
                         resultSet.getString("scheduleDate"),
                         resultSet.getString("scheduleTime"),
                         resultSet.getString("meetingType")
@@ -600,7 +600,7 @@ public class DataBaseConnection {
                         resultSet.getString("scheduleId"),
                         resultSet.getString("scheduleName"),
                         resultSet.getString("scheduleLocation"),
-                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("clubId"),
                         resultSet.getString("scheduleDate"),
                         resultSet.getString("scheduleTime"),
                         resultSet.getString("conductor")
@@ -633,7 +633,7 @@ public class DataBaseConnection {
                         resultSet.getString("scheduleId"),
                         resultSet.getString("scheduleName"),
                         resultSet.getString("scheduleLocation"),
-                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("clubId"),
                         resultSet.getString("scheduleDate"),
                         resultSet.getString("scheduleTime"),
                         resultSet.getString("eventType")
@@ -668,7 +668,7 @@ public class DataBaseConnection {
                         resultSet.getString("scheduleId"),
                         resultSet.getString("scheduleName"),
                         resultSet.getString("scheduleLocation"),
-                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("clubId"),
                         resultSet.getString("scheduleDate"),
                         resultSet.getString("scheduleTime"),
                         resultSet.getString("meetingType")
@@ -702,7 +702,7 @@ public class DataBaseConnection {
                         resultSet.getString("scheduleId"),
                         resultSet.getString("scheduleName"),
                         resultSet.getString("scheduleLocation"),
-                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("clubId"),
                         resultSet.getString("scheduleDate"),
                         resultSet.getString("scheduleTime"),
                         resultSet.getString("conductor")

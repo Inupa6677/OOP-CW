@@ -367,7 +367,7 @@ public class HelloController implements Initializable {
         idColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
         nameColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleName"));
         locationColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleLocation"));
-        descriptionColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleDescription"));
+        descriptionColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("clubId"));
         dateColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
         timeColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
         eventTypeColumnInCreateEvent.setCellValueFactory(new PropertyValueFactory<>("eventType"));
@@ -376,7 +376,7 @@ public class HelloController implements Initializable {
         idColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
         nameColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleName"));
         locationColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleLocation"));
-        descriptionColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleDescription"));
+        descriptionColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("clubId"));
         dateColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
         timeColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
         meetingTypeColumnInCreateMeeting.setCellValueFactory(new PropertyValueFactory<>("meetingType"));
@@ -386,7 +386,7 @@ public class HelloController implements Initializable {
         idColumnInCreateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
         nameColumnInCreateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleName"));
         locationColumnInCreateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleLocation"));
-        descriptionColumnInCreateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleDescription"));
+        descriptionColumnInCreateWorkshop.setCellValueFactory(new PropertyValueFactory<>("clubId"));
         dateColumnInCreateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
         timeColumnInCreateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
         conductorColumnInCreateWorkshop.setCellValueFactory(new PropertyValueFactory<>("conductor"));
@@ -396,7 +396,7 @@ public class HelloController implements Initializable {
         eventIdUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
         eventNameUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("scheduleName"));
         eventLocationUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("scheduleLocation"));
-        eventDescriptionUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("scheduleDescription"));
+        eventDescriptionUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("clubId"));
         eventDateUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
         eventTimeUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
         eventTypeUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("eventType"));
@@ -406,7 +406,7 @@ public class HelloController implements Initializable {
         idInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
         nameInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleName"));
         locationInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleLocation"));
-        descriptionInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleDescription"));
+        descriptionInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("clubId"));
         dateInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
         timeInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
         meetingTypeInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("meetingType"));
@@ -417,7 +417,7 @@ public class HelloController implements Initializable {
         idInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
         nameInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleName"));
         locationInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleLocation"));
-        descriptionInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleDescription"));
+        descriptionInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("clubId"));
         dateInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
         timeInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
         conductorInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("conductor"));
@@ -685,7 +685,7 @@ public class HelloController implements Initializable {
         String eventName = eventnameincreateevent.getText();
         String eventLocation = eventlocationincreateevent.getText();
         String eventTime = eventtimeincreateevent.getText();
-        String eventDescription = eventdescriptionincreateevent.getText();
+        String clubIdCreateEvent = eventdescriptionincreateevent.getText();
         String eventType = eventtypeincreateevent.getText();
         String eventDate = String.valueOf(eventDateincreateevent.getValue());
 
@@ -699,9 +699,9 @@ public class HelloController implements Initializable {
         }
 
         // All fields are valid, proceed to save to the database
-        Event event1 = new Event(eventId, eventName, eventLocation, eventDescription, eventDate, eventTime, eventType);
+        Event event1 = new Event(eventId, eventName, eventLocation, clubIdCreateEvent , eventDate, eventTime, eventType);
         DataBaseConnection.insertEventData(event1.getScheduleId(), event1.getScheduleName(),
-                event1.getScheduleLocation(), event1.getScheduleDescription(), event1.getScheduleDate(),
+                event1.getScheduleLocation(), event1.getClubId(), event1.getScheduleDate(),
                 event1.getScheduleTime(), event1.getEventType());
         clearTextFieldsInEvent();
         refreshTable();
@@ -803,7 +803,7 @@ public class HelloController implements Initializable {
             eventIdInUpdate.setText(foundEvent.getScheduleId());
             eventNameInUpdate.setText(foundEvent.getScheduleName());
             eventLocationInUpdate.setText(foundEvent.getScheduleLocation());
-            eventDescriptionInUpdate.setText(foundEvent.getScheduleDescription());
+            eventDescriptionInUpdate.setText(foundEvent.getClubId());
             dateInUpdate.setValue( LocalDate.parse(foundEvent.getScheduleDate()));
             eventTimeInUpdate.setText(foundEvent.getScheduleTime());
             eventTypeInUpdate.setText(foundEvent.getEventType());
@@ -886,7 +886,7 @@ public class HelloController implements Initializable {
         String meetingName = meetingnameIncreatemeeting.getText();
         String meetingLocation = meetinglocationIncreatemeeting.getText();
         String meetingTime = meetingtimeIncreatemeeting.getText();
-        String meetingDescription = meetingdescriptionIncreatemeeting.getText();
+        String meetingClubId = meetingdescriptionIncreatemeeting.getText();
         String meetingType = meetingtypeIncreatemeeting.getText();
         String meetingDate = String.valueOf(meetingdateIncreatemeeting.getValue());
 
@@ -899,9 +899,9 @@ public class HelloController implements Initializable {
         }
 
         // All fields are valid, proceed to save to the database
-        Meeting meeting1 = new Meeting(meetingId, meetingName, meetingLocation, meetingDescription, meetingDate, meetingTime, meetingType);
+        Meeting meeting1 = new Meeting(meetingId, meetingName, meetingLocation, meetingClubId, meetingDate, meetingTime, meetingType);
         DataBaseConnection.insertMeetingData(meeting1.getScheduleId(), meeting1.getScheduleName(),
-                meeting1.getScheduleLocation(), meeting1.getScheduleDescription(), meeting1.getScheduleDate(),
+                meeting1.getScheduleLocation(), meeting1.getClubId(), meeting1.getScheduleDate(),
                 meeting1.getScheduleTime(), meeting1.getMeetingType());
         clearTextFieldsInMeeting();
         refreshCreateMeetingTable();
@@ -995,7 +995,7 @@ public class HelloController implements Initializable {
             meetingnameInUpdate.setText(foundMeeting.getScheduleName());
             meetinglocationInUpdate.setText(foundMeeting.getScheduleLocation());
             meetingtimeInUpdate.setText(foundMeeting.getScheduleTime());
-            meetingdescriptionInUpdate.setText(foundMeeting.getScheduleDescription());
+            meetingdescriptionInUpdate.setText(foundMeeting.getClubId());
             meetingtypeInUpdate.setText(foundMeeting.getMeetingType());
             meetingdateInUpdate.setValue(LocalDate.parse(foundMeeting.getScheduleDate()));
         } else {
@@ -1069,7 +1069,7 @@ public class HelloController implements Initializable {
         String workshopName = workshopnameInCreateWorkshop.getText();
         String workshopLocation = workshoplocationInCreateWorkshop.getText();
         String workshopTime = workshopTimeInCreateWorkshop.getText();
-        String workshopDescription = workshopdescriptionInCreateWorkshop.getText();
+        String clubIdInWorkshop = workshopdescriptionInCreateWorkshop.getText();
         String workshopConductor = workshopConductorInCreateWorkshop.getText();
         String workshopDate = String.valueOf(workshopDateInCreateWorkshop.getValue());
 
@@ -1083,9 +1083,9 @@ public class HelloController implements Initializable {
         }
 
         // All fields are valid, proceed to save to the database
-        Workshop workshop1 = new Workshop(workshopId, workshopName, workshopLocation, workshopDescription, workshopDate, workshopTime, workshopConductor);
+        Workshop workshop1 = new Workshop(workshopId, workshopName, workshopLocation, clubIdInWorkshop, workshopDate, workshopTime, workshopConductor);
         DataBaseConnection.insertWorkshopData(workshop1.getScheduleId(), workshop1.getScheduleName(),
-                workshop1.getScheduleLocation(), workshop1.getScheduleDescription(), workshop1.getScheduleDate(),
+                workshop1.getScheduleLocation(), workshop1.getClubId(), workshop1.getScheduleDate(),
                 workshop1.getScheduleTime(), workshop1.getConductor());
         clearTextFieldsInWorkshop();
         refreshCreateWorkshopTable();
@@ -1195,7 +1195,7 @@ public class HelloController implements Initializable {
             workshopnameInupdate.setText(foundWorkshop.getScheduleName());
             workshoplocationInupdate.setText(foundWorkshop.getScheduleLocation());
             workshoptimeInupdate.setText(foundWorkshop.getScheduleTime());
-            workshopdescriptionInupdate.setText(foundWorkshop.getScheduleDescription());
+            workshopdescriptionInupdate.setText(foundWorkshop.getClubId());
             workshopconductorInupdate.setText(foundWorkshop.getConductor());
             workshopdateInupdate.setValue(LocalDate.parse(foundWorkshop.getScheduleDate()));
 

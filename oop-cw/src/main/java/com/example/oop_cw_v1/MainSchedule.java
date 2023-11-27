@@ -9,7 +9,7 @@ public abstract class MainSchedule {
     private String scheduleName;
     private String scheduleLocation;
 
-    private String scheduleDescription;
+    private String clubId;
     private String scheduleDate;
     private String scheduleTime;
 
@@ -53,12 +53,12 @@ public abstract class MainSchedule {
         this.scheduleLocation = scheduleLocation;
     }
 
-    public String getScheduleDescription() {
-        return scheduleDescription;
+    public String getClubId() {
+        return clubId;
     }
 
-    public void setScheduleDescription(String scheduleDescription) {
-        this.scheduleDescription = scheduleDescription;
+    public void setClubId(String clubId) {
+        this.clubId = clubId;
     }
 
     public String getScheduleDate() {
@@ -79,11 +79,11 @@ public abstract class MainSchedule {
 
 
 
-    public MainSchedule(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime) {
+    public MainSchedule(String scheduleId, String scheduleName, String scheduleLocation, String clubId, String scheduleDate, String scheduleTime) {
         this.scheduleId = scheduleId;
         this.scheduleName = scheduleName;
         this.scheduleLocation = scheduleLocation;
-        this.scheduleDescription = scheduleDescription;
+        this.clubId = clubId;
         this.scheduleDate = scheduleDate;
         this.scheduleTime = String.valueOf(scheduleTime);
     }

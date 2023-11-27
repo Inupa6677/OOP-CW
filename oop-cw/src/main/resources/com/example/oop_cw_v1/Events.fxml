@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="466.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
    <children>
-      <Pane fx:id="scheduleEventPane" layoutY="-2.0" opacity="0.96" prefHeight="550.0" prefWidth="750.0" visible="false">
+      <Pane fx:id="scheduleEventPane" layoutY="-2.0" opacity="0.96" prefHeight="550.0" prefWidth="750.0">
          <children>
             <ImageView fitHeight="550.0" fitWidth="348.0" layoutX="404.0" layoutY="2.0" pickOnBounds="true" smooth="false">
                <image>
@@ -43,7 +43,7 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="selectEventTypeInCreatePane" prefHeight="550.0" prefWidth="758.0">
+      <Pane fx:id="selectEventTypeInCreatePane" prefHeight="550.0" prefWidth="758.0" visible="false">
          <children>
             <ImageView fitHeight="470.0" fitWidth="551.0" layoutX="248.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -66,7 +66,7 @@
             <Button layoutX="45.0" layoutY="489.0" mnemonicParsing="false" onAction="#onBackbtnincreateevent" text="Back" />
             <Button layoutX="602.0" layoutY="489.0" mnemonicParsing="false" onAction="#onsavebtnincreateevent" text="Save" />
             <TextField fx:id="eventtypeincreateevent" layoutX="212.0" layoutY="135.0" promptText="online / physical" />
-            <TextField fx:id="eventdescriptionincreateevent" layoutX="399.0" layoutY="76.0" promptText="Description" />
+            <TextField fx:id="eventdescriptionincreateevent" layoutX="399.0" layoutY="76.0" promptText="Club Id" />
             <TextField fx:id="eventtimeincreateevent" layoutX="32.0" layoutY="135.0" promptText="Time" />
             <TextField fx:id="eventlocationincreateevent" layoutX="599.0" layoutY="76.0" promptText="Location" />
             <TextField fx:id="eventnameincreateevent" layoutX="212.0" layoutY="76.0" promptText="Event name" />
@@ -82,7 +82,7 @@
                 <TableColumn fx:id="idColumnInCreateEvent" prefWidth="64.79998779296875" text="Schedul Id" />
                 <TableColumn fx:id="nameColumnInCreateEvent" prefWidth="106.4000244140625" text="Schedule Name" />
                   <TableColumn fx:id="locationColumnInCreateEvent" prefWidth="72.79998779296875" text="location" />
-                  <TableColumn fx:id="descriptionColumnInCreateEvent" prefWidth="134.4000244140625" text="Description" />
+                  <TableColumn fx:id="descriptionColumnInCreateEvent" prefWidth="134.4000244140625" text="Club Id" />
                   <TableColumn fx:id="dateColumnInCreateEvent" prefWidth="86.39993286132812" text="Date" />
                   <TableColumn fx:id="timeColumnInCreateEvent" prefWidth="76.0" text="Time" />
                   <TableColumn fx:id="eventTypeColumnInCreateEvent" prefWidth="80.800048828125" text="Event Type" />
@@ -101,7 +101,7 @@
             <TextField fx:id="meetingnameIncreatemeeting" layoutX="218.0" layoutY="88.0" promptText="name" />
             <TextField fx:id="meetingtypeIncreatemeeting" layoutX="209.0" layoutY="135.0" prefHeight="26.0" prefWidth="211.0" promptText="meeting type(online / physical)" />
             <TextField fx:id="meetingtimeIncreatemeeting" layoutX="28.0" layoutY="135.0" prefHeight="10.0" prefWidth="151.0" promptText="time" />
-            <TextField fx:id="meetingdescriptionIncreatemeeting" layoutX="592.0" layoutY="88.0" promptText="description" />
+            <TextField fx:id="meetingdescriptionIncreatemeeting" layoutX="592.0" layoutY="88.0" promptText="Club Id" />
             <TextField fx:id="meetinglocationIncreatemeeting" layoutX="420.0" layoutY="88.0" promptText="location" />
             <DatePicker fx:id="meetingdateIncreatemeeting" layoutX="453.0" layoutY="135.0" promptText="date" />
             <Button layoutX="50.0" layoutY="466.0" mnemonicParsing="false" onAction="#onBackBtnInCreateMeeting" text="back" />
@@ -110,7 +110,7 @@
               <columns>
                 <TableColumn fx:id="nameColumnInCreateMeeting" prefWidth="85.60001373291016" text="Name" />
                   <TableColumn fx:id="locationColumnInCreateMeeting" prefWidth="91.99996948242188" text="Location" />
-                  <TableColumn fx:id="descriptionColumnInCreateMeeting" prefWidth="124.800048828125" text="Description" />
+                  <TableColumn fx:id="descriptionColumnInCreateMeeting" prefWidth="124.800048828125" text="Club Id" />
                   <TableColumn fx:id="dateColumnInCreateMeeting" prefWidth="88.79998779296875" text="Date" />
                   <TableColumn fx:id="timeColumnInCreateMeeting" prefWidth="81.60000610351562" text="Time" />
                   <TableColumn fx:id="meetingTypeColumnInCreateMeeting" prefWidth="98.39996337890625" text="meeting type" />
@@ -131,7 +131,7 @@
             <TextField fx:id="workshoplocationInCreateWorkshop" layoutX="205.0" layoutY="145.0" promptText="Location" />
             <TextField fx:id="workshopTimeInCreateWorkshop" layoutX="558.0" layoutY="88.0" promptText="Time" />
             <TextField fx:id="workshopConductorInCreateWorkshop" layoutX="27.0" layoutY="145.0" promptText="Workshop conductor" />
-            <TextField fx:id="workshopdescriptionInCreateWorkshop" layoutX="380.0" layoutY="88.0" promptText="Description" />
+            <TextField fx:id="workshopdescriptionInCreateWorkshop" layoutX="380.0" layoutY="88.0" promptText="Club Id" />
             <DatePicker fx:id="workshopDateInCreateWorkshop" layoutX="379.0" layoutY="145.0" promptText="Date" />
             <Button layoutX="66.0" layoutY="478.0" mnemonicParsing="false" onAction="#onBackBtnClickInCreateWorkshop" text="back" />
             <Button layoutX="597.0" layoutY="471.0" mnemonicParsing="false" onAction="#onSaveBtnClickInCreateWorkshop" text="SAVE" />
@@ -140,7 +140,7 @@
                 <TableColumn fx:id="idColumnInCreateWorkshop" prefWidth="75.99993896484375" text="workshop Id" />
                 <TableColumn fx:id="nameColumnInCreateWorkshop" prefWidth="76.80005645751953" text="Name" />
                   <TableColumn fx:id="locationColumnInCreateWorkshop" prefWidth="78.39996337890625" text="Location" />
-                  <TableColumn fx:id="descriptionColumnInCreateWorkshop" prefWidth="121.60003662109375" text="Description" />
+                  <TableColumn fx:id="descriptionColumnInCreateWorkshop" prefWidth="121.60003662109375" text="Club Id" />
                   <TableColumn fx:id="dateColumnInCreateWorkshop" prefWidth="82.4000244140625" text="Date" />
                   <TableColumn fx:id="timeColumnInCreateWorkshop" prefWidth="84.79995727539062" text="Time" />
                   <TableColumn fx:id="conductorColumnInCreateWorkshop" prefWidth="94.4000244140625" text="Conductor" />
@@ -182,7 +182,7 @@
             <TextField fx:id="eventIdInUpdate" layoutX="534.0" layoutY="74.0" prefHeight="38.0" prefWidth="211.0" promptText="Event ID" />
             <TextField fx:id="eventNameInUpdate" layoutX="534.0" layoutY="131.0" prefHeight="38.0" prefWidth="211.0" promptText="Event Name" />
             <TextField fx:id="eventLocationInUpdate" layoutX="534.0" layoutY="181.0" prefHeight="38.0" prefWidth="211.0" promptText="Location" />
-            <TextField fx:id="eventDescriptionInUpdate" layoutX="534.0" layoutY="296.0" prefHeight="38.0" prefWidth="211.0" promptText="Description" />
+            <TextField fx:id="eventDescriptionInUpdate" layoutX="534.0" layoutY="296.0" prefHeight="38.0" prefWidth="211.0" promptText="club Id" />
             <TextField fx:id="eventTimeInUpdate" layoutX="534.0" layoutY="237.0" prefHeight="38.0" prefWidth="211.0" promptText="Time" />
             <DatePicker fx:id="dateInUpdate" layoutX="534.0" layoutY="404.0" prefHeight="38.0" prefWidth="211.0" promptText="Date" />
             <Button layoutX="40.0" layoutY="170.0" mnemonicParsing="false" onAction="#searchEventIdInUpdate" text="Search" />
@@ -195,7 +195,7 @@
                 <TableColumn fx:id="eventIdUpdateEvents" prefWidth="75.0" text="Event Id" />
                 <TableColumn fx:id="eventNameUpdateEvents" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="eventLocationUpdateEvents" prefWidth="75.0" text="Location" />
-                  <TableColumn fx:id="eventDescriptionUpdateEvents" prefWidth="75.0" text="Description" />
+                  <TableColumn fx:id="eventDescriptionUpdateEvents" prefWidth="75.0" text="Club Id" />
                   <TableColumn fx:id="eventDateUpdateEvents" prefWidth="75.0" text="Date" />
                   <TableColumn fx:id="eventTimeUpdateEvents" prefWidth="61.5999755859375" text="Time" />
                   <TableColumn fx:id="eventTypeUpdateEvents" prefWidth="76.80001831054688" text="Event Type" />
@@ -217,7 +217,7 @@
             <TextField fx:id="meetingnameInUpdate" layoutX="578.0" layoutY="112.0" promptText="meeting name" />
             <TextField fx:id="meetinglocationInUpdate" layoutX="578.0" layoutY="171.0" promptText="location" />
             <TextField fx:id="meetingtimeInUpdate" layoutX="585.0" layoutY="217.0" promptText="time" />
-            <TextField fx:id="meetingdescriptionInUpdate" layoutX="585.0" layoutY="263.0" promptText="Description" />
+            <TextField fx:id="meetingdescriptionInUpdate" layoutX="585.0" layoutY="263.0" promptText="Club Id" />
             <TextField fx:id="meetingtypeInUpdate" layoutX="578.0" layoutY="312.0" promptText="meeting type" />
             <DatePicker fx:id="meetingdateInUpdate" layoutX="571.0" layoutY="369.0" promptText="date" />
             <Button layoutX="547.0" layoutY="451.0" mnemonicParsing="false" onAction="#deleteMeetingdetailsClick" text="Delete event" />
@@ -228,7 +228,7 @@
                 <TableColumn fx:id="idInUpdateMeeting" prefWidth="75.0" text="Meeting Id" />
                 <TableColumn fx:id="nameInUpdateMeeting" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="locationInUpdateMeeting" prefWidth="75.0" text="Location" />
-                  <TableColumn fx:id="descriptionInUpdateMeeting" prefWidth="75.0" text="Description" />
+                  <TableColumn fx:id="descriptionInUpdateMeeting" prefWidth="75.0" text="Club Id" />
                   <TableColumn fx:id="dateInUpdateMeeting" prefWidth="75.0" text="Date" />
                   <TableColumn fx:id="timeInUpdateMeeting" prefWidth="75.0" text="Time" />
                   <TableColumn fx:id="meetingTypeInUpdateMeeting" prefWidth="75.0" text="Meeting Type" />
@@ -249,7 +249,7 @@
             <TextField fx:id="workshopnameInupdate" layoutX="564.0" layoutY="118.0" promptText="workshop name" />
             <TextField fx:id="workshoplocationInupdate" layoutX="564.0" layoutY="167.0" promptText="location" />
             <TextField fx:id="workshoptimeInupdate" layoutX="564.0" layoutY="210.0" promptText="time" />
-            <TextField fx:id="workshopdescriptionInupdate" layoutX="564.0" layoutY="249.0" promptText="Description" />
+            <TextField fx:id="workshopdescriptionInupdate" layoutX="564.0" layoutY="249.0" promptText="Club Id" />
             <TextField fx:id="workshopconductorInupdate" layoutX="564.0" layoutY="298.0" promptText="Conductor" />
             <DatePicker fx:id="workshopdateInupdate" layoutX="564.0" layoutY="349.0" promptText="Date" />
             <Button layoutX="450.0" layoutY="469.0" mnemonicParsing="false" onAction="#deleteWorkshopbtninupdate" text="Delete workshop" />
@@ -260,7 +260,7 @@
                 <TableColumn fx:id="idInUpdateWorkshop" prefWidth="75.0" text="Workshop Id" />
                 <TableColumn fx:id="nameInUpdateWorkshop" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="locationInUpdateWorkshop" prefWidth="75.0" text="Location" />
-                  <TableColumn fx:id="descriptionInUpdateWorkshop" prefWidth="75.0" text="Description " />
+                  <TableColumn fx:id="descriptionInUpdateWorkshop" prefWidth="75.0" text="Club Id" />
                   <TableColumn fx:id="dateInUpdateWorkshop" prefWidth="75.0" text="Date" />
                   <TableColumn fx:id="timeInUpdateWorkshop" prefWidth="75.0" text="Time" />
                   <TableColumn fx:id="conductorInUpdateWorkshop" prefWidth="62.999969482421875" text="Conductor" />

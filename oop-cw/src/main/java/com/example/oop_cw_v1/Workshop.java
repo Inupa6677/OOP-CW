@@ -6,8 +6,8 @@ import java.util.Date;
 public class Workshop extends MainSchedule {
     private String conductor;
 
-    public Workshop(String scheduleId, String scheduleName, String scheduleLocation, String scheduleDescription, String scheduleDate, String scheduleTime, String conductor) {
-        super(scheduleId, scheduleName, scheduleLocation, scheduleDescription, scheduleDate, scheduleTime);
+    public Workshop(String scheduleId, String scheduleName, String scheduleLocation, String clubId, String scheduleDate, String scheduleTime, String conductor) {
+        super(scheduleId, scheduleName, scheduleLocation, clubId, scheduleDate, scheduleTime);
         this.conductor = conductor;
     }
 
