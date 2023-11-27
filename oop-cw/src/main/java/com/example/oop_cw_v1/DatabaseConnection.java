@@ -314,8 +314,7 @@ public class DatabaseConnection {
                 results = preparedStatement.executeBatch();
             } catch (BatchUpdateException batchUpdateException) {
                 // Handle duplicate entry error
-                System.out.println("Attendance already exists for some students in the selected event.");
-                batchUpdateException.printStackTrace();
+                System.out.println("Warning: Attendance already exists for some students in the selected event.");
                 return false;
             }
 

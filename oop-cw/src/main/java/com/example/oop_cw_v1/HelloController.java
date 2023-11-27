@@ -111,6 +111,8 @@ public class HelloController {
     private ComboBox<String> combobox_selectEvent;
     @FXML
     private Button btn_refresh;
+    @FXML
+    private Button btn_getReport;
 
     private ObservableList<AttendanceData> attendanceDataList;
 
@@ -468,27 +470,35 @@ public class HelloController {
     }
 
     @FXML
-    private void handleSaveButton() {
+    private void handleSaveButton() throws SQLException {
+        // Assuming clubComboBox and eventComboBox are your combo boxes
+        if (combobox_selectClub.getValue() == null || combobox_selectEvent.getValue() == null) {
+            // Display an error message indicating that both club and event must be selected
+            showPrompt("Please select both Club and Event before saving attendance.", Alert.AlertType.ERROR);
+            return; // Exit the method without attempting to save
+        }
+
+        // Continue with the attendance save operation
         // Iterate through the data list and save attendance to the database
         boolean isSavedSuccessfully = databaseConnection.saveAttendance(attendanceDataList);
 
         if (isSavedSuccessfully) {
             // Show success prompt
             showPrompt("Attendance saved successfully.", Alert.AlertType.INFORMATION);
+            for (AttendanceData data : attendanceDataList) {
+                System.out.println("Student ID: " + data.getStudentID() +
+                        ", Student Name: " + data.getStudentFirstName() +
+                        ", Student Name: " + data.getStudentLastName() +
+                        ", Attendance: " + data.getAttendance() +
+                        ", eventID: " + data.getEventID());
+            }
         } else {
-            // Show error prompt (indicating duplicate or unsuccessful insertion)
+            // Show error prompt
             showPrompt("Error saving attendance. Please check for duplicates.", Alert.AlertType.ERROR);
         }
-
-        // Optionally, you can print the values or perform other actions after saving
-        for (AttendanceData data : attendanceDataList) {
-            System.out.println("Student ID: " + data.getStudentID() +
-                    ", Student Name: " + data.getStudentFirstName() +
-                    ", Student Name: " + data.getStudentLastName() +
-                    ", Attendance: " + data.getAttendance() +
-                    ", eventID: " + data.getEventID());
-        }
     }
+
+
 
 
     private void populateComboBoxes() {
@@ -578,8 +588,6 @@ public class HelloController {
         // Clear existing data in the TableView
         attendanceDataList.clear();
 
-        // Fetch new data from the database and add it to the TableView
-        // Call the appropriate methods to fetch and display data based on the current selected club and event
         String selectedClub = combobox_selectClub.getValue();
         String selectedEvent = combobox_selectEvent.getValue();
 
@@ -597,7 +605,6 @@ public class HelloController {
         // Refresh the Event ComboBox after updating the TableView
         refreshEventComboBox();
 
-        // Optionally, you can print the values or perform other actions after refreshing
     }
 
     private void refreshEventComboBox() {
@@ -617,5 +624,12 @@ public class HelloController {
         combobox_selectClub.getItems().clear();
         combobox_selectClub.getItems().addAll(clubData);
     }
-    
+
+    @FXML
+    private void handleGenerateReportButton() {
+        // Generate and display the report
+        ReportGeneration reportGenerator = new ReportGeneration();
+        reportGenerator.generateAttendanceReport(attendanceDataList);
+    }
+
 }
