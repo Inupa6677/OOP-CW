@@ -692,7 +692,7 @@ public class HelloController implements Initializable {
         // Validate fields
         if (!eventIdValidationInCreateEvents() || !eventNameValidationInCreateEvents()
                 || !eventLocationValidationInCreateEvents() || !eventTimeValidationInCreateEvents()
-                || !eventDateValidationInCreateEvents() || !eventTypeValidationInCreateEvents()) {
+                || !eventDateValidationInCreateEvents() || !eventTypeValidationInCreateEvents() || !validateClubIdCreateEvent()) {
             // Validation failed, show an alert
             showAlert(AlertType.ERROR, "Validation Error", "Please fill in all the required fields.");
             return;
@@ -708,6 +708,22 @@ public class HelloController implements Initializable {
 
         // Optionally, show a success message
         showAlert(AlertType.INFORMATION, "Success", "Event details saved successfully.");
+    }
+
+    public boolean validateClubIdCreateEvent() {
+        String clubIdCreateEvent = eventdescriptionincreateevent.getText();
+
+        // Validate clubIdCreateEvent
+        if (clubIdCreateEvent == null || clubIdCreateEvent.trim().isEmpty()) {
+            showAlert("Validation Error", "Club ID cannot be null or empty. Please enter a valid Club ID.");
+            // Set border color to red for indicating validation error
+            eventdescriptionincreateevent.setStyle("-fx-border-color: red");
+            return false; // Validation failed
+        } else {
+            // Reset the border color for a valid input
+            eventdescriptionincreateevent.setStyle("");
+            return true; // Validation passed
+        }
     }
 
     public boolean eventIdValidationInCreateEvents() {
@@ -892,7 +908,7 @@ public class HelloController implements Initializable {
 
         // Validate fields
         if (!meetingIdValidationInCreateEvents() || !meetingNameValidationInCreateEvents() || !meetingTimeValidationInCreateEvents()
-                || !meetingTypeValidationInCreateEvents() || !meetingDateValidationInCreateEvents()) {
+                || !meetingTypeValidationInCreateEvents() || !meetingDateValidationInCreateEvents() || !validateClubIdCreateMeeting()) {
             // Validation failed, show an alert
             showAlert(AlertType.ERROR, "Validation Error", "Please fill in all the required fields.");
             return;
@@ -908,6 +924,22 @@ public class HelloController implements Initializable {
 
         // Optionally, show a success message
         showAlert(AlertType.INFORMATION, "Success", "Meeting details saved successfully.");
+    }
+
+    public boolean validateClubIdCreateMeeting() {
+        String clubIdCreateMeeting = meetingdescriptionIncreatemeeting.getText();
+
+        // Validate clubIdCreateEvent
+        if (clubIdCreateMeeting == null || clubIdCreateMeeting.trim().isEmpty()) {
+            showAlert("Validation Error", "Club ID cannot be null or empty. Please enter a valid Club ID.");
+            // Set border color to red for indicating validation error
+            meetingdescriptionIncreatemeeting.setStyle("-fx-border-color: red");
+            return false; // Validation failed
+        } else {
+            // Reset the border color for a valid input
+            meetingdescriptionIncreatemeeting.setStyle("");
+            return true; // Validation passed
+        }
     }
 
     public boolean meetingIdValidationInCreateEvents() {
@@ -1076,7 +1108,7 @@ public class HelloController implements Initializable {
         // Validate fields
         if (!workshopIdValidationInCreateWorkshop() || !workshopNameValidationInCreateWorkshop()
                 || !workshopLocationValidationInCreateWorkshop() || !workshopTimeValidationInCreateWorkshop()
-                || !workshopConductorValidationInCreateWorkshop() || !workshopDateValidationInCreateWorkshop()) {
+                || !workshopConductorValidationInCreateWorkshop() || !workshopDateValidationInCreateWorkshop() || !validateClubIdCreateWorkshop()) {
             // Validation failed, show an alert
             showAlert(AlertType.ERROR, "Validation Error", "Please fill in all the required fields.");
             return;
@@ -1092,6 +1124,22 @@ public class HelloController implements Initializable {
 
         // Optionally, show a success message
         showAlert(AlertType.INFORMATION, "Success", "Workshop details saved successfully.");
+    }
+
+    public boolean validateClubIdCreateWorkshop() {
+        String clubIdCreateWorkshop = workshopdescriptionInCreateWorkshop.getText();
+
+        // Validate clubIdCreateEvent
+        if (clubIdCreateWorkshop == null || clubIdCreateWorkshop.trim().isEmpty()) {
+            showAlert("Validation Error", "Club ID cannot be null or empty. Please enter a valid Club ID.");
+            // Set border color to red for indicating validation error
+            workshopdescriptionInCreateWorkshop.setStyle("-fx-border-color: red");
+            return false; // Validation failed
+        } else {
+            // Reset the border color for a valid input
+            workshopdescriptionInCreateWorkshop.setStyle("");
+            return true; // Validation passed
+        }
     }
 
     public boolean workshopIdValidationInCreateWorkshop() {
@@ -1273,7 +1321,7 @@ public class HelloController implements Initializable {
         // Validate fields
         if (!eventIdValidationInUpdateEvents() || !eventNameValidationInUpdateEvents()
                 || !eventLocationValidationInUpdateEvents()
-                || !eventTypeValidationInUpdateEvents() || !eventDateValidationInUpdateEvents() || !eventTimeValidationInUpdateEvents()) {
+                || !eventTypeValidationInUpdateEvents() || !eventDateValidationInUpdateEvents() || !eventTimeValidationInUpdateEvents() || !validateClubIdUpdateEvent()) {
             return; // Validation failed, alerts will be shown within the methods
         }
 
@@ -1286,6 +1334,22 @@ public class HelloController implements Initializable {
         // Optionally, clear the fields or set them to default values
         clearFieldsInUpdateEvents();
         refreshUpdateEventTable();
+    }
+
+    public boolean validateClubIdUpdateEvent() {
+        String clubIdUpdateWorkshop = eventDescriptionInUpdate.getText();
+
+        // Validate clubIdCreateEvent
+        if (clubIdUpdateWorkshop == null || clubIdUpdateWorkshop.trim().isEmpty()) {
+            showAlert("Validation Error", "Club ID cannot be null or empty. Please enter a valid Club ID.");
+            // Set border color to red for indicating validation error
+            eventDescriptionInUpdate.setStyle("-fx-border-color: red");
+            return false; // Validation failed
+        } else {
+            // Reset the border color for a valid input
+            eventDescriptionInUpdate.setStyle("");
+            return true; // Validation passed
+        }
     }
 
     // Validation in updates
@@ -1399,91 +1463,82 @@ public class HelloController implements Initializable {
         dateInUpdate.setValue(null);
     }
 
-
-
-
     public void onsavebtninupdatemeeting(ActionEvent actionEvent) {
         // Get the updated meeting details from the text fields
         String meetingId = meetingIdInUpdate.getText();
-        eventIdValidationInUpdateMeeting();
         String meetingName = meetingnameInUpdate.getText();
-        eventNameValidationInUpdateMeeting();
         String meetingLocation = meetinglocationInUpdate.getText();
-        eventLocationValidationInUpdateMeeting();
-        String meetingDescription = meetingdescriptionInUpdate.getText();
+        String clubIdMeeting = meetingdescriptionInUpdate.getText();
         String meetingDate = String.valueOf(meetingdateInUpdate.getValue());
-        eventDateValidationInUpdateMeeting();
         String meetingTime = meetingtimeInUpdate.getText();
-        meetingTimeValidationInUpdateMeeting() ;
         String meetingType = meetingtypeInUpdate.getText();
-        eventTypeValidationInUpdateMeeting();
-        if (updateMeetingAllValidation){
 
-            // Update meeting data in the database
-            DataBaseConnection.updateMeetingData(meetingId, meetingName, meetingLocation, meetingDescription, meetingDate, meetingTime, meetingType);
-
-            // Provide feedback to the user (e.g., show an alert)
-            showAlert("Meeting Updated", "Meeting details have been successfully updated.");
-
-            // Optionally, clear the fields or set them to default values
-            meetingIdInUpdate.clear();
-            meetingnameInUpdate.clear();
-            meetinglocationInUpdate.clear();
-            meetingtimeInUpdate.clear();
-            meetingdescriptionInUpdate.clear();
-            meetingtypeInUpdate.clear();
-            searchidFieldInMeeting.clear();
-            meetingdateInUpdate.setValue(null);
-            refreshUpdateMeetingTable();
-
+        if (!eventIdValidationInUpdateMeeting() || !eventNameValidationInUpdateMeeting()
+                || !eventLocationValidationInUpdateMeeting() || !validateClubIdUpdateMeeting()
+                || !eventDateValidationInUpdateMeeting() || !meetingTimeValidationInUpdateMeeting()
+                || !eventTypeValidationInUpdateMeeting()) {
+            return;
         }
 
-    }
+        // Update meeting data in the database
+        DataBaseConnection.updateMeetingData(meetingId, meetingName, meetingLocation, clubIdMeeting, meetingDate, meetingTime, meetingType);
 
+        // Provide feedback to the user (e.g., show an alert)
+        showAlert("Meeting Updated", "Meeting details have been successfully updated.");
+
+        // Optionally, clear the fields or set them to default values
+        clearFieldsInUpdateMeeting();
+        refreshUpdateMeetingTable();
+    }
 
     boolean updateMeetingAllValidation = true;
-    public void eventIdValidationInUpdateMeeting() {
-        if (meetingIdInUpdate.getText().length() == 0){
+
+    public boolean eventIdValidationInUpdateMeeting() {
+        if (meetingIdInUpdate.getText().isEmpty()) {
             meetingIdInUpdate.setStyle("-fx-border-color: red");
             updateMeetingAllValidation = false;
-
+            return false;
         } else {
             meetingIdInUpdate.setStyle("");
+            return true;
         }
     }
 
-    public void eventNameValidationInUpdateMeeting() {
+    public boolean eventNameValidationInUpdateMeeting() {
         String eventName = meetingnameInUpdate.getText();
 
         // Validate event name
-        if (eventName == null || eventName.length() == 0 || !eventName.matches("^[A-Za-z]*$")) {
+        if (eventName == null || eventName.isEmpty() || !eventName.matches("^[A-Za-z]*$")) {
             meetingnameInUpdate.setStyle("-fx-border-color: red");
             updateMeetingAllValidation = false;
+            return false;
         } else {
             meetingnameInUpdate.setStyle("");
+            return true;
         }
     }
 
-
-    public void eventLocationValidationInUpdateMeeting() {
+    public boolean eventLocationValidationInUpdateMeeting() {
         String eventLocation = meetinglocationInUpdate.getText();
 
         // Validate event location
-        if (eventLocation == null || eventLocation.length() == 0 || !eventLocation.matches("^[A-Za-z]*$")) {
+        if (eventLocation == null || eventLocation.isEmpty() || !eventLocation.matches("^[A-Za-z]*$")) {
             meetinglocationInUpdate.setStyle("-fx-border-color: red");
             updateMeetingAllValidation = false;
+            return false;
         } else {
             meetinglocationInUpdate.setStyle("");
+            return true;
         }
     }
 
     public boolean meetingTimeValidationInUpdateMeeting() {
         String meetingTimeUpdate = meetingtimeInUpdate.getText();
 
-        // Validate event time
+        // Validate meeting time
         if (!validateMeetingUpdateTime(meetingTimeUpdate)) {
             meetingtimeInUpdate.setStyle("-fx-border-color: red");
-            updateEventsAllValidation = false;
+            updateMeetingAllValidation = false;
             return false;
         } else {
             meetingtimeInUpdate.setStyle("");
@@ -1495,16 +1550,17 @@ public class HelloController implements Initializable {
         return meetingTimeUpdate.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
     }
 
-
-    public void eventTypeValidationInUpdateMeeting() {
+    public boolean eventTypeValidationInUpdateMeeting() {
         String eventType = meetingtypeInUpdate.getText();
 
         // Validate event type
         if (!validateMeetingTypeUpdate(eventType)) {
             meetingtypeInUpdate.setStyle("-fx-border-color: red");
             updateMeetingAllValidation = false;
+            return false;
         } else {
             meetingtypeInUpdate.setStyle("");
+            return true;
         }
     }
 
@@ -1513,17 +1569,50 @@ public class HelloController implements Initializable {
         return eventType != null && (eventType.equalsIgnoreCase("online") || eventType.equalsIgnoreCase("physical"));
     }
 
-    public void eventDateValidationInUpdateMeeting() {
+    public boolean eventDateValidationInUpdateMeeting() {
         LocalDate selectedDate = meetingdateInUpdate.getValue();
 
-        // Validate workshop date
+        // Validate meeting date
         if (selectedDate == null) {
             meetingdateInUpdate.setStyle("-fx-border-color: red");
             updateMeetingAllValidation = false;
+            return false;
         } else {
             meetingdateInUpdate.setStyle("");
+            return true;
         }
     }
+
+    public boolean validateClubIdUpdateMeeting() {
+        String clubIdUpdateMeeting = meetingdescriptionInUpdate.getText();
+
+        // Validate clubIdUpdateMeeting
+        if (clubIdUpdateMeeting == null || clubIdUpdateMeeting.trim().isEmpty()) {
+            showAlert("Validation Error", "Club ID cannot be null or empty. Please enter a valid Club ID.");
+            // Set border color to red for indicating validation error
+            meetingdescriptionInUpdate.setStyle("-fx-border-color: red");
+            return false; // Validation failed
+        } else {
+            // Reset the border color for a valid input
+            meetingdescriptionInUpdate.setStyle("");
+            return true; // Validation passed
+        }
+    }
+
+    public void clearFieldsInUpdateMeeting() {
+        // Clear or set fields to default values
+        meetingIdInUpdate.clear();
+        meetingnameInUpdate.clear();
+        meetinglocationInUpdate.clear();
+        meetingtimeInUpdate.clear();
+        meetingdescriptionInUpdate.clear();
+        meetingtypeInUpdate.clear();
+        searchidFieldInMeeting.clear();
+        meetingdateInUpdate.setValue(null);
+    }
+
+
+
 
 
     boolean updateWorkshopAllValidation = true;
