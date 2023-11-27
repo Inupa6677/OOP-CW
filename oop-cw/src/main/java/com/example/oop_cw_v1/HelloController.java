@@ -422,9 +422,6 @@ public class HelloController implements Initializable {
         timeInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
         conductorInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("conductor"));
 
-        
-
-
     }
 
     // 3
@@ -707,6 +704,7 @@ public class HelloController implements Initializable {
                 event1.getScheduleLocation(), event1.getScheduleDescription(), event1.getScheduleDate(),
                 event1.getScheduleTime(), event1.getEventType());
         clearTextFieldsInEvent();
+        refreshTable();
 
         // Optionally, show a success message
         showAlert(AlertType.INFORMATION, "Success", "Event details saved successfully.");
@@ -906,6 +904,7 @@ public class HelloController implements Initializable {
                 meeting1.getScheduleLocation(), meeting1.getScheduleDescription(), meeting1.getScheduleDate(),
                 meeting1.getScheduleTime(), meeting1.getMeetingType());
         clearTextFieldsInMeeting();
+        refreshCreateMeetingTable();
 
         // Optionally, show a success message
         showAlert(AlertType.INFORMATION, "Success", "Meeting details saved successfully.");
@@ -1089,6 +1088,7 @@ public class HelloController implements Initializable {
                 workshop1.getScheduleLocation(), workshop1.getScheduleDescription(), workshop1.getScheduleDate(),
                 workshop1.getScheduleTime(), workshop1.getConductor());
         clearTextFieldsInWorkshop();
+        refreshCreateWorkshopTable();
 
         // Optionally, show a success message
         showAlert(AlertType.INFORMATION, "Success", "Workshop details saved successfully.");
@@ -1285,6 +1285,7 @@ public class HelloController implements Initializable {
 
         // Optionally, clear the fields or set them to default values
         clearFieldsInUpdateEvents();
+        refreshUpdateEventTable();
     }
 
     // Validation in updates
@@ -1433,6 +1434,7 @@ public class HelloController implements Initializable {
             meetingtypeInUpdate.clear();
             searchidFieldInMeeting.clear();
             meetingdateInUpdate.setValue(null);
+            refreshUpdateMeetingTable();
 
         }
 
@@ -1551,6 +1553,7 @@ public class HelloController implements Initializable {
 
         // Optionally, clear the fields or set them to default values
         clearFieldsInUpdateWorkshop();
+        refreshUpdateWorkshopTable();
     }
 
     // Validation for updating workshops
@@ -1659,372 +1662,61 @@ public class HelloController implements Initializable {
         workshopdateInupdate.setValue(null);
     }
 
-
-
-    public void onGameBtnClickInselecttoupdate(ActionEvent
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                       actionEvent) {
-
+    private void refreshTable(){
+        List<Event> events = DataBaseConnection.getEventData();
+        createEventTable.getItems().clear();
+        createEventTable.getItems().addAll(events);
+        createEventTable.refresh();
     }
+
+    private void refreshCreateMeetingTable(){
+        List<Meeting> createMeeting = DataBaseConnection.getMeetingData();
+        createMeetingTable.getItems().clear();
+        createMeetingTable.getItems().addAll(createMeeting);
+        createMeetingTable.refresh();
+    }
+
+    private void refreshCreateWorkshopTable(){
+        List<Workshop> createWorkshop = DataBaseConnection.getWorkshopData();
+        createWorkshopTable.getItems().clear();
+        createWorkshopTable.getItems().addAll(createWorkshop);
+        createWorkshopTable.refresh();
+    }
+
+    private void refreshUpdateEventTable(){
+        List<Event> updateEvent = DataBaseConnection.getEventUpdateData();
+        updateEventTable.getItems().clear();
+        updateEventTable.getItems().addAll(updateEvent);
+        updateEventTable.refresh();
+    }
+
+    private void refreshUpdateMeetingTable(){
+        List<Meeting> updateMeeting = DataBaseConnection.getMeetingUpdateData();
+        updateMeetingTable.getItems().clear();
+        updateMeetingTable.getItems().addAll(updateMeeting);
+        updateMeetingTable.refresh();
+    }
+
+    private void refreshUpdateWorkshopTable(){
+        List<Workshop> updateWorkshop = DataBaseConnection.getWorkshopUpdateData();
+        workshopTableInUpdate.getItems().clear();
+        workshopTableInUpdate.getItems().addAll(updateWorkshop);
+        workshopTableInUpdate.refresh();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
