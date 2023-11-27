@@ -654,8 +654,72 @@ public class DataBaseConnection {
 
 
 
+    public static List<Meeting> getMeetingUpdateData() {  // new one for getting event data for the table
+        List<Meeting> eventData = new ArrayList<>();
+
+        try {
+            Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+            String sql = "SELECT * FROM meeting";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Meeting meeting = new Meeting(
+                        resultSet.getString("scheduleId"),
+                        resultSet.getString("scheduleName"),
+                        resultSet.getString("scheduleLocation"),
+                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("scheduleDate"),
+                        resultSet.getString("scheduleTime"),
+                        resultSet.getString("meetingType")
+                );
+                eventData.add(meeting);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately (log it, show an error message, etc.)
+        }
+
+        return eventData;
+    }
 
 
+    public static List<Workshop> getWorkshopUpdateData() {  // new one for getting event data for the table
+        List<Workshop> eventData = new ArrayList<>();
+
+        try {
+            Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+            String sql = "SELECT * FROM workshop";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Workshop workshop = new Workshop(
+                        resultSet.getString("scheduleId"),
+                        resultSet.getString("scheduleName"),
+                        resultSet.getString("scheduleLocation"),
+                        resultSet.getString("scheduleDescription"),
+                        resultSet.getString("scheduleDate"),
+                        resultSet.getString("scheduleTime"),
+                        resultSet.getString("conductor")
+                );
+                eventData.add(workshop);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately (log it, show an error message, etc.)
+        }
+
+        return eventData;
+    }
 
 
 

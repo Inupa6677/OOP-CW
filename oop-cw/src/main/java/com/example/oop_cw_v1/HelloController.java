@@ -312,6 +312,47 @@ public class HelloController implements Initializable {
     @FXML
     private TableColumn<Event, String> eventTimeUpdateEvents;
 
+    // for update meeting
+    @FXML
+    private TableView<Meeting> updateMeetingTable;
+    @FXML
+    private TableColumn<Meeting, String> dateInUpdateMeeting;
+    @FXML
+    private TableColumn<Meeting, String> descriptionInUpdateMeeting;
+    @FXML
+    private TableColumn<Meeting, String> meetingTypeInUpdateMeeting;
+    @FXML
+    private TableColumn<Meeting, String> idInUpdateMeeting;
+
+    @FXML
+    private TableColumn<Meeting, String> locationInUpdateMeeting;
+    @FXML
+    private TableColumn<Meeting, String> nameInUpdateMeeting;
+    @FXML
+    private TableColumn<Meeting, String> timeInUpdateMeeting;
+
+
+    // update workshop
+
+
+    @FXML
+    private TableView<Workshop> workshopTableInUpdate;
+    @FXML
+    private TableColumn<Workshop, String> dateInUpdateWorkshop;
+    @FXML
+    private TableColumn<Workshop, String> descriptionInUpdateWorkshop;
+    @FXML
+    private TableColumn<Workshop, String> conductorInUpdateWorkshop;
+    @FXML
+    private TableColumn<Workshop, String> idInUpdateWorkshop;
+
+    @FXML
+    private TableColumn<Workshop, String> locationInUpdateWorkshop;
+    @FXML
+    private TableColumn<Workshop, String> nameInUpdateWorkshop;
+    @FXML
+    private TableColumn<Workshop, String> timeInUpdateWorkshop;
+
 
 
     @FXML
@@ -356,7 +397,29 @@ public class HelloController implements Initializable {
         eventDescriptionUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("scheduleDescription"));
         eventDateUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
         eventTimeUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
-        eventTypeUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("conductor"));
+        eventTypeUpdateEvents.setCellValueFactory(new PropertyValueFactory<>("eventType"));
+
+        // update meeting
+
+        idInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
+        nameInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleName"));
+        locationInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleLocation"));
+        descriptionInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleDescription"));
+        dateInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
+        timeInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
+        meetingTypeInUpdateMeeting.setCellValueFactory(new PropertyValueFactory<>("meetingType"));
+
+
+        // workshop update
+
+        idInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleId"));
+        nameInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleName"));
+        locationInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleLocation"));
+        descriptionInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleDescription"));
+        dateInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleDate"));
+        timeInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("scheduleTime"));
+        conductorInUpdateWorkshop.setCellValueFactory(new PropertyValueFactory<>("conductor"));
+
 
 
     }
@@ -386,7 +449,20 @@ public class HelloController implements Initializable {
     public void populateEventUpdate() {
         List<Event> eventData = DataBaseConnection.getEventUpdateData();
         System.out.println("Retrieved data: " + eventData);
-        createEventTable.getItems().setAll(eventData);
+        updateEventTable.getItems().setAll(eventData);
+    }
+
+    public void populateMeetingUpdate() {
+        List<Meeting> meetingData = DataBaseConnection.getMeetingUpdateData();
+        System.out.println("Retrieved data: " + meetingData);
+        updateMeetingTable.getItems().setAll(meetingData);
+    }
+
+
+    public void populateWorkshopUpdate() {
+        List<Workshop> workshopData = DataBaseConnection.getWorkshopUpdateData();
+        System.out.println("Retrieved data: " + workshopData);
+        workshopTableInUpdate.getItems().setAll(workshopData);
     }
 
 
@@ -400,9 +476,8 @@ public class HelloController implements Initializable {
         updateEvenetPane.setVisible(false);
         updateMeetingPane.setVisible(false);
         updateWorkshopPane.setVisible(false);
-
-
     }
+
 
     @FXML
     private void switchToRegisterNow(MouseEvent event) throws IOException {
@@ -487,6 +562,38 @@ public class HelloController implements Initializable {
         eventCreationPane.setVisible(true);
     }
 
+    @FXML
+    void eventBtninselectingevents(ActionEvent event) {
+        disablePanes();
+        eventCreationPane.setVisible(true);
+        populateEventTable();
+    }
+
+    @FXML
+    public void onEventBtnClickInselecttoupdate(ActionEvent actionEvent) {
+        disablePanes();
+        updateEvenetPane.setVisible(true);
+        populateEventUpdate();
+    }
+
+    public void onMeetingBtnClickInselecttoupdate() throws IOException {
+        disablePanes();
+        updateMeetingPane.setVisible(true);
+        populateMeetingUpdate();
+
+    }
+
+
+
+
+
+
+    void onEventBtnClickInselecttoupdate() throws IOException {
+        disablePanes();
+        updateEvenetPane.setVisible(true);
+        populateEventUpdate();
+    }
+
     public void meetingBtninselectingevents() throws IOException {
         disablePanes();
         createMeetingPane.setVisible(true);
@@ -516,15 +623,13 @@ public class HelloController implements Initializable {
     }
 
 
-    public void onMeetingBtnClickInselecttoupdate() throws IOException {
-        disablePanes();
-        updateMeetingPane.setVisible(true);
-    }
+
 
     public void onWorkshopBtnClickInselecttoupdate() throws IOException {
         disablePanes();
         updateWorkshopPane.setVisible(true);
     }
+    
 
     public void backBtnInUpdateEventPane() throws IOException {
         disablePanes();
@@ -548,14 +653,9 @@ public class HelloController implements Initializable {
         populateWorkshopTable();
 
     }
-    @FXML
-    void eventBtninselectingevents(ActionEvent event) {
-        disablePanes();
-        eventCreationPane.setVisible(true);
-        populateEventTable();
 
 
-    }
+
 
     @FXML
     void gameBtninselectingevents(ActionEvent event) {
@@ -563,7 +663,6 @@ public class HelloController implements Initializable {
 
 
     }
-
 
     // p+
     @FXML
@@ -574,21 +673,10 @@ public class HelloController implements Initializable {
 
     }
 
-    public void onEventBtnClickInselecttoupdate(ActionEvent actionEvent) {
-        disablePanes();
-        updateEvenetPane.setVisible(true);
-        populateEventUpdate();
-
-    }
-
-    public void onMeetingBtnClickInselecttoupdate(ActionEvent actionEvent) {
-        disablePanes();
-        updateMeetingPane.setVisible(true);
-    }
-
     public void onWorkshopBtnClickInselecttoupdate(ActionEvent actionEvent) {
        disablePanes();
         updateWorkshopPane.setVisible(true);
+        populateWorkshopUpdate();
     }
 
     public void onBackbtnincreategame(ActionEvent actionEvent) {
