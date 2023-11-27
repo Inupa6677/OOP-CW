@@ -143,7 +143,7 @@
             </TableView>
          </children>
       </Pane>
-      <Pane fx:id="selectUpdateEventTypePane" prefHeight="551.0" prefWidth="758.0" visible="false">
+      <Pane fx:id="selectUpdateEventTypePane" prefHeight="551.0" prefWidth="758.0">
          <children>
             <Label layoutX="70.0" layoutY="28.0" text="Select event type to update">
                <font>
@@ -157,7 +157,7 @@
             <Button layoutX="58.0" layoutY="478.0" mnemonicParsing="false" onAction="#onBackBtnClickInselecttoupdate" text="back" />
          </children>
       </Pane>
-      <Pane fx:id="updateEvenetPane" layoutX="-2.0" layoutY="1.0" prefHeight="550.0" prefWidth="758.0">
+      <Pane fx:id="updateEvenetPane" layoutX="-2.0" layoutY="1.0" prefHeight="550.0" prefWidth="758.0" visible="false">
          <children>
             <Label layoutX="86.0" layoutY="22.0" prefHeight="38.0" prefWidth="249.0" text="Update Event Details">
                <font>
