@@ -152,6 +152,15 @@ public class HelloController implements Initializable {
         disableGroups();
         groupFirst.setVisible(true);
         clubTable.getItems().clear();
+
+        // Clear the text fields
+        txtSearchClubId.clear();
+        txtManageClubName.clear();
+        txtManageMembers.clear();
+        txtManageAdvisorId.clear();
+        txtManageClubDescription.clear();
+        txtManageSport.clear();
+        txtManageAcademic.clear();
     }
 
     public void manageClick(ActionEvent actionEvent) {
@@ -351,7 +360,7 @@ public class HelloController implements Initializable {
                 txtManageAcademic.setText(((AcademicClub) club).getAcademicType());
                 txtManageSport.clear();
             } else {
-                // Clear both specific fields if it's a general Club
+
                 txtManageSport.clear();
                 txtManageAcademic.clear();
             }
@@ -370,14 +379,18 @@ public class HelloController implements Initializable {
         String membersText = txtManageMembers.getText().trim();
         int members = 0;  // Default value, change it to a suitable default if needed
 
-        if (!membersText.isEmpty()) {
-            try {
-                members = Integer.parseInt(membersText);
-            } catch (NumberFormatException e) {
-                // Handle the exception
-                e.printStackTrace();
-            }
+        // Validate members
+        if (!isValidNumber(membersText)) {
+            txtManageMembers.setStyle("-fx-text-fill: red;");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Members");
+            alert.setHeaderText(null);
+            alert.setContentText("Enter only integers for Members.");
+            alert.showAndWait();
+            return;
         }
+
+        members = Integer.parseInt(membersText);
         String advisorId = txtManageAdvisorId.getText();
         String clubDescription = txtManageClubDescription.getText();
 
