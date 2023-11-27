@@ -1,5 +1,7 @@
 package com.example.oop_cw_v1;
 
+import javafx.scene.control.Label;
+
 import java.util.Date;
 
 public abstract class User {
@@ -27,6 +29,9 @@ public abstract class User {
         this.contactNumber = contactNumber;
     }
 
+    public User(){
+
+    }
 
 
     // getters and setters
@@ -87,7 +92,7 @@ public abstract class User {
 
 
     // abstract methods
-    public abstract boolean display();
+    public abstract void displayUserInformation(String memberID,Label firstNameLabel, Label lastNameLabel, Label genderLabel, Label DoBLabel, Label contactNumberLabel, Label emailLabel, Label UserIdLabel );
 
 
 

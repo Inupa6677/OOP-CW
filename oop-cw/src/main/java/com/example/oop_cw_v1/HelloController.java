@@ -117,25 +117,25 @@ public class HelloController {
     private PasswordField loginStudentPasswordField;
 
     @FXML
-    private TableColumn<AcademicClub, String> studentAcedemicCol;
+    private TableColumn<?, ?> studentAcedemicCol;
 
     @FXML
     private CheckBox studentCheckBox;
 
     @FXML
-    private TableColumn<Club, String> studentClubDescriptionCol;
+    private TableColumn<?, ?> studentClubDescriptionCol;
 
     @FXML
-    private TableColumn<Club, String> studentClubIdCol;
+    private TableColumn<?, ?> studentClubIdCol;
 
     @FXML
     private Label studentClubMemberLable1;
 
     @FXML
-    private TableColumn<Club, Integer> studentClubMemeberCol;
+    private TableColumn<?, ?> studentClubMemeberCol;
 
     @FXML
-    private TableColumn<Club, String> studentClubNameCol;
+    private TableColumn<?, ?> studentClubNameCol;
 
     @FXML
     private Label studentClubNameLable1;
@@ -150,6 +150,9 @@ public class HelloController {
     private TableView<Club> studentClubTableView;
 
     @FXML
+    private Label studentContactNumberLabel;
+
+    @FXML
     private Pane studentDashBoardPane;
 
     @FXML
@@ -159,7 +162,13 @@ public class HelloController {
     private DatePicker studentDoBField;
 
     @FXML
+    private Label studentDoBLabel;
+
+    @FXML
     private TextField studentEmailField;
+
+    @FXML
+    private Label studentEmailLabel;
 
     @FXML
     private TextField studentFirstNameField;
@@ -168,7 +177,13 @@ public class HelloController {
     private TextField studentGenderField;
 
     @FXML
+    private Label studentGenderLabel;
+
+    @FXML
     private TextField studentIDField;
+
+    @FXML
+    private Label studentIdLabel;
 
     @FXML
     private TextField studentLastNameField;
@@ -186,7 +201,7 @@ public class HelloController {
     private StackPane studentRegisterPane;
 
     @FXML
-    private TableColumn<SportClub, String> studentSportCol;
+    private TableColumn<?, ?> studentSportCol;
 
     @FXML
     private Pane studentTaskBarPane;
@@ -198,10 +213,12 @@ public class HelloController {
     private TextField studentcontactNumberField;
 
     @FXML
-    private PasswordField studentpasswordField;
+    private Label studentnameLabel;
 
-    private String selectedStudentID;
-    private String selectedClubID;
+    @FXML
+    private PasswordField studentpasswordField;
+    @FXML
+    private  Label studentlastnameLabel;
 
 
 
@@ -527,6 +544,10 @@ public class HelloController {
         disablePane();
         studentMainPane.setVisible(true);
         studentDashBoardPane.setVisible(true);
+
+       Student student = new Student();
+       student.displayUserInformation(loginStudentEmailField.getText(),studentClubNameLable1,studentlastnameLabel,studentGenderLabel,studentDoBLabel,studentContactNumberLabel,studentEmailLabel,studentIdLabel);
+
     }
 
     // initializing the student club view table
@@ -561,12 +582,15 @@ public class HelloController {
         disablePane();
         advisorMainPane.setVisible(true);
         advisorDashBoardPane.setVisible(true);
+        DatabaseConnection.getAdvisorData(loginAdvisorEmaillField.getText());
     }
 
     public void advisiorClubViewClick(ActionEvent actionEvent) {
         disablePane();
         advisorMainPane.setVisible(true);
         advisorClubPane.setVisible(true);
+
+
     }
 
     public void advisorEventViewClick(ActionEvent actionEvent) {
@@ -584,7 +608,7 @@ public class HelloController {
         if (selectedClub != null && studentId != null) {
             // Store the IDs in variables
 
-            selectedClubID = selectedClub.getClubId();
+            String selectedClubID = selectedClub.getClubId();
 
             // Call the method to add the student to the club
             DatabaseConnection.addStudentToClub(studentId, selectedClubID);
@@ -593,7 +617,6 @@ public class HelloController {
         } else {
             System.out.println("Please select a student and a club.");
         }
-
 
 
     }

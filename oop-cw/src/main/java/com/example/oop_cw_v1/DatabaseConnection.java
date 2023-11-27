@@ -2,6 +2,7 @@ package com.example.oop_cw_v1;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DatabaseConnection {
@@ -199,6 +200,103 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
     }
+
+    public static HashMap<String,String> getAdvisorData(String advisorID) {
+        HashMap<String,String> hashMap = new HashMap<>();
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            String selectQuery = "SELECT advisor_id, first_name, last_name, dob, email, password, contact_number, gender FROM advisor WHERE advisor_id = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+            preparedStatement.setString(1, advisorID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Process the retrieved data
+            while (resultSet.next()) {
+                String retrievedAdvisorID = resultSet.getString("advisor_id");
+                String retrievedFirstName = resultSet.getString("first_name");
+                String retrievedLastName = resultSet.getString("last_name");
+                String retrievedDoB = resultSet.getString("dob");
+                String retrievedEmail = resultSet.getString("email");
+                String retrievedPassword = resultSet.getString("password");
+                String retrievedContactNumber = resultSet.getString("contact_number");
+                String retrievedGender = resultSet.getString("gender");
+
+                // Do something with the retrieved data, e.g., print it or use it in your application
+                hashMap.put("Advisor ID",retrievedAdvisorID);
+                hashMap.put("First Name" , retrievedFirstName);
+                hashMap.put("Last Name" , retrievedLastName);
+                hashMap.put("DOB" , retrievedDoB);
+                hashMap.put("Email" , retrievedEmail);
+                hashMap.put("Password" , retrievedPassword);
+                hashMap.put("Contact Number" , retrievedContactNumber);
+                hashMap.put("Gender" , retrievedGender);
+            }
+
+            // Close resources
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle SQLException as needed
+        }
+        return hashMap;
+    }
+
+    public static HashMap<String, String> getStudentData(String studentID) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            String selectQuery = "SELECT student_id, first_name, last_name, dob, email, password, contact_number, gender FROM student WHERE student_id = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+            preparedStatement.setString(1, studentID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Process the retrieved data
+            while (resultSet.next()) {
+                String retrievedStudentID = resultSet.getString("student_id");
+                String retrievedFirstName = resultSet.getString("first_name");
+                String retrievedLastName = resultSet.getString("last_name");
+                String retrievedDoB = resultSet.getString("dob");
+                String retrievedEmail = resultSet.getString("email");
+                String retrievedPassword = resultSet.getString("password");
+                String retrievedContactNumber = resultSet.getString("contact_number");
+                String retrievedGender = resultSet.getString("gender");
+
+                // Do something with the retrieved data, e.g., print it or use it in your application
+                hashMap.put("Student ID", retrievedStudentID);
+                hashMap.put("First Name", retrievedFirstName);
+                hashMap.put("Last Name", retrievedLastName);
+                hashMap.put("DOB", retrievedDoB);
+                hashMap.put("Email", retrievedEmail);
+                hashMap.put("Password", retrievedPassword);
+                hashMap.put("Contact Number", retrievedContactNumber);
+                hashMap.put("Gender", retrievedGender);
+
+                System.out.println(retrievedEmail);
+                System.out.println(retrievedLastName);
+            }
+
+            // Close resources
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle SQLException as needed
+        }
+        return hashMap;
+    }
+
+
 }
 
 
