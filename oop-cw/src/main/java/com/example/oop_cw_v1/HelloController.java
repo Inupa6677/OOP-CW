@@ -14,13 +14,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import java.net.URL;
 import java.time.*;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -583,11 +585,6 @@ public class HelloController implements Initializable {
 
     }
 
-
-
-
-
-
     void onEventBtnClickInselecttoupdate() throws IOException {
         disablePanes();
         updateEvenetPane.setVisible(true);
@@ -651,9 +648,6 @@ public class HelloController implements Initializable {
 
     }
 
-
-
-
     @FXML
     void gameBtninselectingevents(ActionEvent event) {
         disablePanes();createGamePane.setVisible(true);
@@ -690,107 +684,112 @@ public class HelloController implements Initializable {
     public void onsavebtnincreateevent(ActionEvent actionEvent) {
         // Getting data from the text fields
         String eventId = eventidincreateevent.getText();
-        eventIdValidationInCreateEvents();
         String eventName = eventnameincreateevent.getText();
-        eventNameValidationInCreateEvents();
         String eventLocation = eventlocationincreateevent.getText();
-        eventLocationValidationInCreateEvents();
         String eventTime = eventtimeincreateevent.getText();
-        eventTimeValidationInCreateEvents();
         String eventDescription = eventdescriptionincreateevent.getText();
         String eventType = eventtypeincreateevent.getText();
-        eventTypeValidationInCreateEvents();
         String eventDate = String.valueOf(eventDateincreateevent.getValue());
-        eventDateValidationInCreateEvents();
 
-        // save event data to db after validation
-        // if(eventvalidation == true) make the validation and add the details in to the condition
-        Event event1 = new Event(eventId, eventName, eventLocation, eventDescription, eventDate, eventTime , eventType);
-        DataBaseConnection.insertEventData(event1.getScheduleId(), event1.getScheduleName(),event1.getScheduleLocation(), event1.getScheduleDescription(),event1.getScheduleDate(),  event1.getScheduleTime(), event1.getEventType());
+        // Validate fields
+        if (!eventIdValidationInCreateEvents() || !eventNameValidationInCreateEvents()
+                || !eventLocationValidationInCreateEvents() || !eventTimeValidationInCreateEvents()
+                || !eventDateValidationInCreateEvents() || !eventTypeValidationInCreateEvents()) {
+            // Validation failed, show an alert
+            showAlert(AlertType.ERROR, "Validation Error", "Please fill in all the required fields.");
+            return;
+        }
+
+        // All fields are valid, proceed to save to the database
+        Event event1 = new Event(eventId, eventName, eventLocation, eventDescription, eventDate, eventTime, eventType);
+        DataBaseConnection.insertEventData(event1.getScheduleId(), event1.getScheduleName(),
+                event1.getScheduleLocation(), event1.getScheduleDescription(), event1.getScheduleDate(),
+                event1.getScheduleTime(), event1.getEventType());
         clearTextFieldsInEvent();
+
+        // Optionally, show a success message
+        showAlert(AlertType.INFORMATION, "Success", "Event details saved successfully.");
     }
 
-    //User Input Validation (create events)
-
-    boolean createEventsAllValidation = true;
-    public void eventIdValidationInCreateEvents() {
-        if (eventidincreateevent.getText().length() == 0){
+    public boolean eventIdValidationInCreateEvents() {
+        if (eventidincreateevent.getText().isEmpty()) {
             eventidincreateevent.setStyle("-fx-border-color: red");
-            createEventsAllValidation = false;
-
+            return false;
         } else {
             eventidincreateevent.setStyle("");
+            return true;
         }
     }
 
-    public void eventNameValidationInCreateEvents() {
+    public boolean eventNameValidationInCreateEvents() {
         String eventName = eventnameincreateevent.getText();
-
-        // Validate event name
-        if (eventName == null || eventName.length() == 0 || !eventName.matches("^[A-Za-z]*$")) {
+        if (eventName == null || eventName.isEmpty() || !eventName.matches("^[A-Za-z]*$")) {
             eventnameincreateevent.setStyle("-fx-border-color: red");
-            createEventsAllValidation = false;
+            return false;
         } else {
             eventnameincreateevent.setStyle("");
+            return true;
         }
     }
 
-
-    public void eventLocationValidationInCreateEvents() {
+    public boolean eventLocationValidationInCreateEvents() {
         String eventLocation = eventlocationincreateevent.getText();
-
-        // Validate event location
-        if (eventLocation == null || eventLocation.length() == 0 || !eventLocation.matches("^[A-Za-z]*$")) {
+        if (eventLocation == null || eventLocation.isEmpty() || !eventLocation.matches("^[A-Za-z]*$")) {
             eventlocationincreateevent.setStyle("-fx-border-color: red");
-            createEventsAllValidation = false;
+            return false;
         } else {
             eventlocationincreateevent.setStyle("");
+            return true;
         }
     }
 
-
-
-    public void eventTimeValidationInCreateEvents() {
+    public boolean eventTimeValidationInCreateEvents() {
         String eventTime = eventtimeincreateevent.getText();
-
-        // Validate event time
         if (!validateEventTime(eventTime)) {
             eventtimeincreateevent.setStyle("-fx-border-color: red");
-            createEventsAllValidation = false;
+            return false;
         } else {
             eventtimeincreateevent.setStyle("");
+            return true;
         }
     }
-    public boolean validateEventTime(String time) {
-        return time.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
-    }
 
-    public void eventTypeValidationInCreateEvents() {
+    public boolean eventTypeValidationInCreateEvents() {
         String eventType = eventtypeincreateevent.getText();
-
-        // Validate event type
-        if (!validateEventType(eventType)) {
+        if (eventType == null || !eventType.matches("^(online|physical)$")) {
             eventtypeincreateevent.setStyle("-fx-border-color: red");
-            createEventsAllValidation = false;
+            return false;
         } else {
             eventtypeincreateevent.setStyle("");
+            return true;
         }
     }
-    public boolean validateEventType(String eventType) {
-        // Check if the event type is not null and is either "online" or "physical"
-        return eventType != null && (eventType.equalsIgnoreCase("online") || eventType.equalsIgnoreCase("physical"));
+
+    public boolean validateEventTime(String time) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime.parse(time, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
-    public void eventDateValidationInCreateEvents() {
-        LocalDate selectedDate = eventDateincreateevent.getValue();
-
-        // Validate event date
-        if (selectedDate == null) {
-            eventDateincreateevent.setStyle("-fx-border-color: red");
-            createEventsAllValidation = false;
+    public boolean eventDateValidationInCreateEvents() {
+        if (eventDateincreateevent.getValue() == null) {
+            showAlert(AlertType.ERROR, "Validation Error", "Please select an event date.");
+            return false;
         } else {
-            eventDateincreateevent.setStyle("");
+            return true;
         }
+    }
+
+    private void showAlert(AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
 
@@ -880,112 +879,110 @@ public class HelloController implements Initializable {
         eventDateincreateevent.getEditor().clear();
     }
 
+    boolean createMeetingAllValidation = true;
+
     public void onsaveBtnIncreatemeeting(ActionEvent actionEvent) {
+        // Getting data from the text fields
         String meetingId = meetingIdIncreatemeeting.getText();
-        meetingIdValidationInCreateEvents();
         String meetingName = meetingnameIncreatemeeting.getText();
-        meetingNameValidationInCreateEvents();
         String meetingLocation = meetinglocationIncreatemeeting.getText();
-        meetingLocationValidationInCreateEvents();
         String meetingTime = meetingtimeIncreatemeeting.getText();
-        meetingTimeValidationInCreateEvents();
         String meetingDescription = meetingdescriptionIncreatemeeting.getText();
         String meetingType = meetingtypeIncreatemeeting.getText();
-        meetingTypeValidationInCreateEvents();
         String meetingDate = String.valueOf(meetingdateIncreatemeeting.getValue());
-        meetingDateValidationInCreateEvents();
 
-        // save event data to db after validation
-        // if(eventvalidation == true) make the validation and add the details in to the condition
+        // Validate fields
+        if (!meetingIdValidationInCreateEvents() || !meetingNameValidationInCreateEvents() || !meetingTimeValidationInCreateEvents()
+                || !meetingTypeValidationInCreateEvents() || !meetingDateValidationInCreateEvents()) {
+            // Validation failed, show an alert
+            showAlert(AlertType.ERROR, "Validation Error", "Please fill in all the required fields.");
+            return;
+        }
+
+        // All fields are valid, proceed to save to the database
         Meeting meeting1 = new Meeting(meetingId, meetingName, meetingLocation, meetingDescription, meetingDate, meetingTime, meetingType);
-        DataBaseConnection.insertMeetingData(meeting1.getScheduleId(), meeting1.getScheduleName(), meeting1.getScheduleLocation(), meeting1.getScheduleDescription(), meeting1.getScheduleDate(), meeting1.getScheduleTime(),  meeting1.getMeetingType());
+        DataBaseConnection.insertMeetingData(meeting1.getScheduleId(), meeting1.getScheduleName(),
+                meeting1.getScheduleLocation(), meeting1.getScheduleDescription(), meeting1.getScheduleDate(),
+                meeting1.getScheduleTime(), meeting1.getMeetingType());
         clearTextFieldsInMeeting();
 
+        // Optionally, show a success message
+        showAlert(AlertType.INFORMATION, "Success", "Meeting details saved successfully.");
     }
 
-    boolean createMeetingAllValidation = true;
-    public void meetingIdValidationInCreateEvents() {
-        if (meetingIdIncreatemeeting.getText().length() == 0){
+    public boolean meetingIdValidationInCreateEvents() {
+        if (meetingIdIncreatemeeting.getText().isEmpty()) {
             meetingIdIncreatemeeting.setStyle("-fx-border-color: red");
             createMeetingAllValidation = false;
-
+            return false;
         } else {
             meetingIdIncreatemeeting.setStyle("");
+            return true;
         }
     }
 
-    public void meetingNameValidationInCreateEvents() {
+    public boolean meetingNameValidationInCreateEvents() {
         String eventName = meetingnameIncreatemeeting.getText();
 
         // Validate event name
-        if (eventName == null || eventName.length() == 0 || !eventName.matches("^[A-Za-z]*$")) {
+        if (eventName == null || eventName.isEmpty() || !eventName.matches("^[A-Za-z]*$")) {
             meetingnameIncreatemeeting.setStyle("-fx-border-color: red");
             createMeetingAllValidation = false;
+            return false;
         } else {
             meetingnameIncreatemeeting.setStyle("");
-        }
-    }
-
-
-    public void meetingLocationValidationInCreateEvents() {
-        String eventLocation = meetinglocationIncreatemeeting.getText();
-
-        // Validate event location
-        if (eventLocation == null || eventLocation.length() == 0 || !eventLocation.matches("^[A-Za-z]*$")) {
-            meetinglocationIncreatemeeting.setStyle("-fx-border-color: red");
-            createMeetingAllValidation = false;
-        } else {
-            meetinglocationIncreatemeeting.setStyle("");
+            return true;
         }
     }
 
 
 
-    public void meetingTimeValidationInCreateEvents() {
+    public boolean meetingTimeValidationInCreateEvents() {
         String meetingTime = meetingtimeIncreatemeeting.getText();
 
         // Validate event time
         if (!validateMeetingTime(meetingTime)) {
             meetingtimeIncreatemeeting.setStyle("-fx-border-color: red");
             createMeetingAllValidation = false;
+            return false;
         } else {
             meetingtimeIncreatemeeting.setStyle("");
+            return true;
         }
     }
+
     public boolean validateMeetingTime(String meetingTime) {
         return meetingTime.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
     }
 
-
-
-    public void meetingTypeValidationInCreateEvents() {
+    public boolean meetingTypeValidationInCreateEvents() {
         String meetingType = meetingtypeIncreatemeeting.getText();
 
         // Validate event type
         if (!validateMeetingType(meetingType)) {
             meetingtypeIncreatemeeting.setStyle("-fx-border-color: red");
             createMeetingAllValidation = false;
+            return false;
         } else {
             meetingtypeIncreatemeeting.setStyle("");
+            return true;
         }
     }
+
     public boolean validateMeetingType(String meetingType) {
         // Check if the event type is not null and is either "online" or "physical"
         return meetingType != null && (meetingType.equalsIgnoreCase("online") || meetingType.equalsIgnoreCase("physical"));
     }
 
-    public void meetingDateValidationInCreateEvents() {
-        LocalDate selectedDate = meetingdateIncreatemeeting.getValue();
-
-        // Validate meeting date
-        if (selectedDate == null) {
-            meetingdateIncreatemeeting.setStyle("-fx-border-color: red");
-            createMeetingAllValidation = false;
+    public boolean meetingDateValidationInCreateEvents() {
+        if (meetingdateIncreatemeeting.getValue() == null) {
+            showAlert(AlertType.ERROR, "Validation Error", "Please select a meeting date.");
+            return false;
         } else {
             meetingdateIncreatemeeting.setStyle("");
+            return true;
         }
     }
-
 
     public void onSearchBtnInmeetingUpdate(ActionEvent actionEvent) {
         String searchMeetingId = searchidFieldInMeeting.getText();
@@ -1064,106 +1061,124 @@ public class HelloController implements Initializable {
     }
 
 
+    boolean createWorkshopAllValidation = true;
+
     public void onSaveBtnClickInCreateWorkshop(ActionEvent actionEvent) {
+        // Getting data from the text fields
         String workshopId = workshopIdInCreateWorkshop.getText();
-        workshopIdValidationInCreateWorkshop();
         String workshopName = workshopnameInCreateWorkshop.getText();
-        workshopNameValidationInCreateWorkshop();
         String workshopLocation = workshoplocationInCreateWorkshop.getText();
-        workshopLocationValidationInCreateWorkshop();
         String workshopTime = workshopTimeInCreateWorkshop.getText();
-        workshopTimeValidationInCreateWorkshop();
         String workshopDescription = workshopdescriptionInCreateWorkshop.getText();
         String workshopConductor = workshopConductorInCreateWorkshop.getText();
-        workshopConductorValidationInCreateWorkshop();
         String workshopDate = String.valueOf(workshopDateInCreateWorkshop.getValue());
-        workshopDateValidationInCreateWorkshop();
 
-        // save event data to db after validation
-        // if(eventvalidation == true) make the validation and add the details in to the condition
-        Workshop workshop1 = new Workshop(workshopId, workshopName, workshopLocation, workshopDescription, workshopDate, workshopTime,  workshopConductor);
-        DataBaseConnection.insertWorkshopData(workshop1.getScheduleId(), workshop1.getScheduleName(), workshop1.getScheduleLocation(), workshop1.getScheduleDescription(), workshop1.getScheduleDate(), workshop1.getScheduleTime(), workshop1.getConductor());
+        // Validate fields
+        if (!workshopIdValidationInCreateWorkshop() || !workshopNameValidationInCreateWorkshop()
+                || !workshopLocationValidationInCreateWorkshop() || !workshopTimeValidationInCreateWorkshop()
+                || !workshopConductorValidationInCreateWorkshop() || !workshopDateValidationInCreateWorkshop()) {
+            // Validation failed, show an alert
+            showAlert(AlertType.ERROR, "Validation Error", "Please fill in all the required fields.");
+            return;
+        }
+
+        // All fields are valid, proceed to save to the database
+        Workshop workshop1 = new Workshop(workshopId, workshopName, workshopLocation, workshopDescription, workshopDate, workshopTime, workshopConductor);
+        DataBaseConnection.insertWorkshopData(workshop1.getScheduleId(), workshop1.getScheduleName(),
+                workshop1.getScheduleLocation(), workshop1.getScheduleDescription(), workshop1.getScheduleDate(),
+                workshop1.getScheduleTime(), workshop1.getConductor());
         clearTextFieldsInWorkshop();
+
+        // Optionally, show a success message
+        showAlert(AlertType.INFORMATION, "Success", "Workshop details saved successfully.");
     }
 
-
-    boolean createWorkshopAllValidation = true;
-    public void workshopIdValidationInCreateWorkshop() {
-        if (workshopIdInCreateWorkshop.getText().length() == 0){
+    public boolean workshopIdValidationInCreateWorkshop() {
+        if (workshopIdInCreateWorkshop.getText().isEmpty()) {
             workshopIdInCreateWorkshop.setStyle("-fx-border-color: red");
             createWorkshopAllValidation = false;
-
+            return false;
         } else {
             workshopIdInCreateWorkshop.setStyle("");
+            return true;
         }
     }
 
-    public void workshopNameValidationInCreateWorkshop() {
+    public boolean workshopNameValidationInCreateWorkshop() {
         String eventName = workshopnameInCreateWorkshop.getText();
 
         // Validate event name
-        if (eventName == null || eventName.length() == 0 || !eventName.matches("^[A-Za-z]*$")) {
+        if (eventName == null || eventName.isEmpty() || !eventName.matches("^[A-Za-z]*$")) {
             workshopnameInCreateWorkshop.setStyle("-fx-border-color: red");
             createWorkshopAllValidation = false;
+            return false;
         } else {
             workshopnameInCreateWorkshop.setStyle("");
+            return true;
         }
     }
 
-
-    public void workshopLocationValidationInCreateWorkshop() {
+    public boolean workshopLocationValidationInCreateWorkshop() {
         String eventLocation = workshoplocationInCreateWorkshop.getText();
 
         // Validate event location
-        if (eventLocation == null || eventLocation.length() == 0 || !eventLocation.matches("^[A-Za-z]*$")) {
+        if (eventLocation == null || eventLocation.isEmpty() || !eventLocation.matches("^[A-Za-z]*$")) {
             workshoplocationInCreateWorkshop.setStyle("-fx-border-color: red");
             createWorkshopAllValidation = false;
+            return false;
         } else {
             workshoplocationInCreateWorkshop.setStyle("");
+            return true;
         }
     }
 
-
-
-    public void workshopTimeValidationInCreateWorkshop() {
+    public boolean workshopTimeValidationInCreateWorkshop() {
         String workshopTime = workshopTimeInCreateWorkshop.getText();
 
         // Validate event time
         if (!validateWorkshopTime(workshopTime)) {
             workshopTimeInCreateWorkshop.setStyle("-fx-border-color: red");
             createWorkshopAllValidation = false;
+            return false;
         } else {
             workshopTimeInCreateWorkshop.setStyle("");
+            return true;
         }
     }
+
     public boolean validateWorkshopTime(String workshopTime) {
         return workshopTime.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
     }
 
-    public void workshopConductorValidationInCreateWorkshop() {
+    public boolean workshopConductorValidationInCreateWorkshop() {
         String workshopConductor = workshopConductorInCreateWorkshop.getText();
 
         // Validate workshop conductor
-        if (workshopConductor == null || workshopConductor.length() == 0 || !workshopConductor.matches("^[A-Za-z ]+$")) {
+        if (workshopConductor == null || workshopConductor.isEmpty() || !workshopConductor.matches("^[A-Za-z ]+$")) {
             workshopConductorInCreateWorkshop.setStyle("-fx-border-color: red");
             createWorkshopAllValidation = false;
+            return false;
         } else {
             workshopConductorInCreateWorkshop.setStyle("");
+            return true;
         }
     }
 
-
-    public void workshopDateValidationInCreateWorkshop() {
+    public boolean workshopDateValidationInCreateWorkshop() {
         LocalDate selectedDate = workshopDateInCreateWorkshop.getValue();
 
         // Validate workshop date
         if (selectedDate == null) {
             workshopDateInCreateWorkshop.setStyle("-fx-border-color: red");
             createWorkshopAllValidation = false;
+            return false;
         } else {
             workshopDateInCreateWorkshop.setStyle("");
+            return true;
         }
     }
+
+
 
 
 
@@ -1242,135 +1257,144 @@ public class HelloController implements Initializable {
         workshopDateInCreateWorkshop.getEditor().clear();
     }
 
+    boolean updateEventsAllValidation = true;
+
     public void onSaveBtnClickInUpdateevents(ActionEvent actionEvent) {
         // Get the updated event details from the text fields
         String eventId = eventIdInUpdate.getText();
-        eventIdValidationInUpdateEvents();
         String eventName = eventNameInUpdate.getText();
-        eventNameValidationInUpdateEvents();
         String location = eventLocationInUpdate.getText();
-        eventLocationValidationInUpdateEvents();
         String description = eventDescriptionInUpdate.getText();
         String eventDate = String.valueOf(dateInUpdate.getValue());
-        eventDateValidationInUpdateEvents();
         String time = eventTimeInUpdate.getText();
-        eventTimeValidationInUpdateEvents();
         String eventType = eventTypeInUpdate.getText();
-        eventTypeValidationInUpdateEvents();
-        if (updateEventsAllValidation) {
 
-            // Validate the updated details if necessary
-            // if (eventValidation == true) {
-            //     // Perform validation and update details accordingly
-            // }
-
-            // Update event data in the database
-            DataBaseConnection.updateEventData(eventId, eventName, location, description, eventDate, time, eventType);
-
-            // Provide feedback to the user (e.g., show an alert)
-            showAlert("Event Updated", "Event details have been successfully updated.");
-
-            // Optionally, clear the fields or set them to default values
-            eventIdInUpdate.clear();
-            eventNameInUpdate.clear();
-            eventLocationInUpdate.clear();
-            eventTimeInUpdate.clear();
-            eventDescriptionInUpdate.clear();
-            eventTypeInUpdate.clear();
-            dateInUpdate.setValue(null);
-
+        // Validate fields
+        if (!eventIdValidationInUpdateEvents() || !eventNameValidationInUpdateEvents()
+                || !eventLocationValidationInUpdateEvents()
+                || !eventTypeValidationInUpdateEvents() || !eventDateValidationInUpdateEvents() || !eventTimeValidationInUpdateEvents()) {
+            return; // Validation failed, alerts will be shown within the methods
         }
+
+        // Update event data in the database
+        DataBaseConnection.updateEventData(eventId, eventName, location, description, eventDate, time, eventType);
+
+        // Provide feedback to the user (e.g., show an alert)
+        showAlert("Event Updated", "Event details have been successfully updated.");
+
+        // Optionally, clear the fields or set them to default values
+        clearFieldsInUpdateEvents();
     }
 
-
-    // validate in updates
-
-    boolean updateEventsAllValidation = true;
-    public void eventIdValidationInUpdateEvents() {
-        if (eventIdInUpdate.getText().length() == 0){
+    // Validation in updates
+    public boolean eventIdValidationInUpdateEvents() {
+        if (eventIdInUpdate.getText().isEmpty()) {
+            showAlert("Validation Error", "Please enter the Event ID.");
             eventIdInUpdate.setStyle("-fx-border-color: red");
             updateEventsAllValidation = false;
-
+            return false;
         } else {
             eventIdInUpdate.setStyle("");
+            return true;
         }
     }
 
-    public void eventNameValidationInUpdateEvents() {
+    public boolean eventNameValidationInUpdateEvents() {
         String eventName = eventNameInUpdate.getText();
 
         // Validate event name
-        if (eventName == null || eventName.length() == 0 || !eventName.matches("^[A-Za-z]*$")) {
+        if (eventName == null || eventName.isEmpty() || !eventName.matches("^[A-Za-z]*$")) {
+            showAlert("Validation Error", "Please enter a valid Event Name with only alphabets.");
             eventNameInUpdate.setStyle("-fx-border-color: red");
             updateEventsAllValidation = false;
+            return false;
         } else {
             eventNameInUpdate.setStyle("");
+            return true;
         }
     }
 
-
-    public void eventLocationValidationInUpdateEvents() {
+    public boolean eventLocationValidationInUpdateEvents() {
         String eventLocation = eventLocationInUpdate.getText();
 
         // Validate event location
-        if (eventLocation == null || eventLocation.length() == 0 || !eventLocation.matches("^[A-Za-z]*$")) {
+        if (!eventLocation.matches("^[A-Za-z]*$")) {
+            showAlert("Validation Error", "Please enter a valid Event Location with only alphabets.");
             eventLocationInUpdate.setStyle("-fx-border-color: red");
             updateEventsAllValidation = false;
+            return false;
         } else {
             eventLocationInUpdate.setStyle("");
-        }
-    }
-
-
-
-    public void eventTimeValidationInUpdateEvents() {
-        String eventTime = eventTimeInUpdate.getText();
-
-        // Validate event time
-        if (!validateEventTimeUpdate(eventTime)) {
-            eventTimeInUpdate.setStyle("-fx-border-color: red");
-            updateEventsAllValidation = false;
-        } else {
-            eventTimeInUpdate.setStyle("");
-        }
-    }
-
-    public boolean validateEventTimeUpdate(String time) {
-        // Allow an empty time field
-        if (time == null || time.trim().isEmpty()) {
             return true;
         }
-
-        // Validate time format (HH:mm)
-        return time.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
     }
 
-    public void eventTypeValidationInUpdateEvents() {
+
+
+
+    public boolean eventTypeValidationInUpdateEvents() {
         String eventType = eventTypeInUpdate.getText();
 
         // Validate event type
         if (!validateEventTypeUpdate(eventType)) {
+            showAlert("Validation Error", "Please enter a valid Event Type (online/physical).");
             eventTypeInUpdate.setStyle("-fx-border-color: red");
             updateEventsAllValidation = false;
+            return false;
         } else {
             eventTypeInUpdate.setStyle("");
+            return true;
         }
     }
+
     public boolean validateEventTypeUpdate(String eventType) {
         // Check if the event type is not null and is either "online" or "physical"
         return eventType != null && (eventType.equalsIgnoreCase("online") || eventType.equalsIgnoreCase("physical"));
     }
 
-    public void eventDateValidationInUpdateEvents() {
+    public boolean eventDateValidationInUpdateEvents() {
         LocalDate selectedDate = dateInUpdate.getValue();
 
-        // Validate workshop date
+        // Validate event date
         if (selectedDate == null) {
+            showAlert("Validation Error", "Please select an Event Date.");
             dateInUpdate.setStyle("-fx-border-color: red");
             updateEventsAllValidation = false;
+            return false;
         } else {
             dateInUpdate.setStyle("");
+            return true;
         }
+    }
+
+    public boolean eventTimeValidationInUpdateEvents() {
+        String eventTimeUpdate = eventTimeInUpdate.getText();
+
+        // Validate event time
+        if (!validateEventUpdateTime(eventTimeUpdate)) {
+            eventTimeInUpdate.setStyle("-fx-border-color: red");
+            updateEventsAllValidation = false;
+            return false;
+        } else {
+            eventTimeInUpdate.setStyle("");
+            return true;
+        }
+    }
+
+    public boolean validateEventUpdateTime(String eventTimeUpdate) {
+        return eventTimeUpdate.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
+    }
+
+
+
+    private void clearFieldsInUpdateEvents() {
+        eventIdInUpdate.clear();
+        eventNameInUpdate.clear();
+        eventLocationInUpdate.clear();
+        eventTimeInUpdate.clear();
+        eventDescriptionInUpdate.clear();
+        eventTypeInUpdate.clear();
+        dateInUpdate.setValue(null);
     }
 
 
@@ -1388,7 +1412,7 @@ public class HelloController implements Initializable {
         String meetingDate = String.valueOf(meetingdateInUpdate.getValue());
         eventDateValidationInUpdateMeeting();
         String meetingTime = meetingtimeInUpdate.getText();
-        eventTimeValidationInUpdateMeeting();
+        meetingTimeValidationInUpdateMeeting() ;
         String meetingType = meetingtypeInUpdate.getText();
         eventTypeValidationInUpdateMeeting();
         if (updateMeetingAllValidation){
@@ -1450,30 +1474,23 @@ public class HelloController implements Initializable {
         }
     }
 
-
-
-    public void eventTimeValidationInUpdateMeeting() {
-        String eventTime = meetingtimeInUpdate.getText();
+    public boolean meetingTimeValidationInUpdateMeeting() {
+        String meetingTimeUpdate = meetingtimeInUpdate.getText();
 
         // Validate event time
-        if (!validateMeetingTimeUpdate(eventTime)) {
+        if (!validateMeetingUpdateTime(meetingTimeUpdate)) {
             meetingtimeInUpdate.setStyle("-fx-border-color: red");
-            updateMeetingAllValidation = false;
+            updateEventsAllValidation = false;
+            return false;
         } else {
             meetingtimeInUpdate.setStyle("");
-        }
-    }
-
-    public boolean validateMeetingTimeUpdate(String time) {
-        // Allow an empty time field
-        if (time == null || time.trim().isEmpty()) {
             return true;
         }
-
-        // Validate time format (HH:mm)
-        return time.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
     }
 
+    public boolean validateMeetingUpdateTime(String meetingTimeUpdate) {
+        return meetingTimeUpdate.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
+    }
 
 
     public void eventTypeValidationInUpdateMeeting() {
@@ -1506,35 +1523,132 @@ public class HelloController implements Initializable {
     }
 
 
+    boolean updateWorkshopAllValidation = true;
+
     public void saveWorkshopbtninupdate(ActionEvent actionEvent) {
         // Get the updated workshop details from the text fields
         String workshopId = workshopidInupdate.getText();
-        eventIdValidationInUpdateWorkshop();
         String workshopName = workshopnameInupdate.getText();
-        eventNameValidationInUpdateWorkshop();
         String workshopLocation = workshoplocationInupdate.getText();
-        eventLocationValidationInUpdateWorkshop();
         String workshopDescription = workshopdescriptionInupdate.getText();
         String date = String.valueOf(workshopdateInupdate.getValue());
-        eventDateValidationInUpdateWorkshop();
         String workshopTime = workshoptimeInupdate.getText();
-        eventTimeValidationInUpdateWorkshop();
         String workshopConductor = workshopconductorInupdate.getText();
-        workshopConductorValidationInUpdateWorkshop();
 
-        populateWorkshopUpdate();
-        // Validate the updated details if necessary
-        // if (workshopValidation == true) {
-        //     // Perform validation and update details accordingly
-        // }
+        // Validate workshop fields
+        if (!workshopIdValidationInUpdate() || !workshopNameValidationInUpdate()
+                || !workshopLocationValidationInUpdate()
+                || !workshopConductorValidationInUpdate() || !workshopDateValidationInUpdate() || !workshopTimeValidationInUpdateWorkshop()) {
+            return; // Validation failed, alerts will be shown within the methods
+        }
 
         // Update workshop data in the database
-        DataBaseConnection.updateWorkshopData(workshopId, workshopName, workshopLocation,  workshopDescription, date, workshopTime, workshopConductor);
+        DataBaseConnection.updateWorkshopData(workshopId, workshopName, workshopLocation, workshopDescription, date, workshopTime, workshopConductor);
 
         // Provide feedback to the user (e.g., show an alert)
         showAlert("Workshop Updated", "Workshop details have been successfully updated.");
 
         // Optionally, clear the fields or set them to default values
+        clearFieldsInUpdateWorkshop();
+    }
+
+    // Validation for updating workshops
+    public boolean workshopIdValidationInUpdate() {
+        if (workshopidInupdate.getText().isEmpty()) {
+            showAlert("Validation Error", "Please enter the Workshop ID.");
+            workshopidInupdate.setStyle("-fx-border-color: red");
+            updateWorkshopAllValidation = false;
+            return false;
+        } else {
+            workshopidInupdate.setStyle("");
+            return true;
+        }
+    }
+
+    public boolean workshopNameValidationInUpdate() {
+        String workshopName = workshopnameInupdate.getText();
+
+        // Validate workshop name
+        if (workshopName == null || workshopName.isEmpty() || !workshopName.matches("^[A-Za-z]*$")) {
+            showAlert("Validation Error", "Please enter a valid Workshop Name with only alphabets.");
+            workshopnameInupdate.setStyle("-fx-border-color: red");
+            updateWorkshopAllValidation = false;
+            return false;
+        } else {
+            workshopnameInupdate.setStyle("");
+            return true;
+        }
+    }
+
+    public boolean workshopLocationValidationInUpdate() {
+        String workshopLocation = workshoplocationInupdate.getText();
+
+        // Validate workshop location
+        if (!workshopLocation.matches("^[A-Za-z]*$")) {
+            showAlert("Validation Error", "Please enter a valid Workshop Location with only alphabets.");
+            workshoplocationInupdate.setStyle("-fx-border-color: red");
+            updateWorkshopAllValidation = false;
+            return false;
+        } else {
+            workshoplocationInupdate.setStyle("");
+            return true;
+        }
+    }
+
+    public boolean workshopConductorValidationInUpdate() {
+        String workshopConductor = workshopconductorInupdate.getText();
+
+        // Validate workshop conductor
+        if ( !workshopConductor.matches("^[A-Za-z ]+$")) {
+            showAlert("Validation Error", "Please enter a valid Workshop Conductor with only alphabets and spaces.");
+            workshopconductorInupdate.setStyle("-fx-border-color: red");
+            updateWorkshopAllValidation = false;
+            return false;
+        } else {
+            workshopconductorInupdate.setStyle("");
+            return true;
+        }
+    }
+
+    public boolean workshopDateValidationInUpdate() {
+        LocalDate selectedDate = workshopdateInupdate.getValue();
+
+        // Validate workshop date
+        if (selectedDate == null) {
+            showAlert("Validation Error", "Please select a Workshop Date.");
+            workshopdateInupdate.setStyle("-fx-border-color: red");
+            updateWorkshopAllValidation = false;
+            return false;
+        } else {
+            workshopdateInupdate.setStyle("");
+            return true;
+        }
+    }
+
+    public boolean workshopTimeValidationInUpdateWorkshop() {
+        String workshopTimeUpdate = workshoptimeInupdate.getText();
+
+        // Validate event time
+        if (!validateWorkshopUpdateTime(workshopTimeUpdate)) {
+            workshoptimeInupdate.setStyle("-fx-border-color: red");
+            updateWorkshopAllValidation = false;
+            return false;
+        } else {
+            workshoptimeInupdate.setStyle("");
+            return true;
+        }
+    }
+
+    public boolean validateWorkshopUpdateTime(String workshopTimeUpdate) {
+        return workshopTimeUpdate.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
+    }
+
+
+
+
+
+    // Clear fields method (call this to clear or reset the fields)
+    private void clearFieldsInUpdateWorkshop() {
         workshopidInupdate.clear();
         workshopnameInupdate.clear();
         workshoplocationInupdate.clear();
@@ -1542,93 +1656,8 @@ public class HelloController implements Initializable {
         workshopdescriptionInupdate.clear();
         workshopconductorInupdate.clear();
         workshopdateInupdate.setValue(null);
-
     }
 
-
-    boolean updateWorkshopAllValidation = true;
-    public void eventIdValidationInUpdateWorkshop() {
-        if (meetingIdInUpdate.getText().length() == 0){
-            meetingIdInUpdate.setStyle("-fx-border-color: red");
-            updateWorkshopAllValidation = false;
-
-        } else {
-            meetingIdInUpdate.setStyle("");
-        }
-    }
-
-    public void eventNameValidationInUpdateWorkshop() {
-        String eventName = meetingnameInUpdate.getText();
-
-        // Validate event name
-        if (eventName == null || eventName.length() == 0 || !eventName.matches("^[A-Za-z]*$")) {
-            meetingnameInUpdate.setStyle("-fx-border-color: red");
-            updateWorkshopAllValidation = false;
-        } else {
-            meetingnameInUpdate.setStyle("");
-        }
-    }
-
-
-    public void eventLocationValidationInUpdateWorkshop() {
-        String eventLocation = meetinglocationInUpdate.getText();
-
-        // Validate event location
-        if (eventLocation == null || eventLocation.length() == 0 || !eventLocation.matches("^[A-Za-z]*$")) {
-            meetinglocationInUpdate.setStyle("-fx-border-color: red");
-            updateWorkshopAllValidation = false;
-        } else {
-            meetinglocationInUpdate.setStyle("");
-        }
-    }
-
-
-
-    public void eventTimeValidationInUpdateWorkshop() {
-        String eventTime = meetingtimeInUpdate.getText();
-
-        // Validate event time
-        if (!validateWorkshopTimeUpdate(eventTime)) {
-            meetingtimeInUpdate.setStyle("-fx-border-color: red");
-            updateWorkshopAllValidation = false;
-        } else {
-            meetingtimeInUpdate.setStyle("");
-        }
-    }
-
-    public boolean validateWorkshopTimeUpdate(String time) {
-        // Allow an empty time field
-        if (time == null || time.trim().isEmpty()) {
-            return true;
-        }
-
-        // Validate time format (HH:mm)
-        return time.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
-    }
-
-    public void workshopConductorValidationInUpdateWorkshop() {
-        String workshopConductor = workshopconductorInupdate.getText();
-
-        // Validate workshop conductor
-        if (workshopConductor == null || workshopConductor.length() == 0 || !workshopConductor.matches("^[A-Za-z ]+$")) {
-            workshopconductorInupdate.setStyle("-fx-border-color: red");
-            createWorkshopAllValidation = false;
-        } else {
-            workshopconductorInupdate.setStyle("");
-        }
-    }
-
-    public void eventDateValidationInUpdateWorkshop() {
-        LocalDate selectedDate = workshopdateInupdate.getValue();
-
-        // Validate workshop date
-        if (selectedDate == null) {
-            workshopdateInupdate.setStyle("-fx-border-color: red");
-            updateWorkshopAllValidation = false;
-        } else {
-            workshopdateInupdate.setStyle("");
-        }
-    }
 
 
     public void onGameBtnClickInselecttoupdate(ActionEvent actionEvent) {
