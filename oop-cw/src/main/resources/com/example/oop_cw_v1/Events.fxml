@@ -45,71 +45,76 @@
       </Pane>
       <Pane fx:id="selectEventTypeInCreatePane" prefHeight="550.0" prefWidth="758.0" visible="false">
          <children>
-            <Label layoutX="211.0" layoutY="29.0" text="selecting whay kind of event">
+            <ImageView fitHeight="470.0" fitWidth="551.0" layoutX="172.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/Schedule%20Customizable%20Isometric%20Illustrations%20_%20Amico%20Style.jpeg" />
+               </image>
+            </ImageView>
+            <Label layoutX="248.0" layoutY="30.0" text="Create Your Schedule">
                <font>
-                  <Font size="25.0" />
+                  <Font name="Arial Bold" size="25.0" />
                </font>
             </Label>
-            <Button layoutX="80.0" layoutY="155.0" mnemonicParsing="false" onAction="#eventBtninselectingevents" prefHeight="40.0" prefWidth="70.0" text="Event" />
-            <Button layoutX="348.0" layoutY="155.0" mnemonicParsing="false" onAction="#meetingBtninselectingevents" text="Meeting" />
-            <Button layoutX="562.0" layoutY="155.0" mnemonicParsing="false" onAction="#workshopBtninselectingevents" text="Workshop" />
-            <Button layoutX="70.0" layoutY="481.0" mnemonicParsing="false" onAction="#backBtninselectingevents" text="Back" />
+            <Button layoutX="42.0" layoutY="60.0" mnemonicParsing="false" onAction="#eventBtninselectingevents" prefHeight="40.0" prefWidth="74.0" style="-fx-background-radius: 100;" text="Event" />
+            <Button layoutX="44.0" layoutY="176.0" mnemonicParsing="false" onAction="#meetingBtninselectingevents" prefHeight="40.0" prefWidth="74.0" style="-fx-background-radius: 100;" text="Meeting" textFill="#030000" />
+            <Button layoutX="44.0" layoutY="314.0" mnemonicParsing="false" onAction="#workshopBtninselectingevents" prefHeight="40.0" prefWidth="74.0" style="-fx-background-radius: 100;" text="Workshop" />
+            <Button layoutX="33.0" layoutY="487.0" mnemonicParsing="false" onAction="#backBtninselectingevents" style="-fx-background-radius: 100;" text="Back to Menu" />
          </children>
       </Pane>
-      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0">
+      <Pane fx:id="eventCreationPane" prefHeight="551.0" prefWidth="752.0" visible="false">
          <children>
             <Button layoutX="45.0" layoutY="489.0" mnemonicParsing="false" onAction="#onBackbtnincreateevent" text="Back" />
-            <Button layoutX="248.0" layoutY="489.0" mnemonicParsing="false" onAction="#onsavebtnincreateevent" text="Save" />
-            <TextField fx:id="eventtypeincreateevent" layoutX="45.0" layoutY="320.0" promptText="online / physical" />
-            <TextField fx:id="eventdescriptionincreateevent" layoutX="45.0" layoutY="171.0" promptText="Description" />
-            <TextField fx:id="eventtimeincreateevent" layoutX="45.0" layoutY="276.0" promptText="Time" />
-            <TextField fx:id="eventlocationincreateevent" layoutX="45.0" layoutY="222.0" promptText="Location" />
-            <TextField fx:id="eventnameincreateevent" layoutX="42.0" layoutY="126.0" promptText="Event name" />
-            <TextField fx:id="eventidincreateevent" layoutX="42.0" layoutY="76.0" promptText="Event id" />
-            <DatePicker fx:id="eventDateincreateevent" layoutX="42.0" layoutY="376.0" />
-            <Label layoutX="42.0" layoutY="26.0" prefHeight="36.0" prefWidth="218.0" text="Create event">
+            <Button layoutX="602.0" layoutY="489.0" mnemonicParsing="false" onAction="#onsavebtnincreateevent" text="Save" />
+            <TextField fx:id="eventtypeincreateevent" layoutX="212.0" layoutY="135.0" promptText="online / physical" />
+            <TextField fx:id="eventdescriptionincreateevent" layoutX="399.0" layoutY="76.0" promptText="Description" />
+            <TextField fx:id="eventtimeincreateevent" layoutX="32.0" layoutY="135.0" promptText="Time" />
+            <TextField fx:id="eventlocationincreateevent" layoutX="599.0" layoutY="76.0" promptText="Location" />
+            <TextField fx:id="eventnameincreateevent" layoutX="212.0" layoutY="76.0" promptText="Event name" />
+            <TextField fx:id="eventidincreateevent" layoutX="32.0" layoutY="76.0" promptText="Event id" />
+            <DatePicker fx:id="eventDateincreateevent" layoutX="419.0" layoutY="135.0" />
+            <Label layoutX="32.0" layoutY="26.0" prefHeight="36.0" prefWidth="218.0" text="Create Events">
                <font>
-                  <Font size="25.0" />
+                  <Font name="System Bold" size="29.0" />
                </font>
             </Label>
-            <TableView fx:id="createEventTable" layoutX="209.0" layoutY="148.0" prefHeight="200.0" prefWidth="531.0">
+            <TableView fx:id="createEventTable" layoutX="72.0" layoutY="211.0" prefHeight="211.0" prefWidth="621.0">
               <columns>
                 <TableColumn fx:id="idColumnInCreateEvent" prefWidth="64.79998779296875" text="Schedul Id" />
-                <TableColumn fx:id="nameColumnInCreateEvent" prefWidth="101.5999755859375" text="Schedule Name" />
-                  <TableColumn fx:id="locationColumnInCreateEvent" prefWidth="77.5999755859375" text="location" />
-                  <TableColumn fx:id="descriptionColumnInCreateEvent" prefWidth="83.20004272460938" text="Description" />
-                  <TableColumn fx:id="dateColumnInCreateEvent" prefWidth="67.99993896484375" text="Date" />
-                  <TableColumn fx:id="timeColumnInCreateEvent" prefWidth="65.60009765625" text="Time" />
-                  <TableColumn fx:id="eventTypeColumnInCreateEvent" prefWidth="87.199951171875" text="Event Type" />
+                <TableColumn fx:id="nameColumnInCreateEvent" prefWidth="106.4000244140625" text="Schedule Name" />
+                  <TableColumn fx:id="locationColumnInCreateEvent" prefWidth="72.79998779296875" text="location" />
+                  <TableColumn fx:id="descriptionColumnInCreateEvent" prefWidth="134.4000244140625" text="Description" />
+                  <TableColumn fx:id="dateColumnInCreateEvent" prefWidth="86.39993286132812" text="Date" />
+                  <TableColumn fx:id="timeColumnInCreateEvent" prefWidth="76.0" text="Time" />
+                  <TableColumn fx:id="eventTypeColumnInCreateEvent" prefWidth="80.800048828125" text="Event Type" />
               </columns>
             </TableView>
          </children>
       </Pane>
-      <Pane fx:id="createMeetingPane" prefHeight="551.0" prefWidth="758.0" visible="false">
+      <Pane fx:id="createMeetingPane" prefHeight="551.0" prefWidth="758.0">
          <children>
-            <Label layoutX="114.0" layoutY="33.0" text="Create meeting">
+            <Label layoutX="28.0" layoutY="24.0" text="Create meeting">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
-            <TextField fx:id="meetingIdIncreatemeeting" layoutX="57.0" layoutY="88.0" promptText="meeting id" />
-            <TextField fx:id="meetingnameIncreatemeeting" layoutX="57.0" layoutY="133.0" promptText="name" />
-            <TextField fx:id="meetingtypeIncreatemeeting" layoutX="57.0" layoutY="318.0" prefHeight="26.0" prefWidth="211.0" promptText="meeting type(online / physical)" />
-            <TextField fx:id="meetingtimeIncreatemeeting" layoutX="57.0" layoutY="276.0" prefHeight="10.0" prefWidth="151.0" promptText="time" />
-            <TextField fx:id="meetingdescriptionIncreatemeeting" layoutX="57.0" layoutY="226.0" promptText="description" />
-            <TextField fx:id="meetinglocationIncreatemeeting" layoutX="57.0" layoutY="179.0" promptText="location" />
-            <DatePicker fx:id="meetingdateIncreatemeeting" layoutX="57.0" layoutY="364.0" promptText="date" />
-            <Button layoutX="57.0" layoutY="452.0" mnemonicParsing="false" onAction="#onBackBtnInCreateMeeting" text="back" />
-            <Button layoutX="173.0" layoutY="451.0" mnemonicParsing="false" onAction="#onsaveBtnIncreatemeeting" text="save" />
-            <TableView fx:id="createMeetingTable" layoutX="232.0" layoutY="114.0" prefHeight="200.0" prefWidth="525.0">
+            <TextField fx:id="meetingIdIncreatemeeting" layoutX="28.0" layoutY="88.0" promptText="meeting id" />
+            <TextField fx:id="meetingnameIncreatemeeting" layoutX="218.0" layoutY="88.0" promptText="name" />
+            <TextField fx:id="meetingtypeIncreatemeeting" layoutX="209.0" layoutY="135.0" prefHeight="26.0" prefWidth="211.0" promptText="meeting type(online / physical)" />
+            <TextField fx:id="meetingtimeIncreatemeeting" layoutX="28.0" layoutY="135.0" prefHeight="10.0" prefWidth="151.0" promptText="time" />
+            <TextField fx:id="meetingdescriptionIncreatemeeting" layoutX="592.0" layoutY="88.0" promptText="description" />
+            <TextField fx:id="meetinglocationIncreatemeeting" layoutX="420.0" layoutY="88.0" promptText="location" />
+            <DatePicker fx:id="meetingdateIncreatemeeting" layoutX="453.0" layoutY="135.0" promptText="date" />
+            <Button layoutX="50.0" layoutY="466.0" mnemonicParsing="false" onAction="#onBackBtnInCreateMeeting" text="back" />
+            <Button layoutX="632.0" layoutY="466.0" mnemonicParsing="false" onAction="#onsaveBtnIncreatemeeting" text="save" />
+            <TableView fx:id="createMeetingTable" layoutX="59.0" layoutY="192.0" prefHeight="234.0" prefWidth="655.0">
               <columns>
-                <TableColumn fx:id="idColumnInCreateMeeting" prefWidth="75.0" text="Meeting Id" />
-                <TableColumn fx:id="nameColumnInCreateMeeting" prefWidth="59.99993896484375" text="Name" />
-                  <TableColumn fx:id="locationColumnInCreateMeeting" prefWidth="70.39996337890625" text="Location" />
-                  <TableColumn fx:id="descriptionColumnInCreateMeeting" prefWidth="87.99996948242188" text="Description" />
-                  <TableColumn fx:id="dateColumnInCreateMeeting" prefWidth="68.0" text="Date" />
-                  <TableColumn fx:id="timeColumnInCreateMeeting" prefWidth="64.80010986328125" text="Time" />
-                  <TableColumn fx:id="meetingTypeColumnInCreateMeeting" prefWidth="102.39990234375" text="meeting type" />
+                <TableColumn fx:id="nameColumnInCreateMeeting" prefWidth="85.60001373291016" text="Name" />
+                  <TableColumn fx:id="locationColumnInCreateMeeting" prefWidth="91.99996948242188" text="Location" />
+                  <TableColumn fx:id="descriptionColumnInCreateMeeting" prefWidth="124.800048828125" text="Description" />
+                  <TableColumn fx:id="dateColumnInCreateMeeting" prefWidth="88.79998779296875" text="Date" />
+                  <TableColumn fx:id="timeColumnInCreateMeeting" prefWidth="81.60000610351562" text="Time" />
+                  <TableColumn fx:id="meetingTypeColumnInCreateMeeting" prefWidth="98.39996337890625" text="meeting type" />
+                <TableColumn fx:id="idColumnInCreateMeeting" prefWidth="84.79998779296875" text="Meeting Id" />
               </columns>
             </TableView>
          </children>
