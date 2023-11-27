@@ -622,14 +622,11 @@ public class HelloController implements Initializable {
         selectEventTypeInCreatePane.setVisible(true);
     }
 
-
-
-
     public void onWorkshopBtnClickInselecttoupdate() throws IOException {
         disablePanes();
         updateWorkshopPane.setVisible(true);
     }
-    
+
 
     public void backBtnInUpdateEventPane() throws IOException {
         disablePanes();
@@ -1525,7 +1522,7 @@ public class HelloController implements Initializable {
         String workshopConductor = workshopconductorInupdate.getText();
         workshopConductorValidationInUpdateWorkshop();
 
-
+        populateWorkshopUpdate();
         // Validate the updated details if necessary
         // if (workshopValidation == true) {
         //     // Perform validation and update details accordingly
