@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DatabaseConnection {
+public class ClubDatabaseConnection {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/sacms";
     private static final String DB_USER = "root";
     private static final String DB_PASS = "";

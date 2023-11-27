@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class HelloController implements Initializable {
+public class ClubCreationController implements Initializable {
 
 
     @FXML
@@ -193,7 +193,7 @@ public class HelloController implements Initializable {
     @FXML
     void createSportClubData(ActionEvent actionEvent) {
         String clubID = txtSportClubId.getText();
-        if (DatabaseConnection.ClubIdExists(clubID)){
+        if (ClubDatabaseConnection.ClubIdExists(clubID)){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Duplicate club Id");
             alert.setHeaderText(null);
@@ -223,8 +223,8 @@ public class HelloController implements Initializable {
         if (isValid) {
             // Add the data to the database
             SportClub sportClub = new SportClub(clubID, clubName, members, advisorId, description,sport);
-            DatabaseConnection.testDatabaseConnection();
-            DatabaseConnection.insertClubData(sportClub);
+            ClubDatabaseConnection.testDatabaseConnection();
+            ClubDatabaseConnection.insertClubData(sportClub);
             txtSportClubId.clear();
             txtSportClubName.clear();
             txtSportClubName.clear();
@@ -241,7 +241,7 @@ public class HelloController implements Initializable {
     public void createAcademicClubData(ActionEvent actionEvent) {
         String clubID = txtAcademicClubId.getText();
         //Club ID duplicate validation
-        if (DatabaseConnection.ClubIdExists(clubID)){
+        if (ClubDatabaseConnection.ClubIdExists(clubID)){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Duplicate club Id");
             alert.setHeaderText(null);
@@ -271,8 +271,8 @@ public class HelloController implements Initializable {
         if (isValid) {
             // Add the data to database
             AcademicClub academicClub = new AcademicClub(clubID, clubName, members, advisorId, description,academicType);
-            DatabaseConnection.testDatabaseConnection();
-            DatabaseConnection.insertClubData(academicClub);
+            ClubDatabaseConnection.testDatabaseConnection();
+            ClubDatabaseConnection.insertClubData(academicClub);
 
             txtAcademicClubId.clear();
             txtAcademicClubName.clear();
@@ -314,7 +314,7 @@ public class HelloController implements Initializable {
 
     }
     public void populateClubTable(){
-        List<Club> clubList = DatabaseConnection.getClubData();
+        List<Club> clubList = ClubDatabaseConnection.getClubData();
         clubTable.getItems().setAll(clubList);
     }
     public void handleTable(MouseEvent event) {
@@ -325,7 +325,7 @@ public class HelloController implements Initializable {
     public void deleteClub(ActionEvent actionEvent) {
         Club selectedClub = clubTable.getSelectionModel().getSelectedItem();
         if (selectedClub != null){
-            DatabaseConnection.deleteClub(selectedClub);
+            ClubDatabaseConnection.deleteClub(selectedClub);
             populateClubTable();
 
             Alert alertCon = new Alert(Alert.AlertType.INFORMATION);
@@ -343,7 +343,7 @@ public class HelloController implements Initializable {
     }
     public void searchClub(ActionEvent actionEvent) {
         String searchId = txtSearchClubId.getText();
-        Club club = DatabaseConnection.searchClub(searchId);
+        Club club = ClubDatabaseConnection.searchClub(searchId);
 
         if (club != null) {
             txtManageClubName.setText(club.getClubName());
@@ -394,7 +394,7 @@ public class HelloController implements Initializable {
         String advisorId = txtManageAdvisorId.getText();
         String clubDescription = txtManageClubDescription.getText();
 
-        Club club = DatabaseConnection.getClubDetails(clubId);
+        Club club = ClubDatabaseConnection.getClubDetails(clubId);
         if (club != null) {
             club.setClubName(clubName);
             club.setMembers(members);
@@ -411,13 +411,13 @@ public class HelloController implements Initializable {
                 System.out.println(txtManageAcademic.getText());
             }
 
-            DatabaseConnection.updateClubDetails(club);
+            ClubDatabaseConnection.updateClubDetails(club);
             refreshClubTable();
         }
     }
     private void refreshClubTable() {
         // Get updated club data from database
-        List<Club> updatedClubList = DatabaseConnection.getClubData();
+        List<Club> updatedClubList = ClubDatabaseConnection.getClubData();
 
         // Clear the existing items in the TableView
         clubTable.getItems().clear();
