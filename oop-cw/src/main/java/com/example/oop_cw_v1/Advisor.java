@@ -29,8 +29,8 @@ public class Advisor extends User{
         HashMap<String,String> dataMap = DatabaseConnection.getAdvisorData(memberID);
         firstName.setText(dataMap.get("First Name"));
         lastName.setText(dataMap.get("Last Name"));
-        gender.setText(dataMap.get("DOB"));
-        DoB.setText(dataMap.get("Email"));
+        gender.setText(dataMap.get("Gender"));
+        DoB.setText(dataMap.get("DOB"));
         contactNumber.setText(dataMap.get("Contact Number"));
         email.setText(dataMap.get("Email"));
         advisorID.setText(dataMap.get("Advisor ID"));

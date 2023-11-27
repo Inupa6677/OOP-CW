@@ -206,7 +206,7 @@ public class DatabaseConnection {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
-            String selectQuery = "SELECT advisor_id, first_name, last_name, dob, email, password, contact_number, gender FROM advisor WHERE advisor_id = ?";
+            String selectQuery = "SELECT advisor_id, first_name, last_name, dob, email, password, contact_number,gender FROM advisor WHERE advisor_id = ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
             preparedStatement.setString(1, advisorID);
@@ -224,6 +224,7 @@ public class DatabaseConnection {
                 String retrievedContactNumber = resultSet.getString("contact_number");
                 String retrievedGender = resultSet.getString("gender");
 
+
                 // Do something with the retrieved data, e.g., print it or use it in your application
                 hashMap.put("Advisor ID",retrievedAdvisorID);
                 hashMap.put("First Name" , retrievedFirstName);
@@ -233,6 +234,7 @@ public class DatabaseConnection {
                 hashMap.put("Password" , retrievedPassword);
                 hashMap.put("Contact Number" , retrievedContactNumber);
                 hashMap.put("Gender" , retrievedGender);
+
             }
 
             // Close resources

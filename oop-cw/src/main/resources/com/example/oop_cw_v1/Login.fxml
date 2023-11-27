@@ -429,7 +429,7 @@
             <Button layoutX="267.0" layoutY="464.0" mnemonicParsing="false" onAction="#getStartClick" opacity="0.0" prefHeight="81.0" prefWidth="214.0" style="-fx-background-color: lihtgreen;" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="studentMainPane" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="studentMainPane" prefHeight="200.0" prefWidth="200.0" visible="false">
          <children>
             <Pane fx:id="studentTaskBarPane" prefHeight="550.0" prefWidth="126.0" style="-fx-background-color: lightblue;">
                <children>
@@ -479,32 +479,32 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="studentnameLabel" layoutX="192.0" layoutY="88.0" prefHeight="25.0" prefWidth="82.0" text="Label">
+                  <Label fx:id="studentnameLabel" layoutX="192.0" layoutY="88.0" prefHeight="25.0" prefWidth="82.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="studentIdLabel" layoutX="193.0" layoutY="126.0" prefHeight="25.0" prefWidth="182.0" text="Label">
+                  <Label fx:id="studentIdLabel" layoutX="193.0" layoutY="126.0" prefHeight="25.0" prefWidth="182.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="studentGenderLabel" layoutX="193.0" layoutY="161.0" prefHeight="17.0" prefWidth="392.0" text="Label">
+                  <Label fx:id="studentGenderLabel" layoutX="193.0" layoutY="161.0" prefHeight="17.0" prefWidth="392.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="studentDoBLabel" layoutX="193.0" layoutY="193.0" prefHeight="17.0" prefWidth="392.0" text="Label">
+                  <Label fx:id="studentDoBLabel" layoutX="193.0" layoutY="193.0" prefHeight="17.0" prefWidth="392.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="studentEmailLabel" layoutX="193.0" layoutY="225.0" prefHeight="17.0" prefWidth="392.0" text="Label">
+                  <Label fx:id="studentEmailLabel" layoutX="193.0" layoutY="225.0" prefHeight="17.0" prefWidth="392.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="studentContactNumberLabel" layoutX="193.0" layoutY="263.0" prefHeight="17.0" prefWidth="392.0" text="Label">
+                  <Label fx:id="studentContactNumberLabel" layoutX="193.0" layoutY="263.0" prefHeight="17.0" prefWidth="392.0">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -534,7 +534,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="studentlastnameLabel" layoutX="281.0" layoutY="88.0" prefHeight="25.0" prefWidth="82.0" text="Label">
+                  <Label fx:id="studentlastnameLabel" layoutX="281.0" layoutY="88.0" prefHeight="25.0" prefWidth="82.0">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -569,7 +569,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="advisorMainPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+      <AnchorPane fx:id="advisorMainPane" prefHeight="200.0" prefWidth="200.0">
          <children>
             <Pane fx:id="studentTaskBarPane1" prefHeight="550.0" prefWidth="126.0" style="-fx-background-color: lightblue;">
                <children>
@@ -596,7 +596,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="63.0" layoutY="126.0" text="Student ID - ">
+                  <Label layoutX="63.0" layoutY="126.0" text="Advisor ID - ">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -621,32 +621,32 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="192.0" layoutY="88.0" prefHeight="17.0" prefWidth="392.0" text="Label">
+                  <Label fx:id="advisorFirstNameLabel" layoutX="192.0" layoutY="88.0" prefHeight="25.0" prefWidth="99.0" text="Label">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="193.0" layoutY="126.0" prefHeight="17.0" prefWidth="392.0" text="Label">
+                  <Label fx:id="advisorIdLabel" layoutX="193.0" layoutY="126.0" prefHeight="17.0" prefWidth="392.0" text="Label">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="193.0" layoutY="161.0" prefHeight="17.0" prefWidth="392.0" text="Label">
+                  <Label fx:id="advisorGenderLabel" layoutX="193.0" layoutY="161.0" prefHeight="17.0" prefWidth="392.0" text="Label">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="193.0" layoutY="193.0" prefHeight="17.0" prefWidth="392.0" text="Label">
+                  <Label fx:id="advisorDoBLabel" layoutX="193.0" layoutY="193.0" prefHeight="17.0" prefWidth="392.0" text="Label">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="193.0" layoutY="225.0" prefHeight="17.0" prefWidth="392.0" text="Label">
+                  <Label fx:id="advisorEmailLabel" layoutX="193.0" layoutY="225.0" prefHeight="17.0" prefWidth="392.0" text="Label">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="193.0" layoutY="263.0" prefHeight="17.0" prefWidth="392.0" text="Label">
+                  <Label fx:id="advisorContactnumberLabel" layoutX="193.0" layoutY="263.0" prefHeight="17.0" prefWidth="392.0" text="Label">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -674,6 +674,11 @@
                   <Label layoutX="228.0" layoutY="453.0" prefHeight="35.0" prefWidth="63.0" text="Label">
                      <font>
                         <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="advisorLastNameLabel" layoutX="256.0" layoutY="87.0" prefHeight="25.0" prefWidth="99.0" text="Label">
+                     <font>
+                        <Font size="16.0" />
                      </font>
                   </Label>
                </children>

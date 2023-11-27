@@ -27,25 +27,46 @@ public class HelloController {
     private TextField advisorContactNumberField;
 
     @FXML
+    private Label advisorContactnumberLabel;
+
+    @FXML
     private Pane advisorDashBoardPane;
 
     @FXML
     private DatePicker advisorDoBField;
 
     @FXML
+    private Label advisorDoBLabel;
+
+    @FXML
     private TextField advisorEmailField;
+
+    @FXML
+    private Label advisorEmailLabel;
 
     @FXML
     private TextField advisorFirstNameField;
 
     @FXML
+    private Label advisorFirstNameLabel;
+
+    @FXML
     private TextField advisorGenderField;
+
+    @FXML
+    private Label advisorGenderLabel;
 
     @FXML
     private TextField advisorIDField;
 
     @FXML
+    private Label advisorIdLabel;
+
+    @FXML
     private TextField advisorLastNameField;
+
+    @FXML
+    private Label advisorLastNameLabel;
 
     @FXML
     private AnchorPane advisorLoginAnchorPane;
@@ -213,12 +234,13 @@ public class HelloController {
     private TextField studentcontactNumberField;
 
     @FXML
+    private Label studentlastnameLabel;
+
+    @FXML
     private Label studentnameLabel;
 
     @FXML
     private PasswordField studentpasswordField;
-    @FXML
-    private  Label studentlastnameLabel;
 
 
 
@@ -546,7 +568,7 @@ public class HelloController {
         studentDashBoardPane.setVisible(true);
 
        Student student = new Student();
-       student.displayUserInformation(loginStudentEmailField.getText(),studentClubNameLable1,studentlastnameLabel,studentGenderLabel,studentDoBLabel,studentContactNumberLabel,studentEmailLabel,studentIdLabel);
+       student.displayUserInformation(loginStudentEmailField.getText(),studentnameLabel,studentlastnameLabel,studentGenderLabel,studentDoBLabel,studentContactNumberLabel,studentEmailLabel,studentIdLabel);
 
     }
 
@@ -582,7 +604,9 @@ public class HelloController {
         disablePane();
         advisorMainPane.setVisible(true);
         advisorDashBoardPane.setVisible(true);
-        DatabaseConnection.getAdvisorData(loginAdvisorEmaillField.getText());
+        Advisor advisor = new Advisor();
+        advisor.displayUserInformation(loginAdvisorEmaillField.getText(),advisorFirstNameLabel,advisorLastNameLabel,advisorGenderLabel,advisorDoBLabel,advisorContactnumberLabel,advisorEmailLabel,advisorIdLabel);
+
     }
 
     public void advisiorClubViewClick(ActionEvent actionEvent) {

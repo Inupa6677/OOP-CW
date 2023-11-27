@@ -33,18 +33,11 @@ public class Student extends User{
 
     @Override
     public void displayUserInformation(String memberID, Label firstName, Label lastName, Label gender, Label DoB, Label contactNumber, Label email,Label studentID){
-        HashMap<String, String> dataMap = DatabaseConnection.getAdvisorData(memberID);
+        HashMap<String,String> dataMap = DatabaseConnection.getStudentData(memberID);
         firstName.setText(dataMap.get("First Name"));
-
-        // Check if the "Last Name" value is not null before setting it
-        String retrievedLastName = dataMap.get("Last Name");
-        if (retrievedLastName != null) {
-            lastName.setText(retrievedLastName);
-        } else {
-            lastName.setText("");  // Set a default value or an empty string if it's null
-        }
-        gender.setText(dataMap.get("DOB"));
-        DoB.setText(dataMap.get("Email"));
+        lastName.setText(dataMap.get("Last Name"));
+        gender.setText(dataMap.get("Gender"));
+        DoB.setText(dataMap.get("DOB"));
         contactNumber.setText(dataMap.get("Contact Number"));
         email.setText(dataMap.get("Email"));
         studentID.setText(dataMap.get("Student ID"));
