@@ -18,7 +18,7 @@
          <children>
             <ImageView fitHeight="551.0" fitWidth="350.0" layoutX="409.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@../../../../resources/Images/download (2).jpeg" />
+                  <Image url="@../../../Images/download%20(2).jpeg" />
                </image>
             </ImageView>
             <Label layoutX="33.0" layoutY="57.0" prefHeight="59.0" prefWidth="358.0" text="Scheduling Events" textFill="#030303">
@@ -41,13 +41,14 @@
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
+            <Button layoutX="104.0" layoutY="466.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="59.0" prefWidth="228.0" text="Generate Report" />
          </children>
       </Pane>
       <Pane fx:id="selectEventTypeInCreatePane" prefHeight="550.0" prefWidth="758.0" visible="false">
          <children>
             <ImageView fitHeight="470.0" fitWidth="551.0" layoutX="234.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Images/Schedule Customizable Isometric Illustrations _ Amico Style.jpeg" />
+                  <Image url="@../../../Images/Schedule%20Customizable%20Isometric%20Illustrations%20_%20Amico%20Style.jpeg" />
                </image>
             </ImageView>
             <Label layoutX="24.0" layoutY="30.0" text="Create Your Schedule">
