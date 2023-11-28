@@ -648,9 +648,8 @@ public class HelloController implements Initializable {
 
     @FXML
     void gameBtninselectingevents(ActionEvent event) {
-        disablePanes();createGamePane.setVisible(true);
-
-
+        disablePanes();
+        createGamePane.setVisible(true);
     }
 
     // p+
@@ -678,7 +677,7 @@ public class HelloController implements Initializable {
         selectUpdateEventTypePane.setVisible(true);
     }
 
-
+    // save button in create event and getting date
     public void onsavebtnincreateevent(ActionEvent actionEvent) {
         // Getting data from the text fields
         String eventId = eventidincreateevent.getText();
@@ -693,12 +692,12 @@ public class HelloController implements Initializable {
         if (!eventIdValidationInCreateEvents() || !eventNameValidationInCreateEvents()
                 || !eventLocationValidationInCreateEvents() || !eventTimeValidationInCreateEvents()
                 || !eventDateValidationInCreateEvents() || !eventTypeValidationInCreateEvents() || !validateClubIdCreateEvent()) {
-            // Validation failed, show an alert
+            // if validation is failed then show alerts
             showAlert(AlertType.ERROR, "Validation Error", "Please fill in all the required fields.");
             return;
         }
 
-        // All fields are valid, proceed to save to the database
+        // All fields are valid, then save to the database
         Event event1 = new Event(eventId, eventName, eventLocation, clubIdCreateEvent , eventDate, eventTime, eventType);
         DataBaseConnection.insertEventData(event1.getScheduleId(), event1.getScheduleName(),
                 event1.getScheduleLocation(), event1.getClubId(), event1.getScheduleDate(),
@@ -706,23 +705,23 @@ public class HelloController implements Initializable {
         clearTextFieldsInEvent();
         refreshTable();
 
-        // Optionally, show a success message
+        // show a success alert
         showAlert(AlertType.INFORMATION, "Success", "Event details saved successfully.");
     }
 
     public boolean validateClubIdCreateEvent() {
         String clubIdCreateEvent = eventdescriptionincreateevent.getText();
 
-        // Validate clubIdCreateEvent
+        // Validate clubId in CreateEvent
         if (clubIdCreateEvent == null || clubIdCreateEvent.trim().isEmpty()) {
             showAlert("Validation Error", "Club ID cannot be null or empty. Please enter a valid Club ID.");
-            // Set border color to red for indicating validation error
+            // Set border color to red when indicating  error
             eventdescriptionincreateevent.setStyle("-fx-border-color: red");
             return false; // Validation failed
         } else {
             // Reset the border color for a valid input
             eventdescriptionincreateevent.setStyle("");
-            return true; // Validation passed
+            return true; // Validation pass
         }
     }
 
@@ -815,7 +814,7 @@ public class HelloController implements Initializable {
         Event foundEvent = MainSchedule.getEventDetailsById(searchEventId);
 
         if (foundEvent != null){
-            // if event found then set text to update
+            // when event found then set text to update
             eventIdInUpdate.setText(foundEvent.getScheduleId());
             eventNameInUpdate.setText(foundEvent.getScheduleName());
             eventLocationInUpdate.setText(foundEvent.getScheduleLocation());
@@ -825,7 +824,7 @@ public class HelloController implements Initializable {
             eventTypeInUpdate.setText(foundEvent.getEventType());
 
         } else {
-            // Event not found, provide feedback to the user (e.g., show an alert)
+            // When Event not found then provide feedback to the user
             showAlert("Event not found", "The event with ID " + searchEventId + " was not found.");
 
             // Clear the fields or set them to default values as needed
@@ -853,7 +852,7 @@ public class HelloController implements Initializable {
         String deleteEventId = searchFieldInUpdate.getText();
         System.out.println(deleteEventId);
 
-        // Confirm deletion with the user (you can customize this based on your UI framework)
+        // Confirm deletion from the user
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setTitle("Confirm Deletion");
         confirmAlert.setHeaderText(null);
@@ -861,8 +860,7 @@ public class HelloController implements Initializable {
 
         Optional<ButtonType> result = confirmAlert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            // User confirmed deletion, proceed with deletion
-
+            // User confirmed the deletion
             // Delete event details from the database
             DataBaseConnection.deleteEventData(deleteEventId);
 
@@ -914,7 +912,7 @@ public class HelloController implements Initializable {
             return;
         }
 
-        // All fields are valid, proceed to save to the database
+        // All fields are valid then save to the database
         Meeting meeting1 = new Meeting(meetingId, meetingName, meetingLocation, meetingClubId, meetingDate, meetingTime, meetingType);
         DataBaseConnection.insertMeetingData(meeting1.getScheduleId(), meeting1.getScheduleName(),
                 meeting1.getScheduleLocation(), meeting1.getClubId(), meeting1.getScheduleDate(),
@@ -922,7 +920,7 @@ public class HelloController implements Initializable {
         clearTextFieldsInMeeting();
         refreshCreateMeetingTable();
 
-        // Optionally, show a success message
+        // show a success message
         showAlert(AlertType.INFORMATION, "Success", "Meeting details saved successfully.");
     }
 
@@ -932,13 +930,13 @@ public class HelloController implements Initializable {
         // Validate clubIdCreateEvent
         if (clubIdCreateMeeting == null || clubIdCreateMeeting.trim().isEmpty()) {
             showAlert("Validation Error", "Club ID cannot be null or empty. Please enter a valid Club ID.");
-            // Set border color to red for indicating validation error
+            // Set border color to red when validating errors
             meetingdescriptionIncreatemeeting.setStyle("-fx-border-color: red");
             return false; // Validation failed
         } else {
             // Reset the border color for a valid input
             meetingdescriptionIncreatemeeting.setStyle("");
-            return true; // Validation passed
+            return true; // Validation pass
         }
     }
 
@@ -1031,7 +1029,7 @@ public class HelloController implements Initializable {
             meetingtypeInUpdate.setText(foundMeeting.getMeetingType());
             meetingdateInUpdate.setValue(LocalDate.parse(foundMeeting.getScheduleDate()));
         } else {
-            // Event not found, provide feedback to the user (e.g., show an alert)
+            // Event not found, provide feedback to the user
             showAlert("Event not found", "The event with ID " + searchMeetingId + " was not found.");
 
             // Clear the fields or set them to default values as needed
@@ -1051,7 +1049,7 @@ public class HelloController implements Initializable {
         // Get the event ID to delete
         String deleteMeetingId = searchidFieldInMeeting.getText();
 
-        // Confirm deletion with the user (you can customize this based on your UI framework)
+        // Confirm deletion with the user
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setTitle("Confirm Deletion");
         confirmAlert.setHeaderText(null);
@@ -1059,14 +1057,14 @@ public class HelloController implements Initializable {
 
         Optional<ButtonType> result = confirmAlert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            // User confirmed deletion, proceed with deletion
+            // User confirmed deletion, then deletion
 
             // Delete event details from the database
             DataBaseConnection.deleteMeetingData(deleteMeetingId);
 
 
 
-            // Provide feedback to the user (e.g., show an alert)
+            // Provide feedback to the user
             showAlert("Event Deleted", "Event details have been successfully deleted.");
 
             // Optionally, clear the fields or set them to default values
@@ -1109,7 +1107,7 @@ public class HelloController implements Initializable {
         if (!workshopIdValidationInCreateWorkshop() || !workshopNameValidationInCreateWorkshop()
                 || !workshopLocationValidationInCreateWorkshop() || !workshopTimeValidationInCreateWorkshop()
                 || !workshopConductorValidationInCreateWorkshop() || !workshopDateValidationInCreateWorkshop() || !validateClubIdCreateWorkshop()) {
-            // Validation failed, show an alert
+            // when Validation failed, show an alert
             showAlert(AlertType.ERROR, "Validation Error", "Please fill in all the required fields.");
             return;
         }
@@ -1122,7 +1120,7 @@ public class HelloController implements Initializable {
         clearTextFieldsInWorkshop();
         refreshCreateWorkshopTable();
 
-        // Optionally, show a success message
+        //  show a success message
         showAlert(AlertType.INFORMATION, "Success", "Workshop details saved successfully.");
     }
 
@@ -1132,13 +1130,13 @@ public class HelloController implements Initializable {
         // Validate clubIdCreateEvent
         if (clubIdCreateWorkshop == null || clubIdCreateWorkshop.trim().isEmpty()) {
             showAlert("Validation Error", "Club ID cannot be null or empty. Please enter a valid Club ID.");
-            // Set border color to red for indicating validation error
+
             workshopdescriptionInCreateWorkshop.setStyle("-fx-border-color: red");
             return false; // Validation failed
         } else {
             // Reset the border color for a valid input
             workshopdescriptionInCreateWorkshop.setStyle("");
-            return true; // Validation passed
+            return true; // Validation pass
         }
     }
 
@@ -1248,7 +1246,7 @@ public class HelloController implements Initializable {
             workshopdateInupdate.setValue(LocalDate.parse(foundWorkshop.getScheduleDate()));
 
         } else {
-            // Event not found, provide feedback to the user (e.g., show an alert)
+            // if Event not found, provide feedback to the user
             showAlert("Event not found", "The event with ID " + searchWorkshopId + " was not found.");
 
             // Clear the fields or set them to default values as needed
@@ -1266,7 +1264,7 @@ public class HelloController implements Initializable {
         // Get the event ID to delete
         String deleteWorkshopId = workshopIdInSearchField.getText();
 
-        // Confirm deletion with the user (you can customize this based on your UI framework)
+        // Confirm deletion with the user
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setTitle("Confirm Deletion");
         confirmAlert.setHeaderText(null);
@@ -1279,10 +1277,10 @@ public class HelloController implements Initializable {
             // Delete event details from the database
             DataBaseConnection.deleteWorkshopData(deleteWorkshopId);
 
-            // Provide feedback to the user (e.g., show an alert)
+            // Provide feedback to the user
             showAlert("Event Deleted", "Event details have been successfully deleted.");
 
-            // Optionally, clear the fields or set them to default values
+            // clear the fields or set them to default values
             workshopidInupdate.clear();
             workshopnameInupdate.clear();
             workshoplocationInupdate.clear();
@@ -1735,10 +1733,6 @@ public class HelloController implements Initializable {
     public boolean validateWorkshopUpdateTime(String workshopTimeUpdate) {
         return workshopTimeUpdate.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
     }
-
-
-
-
 
     // Clear fields method (call this to clear or reset the fields)
     private void clearFieldsInUpdateWorkshop() {
