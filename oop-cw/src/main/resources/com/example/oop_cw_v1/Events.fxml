@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="545.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.HelloController">
+<AnchorPane prefHeight="545.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_cw_v1.EventController">
    <children>
       <Pane fx:id="scheduleEventPane" layoutY="-2.0" opacity="0.96" prefHeight="550.0" prefWidth="750.0">
          <children>
