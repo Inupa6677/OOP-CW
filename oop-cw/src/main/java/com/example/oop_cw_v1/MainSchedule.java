@@ -15,15 +15,15 @@ public abstract class MainSchedule {
 
 
     public static Event getEventDetailsById(String scheduleId){
-        return DataBaseConnection.searchEventById(scheduleId);
+        return EventDataBaseConnection.searchEventById(scheduleId);
     }
 
     public static Meeting getMeetingDetailsById(String meetingID){
-        return DataBaseConnection.searchMeetingById(meetingID);
+        return EventDataBaseConnection.searchMeetingById(meetingID);
     }
 
     public static Workshop getWorkshopDetailsById(String scheduleId){
-        return DataBaseConnection.searchWorkshopById(scheduleId);
+        return EventDataBaseConnection.searchWorkshopById(scheduleId);
     }
 
 
