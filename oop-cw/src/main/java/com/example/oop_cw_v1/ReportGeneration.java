@@ -11,9 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ReportGeneration {
+public class ReportGeneration extends AbstractReportGenerator{
 
-    public void generateAttendanceReport(List<AttendanceData> allAttendanceData) {
+    @Override
+    public void generateReport(List<AttendanceData> allAttendanceData) {
         try {
             // Load JRXML template
             String reportTemplatePath = "src/main/resources/com/example/oop_cw_v1/Attendance.jrxml";

@@ -180,7 +180,7 @@ public class DatabaseConnection {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
             //query to fetch events based on the selected club
-            String query = "SELECT ce.event_name FROM club_event ce JOIN club c ON c.club_id = ce.club_id WHERE c.club_name = ?";
+            String query = "SELECT scheduleName AS event_name FROM workshop WHERE scheduleId = ? UNION SELECT scheduleName AS event_name FROM event WHERE scheduleId = ? UNION SELECT scheduleName AS event_name FROM meeting WHERE scheduleId = ?;";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, selectedClub);
@@ -238,7 +238,7 @@ public class DatabaseConnection {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
             // Prepare a query to fetch student details based on the selected club and event
-            String query = "SELECT s.student_id, s.first_name, s.last_name, FALSE as attendance FROM student s JOIN join_club jc ON s.student_id = jc.student_id JOIN club cl ON cl.club_id = jc.club_id JOIN club_event ce ON ce.club_id = cl.club_id WHERE cl.club_name = ? AND ce.event_name = ? AND ce.event_id = ?";
+            String query = "SELECT s.student_id, s.first_name, s.last_name, FALSE as attendance FROM student s JOIN join_club jc ON s.student_id = jc.student_id JOIN club cl ON cl.club_id = jc.club_id JOIN workshop w ON w.clubId = cl.club_id WHERE cl.club_name = ? AND w.scheduleName = ? AND w.scheduleId = ? UNION SELECT s.student_id, s.first_name, s.last_name, FALSE as attendance FROM student s JOIN join_club jc ON s.student_id = jc.student_id JOIN club cl ON cl.club_id = jc.club_id JOIN event e ON e.clubID = cl.club_id WHERE cl.club_name = ? AND e.scheduleName = ? AND e.scheduleId = ? UNION SELECT s.student_id, s.first_name, s.last_name, FALSE as attendance FROM student s JOIN join_club jc ON s.student_id = jc.student_id JOIN club cl ON cl.club_id = jc.club_id JOIN meeting m ON m.clubID = cl.club_id WHERE cl.club_name = ? AND m.scheduleName = ? AND m.scheduleId = ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, selectedClub);
@@ -271,8 +271,7 @@ public class DatabaseConnection {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
             // Prepare a query to fetch the event ID based on the selected club and event name
-            String query = "SELECT event_id FROM club_event ce JOIN club c ON c.club_id = ce.club_id WHERE c.club_name = ? AND ce.event_name = ?";
-
+            String query = "SELECT scheduleId AS event_id FROM workshop w JOIN club c ON c.club_id = w.clubID WHERE c.club_name = ? AND w.scheduleName = ? UNION SELECT scheduleId AS event_id FROM event e JOIN club c ON c.club_id = e.clubId WHERE c.club_name = ? AND e.scheduleName = ? UNION SELECT scheduleId AS event_id FROM meeting m JOIN club c ON c.club_id = m.clubId WHERE c.club_name = ? AND m.scheduleName = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, selectedClub);
             preparedStatement.setString(2, selectedEvent);
@@ -341,20 +340,25 @@ public class DatabaseConnection {
 
             // Execute a SQL query to retrieve all attendance data
             String query = "SELECT attendance.attendance_date, attendance.event_id, club_event.event_name, attendance.student_id,student.first_name,student.last_name,attendance.is_present FROM `attendance`JOIN`club_event` ON attendance.event_id = club_event.event_id JOIN `student` ON attendance.student_id = student.student_id ORDER BY `attendance`.`attendance_date` ASC;";
+
             ResultSet resultSet = statement.executeQuery(query);
 
             // Iterate through the result set and populate the list
             while (resultSet.next()) {
                 AttendanceData attendanceData = new AttendanceData();
                 attendanceData.setAttendance_date(resultSet.getDate("attendance_date"));
-                // Set other properties based on your table columns
+                attendanceData.setEvent_id(resultSet.getString("event_id"));
+                attendanceData.setEvent_name(resultSet.getString("event_name"));
+                attendanceData.setStudent_id(resultSet.getString("student_id"));
+                attendanceData.setFirst_name(resultSet.getString("first_name"));
+                attendanceData.setLast_name(resultSet.getString("last_name"));
+                attendanceData.setIs_present(resultSet.getBoolean("is_present"));
 
                 allAttendanceData.add(attendanceData);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle exceptions appropriately in your application
         }
 
         return allAttendanceData;

@@ -4,19 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
 
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -94,25 +90,29 @@ public class HelloController {
 
 
     @FXML
-    private Button btn_save;
+    private Button btn_save, btn_save1;
     @FXML
-    private TableColumn<AttendanceData, Boolean> col_attendance;
+    private TableColumn<AttendanceData, Boolean> col_attendance, col_attendance1;
     @FXML
     private TableColumn<AttendanceData, String> col_studentID;
     @FXML
-    private TableColumn<AttendanceData, String> col_firstName;
+    private TableColumn<AttendanceData, String> col_attendanceID;
     @FXML
-    private TableColumn<AttendanceData, String> col_lastName;
+    private TableColumn<AttendanceData, String> col_firstName, col_firstName1;
     @FXML
-    private TableView<AttendanceData> table_attendance;
+    private TableColumn<AttendanceData, String> col_lastName, col_lastName1;
     @FXML
-    private ComboBox<String> combobox_selectClub;
+    private TableView<AttendanceData> table_attendance, table_attendance1;
     @FXML
-    private ComboBox<String> combobox_selectEvent;
+    private ComboBox<String> combobox_selectClub, combobox_selectClub1;
     @FXML
-    private Button btn_refresh;
+    private ComboBox<String> combobox_selectEvent, combobox_selectEvent1;
     @FXML
-    private Button btn_getReport;
+    private Button btn_refresh, btn_refresh1;
+    @FXML
+    private Button btn_getReport, btn_getReport1;
+    @FXML
+    private Tab tabPane_advisor, tabPane_student;
 
     private ObservableList<AttendanceData> attendanceDataList;
 
@@ -478,7 +478,6 @@ public class HelloController {
             return; // Exit the method without attempting to save
         }
 
-        // Continue with the attendance save operation
         // Iterate through the data list and save attendance to the database
         boolean isSavedSuccessfully = databaseConnection.saveAttendance(attendanceDataList);
 
@@ -497,9 +496,6 @@ public class HelloController {
             showPrompt("Error saving attendance. Please check for duplicates.", Alert.AlertType.ERROR);
         }
     }
-
-
-
 
     private void populateComboBoxes() {
         List<String> clubData = databaseConnection.fetchDataForComboBox("SELECT club_name FROM club");
@@ -629,8 +625,8 @@ public class HelloController {
     private void handleGenerateReportButton() {
         // Generate and display the report
         List<AttendanceData> allAttendanceData = DatabaseConnection.getAllAttendanceData();
-        ReportGeneration reportGeneration = new ReportGeneration();
-        reportGeneration.generateAttendanceReport(allAttendanceData);
+        ReportGeneration attendanceReportGeneration = new ReportGeneration();
+        attendanceReportGeneration.generateReport(allAttendanceData);
     }
 
 }
