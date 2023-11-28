@@ -173,7 +173,7 @@ public class DatabaseConnection {
     }
 
     //get relevant events for the selected club
-    public List<String> fetchEventsForComboBox(String selectedClub) {
+    public List<String> fetchEventsForComboBox(String selectedClubID) {
         List<String> eventData = new ArrayList<>();
 
         try {
@@ -183,7 +183,9 @@ public class DatabaseConnection {
             String query = "SELECT scheduleName AS event_name FROM workshop WHERE scheduleId = ? UNION SELECT scheduleName AS event_name FROM event WHERE scheduleId = ? UNION SELECT scheduleName AS event_name FROM meeting WHERE scheduleId = ?;";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, selectedClub);
+            preparedStatement.setString(1, selectedClubID);
+            preparedStatement.setString(2, selectedClubID);
+            preparedStatement.setString(3, selectedClubID);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -244,6 +246,12 @@ public class DatabaseConnection {
             preparedStatement.setString(1, selectedClub);
             preparedStatement.setString(2, selectedEvent);
             preparedStatement.setString(3, eventID);
+            preparedStatement.setString(4, selectedClub);
+            preparedStatement.setString(5, selectedEvent);
+            preparedStatement.setString(6, eventID);
+            preparedStatement.setString(7, selectedClub);
+            preparedStatement.setString(8, selectedEvent);
+            preparedStatement.setString(9, eventID);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -272,9 +280,14 @@ public class DatabaseConnection {
 
             // Prepare a query to fetch the event ID based on the selected club and event name
             String query = "SELECT scheduleId AS event_id FROM workshop w JOIN club c ON c.club_id = w.clubID WHERE c.club_name = ? AND w.scheduleName = ? UNION SELECT scheduleId AS event_id FROM event e JOIN club c ON c.club_id = e.clubId WHERE c.club_name = ? AND e.scheduleName = ? UNION SELECT scheduleId AS event_id FROM meeting m JOIN club c ON c.club_id = m.clubId WHERE c.club_name = ? AND m.scheduleName = ?";
+
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, selectedClub);
             preparedStatement.setString(2, selectedEvent);
+            preparedStatement.setString(3, selectedClub);
+            preparedStatement.setString(4, selectedEvent);
+            preparedStatement.setString(5, selectedClub);
+            preparedStatement.setString(6, selectedEvent);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -339,7 +352,7 @@ public class DatabaseConnection {
              Statement statement = connection.createStatement()) {
 
             // Execute a SQL query to retrieve all attendance data
-            String query = "SELECT attendance.attendance_date, attendance.event_id, club_event.event_name, attendance.student_id,student.first_name,student.last_name,attendance.is_present FROM `attendance`JOIN`club_event` ON attendance.event_id = club_event.event_id JOIN `student` ON attendance.student_id = student.student_id ORDER BY `attendance`.`attendance_date` ASC;";
+            String query = "SELECT a.attendance_date, a.event_id, COALESCE(w.scheduleName, m.scheduleName, e.scheduleName) AS event_name, a.student_id, s.first_name, s.last_name, a.is_present FROM attendance a JOIN student s ON a.student_id = s.student_id LEFT JOIN workshop w ON a.event_id = w.scheduleId LEFT JOIN meeting m ON a.event_id = m.scheduleId LEFT JOIN event e ON a.event_id = e.scheduleId ORDER BY a.attendance_date ASC;";
 
             ResultSet resultSet = statement.executeQuery(query);
 

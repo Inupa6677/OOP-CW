@@ -7,6 +7,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
+import javax.swing.JOptionPane;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,14 +32,18 @@ public class ReportGeneration extends AbstractReportGenerator{
             // Create JasperPrint (filled report)
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
-            // Show the report using JasperViewer
-            JasperViewer.viewReport(jasperPrint, false);
-
-            System.out.println("Report displayed successfully.");
+            // Check if the report contains any pages
+            if (jasperPrint.getPages().isEmpty()) {
+                // Display a dialog box with the message
+                JOptionPane.showMessageDialog(null, "The report contains no pages.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                // Show the report using JasperViewer
+                JasperViewer.viewReport(jasperPrint, false);
+                System.out.println("Report displayed successfully.");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error displaying the report.");
         }
     }
 }
-

@@ -3,6 +3,7 @@ module com.example.oop_cw_v1 {
     requires javafx.fxml;
     requires java.sql;
     requires jasperreports;
+    requires java.desktop;
 
 
     opens com.example.oop_cw_v1 to javafx.fxml;
