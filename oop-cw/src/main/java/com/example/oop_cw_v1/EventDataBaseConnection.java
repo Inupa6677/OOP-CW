@@ -3,6 +3,7 @@ package com.example.oop_cw_v1;
 import javafx.scene.control.Alert;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -718,6 +719,135 @@ public class EventDataBaseConnection {
 
         return eventData;
     }
+
+
+    // to generate event data
+    public static List<Event> getAllEventData() {
+        List<Event> allEventData = new ArrayList<>();
+
+        try {
+            // Explicitly load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+                 Statement statement = connection.createStatement()) {
+
+                // Execute a SQL query to retrieve all attendance data
+                String query = "SELECT * FROM event";
+                ResultSet resultSet = statement.executeQuery(query);
+
+                // Iterate through the result set and populate the list
+                while (resultSet.next()) {
+                    Event eventData = new Event(
+                            resultSet.getString("scheduleId"),
+                            resultSet.getString("scheduleName"),
+                            resultSet.getString("scheduleLocation"),
+                            resultSet.getString("clubId"),
+                            resultSet.getString("scheduleDate"),
+                            resultSet.getString("scheduleTime"),
+                            resultSet.getString("eventType")
+                    );
+                    allEventData.add(eventData);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.err.println("MySQL JDBC driver not found. Make sure to include it in your classpath.");
+        }
+
+        return allEventData;
+    }
+
+    // to generate meeting data
+
+    public static List<Meeting> getAllMeetingData() {
+        List<Meeting> allMeetingData = new ArrayList<>();
+
+        try {
+            // Explicitly load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+                 Statement statement = connection.createStatement()) {
+
+                // Execute a SQL query to retrieve all attendance data
+                String query = "SELECT * FROM meeting";
+                ResultSet resultSet = statement.executeQuery(query);
+
+                // Iterate through the result set and populate the list
+                while (resultSet.next()) {
+                    Meeting meetingData = new Meeting(
+                            resultSet.getString("scheduleId"),
+                            resultSet.getString("scheduleName"),
+                            resultSet.getString("scheduleLocation"),
+                            resultSet.getString("clubId"),
+                            String.valueOf(resultSet.getString("scheduleDate")),
+                            resultSet.getString("scheduleTime"),
+                            resultSet.getString("meetingType")
+                    );
+                    allMeetingData.add(meetingData);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.err.println("MySQL JDBC driver not found. Make sure to include it in your classpath.");
+        }
+
+        return allMeetingData;
+    }
+
+    public static List<Workshop> getAllWorkshopData() {
+        List<Workshop> allWorkshopData = new ArrayList<>();
+
+        try {
+            // Explicitly load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+                 Statement statement = connection.createStatement()) {
+
+                // Execute a SQL query to retrieve all attendance data
+                String query = "SELECT * FROM workshop";
+                ResultSet resultSet = statement.executeQuery(query);
+
+                // Iterate through the result set and populate the list
+                while (resultSet.next()) {
+                    Workshop workshopData = new Workshop(
+                            resultSet.getString("scheduleId"),
+                            resultSet.getString("scheduleName"),
+                            resultSet.getString("scheduleLocation"),
+                            resultSet.getString("clubId"),
+                            resultSet.getString("scheduleDate"),
+                            resultSet.getString("scheduleTime"),
+                            resultSet.getString("conductor")
+                    );
+                    allWorkshopData.add(workshopData);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.err.println("MySQL JDBC driver not found. Make sure to include it in your classpath.");
+        }
+
+        return allWorkshopData;
+    }
+
+
+
+
+
 
 
 

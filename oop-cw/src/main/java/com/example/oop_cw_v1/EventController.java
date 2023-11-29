@@ -27,6 +27,18 @@ import java.util.ResourceBundle;
 
 public class EventController implements Initializable {
 
+
+
+   @FXML
+   void generateReport(ActionEvent event) {
+       List<Event> allEventData = EventDataBaseConnection.getAllEventData();
+       ReportGeneration reportGeneration = new ReportGeneration();
+       reportGeneration.generateEventReport(allEventData);
+
+   }
+
+
+
     @FXML
     private Pane createGamePane;
 

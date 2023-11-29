@@ -26,22 +26,22 @@
                   <Font name="System Bold Italic" size="41.0" />
                </font>
             </Label>
-            <Button id="createEventButton" layoutX="104.0" layoutY="155.0" mnemonicParsing="false" onAction="#clickCreateBtnClick" prefHeight="73.0" prefWidth="228.0" styleClass="createEventButton" stylesheets="@events.css" text="Create events">
+            <Button id="createEventButton" layoutX="113.0" layoutY="130.0" mnemonicParsing="false" onAction="#clickCreateBtnClick" prefHeight="66.0" prefWidth="228.0" styleClass="createEventButton" stylesheets="@events.css" text="Create events">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button id="createEventButton" layoutX="104.0" layoutY="259.0" mnemonicParsing="false" onAction="#clickUpdateBtnClick" prefHeight="73.0" prefWidth="228.0" styleClass="createEventButton" stylesheets="@events.css" text="Update events">
+            <Button id="createEventButton" layoutX="113.0" layoutY="224.0" mnemonicParsing="false" onAction="#clickUpdateBtnClick" prefHeight="73.0" prefWidth="228.0" styleClass="createEventButton" stylesheets="@events.css" text="Update events">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button id="createEventButton" layoutX="104.0" layoutY="363.0" mnemonicParsing="false" onAction="#clickDeleteBtnClick" prefHeight="73.0" prefWidth="228.0" styleClass="createEventButton" stylesheets="@events.css" text="Delete events">
+            <Button id="createEventButton" layoutX="113.0" layoutY="329.0" mnemonicParsing="false" onAction="#clickDeleteBtnClick" prefHeight="66.0" prefWidth="228.0" styleClass="createEventButton" stylesheets="@events.css" text="Delete events">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="104.0" layoutY="466.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="59.0" prefWidth="228.0" text="Generate Report" />
+            <Button layoutX="113.0" layoutY="435.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="59.0" prefWidth="228.0" text="Generate Report" />
          </children>
       </Pane>
       <Pane fx:id="selectEventTypeInCreatePane" prefHeight="550.0" prefWidth="758.0" visible="false">

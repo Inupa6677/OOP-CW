@@ -14,19 +14,19 @@ import java.util.Map;
 
 public class ReportGeneration {
 
-    public void generateAttendanceReport(List<AttendanceData> allAttendanceData) {
+    public void generateEventReport(List<Event> allEventData) {
         try {
             // Load JRXML template
-            String reportTemplatePath = "src/main/resources/com/example/oop_cw_v1/Attendance.jrxml";
+            String reportTemplatePath = "src/main/resources/com/example/oop_cw_v1/inupaEventScheduling.jrxml";
             JasperReport jasperReport = JasperCompileManager.compileReport(reportTemplatePath);
 
             // Fill the report with data
             Map<String, Object> parameters = new HashMap<>();
             // parameters
-            parameters.put("ReportTitle", "Attendance Report");
+            parameters.put("ReportTitle", "Event Report");
 
             // Convert the entire attendance data list to a JRDataSource
-            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(allAttendanceData);
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(allEventData);
 
             // Create JasperPrint (filled report)
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
@@ -40,5 +40,6 @@ public class ReportGeneration {
             System.out.println("Error displaying the report.");
         }
     }
+
 
 }
