@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class ReportGeneration {
+public class EventReportGeneration {
 
     public void generateEventReport(List<Event> allEventData) {
         try {

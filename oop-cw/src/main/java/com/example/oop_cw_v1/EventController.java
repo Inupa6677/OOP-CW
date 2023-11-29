@@ -32,7 +32,7 @@ public class EventController implements Initializable {
    @FXML
    void generateReport(ActionEvent event) {
        List<Event> allEventData = EventDataBaseConnection.getAllEventData();
-       ReportGeneration reportGeneration = new ReportGeneration();
+       EventReportGeneration reportGeneration = new EventReportGeneration();
        reportGeneration.generateEventReport(allEventData);
 
    }
