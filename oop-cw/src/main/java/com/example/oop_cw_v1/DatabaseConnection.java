@@ -180,17 +180,14 @@ public class DatabaseConnection {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
             //query to fetch events based on the selected club
-            String query = "SELECT scheduleName AS event_name FROM workshop WHERE scheduleId = ? UNION SELECT scheduleName AS event_name FROM event WHERE scheduleId = ? UNION SELECT scheduleName AS event_name FROM meeting WHERE scheduleId = ?;";
+            String query = "SELECT scheduleName FROM (SELECT scheduleId, scheduleName FROM workshop UNION SELECT scheduleId, scheduleName FROM meeting UNION SELECT scheduleId, scheduleName FROM event) AS combined_events;";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, selectedClubID);
-            preparedStatement.setString(2, selectedClubID);
-            preparedStatement.setString(3, selectedClubID);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                eventData.add(resultSet.getString("event_name"));
+                eventData.add(resultSet.getString("scheduleName"));
             }
             connection.close();
         } catch (SQLException e) {
