@@ -58,6 +58,10 @@ public class EventDataBaseConnection {
     }
 
 
+
+
+
+
     public static void insertWorkshopData(String scheduleId, String scheduleName, String scheduleLocation, String clubId, String scheduleDate, String scheduleTime, String conductor) {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO workshop (scheduleId, scheduleName, scheduleLocation, clubId, scheduleDate, scheduleTime,  conductor ) VALUES (?, ?, ?, ?, ?, ?, ?)";

@@ -27,17 +27,12 @@ import java.util.ResourceBundle;
 
 public class EventController implements Initializable {
 
-
-
    @FXML
    void generateReport(ActionEvent event) {
        List<Event> allEventData = EventDataBaseConnection.getAllEventData();
        EventReportGeneration reportGeneration = new EventReportGeneration();
        reportGeneration.generateEventReport(allEventData);
-
    }
-
-
 
     @FXML
     private Pane createGamePane;
@@ -496,8 +491,6 @@ public class EventController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-
 
 
     void clickCreateBtnClick(ActionEvent event) {
